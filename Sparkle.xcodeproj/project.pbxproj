@@ -78,7 +78,6 @@
 		B0878D7C2CCD11A50013B989 /* Sparkle */ = {
 			isa = PBXGroup;
 			children = (
-				B0878DD42CD35C850013B989 /* New Group */,
 				B0878DD32CD35C710013B989 /* Presentation */,
 				B0878DD22CD35BFB0013B989 /* Global */,
 				B0878DD12CD35BAC0013B989 /* Application */,
@@ -118,13 +117,6 @@
 				B0878DD52CD35D010013B989 /* TabBar */,
 			);
 			path = Presentation;
-			sourceTree = "<group>";
-		};
-		B0878DD42CD35C850013B989 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		B0878DD52CD35D010013B989 /* TabBar */ = {
@@ -420,6 +412,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V4KT333NUG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sparkle/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -447,6 +440,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V4KT333NUG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sparkle/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

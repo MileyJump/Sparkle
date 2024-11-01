@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        let vc = SparkleTabBarController()
+        let vc = OnboardingViewController()
         window.rootViewController = vc
         
         window.makeKeyAndVisible()
