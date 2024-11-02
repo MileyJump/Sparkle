@@ -11,6 +11,8 @@
 		B0746CB82CD3A27B00AC892C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B0746CB72CD3A27B00AC892C /* SnapKit */; };
 		B0746CBA2CD3AD4E00AC892C /* Color +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CB92CD3AD4E00AC892C /* Color +.swift */; };
 		B0746CBE2CD4FC8000AC892C /* CustomToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */; };
+		B0746CC02CD50B5600AC892C /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CBF2CD50B5600AC892C /* CustomNavigationBar.swift */; };
+		B0746CC22CD5EF6B00AC892C /* UIViewController +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CC12CD5EF6B00AC892C /* UIViewController +.swift */; };
 		B0878D7E2CCD11A50013B989 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0878D7D2CCD11A50013B989 /* AppDelegate.swift */; };
 		B0878D802CCD11A50013B989 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0878D7F2CCD11A50013B989 /* SceneDelegate.swift */; };
 		B0878D852CCD11A50013B989 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B0878D842CCD11A50013B989 /* Base */; };
@@ -31,6 +33,8 @@
 		B0746CB42CD3A17400AC892C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B0746CB92CD3AD4E00AC892C /* Color +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color +.swift"; sourceTree = "<group>"; };
 		B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToastView.swift; sourceTree = "<group>"; };
+		B0746CBF2CD50B5600AC892C /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		B0746CC12CD5EF6B00AC892C /* UIViewController +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController +.swift"; sourceTree = "<group>"; };
 		B0878D7A2CCD11A50013B989 /* Sparkle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sparkle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0878D7D2CCD11A50013B989 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0878D7F2CCD11A50013B989 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 			children = (
 				B0746CBC2CD4FC3000AC892C /* Color */,
 				B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */,
+				B0746CBF2CD50B5600AC892C /* CustomNavigationBar.swift */,
+				B0746CC12CD5EF6B00AC892C /* UIViewController +.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -266,11 +272,13 @@
 				B0878DD02CD25C880013B989 /* SettingViewController.swift in Sources */,
 				B0878D7E2CCD11A50013B989 /* AppDelegate.swift in Sources */,
 				B0746CBA2CD3AD4E00AC892C /* Color +.swift in Sources */,
+				B0746CC02CD50B5600AC892C /* CustomNavigationBar.swift in Sources */,
 				B0878DCA2CD255460013B989 /* SparkleTabBar.swift in Sources */,
 				B0878DDA2CD36E3B0013B989 /* BaseViewController.swift in Sources */,
 				B0878D802CCD11A50013B989 /* SceneDelegate.swift in Sources */,
 				B0878DCC2CD25C4C0013B989 /* HomeViewController.swift in Sources */,
 				B0746CB52CD3A17400AC892C /* OnboardingViewController.swift in Sources */,
+				B0746CC22CD5EF6B00AC892C /* UIViewController +.swift in Sources */,
 				B0746CBE2CD4FC8000AC892C /* CustomToastView.swift in Sources */,
 				B0878DD82CD35D780013B989 /* BaseView.swift in Sources */,
 			);
