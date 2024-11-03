@@ -12,7 +12,7 @@
 		B0746CBA2CD3AD4E00AC892C /* Color +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CB92CD3AD4E00AC892C /* Color +.swift */; };
 		B0746CBE2CD4FC8000AC892C /* CustomToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */; };
 		B0746CC02CD50B5600AC892C /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CBF2CD50B5600AC892C /* CustomNavigationBar.swift */; };
-		B0746CC22CD5EF6B00AC892C /* UIViewController +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CC12CD5EF6B00AC892C /* UIViewController +.swift */; };
+		B0746CC42CD6158200AC892C /* CommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CC32CD6158200AC892C /* CommonButton.swift */; };
 		B0878D7E2CCD11A50013B989 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0878D7D2CCD11A50013B989 /* AppDelegate.swift */; };
 		B0878D802CCD11A50013B989 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0878D7F2CCD11A50013B989 /* SceneDelegate.swift */; };
 		B0878D852CCD11A50013B989 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B0878D842CCD11A50013B989 /* Base */; };
@@ -34,7 +34,7 @@
 		B0746CB92CD3AD4E00AC892C /* Color +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color +.swift"; sourceTree = "<group>"; };
 		B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToastView.swift; sourceTree = "<group>"; };
 		B0746CBF2CD50B5600AC892C /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
-		B0746CC12CD5EF6B00AC892C /* UIViewController +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController +.swift"; sourceTree = "<group>"; };
+		B0746CC32CD6158200AC892C /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
 		B0878D7A2CCD11A50013B989 /* Sparkle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sparkle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0878D7D2CCD11A50013B989 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0878D7F2CCD11A50013B989 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 				B0746CBC2CD4FC3000AC892C /* Color */,
 				B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */,
 				B0746CBF2CD50B5600AC892C /* CustomNavigationBar.swift */,
-				B0746CC12CD5EF6B00AC892C /* UIViewController +.swift */,
+				B0746CC32CD6158200AC892C /* CommonButton.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -266,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0746CC42CD6158200AC892C /* CommonButton.swift in Sources */,
 				B0878DC82CD2550F0013B989 /* MainTabBarViewController.swift in Sources */,
 				B0878DCE2CD25C6D0013B989 /* DirectViewController.swift in Sources */,
 				B0878DE22CD39B760013B989 /* OnboardingView.swift in Sources */,
@@ -278,7 +279,6 @@
 				B0878D802CCD11A50013B989 /* SceneDelegate.swift in Sources */,
 				B0878DCC2CD25C4C0013B989 /* HomeViewController.swift in Sources */,
 				B0746CB52CD3A17400AC892C /* OnboardingViewController.swift in Sources */,
-				B0746CC22CD5EF6B00AC892C /* UIViewController +.swift in Sources */,
 				B0746CBE2CD4FC8000AC892C /* CustomToastView.swift in Sources */,
 				B0878DD82CD35D780013B989 /* BaseView.swift in Sources */,
 			);
