@@ -31,15 +31,12 @@ final class OnboardingView: BaseView {
         $0.numberOfLines = 2
     }
     
-    private let startButton = UIButton()
-    
-//    private let startButton = UIButton().then {
-//        $0.setTitle("시작하기", for: .normal)
-//        $0.backgroundColor = UIColor.sparkleBrandOrangeColor
-//        $0.setTitleColor(UIColor.sparkleBrandWhiteColor, for: .normal)
-//        $0.layer.cornerRadius = 8
-//    }
-    
+     let startButton = UIButton().then {
+        $0.setTitle("시작하기", for: .normal)
+        $0.backgroundColor = UIColor.sparkleBrandOrangeColor
+        $0.setTitleColor(UIColor.sparkleBrandWhiteColor, for: .normal)
+        $0.layer.cornerRadius = 8
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,7 +47,6 @@ final class OnboardingView: BaseView {
         self.addSubview(onboardingImage)
         self.addSubview(onboardingLabel)
         self.addSubview(startButton)
-        
     }
     
     override func setupLayout() {
@@ -76,10 +72,6 @@ final class OnboardingView: BaseView {
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(24)
             make.height.equalTo(44)
         }
-    }
-    
-    override func setupUI() {
-        startButton.NewMessageButton(title: "Button Title", image: UIImage(named: "exampleImage"))
     }
 }
     
