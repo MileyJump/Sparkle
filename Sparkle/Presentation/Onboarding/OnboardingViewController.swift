@@ -12,5 +12,4 @@ final class OnboardingViewController: BaseViewController<OnboardingView> {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
 }

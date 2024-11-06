@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Sparkle
 //
-//  Created by 최민경 on 10/26/24.
+//  Created by 최민경 on 11/6/24.
 //
 
 import UIKit
@@ -10,10 +10,9 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+      
+        
         return true
     }
 
