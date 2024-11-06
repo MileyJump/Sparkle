@@ -7,23 +7,26 @@
 
 import UIKit
 
-import UIKit
-
 extension UIButton {
     
-    func NewMessageButton(title: String, image: UIImage?) {
-        // 이미지와 타이틀 설정
-        setTitle(title, for: .normal)
-        setImage(image, for: .normal)
+    func newMessageButton(title: String, image: UIImage?, titleImageSpacing: CGFloat = 8) {
         
-        // 이미지와 타이틀의 레이아웃 조정
-        semanticContentAttribute = .forceLeftToRight
-        contentHorizontalAlignment = .left
-        imageEdgeInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 8) // 이미지와 타이틀 간격 조정
-        titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)
+        var config = UIButton.Configuration.plain() // 기본 구성 생성
         
-        // 필요한 경우 추가 스타일 설정
-        titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        setTitleColor(.black, for: .normal)
+        config.image = image
+        config.imagePadding = titleImageSpacing
+        
+        config.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 14)
+        
+        var attributes = AttributeContainer()
+        attributes.font = UIFont.systemFont(ofSize: 13)
+        
+        config.attributedTitle = AttributedString(title, attributes: attributes)
+        config.baseBackgroundColor = .black
+        config.baseForegroundColor = .black
+        
+        self.configuration = config
+        
+        self.contentHorizontalAlignment = .left
     }
 }
