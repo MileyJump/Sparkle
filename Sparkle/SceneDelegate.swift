@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  Sparkle
 //
-//  Created by 최민경 on 10/26/24.
+//  Created by 최민경 on 11/6/24.
 //
 
 import UIKit
@@ -11,14 +11,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
+
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        let vc = SparkleTabBarController()
+        let vc = OnboardingViewController()
         window.rootViewController = vc
+        
         
         window.makeKeyAndVisible()
         self.window = window
@@ -54,4 +54,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
+
 
