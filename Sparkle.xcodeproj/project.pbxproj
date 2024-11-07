@@ -35,6 +35,7 @@
 		B0F1E0CF2CDB68B0005E38E7 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1E0CE2CDB68B0005E38E7 /* BaseTableViewCell.swift */; };
 		B0F1E0D12CDB68CC005E38E7 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1E0D02CDB68CC005E38E7 /* BaseCollectionViewCell.swift */; };
 		B0F1E0D32CDB6910005E38E7 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1E0D22CDB6910005E38E7 /* UserTableViewCell.swift */; };
+		B0F1E0D62CDCE0F8005E38E7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1E0D52CDCE0F8005E38E7 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		B0F1E0CE2CDB68B0005E38E7 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		B0F1E0D02CDB68CC005E38E7 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		B0F1E0D22CDB6910005E38E7 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		B0F1E0D52CDCE0F8005E38E7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,8 +140,8 @@
 		B0878DD32CD35C710013B989 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				B0F1E0D42CDCE0F1005E38E7 /* WorkSpace */,
 				B0878DDF2CD36EEB0013B989 /* Direct */,
-				B0878DDE2CD36EE20013B989 /* Home */,
 				B0878DE02CD36EF40013B989 /* Setting */,
 				B0878DDB2CD36EC30013B989 /* Onboarding */,
 				B0878DD62CD35D700013B989 /* Base */,
@@ -180,6 +182,7 @@
 		B0878DDE2CD36EE20013B989 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B0F1E0D52CDCE0F8005E38E7 /* HomeView.swift */,
 				B0878DCB2CD25C4C0013B989 /* HomeViewController.swift */,
 			);
 			path = Home;
@@ -199,6 +202,14 @@
 				B0878DCF2CD25C880013B989 /* SettingViewController.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		B0F1E0D42CDCE0F1005E38E7 /* WorkSpace */ = {
+			isa = PBXGroup;
+			children = (
+				B0878DDE2CD36EE20013B989 /* Home */,
+			);
+			path = WorkSpace;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +299,7 @@
 				B0746CCA2CD9FBAF00AC892C /* CustomPopupView.swift in Sources */,
 				B0F1E0CF2CDB68B0005E38E7 /* BaseTableViewCell.swift in Sources */,
 				B0878DCE2CD25C6D0013B989 /* DirectViewController.swift in Sources */,
+				B0F1E0D62CDCE0F8005E38E7 /* HomeView.swift in Sources */,
 				B0F1E0D12CDB68CC005E38E7 /* BaseCollectionViewCell.swift in Sources */,
 				B0878DE22CD39B760013B989 /* OnboardingView.swift in Sources */,
 				B0878DD02CD25C880013B989 /* SettingViewController.swift in Sources */,
