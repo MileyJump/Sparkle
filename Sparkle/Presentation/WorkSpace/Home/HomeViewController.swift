@@ -12,8 +12,6 @@ final class HomeViewController: BaseViewController<HomeView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
     override func setupNavigationBar() {
@@ -24,11 +22,11 @@ final class HomeViewController: BaseViewController<HomeView> {
         xmarkBarButtonItem.tintColor = UIColor.sparkleTextPrimaryColor
         
         let appearance = UINavigationBarAppearance()
-           appearance.configureWithDefaultBackground()
-           appearance.shadowColor = .lightGray
+        appearance.configureWithDefaultBackground()
+        appearance.shadowColor = .lightGray
         appearance.backgroundColor = UIColor.secondarySystemBackground
-           navigationController?.navigationBar.standardAppearance = appearance
-           navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
 }
