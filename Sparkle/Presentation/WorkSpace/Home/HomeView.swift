@@ -28,7 +28,7 @@ final class HomeView: BaseView {
         $0.image = UIImage(named: "launching")
     }
     
-    private let createWorkspaceButton = CommonButton(image: nil, title: "워크스페이스 생성", backgroundColor: UIColor.sparkleBrandOrangeColor, tintColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 14))
+    let createWorkspaceButton = CommonButton(image: nil, title: "워크스페이스 생성", backgroundColor: UIColor.sparkleBrandOrangeColor, tintColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 14))
     
     override init(frame: CGRect) {
         super.init(frame: frame)

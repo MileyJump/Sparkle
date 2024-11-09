@@ -6,12 +6,18 @@
 //
 
 import UIKit
+
+import ReactorKit
 import RxSwift
 
 final class HomeViewController: BaseViewController<HomeView> {
     
+    private let reactor = HomeViewReactor()
+    private let dispoase = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        bint(reactor: reactor)
     }
     
     override func setupNavigationBar() {
@@ -29,4 +35,26 @@ final class HomeViewController: BaseViewController<HomeView> {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
+    private func bint(reactor: HomeViewReactor) {
+        
+        rootView.createWorkspaceButton.rx.tap
+            .map { HomeViewReactor.Action.createWorkspace }
+            .bind(to: reactor.action)
+            .disposed(by: dispoase)
+        
+        reactor.state.map { $0.shouldNavigateToNextScreen }
+            .distinctUntilChanged()
+            .filter { $0 }
+            .bind(with: self) { owner, _ in
+                owner.createWorkspace()
+            }
+            .disposed(by: dispoase)
+            
+    }
+    
+    private func createWorkspace() {
+        let createVC = CreateWorkspaceViewController()
+        let navi = UINavigationController(rootViewController: createVC)
+        navigationController?.present(navi, animated: true)
+    }
 }
