@@ -12,10 +12,23 @@ import SnapKit
 
 final class CreateWorkspaceView: BaseView {
     
-    private let profileImageView = UIImageView().then {
-        $0.image = UIImage(named: "workspaceBubble")
+    private let profileView = UIView().then {
         $0.backgroundColor = UIColor.sparkleBrandOrangeColor
         $0.layer.cornerRadius = 8
+    }
+    
+    private let profileImageView = UIImageView().then {
+        $0.image = UIImage(named: "workspaceBubble")
+    }
+    
+    private let cameraButton = UIButton().then {
+        let image = UIImage(systemName: "camera.fill",
+                            withConfiguration: UIImage.SymbolConfiguration(pointSize: 14, weight: .medium))
+        $0.setImage(image, for: .normal)
+        $0.layer.borderWidth = 2
+        $0.layer.borderColor = UIColor.sparkleBrandWhiteColor.cgColor
+        $0.backgroundColor = UIColor.sparkleBrandOrangeColor
+        $0.tintColor = UIColor.sparkleBrandWhiteColor
     }
     
     private let workspaceNameLabel = UILabel().then {
@@ -24,10 +37,16 @@ final class CreateWorkspaceView: BaseView {
         $0.font = UIFont.boldSystemFont(ofSize: 14)
     }
     
+    private let workspaceNameBackgroundView = UIView().then {
+        $0.backgroundColor = UIColor.sparkleBrandWhiteColor
+        $0.layer.cornerRadius = 8
+    }
+    
     private let workspaceNameTextField = UITextField().then {
         $0.placeholder = "워크스페이스 이름을 입력해주세요 (필수)"
         $0.font = UIFont.systemFont(ofSize: 13)
         $0.textColor = UIColor.sparkleTextPrimaryColor
+        $0.backgroundColor = UIColor.sparkleBrandWhiteColor
     }
     
     private let workspaceExplanationLabel = UILabel().then {
@@ -36,38 +55,62 @@ final class CreateWorkspaceView: BaseView {
         $0.font = UIFont.boldSystemFont(ofSize: 14)
     }
     
+    private let workspaceExplanationBackgroundView = UIView().then {
+        $0.backgroundColor = UIColor.sparkleBrandWhiteColor
+        $0.layer.cornerRadius = 8
+    }
+    
     private let workspaceExplanationTextField = UITextField().then {
         $0.placeholder = "워크스페이스를 설명하세요. (옵션)"
         $0.font = UIFont.systemFont(ofSize: 13)
         $0.textColor = UIColor.sparkleTextPrimaryColor
+        $0.backgroundColor = UIColor.sparkleBrandWhiteColor
     }
     
-    private let confirmButton = UIButton().then {
-        $0.setTitle("완료", for: .normal)
-        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        $0.setTitleColor(UIColor.sparkleBrandWhiteColor, for: .normal)
-        $0.backgroundColor = UIColor.sparkleBrandInactiveColor
-    }
+    let confirmButton = CommonButton(image: nil, title: "완료", backgroundColor: UIColor.sparkleBrandInactiveColor, tintColor: UIColor.sparkleBrandWhiteColor, font: UIFont.boldSystemFont(ofSize: 14))
     
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        cameraButton.layer.cornerRadius = cameraButton.frame.height / 2
+        cameraButton.layer.masksToBounds = true
+    }
+    
     override func setupSubviews() {
         
+        addSubview(profileView)
         addSubview(profileImageView)
+        addSubview(cameraButton)
         addSubview(workspaceNameLabel)
+        addSubview(workspaceNameBackgroundView)
         addSubview(workspaceNameTextField)
         addSubview(workspaceExplanationLabel)
+        addSubview(workspaceExplanationBackgroundView)
         addSubview(workspaceExplanationTextField)
         addSubview(confirmButton)
     }
     
     override func setupLayout() {
-        profileImageView.snp.makeConstraints { make in
+        profileView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(24)
             make.centerX.equalTo(safeAreaLayoutGuide)
             make.size.equalTo(70)
+        }
+        
+        profileImageView.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(profileView).inset(10)
+            make.bottom.equalTo(profileView)
+        }
+        
+        cameraButton.snp.makeConstraints { make in
+            make.size.equalTo(24)
+            make.top.equalTo(profileView.snp.top).offset(51)
+            make.leading.equalTo(profileView.snp.leading).offset(53)
+            make.trailing.equalTo(profileView.snp.trailing).offset(5)
         }
         
         workspaceNameLabel.snp.makeConstraints { make in
@@ -76,10 +119,15 @@ final class CreateWorkspaceView: BaseView {
             make.height.equalTo(24)
         }
         
-        workspaceNameTextField.snp.makeConstraints { make in
+        workspaceNameBackgroundView.snp.makeConstraints { make in
             make.top.equalTo(workspaceNameLabel.snp.bottom).offset(8)
             make.height.equalTo(44)
             make.horizontalEdges.equalTo(workspaceNameLabel)
+        }
+        
+        workspaceNameTextField.snp.makeConstraints { make in
+            make.verticalEdges.equalTo(workspaceNameBackgroundView)
+            make.horizontalEdges.equalTo(workspaceNameBackgroundView).inset(12)
         }
         
         workspaceExplanationLabel.snp.makeConstraints { make in
@@ -87,9 +135,14 @@ final class CreateWorkspaceView: BaseView {
             make.height.horizontalEdges.equalTo(workspaceNameLabel)
         }
         
-        workspaceExplanationTextField.snp.makeConstraints { make in
+        workspaceExplanationBackgroundView.snp.makeConstraints { make in
             make.top.equalTo(workspaceExplanationLabel.snp.bottom).offset(8)
-            make.height.horizontalEdges.equalTo(workspaceNameTextField)
+            make.height.horizontalEdges.equalTo(workspaceNameBackgroundView)
+        }
+        
+        workspaceExplanationTextField.snp.makeConstraints { make in
+            make.verticalEdges.equalTo(workspaceExplanationBackgroundView)
+            make.horizontalEdges.equalTo(workspaceExplanationBackgroundView).inset(12)
         }
         
         confirmButton.snp.makeConstraints { make in
@@ -97,5 +150,4 @@ final class CreateWorkspaceView: BaseView {
             make.bottom.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(24)
         }
     }
-    
 }

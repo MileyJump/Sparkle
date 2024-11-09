@@ -9,64 +9,44 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 
-final class ViewReactor: Reactor {
+final class HomeViewReactor: Reactor {
     
     enum Action {
         case xmark
-        case decrease
+        case createWorkspace
     }
     
     enum Mutation {
-        case increaseValue
-        case decreaseValue
-        case setLoading(Bool)
-        case alertMessage(String)
+        case createWorkspaceToNextScreen
     }
     
     struct State {
-        var value: Int
-        var setLoading: Bool
-        @Pulse var alertMessage: String?
+        var shouldNavigateToNextScreen: Bool = false
     }
     
     let initialState: State
     
     // 처음 상태를 작성하기 위해서 사용
     init() {
-        self.initialState = State(value: 0, setLoading: false)
+        self.initialState = State(shouldNavigateToNextScreen: false)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .increase:
-            return Observable.concat(
-                Observable.just(Mutation.increaseValue),
-                Observable.just(Mutation.setLoading(false)),
-                Observable.just(Mutation.alertMessage("increase"))
-                
-            )
-        case .decrease:
-            return Observable.concat(
-                Observable.just(Mutation.decreaseValue),
-                Observable.just(Mutation.setLoading(false)),
-                Observable.just(Mutation.alertMessage("decrease"))
-            )
+        case .xmark:
+            return Observable.just(.createWorkspaceToNextScreen) // 임시
+        case .createWorkspace:
+            return Observable.just(.createWorkspaceToNextScreen)
+        
         }
     }
    
     func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         switch mutation {
-        case .increaseValue:
-            state.value += 1
-        case .decreaseValue:
-            state.value -= 1
-        case .setLoading(let bool):
-            state.setLoading = bool
-        case .alertMessage(let string):
-            state.alertMessage = string
+        case .createWorkspaceToNextScreen:
+            state.shouldNavigateToNextScreen = true
         }
-        
         return state
     }
 }
