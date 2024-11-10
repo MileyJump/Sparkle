@@ -59,7 +59,6 @@ final class HomeViewController: BaseViewController<HomeView> {
             .filter { $0 }
             .bind(with: self) { owner, _ in
                 owner.homeView()
-                print("여긴가?")
             }
             .disposed(by: dispoase)
             
@@ -72,7 +71,6 @@ final class HomeViewController: BaseViewController<HomeView> {
     }
     
     private func homeView() {
-        print("이거 돼?")
         let createVC = HomeEmptyViewController()
         let navi = UINavigationController(rootViewController: createVC)
         navigationController?.present(navi, animated: true)
