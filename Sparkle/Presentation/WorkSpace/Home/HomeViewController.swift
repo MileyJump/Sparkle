@@ -33,6 +33,11 @@ final class HomeViewController: BaseViewController<HomeView> {
         appearance.backgroundColor = UIColor.secondarySystemBackground
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
+        xmarkBarButtonItem.rx.tap
+            .map { HomeViewReactor.Action.xmark }
+            .bind(to: reactor.action)
+            .disposed(by: dispoase)
     }
     
     private func bint(reactor: HomeViewReactor) {
@@ -49,11 +54,26 @@ final class HomeViewController: BaseViewController<HomeView> {
                 owner.createWorkspace()
             }
             .disposed(by: dispoase)
+        
+        reactor.state.map { $0.xmarkButtomTapped }
+            .filter { $0 }
+            .bind(with: self) { owner, _ in
+                owner.homeView()
+                print("여긴가?")
+            }
+            .disposed(by: dispoase)
             
     }
     
     private func createWorkspace() {
         let createVC = CreateWorkspaceViewController()
+        let navi = UINavigationController(rootViewController: createVC)
+        navigationController?.present(navi, animated: true)
+    }
+    
+    private func homeView() {
+        print("이거 돼?")
+        let createVC = HomeEmptyViewController()
         let navi = UINavigationController(rootViewController: createVC)
         navigationController?.present(navi, animated: true)
     }

@@ -95,6 +95,7 @@ final class CreateWorkspaceView: BaseView {
     }
     
     override func setupLayout() {
+        
         profileView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(24)
             make.centerX.equalTo(safeAreaLayoutGuide)
