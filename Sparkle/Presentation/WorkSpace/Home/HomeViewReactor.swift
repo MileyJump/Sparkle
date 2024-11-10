@@ -17,10 +17,12 @@ final class HomeViewReactor: Reactor {
     }
     
     enum Mutation {
+        case xmarkButtomTapped
         case createWorkspaceToNextScreen
     }
     
     struct State {
+        var xmarkButtomTapped: Bool = false
         var shouldNavigateToNextScreen: Bool = false
     }
     
@@ -34,7 +36,7 @@ final class HomeViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .xmark:
-            return Observable.just(.createWorkspaceToNextScreen) // 임시
+            return Observable.just(.xmarkButtomTapped) // 임시
         case .createWorkspace:
             return Observable.just(.createWorkspaceToNextScreen)
         
@@ -46,6 +48,8 @@ final class HomeViewReactor: Reactor {
         switch mutation {
         case .createWorkspaceToNextScreen:
             state.shouldNavigateToNextScreen = true
+        case .xmarkButtomTapped:
+            state.xmarkButtomTapped = true
         }
         return state
     }

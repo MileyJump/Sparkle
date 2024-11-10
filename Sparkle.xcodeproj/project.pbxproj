@@ -13,6 +13,8 @@
 		B02A086E2CDE3998007489EE /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = B02A086D2CDE3998007489EE /* Then */; };
 		B02A08712CDE39A1007489EE /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = B02A08702CDE39A1007489EE /* ReactorKit */; };
 		B02A08732CDE3B5C007489EE /* CreateWorkspaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A08722CDE3B5C007489EE /* CreateWorkspaceViewController.swift */; };
+		B02A08762CDF200D007489EE /* HomeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A08752CDF200D007489EE /* HomeEmptyView.swift */; };
+		B02A08782CDF20C9007489EE /* HomeEmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A08772CDF20C9007489EE /* HomeEmptyViewController.swift */; };
 		B0746CB52CD3A17400AC892C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CB42CD3A17400AC892C /* OnboardingViewController.swift */; };
 		B0746CBA2CD3AD4E00AC892C /* Color +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CB92CD3AD4E00AC892C /* Color +.swift */; };
 		B0746CBE2CD4FC8000AC892C /* CustomToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */; };
@@ -44,6 +46,8 @@
 
 /* Begin PBXFileReference section */
 		B02A08722CDE3B5C007489EE /* CreateWorkspaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkspaceViewController.swift; sourceTree = "<group>"; };
+		B02A08752CDF200D007489EE /* HomeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyView.swift; sourceTree = "<group>"; };
+		B02A08772CDF20C9007489EE /* HomeEmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyViewController.swift; sourceTree = "<group>"; };
 		B0746CB42CD3A17400AC892C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B0746CB92CD3AD4E00AC892C /* Color +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color +.swift"; sourceTree = "<group>"; };
 		B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToastView.swift; sourceTree = "<group>"; };
@@ -193,6 +197,8 @@
 				B0F1E0D52CDCE0F8005E38E7 /* HomeView.swift */,
 				B0878DCB2CD25C4C0013B989 /* HomeViewController.swift */,
 				B0F1E0DA2CDE0F1B005E38E7 /* HomeViewReactor.swift */,
+				B02A08752CDF200D007489EE /* HomeEmptyView.swift */,
+				B02A08772CDF20C9007489EE /* HomeEmptyViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -330,6 +336,7 @@
 				B0746CC82CD8CC6300AC892C /* ChannelsButton.swift in Sources */,
 				B0746CBA2CD3AD4E00AC892C /* Color +.swift in Sources */,
 				B0746CC02CD50B5600AC892C /* CustomNavigationBar.swift in Sources */,
+				B02A08762CDF200D007489EE /* HomeEmptyView.swift in Sources */,
 				B0878DCA2CD255460013B989 /* SparkleTabBar.swift in Sources */,
 				B0878DDA2CD36E3B0013B989 /* BaseViewController.swift in Sources */,
 				B0F1E0C82CDB4EDB005E38E7 /* SceneDelegate.swift in Sources */,
@@ -338,6 +345,7 @@
 				B0F1E0D32CDB6910005E38E7 /* UserTableViewCell.swift in Sources */,
 				B0746CB52CD3A17400AC892C /* OnboardingViewController.swift in Sources */,
 				B0746CBE2CD4FC8000AC892C /* CustomToastView.swift in Sources */,
+				B02A08782CDF20C9007489EE /* HomeEmptyViewController.swift in Sources */,
 				B0F1E0C62CDB4EC6005E38E7 /* AppDelegate.swift in Sources */,
 				B0878DD82CD35D780013B989 /* BaseView.swift in Sources */,
 			);

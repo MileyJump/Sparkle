@@ -15,13 +15,11 @@ class BaseViewController<RootView: UIView>: UIViewController {
         view = rootView
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupNavigationBar()
     }
-    
     
     func setupUI() {
         navigationItem.backButtonTitle = ""
