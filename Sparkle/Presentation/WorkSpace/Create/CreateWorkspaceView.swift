@@ -109,9 +109,8 @@ final class CreateWorkspaceView: BaseView {
         
         cameraButton.snp.makeConstraints { make in
             make.size.equalTo(24)
-            make.top.equalTo(profileView.snp.top).offset(51)
-            make.leading.equalTo(profileView.snp.leading).offset(53)
-            make.trailing.equalTo(profileView.snp.trailing).offset(5)
+            make.bottom.equalTo(profileView.snp.bottom).offset(5)
+            make.trailing.equalTo(profileView.snp.trailing).offset(7)
         }
         
         workspaceNameLabel.snp.makeConstraints { make in

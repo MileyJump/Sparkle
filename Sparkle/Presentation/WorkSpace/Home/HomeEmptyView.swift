@@ -9,7 +9,7 @@ import UIKit
 
 final class HomeEmptyView: BaseView {
     
-    let homeView = HomeView(releaseText: "안녕", workspaceImage: UIImage(named: "workspace empty"))
+    let homeView = workspaceInitialView(releaseText: "워크스페이스를 찾을 수 없어요.", workspaceMessage: "관리자에게 초대를 요청하거나, 다른 이메일로 시도하거나 새로운 워크스페이스를 생성해주세요.", workspaceImage: UIImage(named: "workspace empty"))
     
     override func setupSubviews() {
         addSubview(homeView)

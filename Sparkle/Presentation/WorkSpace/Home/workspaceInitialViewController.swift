@@ -10,14 +10,14 @@ import UIKit
 import ReactorKit
 import RxSwift
 
-final class HomeViewController: BaseViewController<HomeView> {
+final class workspaceInitialViewController: BaseViewController<workspaceInitialView> {
     
     private let reactor = HomeViewReactor()
     private let dispoase = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bint(reactor: reactor)
+        bind(reactor: reactor)
     }
     
     override func setupNavigationBar() {
@@ -40,7 +40,7 @@ final class HomeViewController: BaseViewController<HomeView> {
             .disposed(by: dispoase)
     }
     
-    private func bint(reactor: HomeViewReactor) {
+    private func bind(reactor: HomeViewReactor) {
         
         rootView.createWorkspaceButton.rx.tap
             .map { HomeViewReactor.Action.createWorkspace }
@@ -51,26 +51,15 @@ final class HomeViewController: BaseViewController<HomeView> {
             .distinctUntilChanged()
             .filter { $0 }
             .bind(with: self) { owner, _ in
-                owner.createWorkspace()
+                owner.navigationController?.changePresentViewController(CreateWorkspaceViewController())
             }
             .disposed(by: dispoase)
         
         reactor.state.map { $0.xmarkButtomTapped }
             .filter { $0 }
             .bind(with: self) { owner, _ in
-                owner.homeView()
+                owner.navigationController?.changeRootViewController(HomeEmptyViewController())
             }
-            .disposed(by: dispoase)
-            
-    }
-    
-    private func createWorkspace() {
-        let createVC = CreateWorkspaceViewController()
-        let navi = UINavigationController(rootViewController: createVC)
-        navigationController?.present(navi, animated: true)
-    }
-    
-    private func homeView() {
-        navigationController?.changeRootViewController(HomeEmptyViewController())
+            .disposed(by: dispoase) 
     }
 }
