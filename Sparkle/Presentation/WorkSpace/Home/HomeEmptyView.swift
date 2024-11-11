@@ -10,4 +10,14 @@ import UIKit
 final class HomeEmptyView: BaseView {
     
     let homeView = HomeView(releaseText: "안녕", workspaceImage: UIImage(named: "workspace empty"))
+    
+    override func setupSubviews() {
+        addSubview(homeView)
+    }
+    
+    override func setupLayout() {
+        homeView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
 }
