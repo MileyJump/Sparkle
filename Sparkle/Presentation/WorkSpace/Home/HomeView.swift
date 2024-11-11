@@ -34,10 +34,12 @@ class HomeView: BaseView {
         super.init(frame: .zero)
         releaseReadyLabel.text = releaseText
         workspaceImageView.image = workspaceImage
+        print("HomeView init")
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        print("HomeView super init")
     }
     
     override func setupSubviews() {

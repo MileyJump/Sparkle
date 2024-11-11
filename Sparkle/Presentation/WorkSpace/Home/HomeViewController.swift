@@ -71,8 +71,6 @@ final class HomeViewController: BaseViewController<HomeView> {
     }
     
     private func homeView() {
-        let createVC = HomeEmptyViewController()
-        let navi = UINavigationController(rootViewController: createVC)
-        navigationController?.present(navi, animated: true)
+        navigationController?.changeRootViewController(HomeEmptyViewController())
     }
 }

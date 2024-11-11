@@ -7,6 +7,9 @@
 
 import UIKit
 
+import Then
+import SnapKit
+
 class WorkspaceCustomNavigationBar: UIView {
     
     private let workspaceImageView: UIImageView
@@ -19,6 +22,10 @@ class WorkspaceCustomNavigationBar: UIView {
     
     private let profileImageView: UIImageView
     
+    private let lineView = UIView().then {
+        $0.backgroundColor = UIColor.sparkleViewSeperatorColor
+    }
+    
     init(workspaceImageName: String, title: String, profileImageName: String) {
         
         self.workspaceImageView = UIImageView(image: UIImage(named: workspaceImageName))
@@ -27,6 +34,7 @@ class WorkspaceCustomNavigationBar: UIView {
         super.init(frame: .zero)
         
         setupAppearance()
+        setupSubviews()
         setupLayout()
         
         titleLabel.text = title
@@ -52,27 +60,37 @@ class WorkspaceCustomNavigationBar: UIView {
         profileImageView.contentMode = .scaleAspectFill
     }
     
-    private func setupLayout() {
+    private func setupSubviews() {
         
         addSubview(workspaceImageView)
         addSubview(titleLabel)
         addSubview(profileImageView)
+        addSubview(lineView)
+    }
+    
+    private func setupLayout() {
         
         workspaceImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().inset(16)
+            make.leading.equalToSuperview()
             make.size.equalTo(32)
         }
         
         titleLabel.snp.makeConstraints { make in
             make.leading.equalTo(workspaceImageView.snp.trailing).offset(8)
-            make.centerY.equalToSuperview()   
+            make.trailing.equalTo(profileImageView.snp.leading).offset(-8)
+            make.centerY.equalToSuperview()
         }
         
         profileImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().inset(16)
+            make.trailing.equalToSuperview()
             make.size.equalTo(32)
+        }
+        
+        lineView.snp.makeConstraints { make in
+            make.bottom.horizontalEdges.equalToSuperview()
+            make.height.equalTo(1)
         }
     }
 }
