@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeView: BaseView {
+class workspaceInitialView: BaseView {
     
     private let releaseReadyLabel = UILabel().then {
         $0.text = "출시 준비 완료!"
@@ -30,10 +30,11 @@ class HomeView: BaseView {
     
     let createWorkspaceButton = CommonButton(image: nil, title: "워크스페이스 생성", backgroundColor: UIColor.sparkleBrandOrangeColor, tintColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 14))
     
-    init(releaseText: String, workspaceImage: UIImage?) {
+    init(releaseText: String, workspaceMessage: String, workspaceImage: UIImage?) {
         super.init(frame: .zero)
         releaseReadyLabel.text = releaseText
         workspaceImageView.image = workspaceImage
+        workspaceReadyMessageLabel.text = workspaceMessage
         print("HomeView init")
     }
     

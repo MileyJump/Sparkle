@@ -39,7 +39,6 @@ final class HomeViewReactor: Reactor {
             return Observable.just(.xmarkButtomTapped) // 임시
         case .createWorkspace:
             return Observable.just(.createWorkspaceToNextScreen)
-        
         }
     }
    

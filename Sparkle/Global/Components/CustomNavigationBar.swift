@@ -72,7 +72,7 @@ class WorkspaceCustomNavigationBar: UIView {
         
         workspaceImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview()
+            make.leading.equalToSuperview().offset(16)
             make.size.equalTo(32)
         }
         
@@ -84,7 +84,7 @@ class WorkspaceCustomNavigationBar: UIView {
         
         profileImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-16)
             make.size.equalTo(32)
         }
         
