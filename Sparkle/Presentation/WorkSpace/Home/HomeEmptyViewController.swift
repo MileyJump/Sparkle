@@ -26,11 +26,6 @@ final class HomeEmptyViewController: BaseViewController<HomeEmptyView> {
         let navigationBar = WorkspaceCustomNavigationBar(workspaceImageName: "테스트 사진", title: "No Workspace", profileImageName: "테스트 사진")
         
         navigationItem.titleView = navigationBar
-        
-//        navigationBar.snp.makeConstraints { make in
-//            make.width.equalTo(UIScreen.main.bounds.width)
-//            make.height.equalTo(44)
-//        }
     }
     
     private func bind(reactor: HomeViewReactor) {

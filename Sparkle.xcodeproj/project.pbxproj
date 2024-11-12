@@ -20,6 +20,7 @@
 		B02A08802CE20320007489EE /* HomeInitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A087F2CE20320007489EE /* HomeInitialView.swift */; };
 		B02A08822CE2032D007489EE /* HomeInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A08812CE2032D007489EE /* HomeInitialViewController.swift */; };
 		B02A08842CE21D9F007489EE /* HomeInitialViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A08832CE21D9F007489EE /* HomeInitialViewReactor.swift */; };
+		B02A08872CE395A1007489EE /* CreateChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A08862CE395A1007489EE /* CreateChannelView.swift */; };
 		B0746CB52CD3A17400AC892C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CB42CD3A17400AC892C /* OnboardingViewController.swift */; };
 		B0746CBA2CD3AD4E00AC892C /* Color +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CB92CD3AD4E00AC892C /* Color +.swift */; };
 		B0746CBE2CD4FC8000AC892C /* CustomToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */; };
@@ -58,6 +59,7 @@
 		B02A087F2CE20320007489EE /* HomeInitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInitialView.swift; sourceTree = "<group>"; };
 		B02A08812CE2032D007489EE /* HomeInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInitialViewController.swift; sourceTree = "<group>"; };
 		B02A08832CE21D9F007489EE /* HomeInitialViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInitialViewReactor.swift; sourceTree = "<group>"; };
+		B02A08862CE395A1007489EE /* CreateChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelView.swift; sourceTree = "<group>"; };
 		B0746CB42CD3A17400AC892C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B0746CB92CD3AD4E00AC892C /* Color +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color +.swift"; sourceTree = "<group>"; };
 		B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToastView.swift; sourceTree = "<group>"; };
@@ -127,6 +129,14 @@
 			path = Extentsion;
 			sourceTree = "<group>";
 		};
+		B02A08852CE39597007489EE /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+				B02A08862CE395A1007489EE /* CreateChannelView.swift */,
+			);
+			path = Channels;
+			sourceTree = "<group>";
+		};
 		B0746CBC2CD4FC3000AC892C /* Color */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +189,7 @@
 		B0878DD32CD35C710013B989 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				B02A08852CE39597007489EE /* Channels */,
 				B0F1E0D42CDCE0F1005E38E7 /* WorkSpace */,
 				B0878DDF2CD36EEB0013B989 /* Direct */,
 				B0878DE02CD36EF40013B989 /* Setting */,
@@ -360,6 +371,7 @@
 				B0F1E0DB2CDE0F1B005E38E7 /* HomeViewReactor.swift in Sources */,
 				B0878DCE2CD25C6D0013B989 /* DirectViewController.swift in Sources */,
 				B0F1E0D62CDCE0F8005E38E7 /* workspaceInitialView.swift in Sources */,
+				B02A08872CE395A1007489EE /* CreateChannelView.swift in Sources */,
 				B0F1E0D92CDE093F005E38E7 /* CreateWorkspaceView.swift in Sources */,
 				B0F1E0D12CDB68CC005E38E7 /* BaseCollectionViewCell.swift in Sources */,
 				B02A08822CE2032D007489EE /* HomeInitialViewController.swift in Sources */,
