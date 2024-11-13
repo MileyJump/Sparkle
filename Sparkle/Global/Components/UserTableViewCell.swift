@@ -10,7 +10,7 @@ import UIKit
 final class UserTableViewCell: BaseCollectionViewCell {
     
     private let profileImageView = UIImageView()
-    private let nameLabel = UILabel()
+     let nameLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

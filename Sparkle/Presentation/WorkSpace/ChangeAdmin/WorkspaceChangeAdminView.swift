@@ -1,17 +1,17 @@
 //
-//  HomeInitialView.swift
+//  WorkspaceChangeAdminView.swift
 //  Sparkle
 //
-//  Created by 최민경 on 11/11/24.
+//  Created by 최민경 on 11/13/24.
 //
 
 import UIKit
 
-final class HomeInitialView: BaseView {
+import SnapKit
+
+final class WorkspaceChangeAdminView: BaseView {
     
-    let tableView = UITableView(frame: .zero, style: .grouped).then {
-        $0.backgroundColor = .blue
-    }
+    let tableView = UITableView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,4 +26,5 @@ final class HomeInitialView: BaseView {
             make.edges.equalTo(safeAreaLayoutGuide)
         }
     }
+    
 }
