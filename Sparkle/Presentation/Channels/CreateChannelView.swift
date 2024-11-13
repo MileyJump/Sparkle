@@ -54,8 +54,6 @@ final class CreateChannelView: BaseView {
     
     override func setupSubviews() {
         
-        
-        
         addSubview(channelNameLabel)
         addSubview(channelNameBackgroundView)
         addSubview(channelNameTextField)
