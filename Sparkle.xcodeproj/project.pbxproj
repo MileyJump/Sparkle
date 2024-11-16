@@ -49,6 +49,7 @@
 		B0878DE22CD39B760013B989 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0878DE12CD39B760013B989 /* OnboardingView.swift */; };
 		B0AAFFA72CE5E0CD009A5E30 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AAFFA62CE5E0CD009A5E30 /* UserAPI.swift */; };
 		B0AAFFA92CE78E8E009A5E30 /* WorkspaceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AAFFA82CE78E8E009A5E30 /* WorkspaceAPI.swift */; };
+		B0D79C7B2CE8DF48002D8449 /* ChannelAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D79C7A2CE8DF48002D8449 /* ChannelAPI.swift */; };
 		B0F1E0C62CDB4EC6005E38E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1E0C52CDB4EC6005E38E7 /* AppDelegate.swift */; };
 		B0F1E0C82CDB4EDB005E38E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1E0C72CDB4EDB005E38E7 /* SceneDelegate.swift */; };
 		B0F1E0CF2CDB68B0005E38E7 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1E0CE2CDB68B0005E38E7 /* BaseTableViewCell.swift */; };
@@ -98,6 +99,7 @@
 		B0878DE12CD39B760013B989 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		B0AAFFA62CE5E0CD009A5E30 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		B0AAFFA82CE78E8E009A5E30 /* WorkspaceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceAPI.swift; sourceTree = "<group>"; };
+		B0D79C7A2CE8DF48002D8449 /* ChannelAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelAPI.swift; sourceTree = "<group>"; };
 		B0F1E0C52CDB4EC6005E38E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0F1E0C72CDB4EDB005E38E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B0F1E0CE2CDB68B0005E38E7 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 			children = (
 				B0AAFFA62CE5E0CD009A5E30 /* UserAPI.swift */,
 				B0AAFFA82CE78E8E009A5E30 /* WorkspaceAPI.swift */,
+				B0D79C7A2CE8DF48002D8449 /* ChannelAPI.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				B0746CC82CD8CC6300AC892C /* ChannelsButton.swift in Sources */,
 				B0746CBA2CD3AD4E00AC892C /* Color +.swift in Sources */,
 				B02A087C2CE1D8A1007489EE /* UINavigationController +.swift in Sources */,
+				B0D79C7B2CE8DF48002D8449 /* ChannelAPI.swift in Sources */,
 				B0746CC02CD50B5600AC892C /* CustomNavigationBar.swift in Sources */,
 				B02A08762CDF200D007489EE /* HomeEmptyView.swift in Sources */,
 				B02A087E2CE1F486007489EE /* CreateWorkspaceViewReactor.swift in Sources */,
