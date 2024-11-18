@@ -21,27 +21,27 @@ extension UserAPI: TargetType {
     var path: String {
         switch self {
         case .join:
-            return ""
+            return "users/join"
         case .emailValidation:
-            return ""
+            return "users/validation/email"
         case .login:
-            return ""
+            return "users/login"
         case .kakaoLogin:
-            return ""
+            return "users/login/kakao"
         case .appleLogin:
-            return ""
+            return "users/login/apple"
         case .logout:
-            return ""
+            return "users/logout"
         case .deviceToken:
-            return ""
+            return "users/deviceToken"
         case .profileCheck:
-            return ""
+            return "users/me"
         case .profileModification:
-            return ""
+            return "users/me"
         case .profileImageModification:
-            return ""
+            return "users/me"
         case .userProfileCheck:
-            return ""
+            return "users/{userID}"
         }
     }
     
