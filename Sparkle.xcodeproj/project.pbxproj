@@ -28,6 +28,8 @@
 		B066FFBB2CEB37A0002D487E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B066FFBA2CEB37A0002D487E /* SnapKit */; };
 		B066FFBE2CEB37B3002D487E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = B066FFBD2CEB37B3002D487E /* RxCocoa */; };
 		B066FFC02CEB37B3002D487E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B066FFBF2CEB37B3002D487E /* RxSwift */; };
+		B066FFC22CECB6C6002D487E /* Workspace +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066FFC12CECB6C6002D487E /* Workspace +.swift */; };
+		B066FFC42CECBDA7002D487E /* WorkspaceQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066FFC32CECBDA7002D487E /* WorkspaceQuery.swift */; };
 		B0746CB52CD3A17400AC892C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CB42CD3A17400AC892C /* OnboardingViewController.swift */; };
 		B0746CBA2CD3AD4E00AC892C /* Color +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CB92CD3AD4E00AC892C /* Color +.swift */; };
 		B0746CBE2CD4FC8000AC892C /* CustomToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */; };
@@ -81,6 +83,8 @@
 		B066FFB02CEB27AB002D487E /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		B066FFB22CEB293E002D487E /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		B066FFB72CEB2DBB002D487E /* JoinQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinQuery.swift; sourceTree = "<group>"; };
+		B066FFC12CECB6C6002D487E /* Workspace +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workspace +.swift"; sourceTree = "<group>"; };
+		B066FFC32CECBDA7002D487E /* WorkspaceQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceQuery.swift; sourceTree = "<group>"; };
 		B0746CB42CD3A17400AC892C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B0746CB92CD3AD4E00AC892C /* Color +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color +.swift"; sourceTree = "<group>"; };
 		B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToastView.swift; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				B066FFB72CEB2DBB002D487E /* JoinQuery.swift */,
+				B066FFC32CECBDA7002D487E /* WorkspaceQuery.swift */,
 			);
 			path = UserQuery;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				B0A4F5ED2CEB0DFC00788119 /* UserNetworkManager.swift */,
+				B066FFC12CECB6C6002D487E /* Workspace +.swift */,
 			);
 			path = NetwrokManager;
 			sourceTree = "<group>";
@@ -492,6 +498,7 @@
 				B0878DC82CD2550F0013B989 /* MainTabBarViewController.swift in Sources */,
 				B02A08802CE20320007489EE /* HomeInitialView.swift in Sources */,
 				B0F1E0CF2CDB68B0005E38E7 /* BaseTableViewCell.swift in Sources */,
+				B066FFC42CECBDA7002D487E /* WorkspaceQuery.swift in Sources */,
 				B0F1E0DB2CDE0F1B005E38E7 /* HomeViewReactor.swift in Sources */,
 				B0878DCE2CD25C6D0013B989 /* DirectViewController.swift in Sources */,
 				B0F1E0D62CDCE0F8005E38E7 /* workspaceInitialView.swift in Sources */,
@@ -507,6 +514,7 @@
 				B0878DD02CD25C880013B989 /* SettingViewController.swift in Sources */,
 				B0A4F5EE2CEB0DFC00788119 /* UserNetworkManager.swift in Sources */,
 				B0746CBA2CD3AD4E00AC892C /* Color +.swift in Sources */,
+				B066FFC22CECB6C6002D487E /* Workspace +.swift in Sources */,
 				B02A087C2CE1D8A1007489EE /* UINavigationController +.swift in Sources */,
 				B0D79C7B2CE8DF48002D8449 /* ChannelAPI.swift in Sources */,
 				B02A08762CDF200D007489EE /* HomeEmptyView.swift in Sources */,

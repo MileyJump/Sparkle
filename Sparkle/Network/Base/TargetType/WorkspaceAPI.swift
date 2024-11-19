@@ -9,13 +9,14 @@ import Foundation
 
 enum WorkspaceAPI {
     case workspacesListCheck
-    case createWorkspace
-    case workspaceInformationCheck
-    case workspaceEdit
-    case workspaceDelete
-    case workspaceMembersInvite
-    case workspaceSpecificMemberCheck
-    case workspaceSearch
-    case changeWorkspaceAdministrator
-    case exitWorkspace
+    case createWorkspace(query: CreateWorkspaceQuery)
+    case workspaceInformationCheck(parameters: workspaceIDParameter, wokrpsaceID: String)
+    case workspaceEdit(parameters: workspaceIDParameter, query: WorkspaceEditQury , wokrpsaceID: String)
+    case workspaceDelete(parameters: workspaceIDParameter, wokrpsaceID: String)
+    case workspaceMembersInvite(parameters: workspaceIDParameter, query: WorkspaceMembersInviteQuery, wokrpsaceID: String)
+    case workspaceMemberCheck(parameters: workspaceIDParameter, wokrpsaceID: String)
+    case workspaceSpecificMemberCheck(parameters: workspaceSpecificMemberCheckParameter, wokrpsaceID: String, userID: String)
+    case workspaceSearch(parameters: workspaceSearchParameter, wokrpsaceID: String)
+    case changeWorkspaceAdministrator(parameters: workspaceIDParameter, query: ChangeWorkspaceAdministratorQuery, wokrpsaceID: String)
+    case exitWorkspace(parameters: workspaceIDParameter, wokrpsaceID: String)
 }
