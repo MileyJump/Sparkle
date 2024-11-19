@@ -10,11 +10,7 @@ import Moya
 
 extension WorkspaceAPI: TargetType {
     var baseURL: URL {
-        return URL(string: BaseURL.baseURL)!
-    }
-    
-    var RoutBaseURL: String {
-        return BaseURL.baseURL + "v1/"
+        return URL(string: "\(BaseURL.baseURL)v1/")!
     }
     
     var path: String {
@@ -72,14 +68,12 @@ extension WorkspaceAPI: TargetType {
             )
             
         case .workspaceEdit(let parameters, let query, _):
-            // Body와 URL Parameters를 함께 보내는 경우
             return .requestCompositeParameters(
                 bodyParameters: try! query.toDictionary(),
                 bodyEncoding: JSONEncoding.default,
-                urlParameters: try! parameters.toDictionary() // URL Parameters로 전달
+                urlParameters: try! parameters.toDictionary()
             )
         case .workspaceMembersInvite(let parameters, let query, _):
-            // Body와 URL Parameters를 함께 보내는 경우
             return .requestCompositeParameters(
                 bodyParameters: try! query.toDictionary(),
                 bodyEncoding: JSONEncoding.default,
@@ -92,47 +86,38 @@ extension WorkspaceAPI: TargetType {
                 urlParameters: try! parameters.toDictionary()
             )
         case .workspaceInformationCheck(let parameters, _):
-            // URL에 파라미터만 추가해서 보냄
             return .requestParameters(
                 parameters: try! parameters.toDictionary(),
-                encoding: URLEncoding.queryString // URL 뒤에 ?key=value 형식으로 추가
+                encoding: URLEncoding.queryString
             )
         case .workspaceDelete(let parameters, _):
-            // URL에 파라미터만 추가해서 보냄
             return .requestParameters(
                 parameters: try! parameters.toDictionary(),
-                encoding: URLEncoding.queryString // URL 뒤에 ?key=value 형식으로 추가
+                encoding: URLEncoding.queryString
             )
             
         case .workspaceMemberCheck(let parameters, _):
             return .requestParameters(
                 parameters: try! parameters.toDictionary(),
-                encoding: URLEncoding.queryString // URL 뒤에 ?key=value 형식으로 추가
+                encoding: URLEncoding.queryString
             )
             
         case .workspaceSpecificMemberCheck(let parameters ,_ ,_):
             return .requestParameters(
                 parameters: try! parameters.toDictionary(),
-                encoding: URLEncoding.queryString // URL 뒤에 ?key=value 형식으로 추가
+                encoding: URLEncoding.queryString
             )
         case .workspaceSearch(let parameters, _):
-            // URL에 파라미터만 추가해서 보냄
             return .requestParameters(
                 parameters: try! parameters.toDictionary(),
                 encoding: URLEncoding.queryString
             )
         case .exitWorkspace(let parameters, _):
-            // URL에 파라미터만 추가해서 보냄
             return .requestParameters(
                 parameters: try! parameters.toDictionary(),
-                encoding: URLEncoding.queryString // URL 뒤에 ?key=value 형식으로 추가
+                encoding: URLEncoding.queryString
             )
-            
         }
-    }
-    
-    var queryItems: [URLQueryItem]? {
-        return nil
     }
 }
 
