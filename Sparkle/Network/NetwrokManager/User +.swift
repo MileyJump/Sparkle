@@ -9,14 +9,7 @@ import Foundation
 import Moya
 
 
-extension UserAPI: TargetType {
-    var baseURL: URL {
-        return URL(string: BaseURL.baseURL)!
-    }
-    
-    var RoutBaseURL: String {
-        return BaseURL.baseURL + "v1"
-    }
+extension UserAPI: BaseTarget {
     
     var path: String {
         switch self {
@@ -54,13 +47,6 @@ extension UserAPI: TargetType {
         case .profileModification, .profileImageModification:
                 .put
         }
-    }
-    
-    var headers: [String : String]? {
-        return [Header.sesacKey.rawValue : key.key,
-                Header.contentType.rawValue : Header.json.rawValue,
-                Header.authorization.rawValue : UserDefaultsManager.shared.token
-        ]
     }
     
     var task: Task {

@@ -8,10 +8,7 @@
 import Foundation
 import Moya
 
-extension WorkspaceAPI: TargetType {
-    var baseURL: URL {
-        return URL(string: "\(BaseURL.baseURL)v1/")!
-    }
+extension WorkspaceAPI: BaseTarget {
     
     var path: String {
         switch self {
@@ -46,13 +43,6 @@ extension WorkspaceAPI: TargetType {
         case .workspaceDelete:
             return .delete
         }
-    }
-    
-    var headers: [String : String]? {
-        return [Header.sesacKey.rawValue : key.key,
-                Header.contentType.rawValue : Header.json.rawValue,
-                Header.authorization.rawValue : UserDefaultsManager.shared.token
-        ]
     }
     
     var task: Task {
