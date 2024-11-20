@@ -57,6 +57,12 @@ extension WorkspaceAPI: BaseTarget {
                 urlParameters: [:]
             )
             
+        case .workspaceInformationCheck(let parameters, _):
+            return .requestParameters(
+                parameters: try! parameters.toDictionary(),
+                encoding: URLEncoding.queryString
+            )
+            
         case .workspaceEdit(let parameters, let query, _):
             return .requestCompositeParameters(
                 bodyParameters: try! query.toDictionary(),
@@ -75,11 +81,7 @@ extension WorkspaceAPI: BaseTarget {
                 bodyEncoding: JSONEncoding.default,
                 urlParameters: try! parameters.toDictionary()
             )
-        case .workspaceInformationCheck(let parameters, _):
-            return .requestParameters(
-                parameters: try! parameters.toDictionary(),
-                encoding: URLEncoding.queryString
-            )
+       
         case .workspaceDelete(let parameters, _):
             return .requestParameters(
                 parameters: try! parameters.toDictionary(),
