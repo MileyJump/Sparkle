@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MychannelCheckResponse: Decodable { }
+struct MyChannelCheckResponse: Decodable { }
 
 struct ChannelListCheckResponse: Decodable { }
 
