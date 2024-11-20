@@ -10,13 +10,13 @@ import Foundation
 enum WorkspaceAPI {
     case workspacesListCheck
     case createWorkspace(query: CreateWorkspaceQuery)
-    case workspaceInformationCheck(parameters: workspaceIDParameter, wokrpsaceID: String)
-    case workspaceEdit(parameters: workspaceIDParameter, query: WorkspaceEditQury , wokrpsaceID: String)
-    case workspaceDelete(parameters: workspaceIDParameter, wokrpsaceID: String)
-    case workspaceMembersInvite(parameters: workspaceIDParameter, query: WorkspaceMembersInviteQuery, wokrpsaceID: String)
-    case workspaceMemberCheck(parameters: workspaceIDParameter, wokrpsaceID: String)
+    case workspaceInformationCheck(parameters: WorkspaceIDParameter, wokrpsaceID: String)
+    case workspaceEdit(parameters: WorkspaceIDParameter, query: WorkspaceEditQury , wokrpsaceID: String)
+    case workspaceDelete(parameters: WorkspaceIDParameter, wokrpsaceID: String)
+    case workspaceMembersInvite(parameters: WorkspaceIDParameter, query: WorkspaceMembersInviteQuery, wokrpsaceID: String)
+    case workspaceMemberCheck(parameters: WorkspaceIDParameter, wokrpsaceID: String)
     case workspaceSpecificMemberCheck(parameters: workspaceSpecificMemberCheckParameter, wokrpsaceID: String, userID: String)
     case workspaceSearch(parameters: workspaceSearchParameter, wokrpsaceID: String)
-    case changeWorkspaceAdministrator(parameters: workspaceIDParameter, query: ChangeWorkspaceAdministratorQuery, wokrpsaceID: String)
-    case exitWorkspace(parameters: workspaceIDParameter, wokrpsaceID: String)
+    case changeWorkspaceManager(parameters: WorkspaceIDParameter, query: ChangeWorkspaceAdministratorQuery, wokrpsaceID: String)
+    case exitWorkspace(parameters: WorkspaceIDParameter, wokrpsaceID: String)
 }

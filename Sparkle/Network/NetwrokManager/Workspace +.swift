@@ -24,7 +24,7 @@ extension WorkspaceAPI: BaseTarget {
             return "workspaces/\(workspaceID)/members/\(userID)"
         case .workspaceSearch(_, let workspaceID):
             return "workspaces/\(workspaceID)/search"
-        case .changeWorkspaceAdministrator(_, _, let workspaceID):
+        case .changeWorkspaceManager(_, _, let workspaceID):
             return "workspaces/\(workspaceID)/transfer/ownership"
         case .exitWorkspace(_, let workspaceID):
             return "workspaces/\(workspaceID)/exit"
@@ -38,7 +38,7 @@ extension WorkspaceAPI: BaseTarget {
             return .get
         case .createWorkspace, .workspaceMembersInvite:
             return .post
-        case .workspaceEdit, .changeWorkspaceAdministrator:
+        case .workspaceEdit, .changeWorkspaceManager:
             return .put
         case .workspaceDelete:
             return .delete
@@ -69,7 +69,7 @@ extension WorkspaceAPI: BaseTarget {
                 bodyEncoding: JSONEncoding.default,
                 urlParameters: try! parameters.toDictionary()
             )
-        case .changeWorkspaceAdministrator(let parameters, let query, _):
+        case .changeWorkspaceManager(let parameters, let query, _):
             return .requestCompositeParameters(
                 bodyParameters: try! query.toDictionary(),
                 bodyEncoding: JSONEncoding.default,
