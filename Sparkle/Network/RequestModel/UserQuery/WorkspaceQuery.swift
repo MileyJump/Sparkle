@@ -28,7 +28,7 @@ struct ChangeWorkspaceAdministratorQuery: Encodable {
 }
 
 
-struct workspaceIDParameter: Encodable {
+struct WorkspaceIDParameter: Encodable {
     let workspaceID: String
 }
 

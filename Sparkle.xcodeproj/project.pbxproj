@@ -31,6 +31,8 @@
 		B066FFC22CECB6C6002D487E /* Workspace +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066FFC12CECB6C6002D487E /* Workspace +.swift */; };
 		B066FFC42CECBDA7002D487E /* WorkspaceQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066FFC32CECBDA7002D487E /* WorkspaceQuery.swift */; };
 		B066FFC62CECE0A9002D487E /* BaseTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066FFC52CECE0A9002D487E /* BaseTarget.swift */; };
+		B066FFC82CECE1B1002D487E /* Channels +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066FFC72CECE1B1002D487E /* Channels +.swift */; };
+		B066FFCA2CECE2B0002D487E /* ChannelQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066FFC92CECE2B0002D487E /* ChannelQuery.swift */; };
 		B0746CB52CD3A17400AC892C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CB42CD3A17400AC892C /* OnboardingViewController.swift */; };
 		B0746CBA2CD3AD4E00AC892C /* Color +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CB92CD3AD4E00AC892C /* Color +.swift */; };
 		B0746CBE2CD4FC8000AC892C /* CustomToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */; };
@@ -87,6 +89,8 @@
 		B066FFC12CECB6C6002D487E /* Workspace +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workspace +.swift"; sourceTree = "<group>"; };
 		B066FFC32CECBDA7002D487E /* WorkspaceQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceQuery.swift; sourceTree = "<group>"; };
 		B066FFC52CECE0A9002D487E /* BaseTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTarget.swift; sourceTree = "<group>"; };
+		B066FFC72CECE1B1002D487E /* Channels +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channels +.swift"; sourceTree = "<group>"; };
+		B066FFC92CECE2B0002D487E /* ChannelQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelQuery.swift; sourceTree = "<group>"; };
 		B0746CB42CD3A17400AC892C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B0746CB92CD3AD4E00AC892C /* Color +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color +.swift"; sourceTree = "<group>"; };
 		B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToastView.swift; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 		B066FFB52CEB2CF4002D487E /* TargetType */ = {
 			isa = PBXGroup;
 			children = (
+				B066FFC52CECE0A9002D487E /* BaseTarget.swift */,
 				B0AAFFA62CE5E0CD009A5E30 /* UserAPI.swift */,
 				B0AAFFA82CE78E8E009A5E30 /* WorkspaceAPI.swift */,
 				B0D79C7A2CE8DF48002D8449 /* ChannelAPI.swift */,
@@ -234,6 +239,7 @@
 			children = (
 				B066FFB72CEB2DBB002D487E /* JoinQuery.swift */,
 				B066FFC32CECBDA7002D487E /* WorkspaceQuery.swift */,
+				B066FFC92CECE2B0002D487E /* ChannelQuery.swift */,
 			);
 			path = UserQuery;
 			sourceTree = "<group>";
@@ -323,7 +329,6 @@
 				B0878DD92CD36E3B0013B989 /* BaseViewController.swift */,
 				B0F1E0CE2CDB68B0005E38E7 /* BaseTableViewCell.swift */,
 				B0F1E0D02CDB68CC005E38E7 /* BaseCollectionViewCell.swift */,
-				B066FFC52CECE0A9002D487E /* BaseTarget.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -376,6 +381,7 @@
 			children = (
 				B0A4F5ED2CEB0DFC00788119 /* User +.swift */,
 				B066FFC12CECB6C6002D487E /* Workspace +.swift */,
+				B066FFC72CECE1B1002D487E /* Channels +.swift */,
 			);
 			path = NetwrokManager;
 			sourceTree = "<group>";
@@ -504,6 +510,7 @@
 				B066FFC42CECBDA7002D487E /* WorkspaceQuery.swift in Sources */,
 				B0F1E0DB2CDE0F1B005E38E7 /* HomeViewReactor.swift in Sources */,
 				B0878DCE2CD25C6D0013B989 /* DirectViewController.swift in Sources */,
+				B066FFC82CECE1B1002D487E /* Channels +.swift in Sources */,
 				B0F1E0D62CDCE0F8005E38E7 /* workspaceInitialView.swift in Sources */,
 				B02A08872CE395A1007489EE /* CreateChannelView.swift in Sources */,
 				B02A089A2CE4B9F4007489EE /* UIView +.swift in Sources */,
@@ -541,6 +548,7 @@
 				B066FFB82CEB2DBB002D487E /* JoinQuery.swift in Sources */,
 				B02A08782CDF20C9007489EE /* HomeEmptyViewController.swift in Sources */,
 				B066FFB32CEB293E002D487E /* UserDefaultsManager.swift in Sources */,
+				B066FFCA2CECE2B0002D487E /* ChannelQuery.swift in Sources */,
 				B0F1E0C62CDB4EC6005E38E7 /* AppDelegate.swift in Sources */,
 				B02A08962CE4B7F2007489EE /* HomeInitialViewCell.swift in Sources */,
 				B0878DD82CD35D780013B989 /* BaseView.swift in Sources */,
