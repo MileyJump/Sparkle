@@ -23,21 +23,16 @@ struct ChangeChannelManagerQuery: Encodable {
     let owner_id: String
 }
 
-
-
-
 struct ChannelParameter: Encodable {
     let channelID: String
     let worskspaceID: String
 }
-
 
 struct ChannelChatHistoryListParameter: Encodable {
     let cursor_date: String?
     let channelID: String
     let workspaceId: String
 }
-
 
 struct NumberOfUnreadChannelChatsParameter: Encodable {
     let workspaceID: String
