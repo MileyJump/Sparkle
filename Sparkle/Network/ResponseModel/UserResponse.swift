@@ -7,41 +7,67 @@
 
 import Foundation
 
-struct JoinResponse: Decodable {
-    
+struct Token: Decodable {
+    let accessToken: String
+    let refreshToken: String
 }
 
-struct EmailValidationReponse: Decodable {
-    
+struct JoinResponse: Decodable {
+    let user_id: String
+    let email: String
+    let nickname: String
+    let profileImage: String
+    let phone: String
+    let provider: String
+    let createdAt: String
+    let token: Token
 }
 
 struct LoginResponse: Decodable {
-    
+    let user_id: String
+    let email: String
+    let nickname: String
+    let profileImage: String
+    let phone: String?
+    let provider: String?
+    let createdAt: String
+    let token: Token
 }
 
-struct KakaoLoginResponse: Decodable {
-    
-}
-
-struct AppleLoginResponse: Decodable {
-    
-}
-
-struct LogoutResponse: Decodable {
-    
-}
-struct DeviceTokenResponse: Decodable {
-    
-}
 struct ProfileCheckResponse: Decodable {
-    
+    let user_id: String
+    let email: String
+    let nickname: String
+    let profileImage: String
+    let phone: String?
+    let provider: String?
+    let sesacCoin: Int
+    let createdAt: String
 }
+
 struct ProfileModificationResponse: Decodable {
-    
+    let user_id: String
+    let email: String
+    let nickname: String
+    let profileImage: String
+    let phone: String?
+    let provider: String?
+    let createdAt: String
 }
 struct ProfileImageModificationResponse: Decodable {
-    
+    let user_id: String
+    let email: String
+    let nickname: String
+    let profileImage: String
+    let phone: String
+    let provider: String?
+    let createdAt: String
 }
+
 struct UserProfileCheckResponse: Decodable {
-    
-}
+    let user_id: String
+    let email: String
+    let nickname: String
+    let profileImage: String
+    }
+
