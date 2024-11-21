@@ -8,15 +8,15 @@
 import Foundation
 
 enum DMSAPI {
-    case createDMs(query: CreateDMS, parameters: WorkspaceIDParameter, worskpaceID: String)
+    case createDMs(query: CreateDMS, parameters: WorkspaceIDParameter, workspaceID: String)
     
-    case dmsListCheck(parameters: WorkspaceIDParameter, worskpaceID: String)
+    case dmsListCheck(parameters: WorkspaceIDParameter, workspaceID: String)
     
-    case sendDMs(query: SendDMChat, parameters: DMParamter, worskpaceID: String, roomID: String)
+    case sendDMs(query: SendDMChat, parameters: DMParamter, workspaceID: String, roomID: String)
     
-    case dmsChatListCheck(parameters: DMChatListCheckParameter, worskpaceID: String, roomID: String)
+    case dmsChatListCheck(parameters: DMChatListCheckParameter, workspaceID: String, roomID: String)
     
-    case numberOfUnreadDMs(parameters: NumberOfUnreadDMs, worskpaceID: String, roomID: String)
+    case numberOfUnreadDMs(parameters: NumberOfUnreadDMs, workspaceID: String, roomID: String)
 }
 
 

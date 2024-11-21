@@ -51,7 +51,3 @@ struct NumberOfUnreadChannelChatsResponse: Decodable {
     let name: String
     let count: Int
 }
-
-struct ChangeChannelManagerResponse: Decodable {
-    let owner_id: String
-}
