@@ -31,7 +31,7 @@ struct SpecificChannelCheckResponse: Decodable {
     let coverImage: String
     let owner_id: String
     let createdAt: String
-    let channelMembers: [ WorkspaceMembers ]
+    let channelMembers: [ UserMemberResponse ]
 }
 
 
@@ -42,7 +42,7 @@ struct ChannelChatHistoryListResponse: Decodable {
     let content: String
     let createdAt: String
     let files: [ String ]
-    let user: WorkspaceMembers
+    let user: UserMemberResponse
 }
 
 

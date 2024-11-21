@@ -7,6 +7,13 @@
 
 import Foundation
 
+struct UserMemberResponse: Decodable {
+    let user_id: String
+    let email: String
+    let nickname: String
+    let profileImage: String
+}
+
 struct Token: Decodable {
     let accessToken: String
     let refreshToken: String
@@ -23,6 +30,18 @@ struct UserResponse: Decodable {
     let sesacCoin: Int?
     let token: Token?
 }
+//
+//struct LoginResponse: Decodable {
+//    let email: String
+//    let password: String
+//    let deviceToken: String
+//}
+//
+//struct AppleLoginResponse: Decodable {
+//    let idToken: String
+//    let nickname: String
+//    let deviceToken: String
+//}
 
 //struct ProfileCheckResponse: Decodable {
 //    let user_id: String
