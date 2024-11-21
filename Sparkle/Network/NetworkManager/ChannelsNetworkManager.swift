@@ -19,13 +19,13 @@ final class ChannelsNetworkManager {
     }
     
     
-    func myChannelCheck(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<MyChannelCheckResponse> {
+    func myChannelCheck(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<ChannelResponse> {
         return Single.create { [weak self] single in
             self?.channelProvider.request(.myChannelCheck(parameters: parameters, workspaceID: workspaceID)) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decoderData = try JSONDecoder().decode(MyChannelCheckResponse.self, from: response.data)
+                        let decoderData = try JSONDecoder().decode(ChannelResponse.self, from: response.data)
                         single(.success(decoderData))
                     } catch {
                         single(.failure(error))
@@ -38,13 +38,13 @@ final class ChannelsNetworkManager {
         }
     }
     
-    func channelListCheck(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<ChannelListCheckResponse> {
+    func channelListCheck(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<ChannelResponse> {
         return Single.create { [weak self] single in
             self?.channelProvider.request(.channelListCheck(parameters: parameters, workspaceID: workspaceID)) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decoderData = try JSONDecoder().decode(ChannelListCheckResponse.self, from: response.data)
+                        let decoderData = try JSONDecoder().decode(ChannelResponse.self, from: response.data)
                         single(.success(decoderData))
                     } catch {
                         single(.failure(error))
@@ -57,13 +57,13 @@ final class ChannelsNetworkManager {
         }
     }
     
-    func createChannel(query: ChannelsQuery, parameters: WorkspaceIDParameter, workspaceID: String) -> Single<CreateChannelResponse> {
+    func createChannel(query: ChannelsQuery, parameters: WorkspaceIDParameter, workspaceID: String) -> Single<ChannelResponse> {
         return Single.create { [weak self] single in
             self?.channelProvider.request(.createChannel(query: query, parameters: parameters, workspaceID: workspaceID)) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decoderData = try JSONDecoder().decode(CreateChannelResponse.self, from: response.data)
+                        let decoderData = try JSONDecoder().decode(ChannelResponse.self, from: response.data)
                         single(.success(decoderData))
                     } catch {
                         single(.failure(error))
@@ -95,13 +95,13 @@ final class ChannelsNetworkManager {
         }
     }
     
-    func channelsEdit(query: ChannelsQuery ,parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<ChannelsEditResponse> {
+    func channelsEdit(query: ChannelsQuery ,parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<ChannelResponse> {
         return Single.create { [weak self] single in
             self?.channelProvider.request(.channelsEdit(query: query, parameters: parameters, workspaceID: workspaceID, channleID: channleID)) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decoderData = try JSONDecoder().decode(ChannelsEditResponse.self, from: response.data)
+                        let decoderData = try JSONDecoder().decode(ChannelResponse.self, from: response.data)
                         single(.success(decoderData))
                     } catch {
                         single(.failure(error))
@@ -114,17 +114,14 @@ final class ChannelsNetworkManager {
         }
     }
     
-    func channelsDelete(parameters: ChannelParameter, workspaceID: String, channleID: String)  -> Single<ChannelsDeleteResponse> {
+    func channelsDelete(parameters: ChannelParameter, workspaceID: String, channleID: String)  -> Single<Void> {
         return Single.create { [weak self] single in
             self?.channelProvider.request(.channelsDelete(parameters: parameters, workspaceID: workspaceID, channleID: channleID)) { result in
                 switch result {
                 case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(ChannelsDeleteResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
+                
+                        single(.success(()))
+                  
                 case .failure(let error):
                     single(.failure(error))
                 }
@@ -154,13 +151,13 @@ final class ChannelsNetworkManager {
         }
     }
     
-    func sendChannelChat(query: SendChannelChatQuery, parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<SendChannelChatResponse> {
+    func sendChannelChat(query: SendChannelChatQuery, parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<ChannelChatHistoryListResponse> {
         return Single.create { [weak self] single in
             self?.channelProvider.request(.sendChannelChat(query: query, parameters: parameters, workspaceID: workspaceID, channleID: channleID)) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decoderData = try JSONDecoder().decode(SendChannelChatResponse.self, from: response.data)
+                        let decoderData = try JSONDecoder().decode(ChannelChatHistoryListResponse.self, from: response.data)
                         single(.success(decoderData))
                     } catch {
                         single(.failure(error))
@@ -192,13 +189,13 @@ final class ChannelsNetworkManager {
         }
     }
     
-    func channelMembersCheck(parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<ChannelMembersCheckResponse> {
+    func channelMembersCheck(parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<UserMemberResponse> {
         return Single.create { [weak self] single in
             self?.channelProvider.request(.channelMembersCheck(parameters: parameters, workspaceID: workspaceID, channleID: channleID)) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decoderData = try JSONDecoder().decode(ChannelMembersCheckResponse.self, from: response.data)
+                        let decoderData = try JSONDecoder().decode(UserMemberResponse.self, from: response.data)
                         single(.success(decoderData))
                     } catch {
                         single(.failure(error))
@@ -211,13 +208,13 @@ final class ChannelsNetworkManager {
         }
     }
     
-    func changeChannelManager(query: ChangeChannelManagerQuery, parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<ChangeChannelManagerResponse> {
+    func changeChannelManager(query: ChangeChannelManagerQuery, parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<ChannelResponse> {
         return Single.create { [weak self] single in
             self?.channelProvider.request(.changeChannelManager(query: query, parameters: parameters, workspaceID: workspaceID, channleID: channleID)) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decoderData = try JSONDecoder().decode(ChangeChannelManagerResponse.self, from: response.data)
+                        let decoderData = try JSONDecoder().decode(ChannelResponse.self, from: response.data)
                         single(.success(decoderData))
                     } catch {
                         single(.failure(error))
@@ -230,13 +227,13 @@ final class ChannelsNetworkManager {
         }
     }
     
-    func leaveChannel(parameters: ChannelParameter , workspaceID: String, channleID: String) -> Single<LeaveChannelResponse> {
+    func leaveChannel(parameters: ChannelParameter , workspaceID: String, channleID: String) -> Single<ChannelResponse> {
         return Single.create { [weak self] single in
             self?.channelProvider.request(.leaveChannel(parameters: parameters, workspaceID: workspaceID, channleID: channleID)) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decoderData = try JSONDecoder().decode(LeaveChannelResponse.self, from: response.data)
+                        let decoderData = try JSONDecoder().decode(ChannelResponse.self, from: response.data)
                         single(.success(decoderData))
                     } catch {
                         single(.failure(error))

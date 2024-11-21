@@ -43,6 +43,7 @@
 		B066FFDC2CEDD046002D487E /* UserNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066FFDB2CEDD046002D487E /* UserNetworkManager.swift */; };
 		B066FFDE2CEDFF55002D487E /* WorkspaceNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066FFDD2CEDFF55002D487E /* WorkspaceNetworkManager.swift */; };
 		B066FFE02CEE0B7C002D487E /* ChannelsNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066FFDF2CEE0B7C002D487E /* ChannelsNetworkManager.swift */; };
+		B066FFE22CEF5CB1002D487E /* DMSNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066FFE12CEF5CB1002D487E /* DMSNetworkManager.swift */; };
 		B0746CB52CD3A17400AC892C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CB42CD3A17400AC892C /* OnboardingViewController.swift */; };
 		B0746CBA2CD3AD4E00AC892C /* Color +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CB92CD3AD4E00AC892C /* Color +.swift */; };
 		B0746CBE2CD4FC8000AC892C /* CustomToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */; };
@@ -111,6 +112,7 @@
 		B066FFDB2CEDD046002D487E /* UserNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkManager.swift; sourceTree = "<group>"; };
 		B066FFDD2CEDFF55002D487E /* WorkspaceNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceNetworkManager.swift; sourceTree = "<group>"; };
 		B066FFDF2CEE0B7C002D487E /* ChannelsNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsNetworkManager.swift; sourceTree = "<group>"; };
+		B066FFE12CEF5CB1002D487E /* DMSNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMSNetworkManager.swift; sourceTree = "<group>"; };
 		B0746CB42CD3A17400AC892C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B0746CB92CD3AD4E00AC892C /* Color +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color +.swift"; sourceTree = "<group>"; };
 		B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToastView.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				B066FFDB2CEDD046002D487E /* UserNetworkManager.swift */,
 				B066FFDD2CEDFF55002D487E /* WorkspaceNetworkManager.swift */,
 				B066FFDF2CEE0B7C002D487E /* ChannelsNetworkManager.swift */,
+				B066FFE12CEF5CB1002D487E /* DMSNetworkManager.swift */,
 			);
 			path = NetworkManager;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 				B02A08842CE21D9F007489EE /* HomeInitialViewReactor.swift in Sources */,
 				B066FFE02CEE0B7C002D487E /* ChannelsNetworkManager.swift in Sources */,
 				B066FFD62CEDCD8B002D487E /* UserResponse.swift in Sources */,
+				B066FFE22CEF5CB1002D487E /* DMSNetworkManager.swift in Sources */,
 				B0878DDA2CD36E3B0013B989 /* BaseViewController.swift in Sources */,
 				B0F1E0C82CDB4EDB005E38E7 /* SceneDelegate.swift in Sources */,
 				B02A089D2CE4BA3F007489EE /* ReusableProtocol.swift in Sources */,
