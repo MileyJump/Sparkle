@@ -7,6 +7,22 @@
 
 import Foundation
 
+struct Channels: Decodable {
+    let channel_id: String
+    let name: String
+    let description: String
+    let coverImage: String
+    let owner_id: String
+    let createdAt: String
+}
+    
+struct WorkspaceMembers: Decodable {
+    let user_id: String
+    let email: String
+    let nickname: String
+    let profileImage: String
+}
+
 struct WorkspaceListCheckResponse: Decodable {
     let workspace_id: String
     let name: String
@@ -16,33 +32,21 @@ struct WorkspaceListCheckResponse: Decodable {
     let createdAt: String
 }
 
-struct CreateWorkspaceResponse: Decodable {
-    
-}
+
 struct WorkspaceInformationCheckResponse: Decodable {
+    let workspace_id: String
+    let name: String
+    let description: String
+    let coverImage: String
+    let owner_id: String
+    let createdAt: String
+    let channels: [Channels]
+    let workspaceMembers: [WorkspaceMembers]
 }
 
-struct WorkspaceEditResponse: Decodable {
-}
-
-struct WorkspaceDeleteResponse: Decodable {
-    
-}
 struct WorkspaceMembersInviteResponse: Decodable {
-    
-}
-
-struct WorkspaceMemberCheckResponse: Decodable {
-    
-}
-struct WorkspaceSpecificMemberCheckResponse: Decodable {
-    
-}
-struct WorkspaceSearchResponse: Decodable {
-    
-}
-struct ChangeWorkspaceManagerResponse: Decodable {
-    
-}
-struct ExitWorkspaceResponse: Decodable {
+    let user_id: String
+    let email: String
+    let nickname: String
+    let profileImage: String
 }
