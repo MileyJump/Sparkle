@@ -17,13 +17,13 @@ final class UserNetworkManager {
         self.userProvider = MoyaProvider<UserAPI>(plugins: [NetworkLoggerPlugin()])
     }
     
-    func join(query: JoinQuery) -> Single<JoinResponse> {
+    func join(query: JoinQuery) -> Single<UserResponse> {
         return Single.create { [weak self] single in
             self?.userProvider.request(.join(query)) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decodedData = try JSONDecoder().decode(JoinResponse.self, from: response.data)
+                        let decodedData = try JSONDecoder().decode(UserResponse.self, from: response.data)
                         single(.success(decodedData))
                     } catch {
                         single(.failure(error))
@@ -38,31 +38,31 @@ final class UserNetworkManager {
         }
     }
     
-    func emailValidation(query: EmailValidationQuery) -> Single<EmailValidationReponse> {
-        return Single.create { [weak self] single in
-            self?.userProvider.request(.emailValidation(query)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decodedData = try JSONDecoder().decode(EmailValidationReponse.self, from: response.data)
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
-    }
+//    func emailValidation(query: EmailValidationQuery) -> Single<EmailValidationReponse> {
+//        return Single.create { [weak self] single in
+//            self?.userProvider.request(.emailValidation(query)) { result in
+//                switch result {
+//                case .success(let response):
+//                    do {
+//                        let decodedData = try JSONDecoder().decode(EmailValidationReponse.self, from: response.data)
+//                    } catch {
+//                        single(.failure(error))
+//                    }
+//                case .failure(let error):
+//                    single(.failure(error))
+//                }
+//            }
+//            return Disposables.create()
+//        }
+//    }
         
-        func login(query: LoginQuery) -> Single<LoginResponse> {
+        func login(query: LoginQuery) -> Single<UserResponse> {
             return Single.create { [weak self] single in
                 self?.userProvider.request(.login(query)) { result in
                     switch result {
                     case .success(let response):
                         do {
-                            let decodedData = try JSONDecoder().decode(LoginResponse.self, from: response.data)
+                            let decodedData = try JSONDecoder().decode(UserResponse.self, from: response.data)
                         } catch {
                             single(.failure(error))
                         }
@@ -74,13 +74,13 @@ final class UserNetworkManager {
             }
         }
     
-    func kakaoLogin(query: KakaoLoginQuery) -> Single<KakaoLoginResponse> {
+    func kakaoLogin(query: KakaoLoginQuery) -> Single<UserResponse> {
         return Single.create { [weak self] single in
             self?.userProvider.request(.kakaoLogin(query)) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decodedData = try JSONDecoder().decode(KakaoLoginResponse.self, from: response.data)
+                        let decodedData = try JSONDecoder().decode(UserResponse.self, from: response.data)
                     } catch {
                         single(.failure(error))
                     }
@@ -92,13 +92,13 @@ final class UserNetworkManager {
         }
     }
     
-    func appleLogin(query: AppleLoginQuery) -> Single<AppleLoginResponse> {
+    func appleLogin(query: AppleLoginQuery) -> Single<UserResponse> {
         return Single.create { [weak self] single in
             self?.userProvider.request(.appleLogin(query)) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decodedData = try JSONDecoder().decode(AppleLoginResponse.self, from: response.data)
+                        let decodedData = try JSONDecoder().decode(UserResponse.self, from: response.data)
                     } catch {
                         single(.failure(error))
                     }
@@ -112,31 +112,31 @@ final class UserNetworkManager {
     
     // logout
     
-    func DeviceToken(query: DeviceTokenQuery) -> Single<DeviceTokenResponse> {
-        return Single.create { [weak self] single in
-            self?.userProvider.request(.deviceToken(query)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decodedData = try JSONDecoder().decode(DeviceTokenResponse.self, from: response.data)
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
-    }
+//    func DeviceToken(query: DeviceTokenQuery) -> Single<DeviceTokenResponse> {
+//        return Single.create { [weak self] single in
+//            self?.userProvider.request(.deviceToken(query)) { result in
+//                switch result {
+//                case .success(let response):
+//                    do {
+//                        let decodedData = try JSONDecoder().decode(DeviceTokenResponse.self, from: response.data)
+//                    } catch {
+//                        single(.failure(error))
+//                    }
+//                case .failure(let error):
+//                    single(.failure(error))
+//                }
+//            }
+//            return Disposables.create()
+//        }
+//    }
     
-    func profileCheck(query: ProfileCheckQuery) -> Single<ProfileCheckResponse> {
+    func profileCheck(query: ProfileCheckQuery) -> Single<UserResponse> {
         return Single.create { [weak self] single in
             self?.userProvider.request(.profileCheck(query)) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decodedData = try JSONDecoder().decode(ProfileCheckResponse.self, from: response.data)
+                        let decodedData = try JSONDecoder().decode(UserResponse.self, from: response.data)
                     } catch {
                         single(.failure(error))
                     }
@@ -148,13 +148,13 @@ final class UserNetworkManager {
         }
     }
     
-    func profileModification(query: ProfileModificationQuery) -> Single<ProfileModificationResponse> {
+    func profileModification(query: ProfileModificationQuery) -> Single<UserResponse> {
         return Single.create { [weak self] single in
             self?.userProvider.request(.profileModification(query)) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decodedData = try JSONDecoder().decode(ProfileModificationResponse.self, from: response.data)
+                        let decodedData = try JSONDecoder().decode(UserResponse.self, from: response.data)
                     } catch {
                         single(.failure(error))
                     }
@@ -166,13 +166,15 @@ final class UserNetworkManager {
         }
     }
     
-    func userprofileCheck(query: UserprofileCheckQuery) -> Single<UserProfileCheckResponse> {
+    func profileImage() { }
+    
+    func userprofileCheck(query: UserprofileCheckQuery) -> Single<UserMemberResponse> {
         return Single.create { [weak self] single in
             self?.userProvider.request(.userProfileCheck(query)) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decodedData = try JSONDecoder().decode(UserProfileCheckResponse.self, from: response.data)
+                        let decodedData = try JSONDecoder().decode(UserResponse.self, from: response.data)
                     } catch {
                         single(.failure(error))
                     }
