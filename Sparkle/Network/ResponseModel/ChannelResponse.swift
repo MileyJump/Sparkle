@@ -7,23 +7,51 @@
 
 import Foundation
 
-struct MyChannelCheckResponse: Decodable { }
+struct ChannelMembers: Decodable {
+    let user_id: String
+    let email: String
+    let nickname: String
+    let profileImage: String
+}
 
-struct ChannelListCheckResponse: Decodable { }
+struct ChannelResponse: Decodable {
+    let channel_id: String
+    let name: String
+    let description: String
+    let coverImage: String
+    let owner_id: String
+    let createdAt: String
+}
 
-struct CreateChannelResponse: Decodable {}
 
-struct SpecificChannelCheckResponse: Decodable { }
-struct ChannelsEditResponse: Decodable { }
-struct ChannelsDeleteResponse: Decodable { }
-struct ChannelChatHistoryListResponse: Decodable { }
+struct SpecificChannelCheckResponse: Decodable {
+    let channel_id: String
+    let name: String
+    let description: String
+    let coverImage: String
+    let owner_id: String
+    let createdAt: String
+    let channelMembers: [ WorkspaceMembers ]
+}
 
-struct SendChannelChatResponse: Decodable { }
 
-struct NumberOfUnreadChannelChatsResponse: Decodable { }
+struct ChannelChatHistoryListResponse: Decodable {
+    let channel_id: String
+    let channelName: String
+    let chat_id: String
+    let content: String
+    let createdAt: String
+    let files: [ String ]
+    let user: WorkspaceMembers
+}
 
-struct ChannelMembersCheckResponse: Decodable { }
 
-struct ChangeChannelManagerResponse: Decodable { }
+struct NumberOfUnreadChannelChatsResponse: Decodable {
+    let channel_id: String
+    let name: String
+    let count: Int
+}
 
-struct LeaveChannelResponse: Decodable { }
+struct ChangeChannelManagerResponse: Decodable {
+    let owner_id: String
+}
