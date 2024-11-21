@@ -44,9 +44,4 @@ struct WorkspaceInformationCheckResponse: Decodable {
     let workspaceMembers: [WorkspaceMembers]
 }
 
-struct WorkspaceMembersInviteResponse: Decodable {
-    let user_id: String
-    let email: String
-    let nickname: String
-    let profileImage: String
-}
+
