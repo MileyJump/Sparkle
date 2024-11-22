@@ -7,6 +7,8 @@
 
 import Foundation
 
+struct VoidResponse: Decodable {}
+
 struct UserMemberResponse: Decodable {
     let user_id: String
     let email: String

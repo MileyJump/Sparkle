@@ -56,6 +56,10 @@ struct ProfileModificationQuery: Encodable {
     let phone: String
 }
 
+struct ProfileImageModificationQuery: Encodable {
+    let image: String
+}
+
 struct UserprofileCheckQuery: Encodable {
     let userID: String
 }

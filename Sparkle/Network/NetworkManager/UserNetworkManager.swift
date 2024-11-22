@@ -10,6 +10,7 @@ import Moya
 import RxSwift
 
 final class UserNetworkManager {
+  
     static let shared = UserNetworkManager()
     private let userProvider: MoyaProvider<UserAPI>
     
@@ -17,172 +18,71 @@ final class UserNetworkManager {
         self.userProvider = MoyaProvider<UserAPI>(plugins: [NetworkLoggerPlugin()])
     }
     
-    func join(query: JoinQuery) -> Single<UserResponse> {
+    func request<T: Decodable>(_ target: UserAPI, responseType: T.Type) -> Single<T> {
         return Single.create { [weak self] single in
-            self?.userProvider.request(.join(query)) { result in
+            self?.userProvider.request(target) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decodedData = try JSONDecoder().decode(UserResponse.self, from: response.data)
-                        single(.success(decodedData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            
-            return Disposables.create()
-            
-        }
-    }
-    
-//    func emailValidation(query: EmailValidationQuery) -> Single<EmailValidationReponse> {
-//        return Single.create { [weak self] single in
-//            self?.userProvider.request(.emailValidation(query)) { result in
-//                switch result {
-//                case .success(let response):
-//                    do {
-//                        let decodedData = try JSONDecoder().decode(EmailValidationReponse.self, from: response.data)
-//                    } catch {
-//                        single(.failure(error))
-//                    }
-//                case .failure(let error):
-//                    single(.failure(error))
-//                }
-//            }
-//            return Disposables.create()
-//        }
-//    }
-        
-        func login(query: LoginQuery) -> Single<UserResponse> {
-            return Single.create { [weak self] single in
-                self?.userProvider.request(.login(query)) { result in
-                    switch result {
-                    case .success(let response):
-                        do {
-                            let decodedData = try JSONDecoder().decode(UserResponse.self, from: response.data)
-                        } catch {
-                            single(.failure(error))
+                        if T.self == VoidResponse.self {
+                            single(.success(VoidResponse() as! T)) // Void를 반환
+                        } else {
+                            let decodedData = try JSONDecoder().decode(T.self, from: response.data)
+                            single(.success(decodedData))
                         }
-                    case .failure(let error):
+                    } catch {
                         single(.failure(error))
                     }
+                case .failure(let error):
+                    single(.failure(error))
                 }
-                return Disposables.create()
             }
+            return Disposables.create()
         }
+    }
+ 
+    func join(query: JoinQuery) -> Single<UserResponse> {
+        return request(.join(query), responseType: UserResponse.self)
+    }
     
+    func emailValidation(query: EmailValidationQuery) -> Single<Void> {
+        return request(.emailValidation(query), responseType: VoidResponse.self).map { _ in }
+    }
+
+    func login(query: LoginQuery) -> Single<UserResponse> {
+        return request(.login(query), responseType: UserResponse.self)
+    }
+
     func kakaoLogin(query: KakaoLoginQuery) -> Single<UserResponse> {
-        return Single.create { [weak self] single in
-            self?.userProvider.request(.kakaoLogin(query)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decodedData = try JSONDecoder().decode(UserResponse.self, from: response.data)
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.kakaoLogin(query), responseType: UserResponse.self)
     }
-    
+
+
     func appleLogin(query: AppleLoginQuery) -> Single<UserResponse> {
-        return Single.create { [weak self] single in
-            self?.userProvider.request(.appleLogin(query)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decodedData = try JSONDecoder().decode(UserResponse.self, from: response.data)
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.appleLogin(query), responseType: UserResponse.self)
     }
     
-    // logout
+    func logout() -> Single<Void> {
+        return request(.logout, responseType: VoidResponse.self).map { _ in }
+    }
     
-//    func DeviceToken(query: DeviceTokenQuery) -> Single<DeviceTokenResponse> {
-//        return Single.create { [weak self] single in
-//            self?.userProvider.request(.deviceToken(query)) { result in
-//                switch result {
-//                case .success(let response):
-//                    do {
-//                        let decodedData = try JSONDecoder().decode(DeviceTokenResponse.self, from: response.data)
-//                    } catch {
-//                        single(.failure(error))
-//                    }
-//                case .failure(let error):
-//                    single(.failure(error))
-//                }
-//            }
-//            return Disposables.create()
-//        }
-//    }
-    
+    func DeviceToken(query: DeviceTokenQuery) -> Single<()> {
+        return request(.deviceToken(query), responseType: VoidResponse.self).map { _ in }
+    }
+
     func profileCheck(query: ProfileCheckQuery) -> Single<UserResponse> {
-        return Single.create { [weak self] single in
-            self?.userProvider.request(.profileCheck(query)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decodedData = try JSONDecoder().decode(UserResponse.self, from: response.data)
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.profileCheck(query), responseType: UserResponse.self)
     }
-    
+
     func profileModification(query: ProfileModificationQuery) -> Single<UserResponse> {
-        return Single.create { [weak self] single in
-            self?.userProvider.request(.profileModification(query)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decodedData = try JSONDecoder().decode(UserResponse.self, from: response.data)
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.profileModification(query), responseType: UserResponse.self)
     }
     
-    func profileImage() { }
+    func ProfileImageModification(query: ProfileImageModificationQuery) -> Single<UserResponse> {
+        return request(.profileImageModification(query), responseType: UserResponse.self)
+    }
     
-    func userprofileCheck(query: UserprofileCheckQuery) -> Single<UserMemberResponse> {
-        return Single.create { [weak self] single in
-            self?.userProvider.request(.userProfileCheck(query)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decodedData = try JSONDecoder().decode(UserResponse.self, from: response.data)
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+    func userProfileCheck(query: UserprofileCheckQuery) -> Single<UserMemberResponse> {
+        return request(.userProfileCheck(query), responseType: UserMemberResponse.self)
     }
 }

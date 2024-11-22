@@ -12,7 +12,7 @@ extension ChannelAPI: BaseTarget {
     
     var path: String {
         switch self {
-        case .mychannelCheck(_, let workspaceID):
+        case .myChannelCheck(_, let workspaceID):
             return "/v1/workspaces/\(workspaceID)/my-channels"
             
         case .channelListCheck(_, let workspaceID):
@@ -52,7 +52,7 @@ extension ChannelAPI: BaseTarget {
     
     var method: Moya.Method {
         switch self {
-        case .mychannelCheck, .channelListCheck, .specificChannelCheck, .channelChatHistoryList, .numberOfUnreadChannelChats, .channelMembersCheck, .leaveChannel:
+        case .myChannelCheck, .channelListCheck, .specificChannelCheck, .channelChatHistoryList, .numberOfUnreadChannelChats, .channelMembersCheck, .leaveChannel:
             return .get
         
         case .createChannel, .sendChannelChat:
@@ -69,7 +69,7 @@ extension ChannelAPI: BaseTarget {
     
     var task: Task {
         switch self {
-        case .mychannelCheck(let parameters, _):
+        case .myChannelCheck(let parameters, _):
             return .requestParameters(parameters: try! parameters.toDictionary(), encoding: URLEncoding.default)
             
         case .channelListCheck(let parameters, _):

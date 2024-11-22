@@ -18,15 +18,18 @@ final class ChannelsNetworkManager {
         self.channelProvider = MoyaProvider<ChannelAPI>(plugins: [NetworkLoggerPlugin()])
     }
     
-    
-    func myChannelCheck(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<ChannelResponse> {
+    func request<T: Decodable>(_ target: ChannelAPI, responseType: T.Type) -> Single<T> {
         return Single.create { [weak self] single in
-            self?.channelProvider.request(.myChannelCheck(parameters: parameters, workspaceID: workspaceID)) { result in
+            self?.channelProvider.request(target) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decoderData = try JSONDecoder().decode(ChannelResponse.self, from: response.data)
-                        single(.success(decoderData))
+                        if T.self == VoidResponse.self {
+                            single(.success(VoidResponse() as! T))
+                        } else {
+                            let decodedData = try JSONDecoder().decode(T.self, from: response.data)
+                            single(.success(decodedData))
+                        }
                     } catch {
                         single(.failure(error))
                     }
@@ -36,213 +39,53 @@ final class ChannelsNetworkManager {
             }
             return Disposables.create()
         }
+    }
+    
+    func myChannelCheck(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<ChannelResponse> {
+        return request(.myChannelCheck(parameters: parameters, workspaceID: workspaceID), responseType: ChannelResponse.self)
     }
     
     func channelListCheck(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<ChannelResponse> {
-        return Single.create { [weak self] single in
-            self?.channelProvider.request(.channelListCheck(parameters: parameters, workspaceID: workspaceID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(ChannelResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.channelListCheck(parameters: parameters, workspaceID: workspaceID), responseType: ChannelResponse.self)
     }
     
     func createChannel(query: ChannelsQuery, parameters: WorkspaceIDParameter, workspaceID: String) -> Single<ChannelResponse> {
-        return Single.create { [weak self] single in
-            self?.channelProvider.request(.createChannel(query: query, parameters: parameters, workspaceID: workspaceID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(ChannelResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.createChannel(query: query, parameters: parameters, workspaceID: workspaceID), responseType: ChannelResponse.self)
     }
     
     func specificChannelCheck(parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<SpecificChannelCheckResponse> {
-        return Single.create { [weak self] single in
-            self?.channelProvider.request(.specificChannelCheck(parameters: parameters, workspaceID: workspaceID, channleID: channleID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(SpecificChannelCheckResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.specificChannelCheck(parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: SpecificChannelCheckResponse.self)
     }
     
     func channelsEdit(query: ChannelsQuery ,parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<ChannelResponse> {
-        return Single.create { [weak self] single in
-            self?.channelProvider.request(.channelsEdit(query: query, parameters: parameters, workspaceID: workspaceID, channleID: channleID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(ChannelResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.channelsEdit(query: query, parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: ChannelResponse.self)
     }
     
     func channelsDelete(parameters: ChannelParameter, workspaceID: String, channleID: String)  -> Single<Void> {
-        return Single.create { [weak self] single in
-            self?.channelProvider.request(.channelsDelete(parameters: parameters, workspaceID: workspaceID, channleID: channleID)) { result in
-                switch result {
-                case .success(let response):
-                
-                        single(.success(()))
-                  
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.channelsDelete(parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: VoidResponse.self).map { _ in }
     }
     
-    
     func channelChatHistoryList(parameters: ChannelChatHistoryListParameter, workspaceID: String, channleID: String)  -> Single<ChannelChatHistoryListResponse> {
-        
-        return Single.create { [weak self] single in
-            self?.channelProvider.request(.channelChatHistoryList(parameters: parameters, workspaceID: workspaceID, channleID: channleID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(ChannelChatHistoryListResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.channelChatHistoryList(parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: ChannelChatHistoryListResponse.self)
     }
     
     func sendChannelChat(query: SendChannelChatQuery, parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<ChannelChatHistoryListResponse> {
-        return Single.create { [weak self] single in
-            self?.channelProvider.request(.sendChannelChat(query: query, parameters: parameters, workspaceID: workspaceID, channleID: channleID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(ChannelChatHistoryListResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.sendChannelChat(query: query, parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: ChannelChatHistoryListResponse.self)
     }
     
     func numberOfUnreadChannelChats(parameters: NumberOfUnreadChannelChatsParameter, workspaceID: String, channleID: String) -> Single<NumberOfUnreadChannelChatsResponse> {
-        return Single.create { [weak self] single in
-            self?.channelProvider.request(.numberOfUnreadChannelChats(parameters: parameters, workspaceID: workspaceID, channleID: channleID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(NumberOfUnreadChannelChatsResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.numberOfUnreadChannelChats(parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: NumberOfUnreadChannelChatsResponse.self)
     }
     
     func channelMembersCheck(parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<UserMemberResponse> {
-        return Single.create { [weak self] single in
-            self?.channelProvider.request(.channelMembersCheck(parameters: parameters, workspaceID: workspaceID, channleID: channleID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(UserMemberResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.channelMembersCheck(parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: UserMemberResponse.self)
     }
     
     func changeChannelManager(query: ChangeChannelManagerQuery, parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<ChannelResponse> {
-        return Single.create { [weak self] single in
-            self?.channelProvider.request(.changeChannelManager(query: query, parameters: parameters, workspaceID: workspaceID, channleID: channleID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(ChannelResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.changeChannelManager(query: query, parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: ChannelResponse.self)
     }
     
     func leaveChannel(parameters: ChannelParameter , workspaceID: String, channleID: String) -> Single<ChannelResponse> {
-        return Single.create { [weak self] single in
-            self?.channelProvider.request(.leaveChannel(parameters: parameters, workspaceID: workspaceID, channleID: channleID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(ChannelResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.leaveChannel(parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: ChannelResponse.self)
     }
 }
