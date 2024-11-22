@@ -44,6 +44,7 @@ final class OnboardingView: BaseView {
     }
     
     
+
     override func setupSubviews() {
         self.addSubview(serviceName)
         self.addSubview(onboardingImage)
