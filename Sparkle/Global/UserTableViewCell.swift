@@ -17,7 +17,6 @@ final class UserTableViewCell: BaseCollectionViewCell {
     }
     
     override func setupSubviews() {
-        
         addSubview(profileImageView)
         addSubview(nameLabel)
     }
