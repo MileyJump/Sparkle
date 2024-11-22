@@ -17,6 +17,6 @@ enum UserAPI {
     case deviceToken(DeviceTokenQuery)
     case profileCheck(ProfileCheckQuery)
     case profileModification(ProfileModificationQuery)
-    case profileImageModification
+    case profileImageModification(ProfileImageModificationQuery)
     case userProfileCheck(UserprofileCheckQuery)
 }

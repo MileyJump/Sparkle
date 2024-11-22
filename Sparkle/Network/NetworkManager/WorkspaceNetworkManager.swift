@@ -18,14 +18,18 @@ final class WorkspaceNetworkManager {
         self.workspaceProvider = MoyaProvider<WorkspaceAPI>(plugins: [NetworkLoggerPlugin()])
     }
     
-    func workspacesListCheck() -> Single<WorkspaceListCheckResponse> {
+    func request<T: Decodable>(_ target: WorkspaceAPI, responseType: T.Type) -> Single<T> {
         return Single.create { [weak self] single in
-            self?.workspaceProvider.request(.workspacesListCheck) { result in
+            self?.workspaceProvider.request(target) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decodeData = try JSONDecoder().decode(WorkspaceListCheckResponse.self, from: response.data)
-                        single(.success(decodeData))
+                        if T.self == VoidResponse.self {
+                            single(.success(VoidResponse() as! T))
+                        } else {
+                            let decodedData = try JSONDecoder().decode(T.self, from: response.data)
+                            single(.success(decodedData))
+                        }
                     } catch {
                         single(.failure(error))
                     }
@@ -35,195 +39,50 @@ final class WorkspaceNetworkManager {
             }
             return Disposables.create()
         }
+    }
+    
+    func workspacesListCheck() -> Single<WorkspaceListCheckResponse> {
+        return request(.workspacesListCheck, responseType: WorkspaceListCheckResponse.self)
     }
     
     func createWorkspace(query: CreateWorkspaceQuery) -> Single<WorkspaceListCheckResponse> {
-        return Single.create { [weak self] single in
-            self?.workspaceProvider.request(.createWorkspace(query: query)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decodeData = try JSONDecoder().decode(WorkspaceListCheckResponse.self, from: response.data)
-                        single(.success(decodeData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.createWorkspace(query: query), responseType: WorkspaceListCheckResponse.self)
     }
     
     func workspaceInformationCheck(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<WorkspaceInformationCheckResponse> {
-        return Single.create { [weak self] single in
-            self?.workspaceProvider.request(.workspaceInformationCheck(parameters: parameters, workspaceID: workspaceID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decodeData = try JSONDecoder().decode(WorkspaceInformationCheckResponse.self, from: response.data)
-                        single(.success(decodeData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.workspaceInformationCheck(parameters: parameters, workspaceID: workspaceID), responseType: WorkspaceInformationCheckResponse.self)
     }
     
-    
     func workspaceEdit(parameters: WorkspaceIDParameter, query: WorkspaceEditQury , workspaceID: String) -> Single<WorkspaceListCheckResponse> {
-        return Single.create { [weak self] single in
-            self?.workspaceProvider.request(.workspaceEdit(parameters: parameters, query: query, workspaceID: workspaceID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decodeData = try JSONDecoder().decode(WorkspaceListCheckResponse.self, from: response.data)
-                        single(.success(decodeData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.workspaceEdit(parameters: parameters, query: query, workspaceID: workspaceID), responseType: WorkspaceListCheckResponse.self)
     }
     
     func workspaceDelete(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<Void> {
-        return Single.create { [weak self] single in
-            self?.workspaceProvider.request(.workspaceDelete(parameters: parameters, workspaceID: workspaceID)) { result in
-                switch result {
-                case .success(let response):
-                    single(.success(()))
-                    
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.workspaceDelete(parameters: parameters, workspaceID: workspaceID), responseType: VoidResponse.self).map { _ in }
     }
     
     func workspaceMembersInvite(parameters: WorkspaceIDParameter, query: WorkspaceMembersInviteQuery, workspaceID: String) -> Single<UserMemberResponse> {
-        return Single.create { [weak self] single in
-            self?.workspaceProvider.request( .workspaceMembersInvite(parameters: parameters, query: query, workspaceID: workspaceID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(UserMemberResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.workspaceMembersInvite(parameters: parameters, query: query, workspaceID: workspaceID), responseType: UserMemberResponse.self)
     }
     
     
-    func workspaceMemberCheck(parameters: WorkspaceIDParameter, wokrpsaceID: String) -> Single<UserMemberResponse> {
-        return Single.create { [weak self] single in
-            self?.workspaceProvider.request( .workspaceMemberCheck(parameters: parameters, workspaceID: wokrpsaceID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(UserMemberResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+    func workspaceMemberCheck(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<UserMemberResponse> {
+        return request(.workspaceMemberCheck(parameters: parameters, workspaceID: workspaceID), responseType: UserMemberResponse.self)
     }
     
-    func workspaceSpecificMemberCheck(parameters: workspaceSpecificMemberCheckParameter, wokrpsaceID: String, userID: String) -> Single<UserMemberResponse> {
-        return Single.create { [weak self] single in
-            self?.workspaceProvider.request( .workspaceSpecificMemberCheck(parameters: parameters, workspaceID: wokrpsaceID, userID: userID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(UserMemberResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+    func workspaceSpecificMemberCheck(parameters: workspaceSpecificMemberCheckParameter, workspaceID: String, userID: String) -> Single<UserMemberResponse> {
+        return request(.workspaceSpecificMemberCheck(parameters: parameters, workspaceID: workspaceID, userID: userID), responseType: UserMemberResponse.self)
     }
     
     func workspaceSearch(parameters: workspaceSearchParameter, workspaceID: String) -> Single<WorkspaceInformationCheckResponse> {
-        return Single.create { [weak self] single in
-            self?.workspaceProvider.request(.workspaceSearch(parameters: parameters, workspaceID: workspaceID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(WorkspaceInformationCheckResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-                
-            }
-            return Disposables.create()
-        }
+        return request(.workspaceSearch(parameters: parameters, workspaceID: workspaceID), responseType: WorkspaceInformationCheckResponse.self)
     }
     
     func changeWorkspaceManager(parameters: WorkspaceIDParameter, query: ChangeWorkspaceAdministratorQuery, workspaceID: String) -> Single<WorkspaceListCheckResponse> {
-        return Single.create { [weak self] single in
-            self?.workspaceProvider.request(.changeWorkspaceManager(parameters: parameters, query: query, workspaceID: workspaceID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(WorkspaceListCheckResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-            
-        }
+            return request(.changeWorkspaceManager(parameters: parameters, query: query, workspaceID: workspaceID), responseType: WorkspaceListCheckResponse.self)
     }
     
     func exitWorkspace(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<WorkspaceListCheckResponse> {
-        return Single.create { [weak self] single in
-            self?.workspaceProvider.request(.exitWorkspace(parameters: parameters, workspaceID: workspaceID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(WorkspaceListCheckResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.exitWorkspace(parameters: parameters, workspaceID: workspaceID), responseType: WorkspaceListCheckResponse.self)
     }
 }

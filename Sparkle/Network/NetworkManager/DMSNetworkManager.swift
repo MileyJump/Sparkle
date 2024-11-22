@@ -18,14 +18,18 @@ final class DMSNetworkManager {
         self.dmsProvider = MoyaProvider<DMSAPI>(plugins: [NetworkLoggerPlugin()])
     }
     
-    func createDMs(query: CreateDMS, parameters: WorkspaceIDParameter, workspaceID: String) -> Single<DmsListCheckResponse> {
+    func request<T: Decodable>(_ target: DMSAPI, responseType: T.Type) -> Single<T> {
         return Single.create { [weak self] single in
-            self?.dmsProvider.request(.createDMs(query: query, parameters: parameters, workspaceID: workspaceID)) { result in
+            self?.dmsProvider.request(target) { result in
                 switch result {
                 case .success(let response):
                     do {
-                        let decoderData = try JSONDecoder().decode(DmsListCheckResponse.self, from: response.data)
-                        single(.success(decoderData))
+                        if T.self == VoidResponse.self {
+                            single(.success(VoidResponse() as! T))
+                        } else {
+                            let decodedData = try JSONDecoder().decode(T.self, from: response.data)
+                            single(.success(decodedData))
+                        }
                     } catch {
                         single(.failure(error))
                     }
@@ -35,83 +39,25 @@ final class DMSNetworkManager {
             }
             return Disposables.create()
         }
+    }
+    
+    func createDMs(query: CreateDMS, parameters: WorkspaceIDParameter, workspaceID: String) -> Single<DmsListCheckResponse> {
+        return request(.createDMs(query: query, parameters: parameters, workspaceID: workspaceID), responseType: DmsListCheckResponse.self)
     }
     
     func dmsListCheck(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<DmsListCheckResponse> {
-        return Single.create { [weak self] single in
-            self?.dmsProvider.request(.dmsListCheck(parameters: parameters, workspaceID: workspaceID    )) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(DmsListCheckResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
-        
+        return request(.dmsListCheck(parameters: parameters, workspaceID: workspaceID), responseType: DmsListCheckResponse.self)
     }
     
     func sendDMs(query: SendDMChat, parameters: DMParamter, workspaceID: String, roomID: String) -> Single<SendDMsResponse> {
-        return Single.create { [weak self] single in
-            self?.dmsProvider.request(.sendDMs(query: query, parameters: parameters, workspaceID: workspaceID, roomID: roomID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(SendDMsResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.sendDMs(query: query, parameters: parameters, workspaceID: workspaceID, roomID: roomID), responseType: SendDMsResponse.self)
     }
     
     func dmsChatListCheck(parameters: DMChatListCheckParameter, workspaceID: String, roomID: String) -> Single<SendDMsResponse> {
-        return Single.create { [weak self] single in
-            self?.dmsProvider.request(.dmsChatListCheck(parameters: parameters, workspaceID: workspaceID, roomID: roomID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(SendDMsResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.dmsChatListCheck(parameters: parameters, workspaceID: workspaceID, roomID: roomID), responseType: SendDMsResponse.self)
     }
     
     func numberOfUnreadDMs(parameters: NumberOfUnreadDMs, workspaceID: String, roomID: String) -> Single<NumberOfUnreadDMsResponse> {
-        
-        return Single.create { [weak self] single in
-            self?.dmsProvider.request(.numberOfUnreadDMs(parameters: parameters, workspaceID: workspaceID, roomID: roomID)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoderData = try JSONDecoder().decode(NumberOfUnreadDMsResponse.self, from: response.data)
-                        single(.success(decoderData))
-                    } catch {
-                        single(.failure(error))
-                    }
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
+        return request(.numberOfUnreadDMs(parameters: parameters, workspaceID: workspaceID, roomID: roomID), responseType: NumberOfUnreadDMsResponse.self)
     }
 }
