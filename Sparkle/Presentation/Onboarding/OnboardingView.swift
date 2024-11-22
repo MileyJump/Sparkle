@@ -43,8 +43,6 @@ final class OnboardingView: BaseView {
         super.init(frame: frame)
     }
     
-    
-
     override func setupSubviews() {
         self.addSubview(serviceName)
         self.addSubview(onboardingImage)
