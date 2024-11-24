@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B017BC1D2CF30BDC00176F28 /* HomeDefaultViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B017BC1C2CF30BDC00176F28 /* HomeDefaultViewReactor.swift */; };
 		B02A08732CDE3B5C007489EE /* CreateWorkspaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A08722CDE3B5C007489EE /* CreateWorkspaceViewController.swift */; };
 		B02A08762CDF200D007489EE /* HomeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A08752CDF200D007489EE /* HomeEmptyView.swift */; };
 		B02A08782CDF20C9007489EE /* HomeEmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A08772CDF20C9007489EE /* HomeEmptyViewController.swift */; };
@@ -38,6 +39,7 @@
 		B052069D2CF0A6A200FBE1F7 /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B052069C2CF0A6A200FBE1F7 /* BaseURL.swift */; };
 		B052069F2CF0AAD000FBE1F7 /* HomeDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B052069E2CF0AAD000FBE1F7 /* HomeDefaultView.swift */; };
 		B05206A12CF0ADDF00FBE1F7 /* HomeDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05206A02CF0ADDF00FBE1F7 /* HomeDefaultViewController.swift */; };
+		B05206A32CF3056200FBE1F7 /* ChannelsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05206A22CF3056200FBE1F7 /* ChannelsTableViewCell.swift */; };
 		B066FFB12CEB27AB002D487E /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066FFB02CEB27AB002D487E /* Header.swift */; };
 		B066FFB32CEB293E002D487E /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066FFB22CEB293E002D487E /* UserDefaultsManager.swift */; };
 		B066FFB82CEB2DBB002D487E /* UserQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B066FFB72CEB2DBB002D487E /* UserQuery.swift */; };
@@ -89,6 +91,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B017BC1C2CF30BDC00176F28 /* HomeDefaultViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDefaultViewReactor.swift; sourceTree = "<group>"; };
 		B02A08722CDE3B5C007489EE /* CreateWorkspaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkspaceViewController.swift; sourceTree = "<group>"; };
 		B02A08752CDF200D007489EE /* HomeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyView.swift; sourceTree = "<group>"; };
 		B02A08772CDF20C9007489EE /* HomeEmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +116,7 @@
 		B052069C2CF0A6A200FBE1F7 /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
 		B052069E2CF0AAD000FBE1F7 /* HomeDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDefaultView.swift; sourceTree = "<group>"; };
 		B05206A02CF0ADDF00FBE1F7 /* HomeDefaultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDefaultViewController.swift; sourceTree = "<group>"; };
+		B05206A22CF3056200FBE1F7 /* ChannelsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsTableViewCell.swift; sourceTree = "<group>"; };
 		B066FFB02CEB27AB002D487E /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		B066FFB22CEB293E002D487E /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		B066FFB72CEB2DBB002D487E /* UserQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserQuery.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 			children = (
 				B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */,
 				B0F1E0D22CDB6910005E38E7 /* UserTableViewCell.swift */,
+				B05206A22CF3056200FBE1F7 /* ChannelsTableViewCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -239,6 +244,7 @@
 			children = (
 				B0F1E0DA2CDE0F1B005E38E7 /* HomeViewReactor.swift */,
 				B02A08832CE21D9F007489EE /* HomeInitialViewReactor.swift */,
+				B017BC1C2CF30BDC00176F28 /* HomeDefaultViewReactor.swift */,
 			);
 			path = "ViewReactor ";
 			sourceTree = "<group>";
@@ -590,6 +596,7 @@
 				B0F1E0D92CDE093F005E38E7 /* CreateWorkspaceView.swift in Sources */,
 				B0F1E0D12CDB68CC005E38E7 /* BaseCollectionViewCell.swift in Sources */,
 				B0AAFFA92CE78E8E009A5E30 /* WorkspaceAPI.swift in Sources */,
+				B017BC1D2CF30BDC00176F28 /* HomeDefaultViewReactor.swift in Sources */,
 				B02A08822CE2032D007489EE /* HomeInitialViewController.swift in Sources */,
 				B066FFDA2CEDCF0C002D487E /* DMSResponse.swift in Sources */,
 				B052069D2CF0A6A200FBE1F7 /* BaseURL.swift in Sources */,
@@ -611,6 +618,7 @@
 				B066FFDE2CEDFF55002D487E /* WorkspaceNetworkManager.swift in Sources */,
 				B02A08762CDF200D007489EE /* HomeEmptyView.swift in Sources */,
 				B02A087E2CE1F486007489EE /* CreateWorkspaceViewReactor.swift in Sources */,
+				B05206A32CF3056200FBE1F7 /* ChannelsTableViewCell.swift in Sources */,
 				B0878DCA2CD255460013B989 /* SparkleTabBar.swift in Sources */,
 				B066FFD82CEDCE6D002D487E /* ChannelResponse.swift in Sources */,
 				B02A088B2CE47900007489EE /* ChannelChattingCell.swift in Sources */,

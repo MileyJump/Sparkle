@@ -7,13 +7,17 @@
 
 import UIKit
 
-final class UserTableViewCell: BaseCollectionViewCell {
+import SnapKit
+
+final class UserTableViewCell: BaseTableViewCell {
     
-    private let profileImageView = UIImageView()
+    private let profileImageView = UIImageView().then {
+        $0.backgroundColor = .blue
+    }
      let nameLabel = UILabel()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
     override func setupSubviews() {

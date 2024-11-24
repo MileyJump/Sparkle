@@ -14,7 +14,6 @@ final class ChannelsButton: UIButton {
     init(title: String, image: UIImage?, backgroundColor: UIColor, tintColor: UIColor, font: UIFont) {
         super.init(frame: .zero)
         
-        // 버튼 기본 스타일 설정
         self.backgroundColor = backgroundColor
         self.tintColor = tintColor
         self.layer.cornerRadius = 8
@@ -25,7 +24,6 @@ final class ChannelsButton: UIButton {
         titleLabel.font = font
         titleLabel.textColor = tintColor
         self.addSubview(titleLabel)
-        
         
         let imageView = UIImageView()
         if let image = image {

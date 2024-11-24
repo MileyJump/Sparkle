@@ -14,14 +14,17 @@ final class CreateWorkspaceViewReactor: Reactor {
     
     enum Action {
         case comfirmButton
+        case backButton
     }
     
     enum Mutation {
         case comfirmButtonTapped
+        case backButtonTapped
     }
     
     struct State {
         var comfirmButtonTapped: Bool = false
+        var backButtonTappedState: Bool = false
     }
     
     let initialState: State
@@ -34,6 +37,8 @@ final class CreateWorkspaceViewReactor: Reactor {
         switch action {
         case .comfirmButton:
             return Observable.just(.comfirmButtonTapped)
+        case .backButton:
+            return Observable.just(.backButtonTapped)
         }
     }
    
@@ -42,6 +47,8 @@ final class CreateWorkspaceViewReactor: Reactor {
         switch mutation {
         case .comfirmButtonTapped:
             state.comfirmButtonTapped = true
+        case .backButtonTapped:
+            state.backButtonTappedState = true
         }
         return state
     }
