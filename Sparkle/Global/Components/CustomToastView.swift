@@ -16,9 +16,9 @@ final class CustomToastView: UIView {
         super.init(frame: .zero)
         setupToastView(toastMessage: message, toastIcon: icon)
         
-        layer.shadowOpacity = 0.2        // 그림자 투명도 (0~1)
-        layer.shadowOffset = CGSize(width: 2, height: 2) // 그림자 위치 조정
-        layer.shadowRadius = 3.0          // 그림자 퍼짐 정도
+        layer.shadowOpacity = 0.2
+        layer.shadowOffset = CGSize(width: 2, height: 2)
+        layer.shadowRadius = 3.0 
         layer.masksToBounds = false
     }
     

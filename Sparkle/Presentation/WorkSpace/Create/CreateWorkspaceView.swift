@@ -42,7 +42,7 @@ final class CreateWorkspaceView: BaseView {
         $0.layer.cornerRadius = 8
     }
     
-    private let workspaceNameTextField = UITextField().then {
+    let workspaceNameTextField = UITextField().then {
         $0.placeholder = "워크스페이스 이름을 입력해주세요 (필수)"
         $0.font = UIFont.systemFont(ofSize: 13)
         $0.textColor = UIColor.sparkleTextPrimaryColor
@@ -60,7 +60,7 @@ final class CreateWorkspaceView: BaseView {
         $0.layer.cornerRadius = 8
     }
     
-    private let workspaceExplanationTextField = UITextField().then {
+    let workspaceExplanationTextField = UITextField().then {
         $0.placeholder = "워크스페이스를 설명하세요. (옵션)"
         $0.font = UIFont.systemFont(ofSize: 13)
         $0.textColor = UIColor.sparkleTextPrimaryColor
