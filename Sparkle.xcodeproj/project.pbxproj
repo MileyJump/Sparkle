@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		B017BC1D2CF30BDC00176F28 /* HomeDefaultViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B017BC1C2CF30BDC00176F28 /* HomeDefaultViewReactor.swift */; };
+		B017BC212CF3563D00176F28 /* EmailLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B017BC202CF3563D00176F28 /* EmailLoginView.swift */; };
+		B017BC232CF3565100176F28 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B017BC222CF3565100176F28 /* EmailViewController.swift */; };
+		B017BC252CF357B100176F28 /* EmailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B017BC242CF357B100176F28 /* EmailViewReactor.swift */; };
+		B017BC282CF3590900176F28 /* EmailSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B017BC272CF3590900176F28 /* EmailSignupView.swift */; };
+		B017BC2A2CF4843000176F28 /* DeviceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = B017BC292CF4843000176F28 /* DeviceToken.swift */; };
 		B02A08732CDE3B5C007489EE /* CreateWorkspaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A08722CDE3B5C007489EE /* CreateWorkspaceViewController.swift */; };
 		B02A08762CDF200D007489EE /* HomeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A08752CDF200D007489EE /* HomeEmptyView.swift */; };
 		B02A08782CDF20C9007489EE /* HomeEmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A08772CDF20C9007489EE /* HomeEmptyViewController.swift */; };
@@ -92,6 +97,11 @@
 
 /* Begin PBXFileReference section */
 		B017BC1C2CF30BDC00176F28 /* HomeDefaultViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDefaultViewReactor.swift; sourceTree = "<group>"; };
+		B017BC202CF3563D00176F28 /* EmailLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginView.swift; sourceTree = "<group>"; };
+		B017BC222CF3565100176F28 /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
+		B017BC242CF357B100176F28 /* EmailViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewReactor.swift; sourceTree = "<group>"; };
+		B017BC272CF3590900176F28 /* EmailSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignupView.swift; sourceTree = "<group>"; };
+		B017BC292CF4843000176F28 /* DeviceToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceToken.swift; sourceTree = "<group>"; };
 		B02A08722CDE3B5C007489EE /* CreateWorkspaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkspaceViewController.swift; sourceTree = "<group>"; };
 		B02A08752CDF200D007489EE /* HomeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyView.swift; sourceTree = "<group>"; };
 		B02A08772CDF20C9007489EE /* HomeEmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +197,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B017BC1E2CF3562F00176F28 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B017BC1F2CF3563700176F28 /* Email */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		B017BC1F2CF3563700176F28 /* Email */ = {
+			isa = PBXGroup;
+			children = (
+				B017BC202CF3563D00176F28 /* EmailLoginView.swift */,
+				B017BC222CF3565100176F28 /* EmailViewController.swift */,
+				B017BC242CF357B100176F28 /* EmailViewReactor.swift */,
+			);
+			path = Email;
+			sourceTree = "<group>";
+		};
+		B017BC262CF358FF00176F28 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				B017BC272CF3590900176F28 /* EmailSignupView.swift */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
 		B02A08792CE1D84D007489EE /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +389,7 @@
 				B0F1E0C52CDB4EC6005E38E7 /* AppDelegate.swift */,
 				B0F1E0C72CDB4EDB005E38E7 /* SceneDelegate.swift */,
 				B052069A2CF0A69D00FBE1F7 /* SesacKey.swift */,
+				B017BC292CF4843000176F28 /* DeviceToken.swift */,
 				B052069C2CF0A6A200FBE1F7 /* BaseURL.swift */,
 			);
 			path = Sparkle;
@@ -373,6 +410,8 @@
 		B0878DD32CD35C710013B989 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				B017BC262CF358FF00176F28 /* Signup */,
+				B017BC1E2CF3562F00176F28 /* Login */,
 				B02A08852CE39597007489EE /* Channels */,
 				B0F1E0D42CDCE0F1005E38E7 /* WorkSpace */,
 				B0878DDF2CD36EEB0013B989 /* Direct */,
@@ -585,6 +624,7 @@
 				B0F1E0CF2CDB68B0005E38E7 /* BaseTableViewCell.swift in Sources */,
 				B066FFD02CEDC339002D487E /* DMSQuery.swift in Sources */,
 				B066FFC42CECBDA7002D487E /* WorkspaceQuery.swift in Sources */,
+				B017BC2A2CF4843000176F28 /* DeviceToken.swift in Sources */,
 				B052069F2CF0AAD000FBE1F7 /* HomeDefaultView.swift in Sources */,
 				B0F1E0DB2CDE0F1B005E38E7 /* HomeViewReactor.swift in Sources */,
 				B0878DCE2CD25C6D0013B989 /* DirectViewController.swift in Sources */,
@@ -592,6 +632,7 @@
 				B0F1E0D62CDCE0F8005E38E7 /* workspaceInitialView.swift in Sources */,
 				B052069B2CF0A69D00FBE1F7 /* SesacKey.swift in Sources */,
 				B02A08872CE395A1007489EE /* CreateChannelView.swift in Sources */,
+				B017BC252CF357B100176F28 /* EmailViewReactor.swift in Sources */,
 				B02A089A2CE4B9F4007489EE /* UIView +.swift in Sources */,
 				B0F1E0D92CDE093F005E38E7 /* CreateWorkspaceView.swift in Sources */,
 				B0F1E0D12CDB68CC005E38E7 /* BaseCollectionViewCell.swift in Sources */,
@@ -607,6 +648,7 @@
 				B05206952CF0A65800FBE1F7 /* CustomPopupView.swift in Sources */,
 				B05206962CF0A65800FBE1F7 /* CustomNavigationBar.swift in Sources */,
 				B0878DD02CD25C880013B989 /* SettingViewController.swift in Sources */,
+				B017BC232CF3565100176F28 /* EmailViewController.swift in Sources */,
 				B0A4F5EE2CEB0DFC00788119 /* UserTarget.swift in Sources */,
 				B066FFCC2CEDC0A4002D487E /* DMSAPI.swift in Sources */,
 				B0746CBA2CD3AD4E00AC892C /* Color +.swift in Sources */,
@@ -621,6 +663,7 @@
 				B05206A32CF3056200FBE1F7 /* ChannelsTableViewCell.swift in Sources */,
 				B0878DCA2CD255460013B989 /* SparkleTabBar.swift in Sources */,
 				B066FFD82CEDCE6D002D487E /* ChannelResponse.swift in Sources */,
+				B017BC282CF3590900176F28 /* EmailSignupView.swift in Sources */,
 				B02A088B2CE47900007489EE /* ChannelChattingCell.swift in Sources */,
 				B02A08892CE47898007489EE /* ChannelChattingView.swift in Sources */,
 				B05206A12CF0ADDF00FBE1F7 /* HomeDefaultViewController.swift in Sources */,
@@ -639,6 +682,7 @@
 				B0AAFFA72CE5E0CD009A5E30 /* UserAPI.swift in Sources */,
 				B066FFC62CECE0A9002D487E /* BaseTarget.swift in Sources */,
 				B0746CB52CD3A17400AC892C /* OnboardingViewController.swift in Sources */,
+				B017BC212CF3563D00176F28 /* EmailLoginView.swift in Sources */,
 				B0746CBE2CD4FC8000AC892C /* CustomToastView.swift in Sources */,
 				B066FFB82CEB2DBB002D487E /* UserQuery.swift in Sources */,
 				B02A08782CDF20C9007489EE /* HomeEmptyViewController.swift in Sources */,
