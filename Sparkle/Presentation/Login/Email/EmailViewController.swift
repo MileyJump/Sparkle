@@ -23,6 +23,9 @@ final class EmailLoginViewController: BaseViewController<EmailLoginView> {
         view.backgroundColor = UIColor.sparkleBackgroundPrimaryColor
     }
     
+    override func setupNavigationBar() {
+        navigationItem.title = "이메일 로그인"
+    }
     
     private func bind(reactor: EmailLoginViewReactor) {
         
@@ -38,26 +41,46 @@ final class EmailLoginViewController: BaseViewController<EmailLoginView> {
                 owner.login()
             }
             .disposed(by: disposeBag)
-        
     }
     
     private func login() {
-        print("login Funtion")
-        let email = rootView.emailTextField.text ?? ""
-        let password = rootView.passwordTextField.text ?? ""
+
+        guard let email = rootView.emailTextField.text, !email.isEmpty else {
+            showAlert(message: "이메일을 입력해주세요.")
+            return
+        }
+        guard let password = rootView.passwordTextField.text, !password.isEmpty else {
+            showAlert(message: "비밀번호를 입력해주세요.")
+            return
+        }
         let deviceToken = DeviceToken.deviceToken
-        print(email, password)
+        
         UserNetworkManager.shared.login(query: LoginQuery(email: email, password: password, deviceToken: deviceToken))
-            .subscribe { response in
+            .subscribe(with: self) { owner, response in
                 if let token = response.token?.accessToken {
-                    UserDefaultsManager.shared.token = token
-                    print(UserDefaultsManager.shared.token)
-                }
                 
-            } onFailure: { error in
-                print(error)
+                    UserDefaultsManager.shared.token = token
+                    owner.handleLoginSuccess()
+                }
+            } onFailure: { owner, error in
+                
+                owner.handleLoginError(error: error)
             }
             .disposed(by: disposeBag)
     }
+
     
+    private func handleLoginSuccess() {
+        navigationController?.changeRootViewController(HomeEmptyViewController())
+    }
+
+    private func handleLoginError(error: Error) {
+        showAlert(message: "로그인에 실패했습니다. 다시 시도해주세요.")
+    }
+
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: "오류", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default))
+        present(alert, animated: true)
+    }
 }
