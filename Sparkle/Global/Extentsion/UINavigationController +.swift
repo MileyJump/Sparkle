@@ -24,8 +24,6 @@ extension UINavigationController {
         
     }
     
-    
-    
     func changeViewController(_ vc: UIViewController) {
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -34,5 +32,4 @@ extension UINavigationController {
         let navi = UINavigationController(rootViewController: vc)
         self.present(navi, animated: true)
     }
-    
 }

@@ -29,14 +29,14 @@ final class WorkspaceNetworkManager {
                         } else {
                             let decodedData = try JSONDecoder().decode(T.self, from: response.data)
                             single(.success(decodedData))
-                            print(response)
+//                            print(response)
                         }
                     } catch {
                         single(.failure(error))
                     }
                 case .failure(let error):
                     single(.failure(error))
-                    print(error)
+//                    print(error)
                 }
             }
             return Disposables.create()
@@ -48,7 +48,7 @@ final class WorkspaceNetworkManager {
     }
     
     func createWorkspace(query: CreateWorkspaceQuery) -> Single<WorkspaceListCheckResponse> {
-        print("얍?")
+    
         return request(.createWorkspace(query: query), responseType: WorkspaceListCheckResponse.self)
     }
     
