@@ -32,6 +32,13 @@ final class EmailLoginView: BaseView {
         $0.text = "1234@1234.com"
     }
     
+    let emailValidationLabel = UILabel().then {
+        $0.textColor = .sparkleBrandOrangeColor
+        $0.font = UIFont.systemFont(ofSize: 12)
+        $0.text = "이메일 형식이 올바르지 않습니다."
+        $0.textAlignment = .left
+    }
+    
     private let passwordLabel = UILabel().then {
         $0.text = "비밀번호"
         $0.textColor = UIColor.sparkleTextPrimaryColor
@@ -51,6 +58,13 @@ final class EmailLoginView: BaseView {
         $0.text = "Mk1234@@"
     }
     
+    let passwordValidationLabel = UILabel().then {
+        $0.textColor = .sparkleBrandOrangeColor
+        $0.font = UIFont.systemFont(ofSize: 12)
+        $0.textAlignment = .left
+        $0.text = "비밀번호는 최소 8자 이상, 하나 이상의 대소문자/숫자/특수 문자를 설정해주세요."
+    }
+    
     let confirmButton = CommonButton(image: nil, title: "완료", backgroundColor: UIColor.sparkleBrandInactiveColor, tintColor: UIColor.sparkleBrandWhiteColor, font: UIFont.boldSystemFont(ofSize: 14))
     
     override init(frame: CGRect) {
@@ -62,9 +76,13 @@ final class EmailLoginView: BaseView {
         addSubview(emailLabel)
         addSubview(emailBackgroundView)
         addSubview(emailTextField)
+        addSubview(emailValidationLabel)
+        
         addSubview(passwordLabel)
         addSubview(passwordBackgroundView)
         addSubview(passwordTextField)
+        addSubview(passwordValidationLabel)
+        
         addSubview(confirmButton)
     }
     
@@ -87,8 +105,13 @@ final class EmailLoginView: BaseView {
             make.horizontalEdges.equalTo(emailBackgroundView).inset(12)
         }
         
+        emailValidationLabel.snp.makeConstraints { make in
+            make.top.equalTo(emailTextField.snp.bottom).offset(8)
+            make.horizontalEdges.equalTo(emailBackgroundView)
+        }
+        
         passwordLabel.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).offset(24)
+            make.top.equalTo(emailValidationLabel.snp.bottom).offset(24)
             make.height.horizontalEdges.equalTo(emailLabel)
         }
         
@@ -100,6 +123,11 @@ final class EmailLoginView: BaseView {
         passwordTextField.snp.makeConstraints { make in
             make.verticalEdges.equalTo(passwordBackgroundView)
             make.horizontalEdges.equalTo(passwordBackgroundView).inset(12)
+        }
+        
+        passwordValidationLabel.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.bottom).offset(8)
+            make.horizontalEdges.equalTo(passwordBackgroundView)
         }
         
         confirmButton.snp.makeConstraints { make in
