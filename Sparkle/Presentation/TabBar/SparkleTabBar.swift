@@ -16,7 +16,7 @@ enum SparkleTabBar {
     var viewController: UIViewController {
         switch self {
         case .mainHome:
-            return HomeViewController()
+            return workspaceInitialViewController()
         case .direct:
             return DirectViewController()
         case .setting:

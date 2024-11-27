@@ -51,11 +51,40 @@ extension WorkspaceAPI: BaseTarget {
             return .requestPlain
             
         case .createWorkspace(let query):
-            return .requestCompositeParameters(
-                bodyParameters: try! query.toDictionary(),
-                bodyEncoding: JSONEncoding.default,
-                urlParameters: [:]
-            )
+            //            return .requestCompositeParameters(
+            //                bodyParameters: try! query.toDictionary(),
+            //                bodyEncoding: JSONEncoding.default,
+            //                urlParameters: [:]
+            //            )
+            
+//            let gifData = MultipartFormData(provider: .data(<#T##Data#>), name: "file", fileName: "gif.gif", mimeType: "image/gif")
+//            let descriptionData = MultipartFormData(provider: .data(description.data(using: .utf8)!), name: "description")
+//            let multipartData: MultipartFormData = [gifData, descriptionData]
+//            
+//            return .createWorkspace
+            
+            // 이미지가 Base64 인코딩된 문자열인 경우, 이를 Data로 변환
+             guard let imageData = Data(base64Encoded: query.image) else {
+                 // 이미지 데이터 변환 실패 시 처리
+                 return .requestPlain
+             }
+             
+             // 이미지 파트 생성 (파일 전송)
+             let imagePart = MultipartFormData(provider: .data(imageData), name: "file", fileName: "image.png", mimeType: "image/png")
+             
+             // description과 name은 JSON 형식으로 보내기
+             let descriptionPart = MultipartFormData(provider: .data(query.description?.data(using: .utf8) ?? Data()), name: "description")
+             let namePart = MultipartFormData(provider: .data(query.name.data(using: .utf8) ?? Data()), name: "name")
+             
+             // 멀티파트 데이터 배열 생성
+             let multipartData: [MultipartFormData] = [imagePart, descriptionPart, namePart]
+             
+             // 멀티파트 업로드 작업 반환
+             return .uploadMultipart(multipartData)
+        
+        
+            
+            
             
         case .workspaceInformationCheck(let parameters, _):
             return .requestParameters(

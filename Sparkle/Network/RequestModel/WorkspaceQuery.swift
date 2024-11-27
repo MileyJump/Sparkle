@@ -12,7 +12,6 @@ struct CreateWorkspaceQuery: Encodable {
     let description: String?
     let image: String
 }
-
 struct WorkspaceEditQury: Encodable {
     let name: String
     let description: String
