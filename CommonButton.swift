@@ -20,7 +20,6 @@ final class CommonButton: UIButton {
         config.baseForegroundColor = tintColor
         config.cornerStyle = .medium
         
-    
         if let image = image {
             let resizedImage = image.withConfiguration(UIImage.SymbolConfiguration(pointSize: 13)) // 원하는 크기로 설정
             config.image = resizedImage
@@ -40,5 +39,15 @@ final class CommonButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func updateBackgroundColor(_ color: UIColor) {
+        
+        var config = self.configuration ?? UIButton.Configuration.filled()
+        config.baseBackgroundColor = color
+        
+        self.configuration = config
+    }
 }
+
+
 

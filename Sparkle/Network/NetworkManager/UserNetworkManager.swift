@@ -9,6 +9,19 @@ import Foundation
 import Moya
 import RxSwift
 
+
+enum CustomError: Error {
+    case clientError(errorCode: String, message: String?)
+    case serverError
+    case unknown
+}
+
+// 응답 데이터에서 errorCode 파싱을 위한 구조체 정의
+struct ErrorResponse: Decodable {
+    let errorCode: String
+    let errorMessage: String?
+}
+
 final class UserNetworkManager {
   
     static let shared = UserNetworkManager()
@@ -16,6 +29,7 @@ final class UserNetworkManager {
     
     private init() {
         self.userProvider = MoyaProvider<UserAPI>(plugins: [NetworkLoggerPlugin()])
+        
     }
     
     func request<T: Decodable>(_ target: UserAPI, responseType: T.Type) -> Single<T> {
@@ -24,11 +38,13 @@ final class UserNetworkManager {
                 switch result {
                 case .success(let response):
                     do {
+                        print("statusCode : \(response.statusCode)")
                         if T.self == VoidResponse.self {
                             single(.success(VoidResponse() as! T)) // Void를 반환
                         } else {
                             let decodedData = try JSONDecoder().decode(T.self, from: response.data)
                             single(.success(decodedData))
+                            
                         }
                     } catch {
                         single(.failure(error))
