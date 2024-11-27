@@ -27,12 +27,6 @@ class BaseViewController<RootView: UIView>: UIViewController {
     }
     
     func setupNavigationBar() {
-        navigationItem.title = navigationItem.title ?? "기본 타이틀"
-        let imageName = "xmark"
-        
-        let xmarkBarButtonItem = UIBarButtonItem(image: UIImage(systemName: imageName), style: .plain, target: nil, action: nil)
-        navigationItem.leftBarButtonItem = xmarkBarButtonItem
-        xmarkBarButtonItem.tintColor = UIColor.sparkleTextPrimaryColor
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithDefaultBackground()
