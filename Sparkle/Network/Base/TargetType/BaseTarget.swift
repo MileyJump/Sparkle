@@ -17,7 +17,7 @@ extension BaseTarget {
     
     var headers: [String: String]? {
         return [
-            Header.sesacKey.rawValue: key.key,
+            Header.sesacKey.rawValue: Key.key,
             Header.contentType.rawValue: Header.json.rawValue,
             Header.authorization.rawValue: UserDefaultsManager.shared.token
         ]
