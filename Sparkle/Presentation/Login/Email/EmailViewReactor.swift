@@ -25,7 +25,7 @@ final class EmailLoginViewReactor: Reactor {
         case setPasswordValidation(Bool)
         case setConfirmEnabled(Bool)
         case setConfirmButton(Bool)
-        case backButtonTapped
+        case backButtonTapped(Bool)
     }
     
     struct State {
@@ -51,7 +51,7 @@ final class EmailLoginViewReactor: Reactor {
             ])
             
         case .backButtonTapped:
-            return Observable.just(.backButtonTapped)
+            return Observable.just(.backButtonTapped(true))
             
         case .updateEmail(let email):
             let isValid = validateEmail(email)
@@ -72,8 +72,8 @@ final class EmailLoginViewReactor: Reactor {
     func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         switch mutation {
-        case .backButtonTapped:
-            state.backButtonTappedState = true
+        case .backButtonTapped(let isValid):
+            state.backButtonTappedState = isValid
             
         case .setEmailValidation(let isValid):
             state.isEmailValid = isValid
