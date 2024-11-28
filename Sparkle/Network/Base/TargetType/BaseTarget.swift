@@ -5,6 +5,7 @@
 //  Created by 최민경 on 11/20/24.
 //
 
+
 import Foundation
 import Moya
 
@@ -17,7 +18,7 @@ extension BaseTarget {
     
     var headers: [String: String]? {
         return [
-            Header.sesacKey.rawValue: Key.key,
+            Header.sesacKey.rawValue: SesacKey.key,
             Header.contentType.rawValue: Header.json.rawValue,
             Header.authorization.rawValue: UserDefaultsManager.shared.token
         ]
