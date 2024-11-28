@@ -26,17 +26,19 @@ final class WorkspaceNetworkManager {
                     do {
                         if T.self == VoidResponse.self {
                             single(.success(VoidResponse() as! T))
+                            print("Void")
                         } else {
                             let decodedData = try JSONDecoder().decode(T.self, from: response.data)
                             single(.success(decodedData))
-//                            print(response)
+                            print(response)
                         }
                     } catch {
                         single(.failure(error))
+                        print(error)
                     }
                 case .failure(let error):
                     single(.failure(error))
-//                    print(error)
+                    print(error)
                 }
             }
             return Disposables.create()

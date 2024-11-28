@@ -17,7 +17,7 @@ final class CreateWorkspaceView: BaseView {
         $0.layer.cornerRadius = 8
     }
     
-    private let profileImageView = UIImageView().then {
+    let profileImageView = UIImageView().then {
         $0.image = UIImage(named: "workspaceBubble")
     }
     
