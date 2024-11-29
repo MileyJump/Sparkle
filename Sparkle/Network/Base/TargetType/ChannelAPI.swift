@@ -8,7 +8,7 @@
 import Foundation
 
 enum ChannelAPI {
-    case myChannelCheck(parameters: WorkspaceIDParameter, workspaceID: String)
+    case myChannelCheck(parameters: WorkspaceIDParameter)
     
     case channelListCheck(parameters: WorkspaceIDParameter, workspaceID: String)
     

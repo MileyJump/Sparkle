@@ -10,6 +10,23 @@ import Moya
 
 extension WorkspaceAPI: BaseTarget {
     
+    var headers: [String: String]? {
+        
+        if case .createWorkspace = self {
+            return [
+                Header.sesacKey.rawValue: SesacKey.key,
+//                Header.contentType.rawValue: "multipart/form-data",
+                Header.authorization.rawValue: UserDefaultsManager.shared.token
+            ]
+        } else {
+            return [
+                Header.sesacKey.rawValue: SesacKey.key,
+                Header.contentType.rawValue: Header.json.rawValue,
+                Header.authorization.rawValue: UserDefaultsManager.shared.token
+            ]
+        }
+    }
+    
     var path: String {
         switch self {
         case .workspacesListCheck, .createWorkspace:
@@ -49,21 +66,38 @@ extension WorkspaceAPI: BaseTarget {
         switch self {
         case .workspacesListCheck:
             return .requestPlain
-            
+
         case .createWorkspace(let query):
+            var multipartData = [MultipartFormData]()
             
-             guard let imageData = Data(base64Encoded: query.image) else {
-                 return .requestPlain
-             }
-             
-             let imagePart = MultipartFormData(provider: .data(imageData), name: "file", fileName: "image.png", mimeType: "image/png")
-             
-             let descriptionPart = MultipartFormData(provider: .data(query.description?.data(using: .utf8) ?? Data()), name: "description")
-             let namePart = MultipartFormData(provider: .data(query.name.data(using: .utf8) ?? Data()), name: "name")
-             
-             let multipartData: [MultipartFormData] = [imagePart, descriptionPart, namePart]
-             
-             return .uploadMultipart(multipartData)
+            // Append `name` field
+            if let nameData = query.name.data(using: .utf8) {
+                multipartData.append(
+                    MultipartFormData(provider: .data(nameData), name: "name")
+                )
+            }
+            
+            // Append `description` field
+            if let descriptionData = query.description?.data(using: .utf8) {
+                multipartData.append(
+                    MultipartFormData(provider: .data(descriptionData), name: "description")
+                )
+            }
+            
+            // Append `image` field
+             let imageData = query.image
+                multipartData.append(
+                    MultipartFormData(
+                        provider: .data(imageData),
+                        name: "image",
+                        fileName: "workspace.jpeg",
+                        mimeType: "image/jpeg"
+                    )
+                )
+            
+            
+            return .uploadMultipart(multipartData)
+        
         
         case .workspaceInformationCheck(let parameters, _):
             return .requestParameters(
@@ -128,3 +162,22 @@ extension Encodable {
         return dictionary ?? [:]
     }
 }
+
+//extension WorkspaceAPI: BaseTarget {
+//    var headers: [String : String]? {
+//        switch self {
+//        case .createWorkspace :
+//            return [
+//                Header.sesacKey.rawValue: SesacKey.key,
+//                Header.authorization.rawValue: UserDefaultsManager.shared.token,
+//                Header.contentType.rawValue: Header.multipart.rawValue
+//            ]
+//        default :
+//            return [
+//                Header.sesacKey.rawValue: SesacKey.key,
+//                Header.contentType.rawValue: Header.json.rawValue,
+//                Header.authorization.rawValue: UserDefaultsManager.shared.token
+//            ]
+//        }
+//    }
+//}

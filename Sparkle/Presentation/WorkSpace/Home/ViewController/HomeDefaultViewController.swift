@@ -13,12 +13,22 @@ import RxSwift
 final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
     
     private let reactor = HomeDefaultViewReactor()
-    private let dispoase = DisposeBag()
+    private let disposeBag = DisposeBag()
+    private var workspaceId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         bind(reactor: reactor)
+    }
+    
+    init(workspaceId: String?) {
+        self.workspaceId = workspaceId
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func setupUI() {
@@ -31,6 +41,13 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
         rootView.directTableView.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.identifier)
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewWill")
+        channelNetworkRequest()
+    }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         // 테이블뷰 높이 업데이트
@@ -38,11 +55,28 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
         rootView.updateDirectTableViewHeight()
     }
     
+    private func channelNetworkRequest() {
+        if let workspaceId {
+            
+            ChannelsNetworkManager.shared.myChannelCheck(parameters: WorkspaceIDParameter(workspaceID: workspaceId))
+                .subscribe(with: self) { owner, response in
+                    print(response)
+                } onFailure: { owner, error in
+                    print("에러 입니다!~~~!\(error)")
+                }
+                .disposed(by: disposeBag)
+        }
+    }
+    
+    private func dmsNetworkRequest() {
+        
+    }
+    
     private func bind(reactor: HomeDefaultViewReactor) {
         rootView.addChannelButton.rx.tap
             .map { HomeDefaultViewReactor.Action.addChannelsButtonTapped }
             .bind(to: reactor.action)
-            .disposed(by: dispoase)
+            .disposed(by: disposeBag)
         
         reactor.state.map { $0.createWorkspace }
             .distinctUntilChanged()
@@ -50,7 +84,7 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
             .bind(with: self) { owner, _ in
                 owner.navigationController?.changePresentViewController(CreateWorkspaceViewController())
             }
-            .disposed(by: dispoase)
+            .disposed(by: disposeBag)
     }
 }
 

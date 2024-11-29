@@ -90,21 +90,28 @@ final class CreateWorkspaceViewController: BaseViewController<CreateWorkspaceVie
         }
          let description = rootView.workspaceExplanationTextField.text ?? ""
         
-        let imageBase64 = reactor.currentState.selectedImageBase64
+        guard let selectedImage = reactor.currentState.selectedImage else {
+            return
+        }
         
-        if !imageBase64.isEmpty {
-            WorkspaceNetworkManager.shared.createWorkspace(query: CreateWorkspaceQuery(name: name, description: description, image: ""))
+        guard let imageData = selectedImage.jpegData(compressionQuality: 0.8) else {
+            return
+        }
+        print("=====네임 : \(name) // description \(description) // image !! \(imageData.count)===")
+            WorkspaceNetworkManager.shared.createWorkspace(query: CreateWorkspaceQuery(name: name, description: description, image: imageData))
                 .subscribe(with: self) { owner, response in
-//                    print("성공!! ===== \(response)")
+                    print("성공!! ===== \(response)")
+                    owner.HomeDefaultView(workspaceID: response.workspace_id)
                 } onFailure: { owner, error in
-                    
+                    print("에러입니다!!!! \(error)")
+                    owner.HomeDefaultView(workspaceID: "f05a5591-faab-4452-91e3-1fd8a0159a40")
                 }
                 .disposed(by: disposeBag)
-        } else {
-            print("이미지가 선택되지 않았습니다.")
-        }
     }
     
+    private func HomeDefaultView(workspaceID: String) {
+        navigationController?.changeRootViewController(HomeDefaultViewController(workspaceId: workspaceID))
+    }
 }
 
 extension CreateWorkspaceViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

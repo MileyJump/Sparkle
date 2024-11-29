@@ -12,8 +12,8 @@ extension ChannelAPI: BaseTarget {
     
     var path: String {
         switch self {
-        case .myChannelCheck(_, let workspaceID):
-            return "/v1/workspaces/\(workspaceID)/my-channels"
+        case .myChannelCheck(let parameter):
+            return "workspaces/\(parameter.workspaceID)/my-channels"
             
         case .channelListCheck(_, let workspaceID):
             return "/v1/workspaces/\(workspaceID)/channels"
@@ -69,8 +69,9 @@ extension ChannelAPI: BaseTarget {
     
     var task: Task {
         switch self {
-        case .myChannelCheck(let parameters, _):
-            return .requestParameters(parameters: try! parameters.toDictionary(), encoding: URLEncoding.default)
+        case .myChannelCheck(let parameters):
+            return .requestPlain
+//            return .requestParameters(parameters: try! parameters.toDictionary(), encoding: URLEncoding.default)
             
         case .channelListCheck(let parameters, _):
             return .requestParameters(parameters: try! parameters.toDictionary(), encoding: URLEncoding.default)
