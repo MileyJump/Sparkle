@@ -41,12 +41,12 @@ final class ChannelsNetworkManager {
         }
     }
     
-    func myChannelCheck(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<ChannelResponse> {
-        return request(.myChannelCheck(parameters: parameters, workspaceID: workspaceID), responseType: ChannelResponse.self)
+    func myChannelCheck(parameters: WorkspaceIDParameter) -> Single<[ChannelResponse]> {
+        return request(.myChannelCheck(parameters: parameters), responseType: [ChannelResponse].self)
     }
     
-    func channelListCheck(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<ChannelResponse> {
-        return request(.channelListCheck(parameters: parameters, workspaceID: workspaceID), responseType: ChannelResponse.self)
+    func channelListCheck(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<[ChannelResponse]> {
+        return request(.channelListCheck(parameters: parameters, workspaceID: workspaceID), responseType: [ChannelResponse].self)
     }
     
     func createChannel(query: ChannelsQuery, parameters: WorkspaceIDParameter, workspaceID: String) -> Single<ChannelResponse> {

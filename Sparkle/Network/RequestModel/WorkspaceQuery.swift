@@ -10,7 +10,8 @@ import Foundation
 struct CreateWorkspaceQuery: Encodable {
     let name: String
     let description: String?
-    let image: String
+//    let image: String
+    let image: Data
 }
 struct WorkspaceEditQury: Encodable {
     let name: String
