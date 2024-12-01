@@ -12,8 +12,8 @@ extension DMSAPI: BaseTarget {
     
     var path: String {
         switch self {
-        case .createDMs(_, _, let worskpaceID):
-            return "/v1/workspaces/\(worskpaceID)/dms"
+        case .createDMs(_, let parameters):
+            return "/v1/workspaces/\(parameters.workspaceID)/dms"
         
         case .dmsListCheck(_, let worskpaceID):
             return "/v1/workspaces/\(worskpaceID)/dms"
@@ -40,7 +40,7 @@ extension DMSAPI: BaseTarget {
     
     var task: Task {
         switch self {
-        case .createDMs(let query, let parameters, _):
+        case .createDMs(let query, let parameters):
             return .requestCompositeParameters(
                 bodyParameters: try! query.toDictionary(),
                 bodyEncoding: JSONEncoding.default,

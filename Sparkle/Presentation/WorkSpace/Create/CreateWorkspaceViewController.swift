@@ -97,13 +97,13 @@ final class CreateWorkspaceViewController: BaseViewController<CreateWorkspaceVie
         guard let imageData = selectedImage.jpegData(compressionQuality: 0.8) else {
             return
         }
-        print("=====네임 : \(name) // description \(description) // image !! \(imageData.count)===")
+        print("=====네임 : \(name) // description \(description) // image !! \(imageData)===")
             WorkspaceNetworkManager.shared.createWorkspace(query: CreateWorkspaceQuery(name: name, description: description, image: imageData))
                 .subscribe(with: self) { owner, response in
                     print("성공!! ===== \(response)")
                     owner.HomeDefaultView(workspaceID: response.workspace_id)
                 } onFailure: { owner, error in
-                    print("에러입니다!!!! \(error)")
+//                    print("에러입니다!!!! \(error)")
                     owner.HomeDefaultView(workspaceID: "f05a5591-faab-4452-91e3-1fd8a0159a40")
                 }
                 .disposed(by: disposeBag)
