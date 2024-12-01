@@ -19,7 +19,9 @@ final class HomeDefaultView: BaseView {
         font: UIFont.boldSystemFont(ofSize: 14)
     )
     
-    let channelTableView = UITableView()
+    let channelTableView = UITableView().then {
+        $0.register(ChannelsTableViewCell.self, forCellReuseIdentifier: ChannelsTableViewCell.identifier)
+    }
     
     let addChannelButton = ChannelsButton(
         title: "채널 추가",

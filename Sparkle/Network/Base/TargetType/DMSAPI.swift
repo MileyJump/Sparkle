@@ -8,7 +8,7 @@
 import Foundation
 
 enum DMSAPI {
-    case createDMs(query: CreateDMS, parameters: WorkspaceIDParameter, workspaceID: String)
+    case createDMs(query: CreateDMS, parameters: WorkspaceIDParameter)
     
     case dmsListCheck(parameters: WorkspaceIDParameter, workspaceID: String)
     

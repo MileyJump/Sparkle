@@ -28,32 +28,31 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("HomeVC - ViewDidLoad")
         bind(reactor: reactor)
         if let workspaceId {
             reactor.action.onNext(.fetchChannelData(workspaceID: workspaceId))
+            reactor.action.onNext(.fetchDMsData(workspaceID: workspaceId))
         }
     }
     
     override func setupUI() {
-//        rootView.channelTableView.delegate = nil
-//        rootView.channelTableView.dataSource = nil
+
         print("====setupUI")
         rootView.channelTableView.rowHeight = UITableView.automaticDimension
         rootView.channelTableView.estimatedRowHeight = 44
         rootView.channelTableView.separatorStyle = .none // 선택사항
-        
-        rootView.channelTableView.register(ChannelsTableViewCell.self, forCellReuseIdentifier: ChannelsTableViewCell.identifier)
-        
-//        rootView.directTableView.delegate = self
-//        rootView.directTableView.dataSource = self
-        rootView.directTableView.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.identifier)
+        rootView.channelTableView.delegate = nil
+        rootView.channelTableView.dataSource = nil
+//
+//        rootView.directTableView.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.identifier)
     }
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("viewWill")
+        print("viewWill============")
 //        channelNetworkRequest()
     }
     
@@ -88,7 +87,7 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
             .disposed(by: disposeBag)
         
         reactor.state.map { $0.channelData }
-//            .distinctUntilChanged()
+        //            .distinctUntilChanged()
             .bind(with: self) { owner, _ in
                 
                 owner.rootView.updateChannelTableViewHeight()
@@ -103,54 +102,29 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
             }
             .disposed(by: disposeBag)
         
-        let testData = [ChannelResponse(channel_id: "d083709a-0885-4179-9878-706e65f50e1b", name: "일반", description: "", coverImage: "ㅇ", owner_id: "b0365afe-a99d-4d3b-ab7d-4897c3aed288", createdAt: "create")]
-
-       
+        reactor.state
+            .map{ $0.channelData }
+            .asObservable()
+            .do(onNext: { response in
+                print("데이터 방출 11Dtat updated: \(response.count) Channels")
+            })
+            .bind(to: rootView.channelTableView.rx.items(cellIdentifier: ChannelsTableViewCell.identifier,
+                                                         cellType: ChannelsTableViewCell.self)) { (row, channel, cell) in
+                print("DEBUG: 셀 바인딩 시도 - 행: \(row), 채널: \(channel)")
+                cell.bind(channel: channel)
+                self.rootView.updateChannelTableViewHeight()
+            }
+                                                         .disposed(by: disposeBag)
         
         reactor.state
-            .map({ $0.channelData })
-            .do(onNext: { response in
-                print("Dtat updated: \(response) Channels")
-            })
-            .filter{ !$0.isEmpty }
-            .observe(on: MainScheduler.instance)
-            .bind(to: rootView.channelTableView.rx.items (cellIdentifier: ChannelsTableViewCell.identifier, cellType: ChannelsTableViewCell.self)) { [weak self] row, channel, cell in
-                print("DEBUG: 셀 바인딩 - 행: \(row), 채널: \(channel)")
-                cell.bind(channel: channel)
-                self?.rootView.updateChannelTableViewHeight()
-                print("음??")
+            .map { $0.channelData }
+            .asObservable()
+            .bind(to: rootView.directTableView.rx.items(cellIdentifier: UserTableViewCell.identifier,
+                                                        cellType: UserTableViewCell.self)) { (row, dm, cell) in
+                
+                print("DEBUG: 셀 바인딩 시도 - 행: \(row), 채널: \(dm)")
             }
-            .disposed(by: disposeBag)
+                                                        .disposed(by: disposeBag)
     }
 }
 
-//extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if tableView == rootView.channelTableView {
-//            return 5
-//        } else {
-//            return 2
-//        }
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if tableView == rootView.channelTableView {
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: ChannelsTableViewCell.identifier, for: indexPath) as? ChannelsTableViewCell else { return UITableViewCell() }
-//            return cell
-//        } else {
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier, for: indexPath) as? UserTableViewCell else { return UITableViewCell() }
-//            return cell
-//        }
-//    }
-//    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 41
-//    }
-//    
-//    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//   
-//        rootView.updateChannelTableViewHeight()
-//        rootView.updateDirectTableViewHeight()
-//        
-//    }
-//}

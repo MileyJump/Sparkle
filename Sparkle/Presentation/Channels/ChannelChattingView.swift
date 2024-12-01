@@ -7,13 +7,15 @@
 
 import UIKit
 
+import Then
+import SnapKit
+
 final class ChannelChattingView: BaseView {
     
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
-    
     
     
 }

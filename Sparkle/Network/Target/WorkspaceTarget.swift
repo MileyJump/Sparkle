@@ -70,21 +70,18 @@ extension WorkspaceAPI: BaseTarget {
         case .createWorkspace(let query):
             var multipartData = [MultipartFormData]()
             
-            // Append `name` field
             if let nameData = query.name.data(using: .utf8) {
                 multipartData.append(
                     MultipartFormData(provider: .data(nameData), name: "name")
                 )
             }
             
-            // Append `description` field
             if let descriptionData = query.description?.data(using: .utf8) {
                 multipartData.append(
                     MultipartFormData(provider: .data(descriptionData), name: "description")
                 )
             }
             
-            // Append `image` field
              let imageData = query.image
                 multipartData.append(
                     MultipartFormData(
@@ -94,7 +91,6 @@ extension WorkspaceAPI: BaseTarget {
                         mimeType: "image/jpeg"
                     )
                 )
-            
             
             return .uploadMultipart(multipartData)
         
