@@ -15,8 +15,8 @@ extension DMSAPI: BaseTarget {
         case .createDMs(_, let parameters):
             return "/v1/workspaces/\(parameters.workspaceID)/dms"
         
-        case .dmsListCheck(_, let worskpaceID):
-            return "/v1/workspaces/\(worskpaceID)/dms"
+        case .dmsListCheck(let parameters):
+            return "/v1/workspaces/\(parameters.workspaceID)/dms"
             
         case .sendDMs(_, _, let worskpaceID, let roomID):
             return "/v1/workspaces/\(worskpaceID)/dms/\(roomID)/chats"
@@ -47,7 +47,7 @@ extension DMSAPI: BaseTarget {
                 urlParameters: try! parameters.toDictionary()
             )
             
-        case .dmsListCheck(let parameters, _):
+        case .dmsListCheck(let parameters):
             return .requestParameters(parameters: try! parameters.toDictionary(), encoding: URLEncoding.default)
             
         case .sendDMs(let query, let parameters, _, _):

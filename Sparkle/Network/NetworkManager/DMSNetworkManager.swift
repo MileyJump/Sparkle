@@ -45,8 +45,8 @@ final class DMSNetworkManager {
         return request(.createDMs(query: query, parameters: parameters), responseType: DmsListCheckResponse.self)
     }
     
-    func dmsListCheck(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<DmsListCheckResponse> {
-        return request(.dmsListCheck(parameters: parameters, workspaceID: workspaceID), responseType: DmsListCheckResponse.self)
+    func dmsListCheck(parameters: WorkspaceIDParameter) -> Single<[DmsListCheckResponse]> {
+        return request(.dmsListCheck(parameters: parameters), responseType: [DmsListCheckResponse].self)
     }
     
     func sendDMs(query: SendDMChat, parameters: DMParamter, workspaceID: String, roomID: String) -> Single<SendDMsResponse> {

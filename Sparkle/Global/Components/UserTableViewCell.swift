@@ -39,5 +39,9 @@ final class UserTableViewCell: BaseTableViewCell {
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
         }
     }
+    
+    func bind(dms: DmsListCheckResponse) {
+        nameLabel.text = dms.user.nickname
+    }
 }
 
