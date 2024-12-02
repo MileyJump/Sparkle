@@ -19,7 +19,7 @@ class HomeDefaultViewReactor: Reactor {
     enum Mutation {
         case createWorkspaceView
         case setChannelsData([ChannelResponse])
-        case setDMsData(DmsListCheckResponse)
+        case setDMsData([DmsListCheckResponse])
         case setError(Error)
         
     }
@@ -30,7 +30,7 @@ class HomeDefaultViewReactor: Reactor {
 //        var channelData: [ChannelResponse] = []
         //
         var error: Error?
-        var dmsData: DmsListCheckResponse = DmsListCheckResponse(room_id: "", createdAt: "", user: UserMemberResponse(user_id: "", email: "", nickname: "", profileImage: ""))
+        var dmsData: [DmsListCheckResponse] = [DmsListCheckResponse(room_id: "", createdAt: "", user: UserMemberResponse(user_id: "", email: "", nickname: "", profileImage: ""))]
     }
     
     let initialState: State
@@ -53,7 +53,7 @@ class HomeDefaultViewReactor: Reactor {
                     return Observable.just(Mutation.setError(error))
                 }
         case .fetchDMsData(let workspaceID):
-            return DMSNetworkManager.shared.createDMs(query: CreateDMS(opponent_id: ""), parameters: WorkspaceIDParameter(workspaceID: workspaceID))
+            return DMSNetworkManager.shared.dmsListCheck(parameters: WorkspaceIDParameter(workspaceID: workspaceID))
                 .asObservable()
                 .map { Mutation.setDMsData($0) }
                 .catch { error in
@@ -74,7 +74,7 @@ class HomeDefaultViewReactor: Reactor {
             newState.channelData = Array(channels)
             print("DEBUG: 새로운 channelData: \(newState.channelData)")
         case .setDMsData(let dms):
-            newState.dmsData = dms
+            newState.dmsData = Array(dms)
         case .setError(let error):
             print("DEBUG: 에러 발생: \(error)")
             newState.error = error

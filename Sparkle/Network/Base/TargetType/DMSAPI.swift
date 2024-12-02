@@ -10,7 +10,7 @@ import Foundation
 enum DMSAPI {
     case createDMs(query: CreateDMS, parameters: WorkspaceIDParameter)
     
-    case dmsListCheck(parameters: WorkspaceIDParameter, workspaceID: String)
+    case dmsListCheck(parameters: WorkspaceIDParameter)
     
     case sendDMs(query: SendDMChat, parameters: DMParamter, workspaceID: String, roomID: String)
     

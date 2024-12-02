@@ -117,12 +117,13 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
                                                          .disposed(by: disposeBag)
         
         reactor.state
-            .map { $0.channelData }
+            .map { $0.dmsData }
             .asObservable()
-            .bind(to: rootView.directTableView.rx.items(cellIdentifier: UserTableViewCell.identifier,
-                                                        cellType: UserTableViewCell.self)) { (row, dm, cell) in
+            .bind(to: rootView.directTableView.rx.items(cellIdentifier: UserTableViewCell.identifier, cellType: UserTableViewCell.self)) { (row, dm, cell) in
                 
                 print("DEBUG: 셀 바인딩 시도 - 행: \(row), 채널: \(dm)")
+                cell.bind(dms: dm)
+                
             }
                                                         .disposed(by: disposeBag)
     }
