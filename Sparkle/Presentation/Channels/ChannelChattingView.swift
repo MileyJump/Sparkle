@@ -24,6 +24,14 @@ final class ChannelChattingView: BaseView {
     private let inputTextField = UITextField().then {
         $0.placeholder = "메세지를 입력하세요."
     }
+    
+    private let plusButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "plus"), for: .normal)
+    }
+    
+    private let sendButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "location"), for: .normal)
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
