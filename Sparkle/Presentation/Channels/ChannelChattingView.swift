@@ -40,6 +40,8 @@ final class ChannelChattingView: BaseView {
         addSubview(channelTableView)
         addSubview(sendTextFieldBackgournd)
         addSubview(inputTextField)
+        addSubview(plusButton)
+        addSubview(sendButton)
     }
     
     override func setupLayout() {
@@ -50,7 +52,11 @@ final class ChannelChattingView: BaseView {
         
         channelTableView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(safeAreaLayoutGuide)
-            
+        }
+        
+        plusButton.snp.makeConstraints { make in
+            make.verticalEdges.equalTo(sendTextFieldBackgournd).inset(9)
+            make.leading.equalTo(sendTextFieldBackgournd).offset(12)
         }
     }
     
