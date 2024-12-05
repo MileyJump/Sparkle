@@ -31,7 +31,7 @@ final class ChannelChattingCell: BaseTableViewCell {
     private let timeLabel = UILabel().then {
         $0.text = "10:10"
     }
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
@@ -56,5 +56,6 @@ final class ChannelChattingCell: BaseTableViewCell {
             
         }
     }
+    
     
 }

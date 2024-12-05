@@ -29,6 +29,8 @@
 		B02A089A2CE4B9F4007489EE /* UIView +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A08992CE4B9F4007489EE /* UIView +.swift */; };
 		B02A089D2CE4BA3F007489EE /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A089C2CE4BA3F007489EE /* ReusableProtocol.swift */; };
 		B02A08A02CE4BCF9007489EE /* WorkspaceChangeAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A089F2CE4BCF9007489EE /* WorkspaceChangeAdminView.swift */; };
+		B04641B32D01E41100B9FD3F /* ChannelChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04641B22D01E41100B9FD3F /* ChannelChattingViewController.swift */; };
+		B04641B52D01E47100B9FD3F /* ChannelChattingViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04641B42D01E47100B9FD3F /* ChannelChattingViewReactor.swift */; };
 		B05206652CF07D2F00FBE1F7 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = B05206642CF07D2F00FBE1F7 /* RxCocoa */; };
 		B05206672CF07D2F00FBE1F7 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B05206662CF07D2F00FBE1F7 /* RxSwift */; };
 		B052066A2CF07D3B00FBE1F7 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = B05206692CF07D3B00FBE1F7 /* Then */; };
@@ -116,6 +118,8 @@
 		B02A08992CE4B9F4007489EE /* UIView +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView +.swift"; sourceTree = "<group>"; };
 		B02A089C2CE4BA3F007489EE /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
 		B02A089F2CE4BCF9007489EE /* WorkspaceChangeAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceChangeAdminView.swift; sourceTree = "<group>"; };
+		B04641B22D01E41100B9FD3F /* ChannelChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChattingViewController.swift; sourceTree = "<group>"; };
+		B04641B42D01E47100B9FD3F /* ChannelChattingViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChattingViewReactor.swift; sourceTree = "<group>"; };
 		B052068F2CF0A65800FBE1F7 /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
 		B05206902CF0A65800FBE1F7 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		B05206912CF0A65800FBE1F7 /* CustomPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupView.swift; sourceTree = "<group>"; };
@@ -245,6 +249,8 @@
 			children = (
 				B02A08862CE395A1007489EE /* CreateChannelView.swift */,
 				B02A08882CE47898007489EE /* ChannelChattingView.swift */,
+				B04641B22D01E41100B9FD3F /* ChannelChattingViewController.swift */,
+				B04641B42D01E47100B9FD3F /* ChannelChattingViewReactor.swift */,
 				B02A088A2CE47900007489EE /* ChannelChattingCell.swift */,
 			);
 			path = Channels;
@@ -629,6 +635,7 @@
 				B052069B2CF0A69D00FBE1F7 /* SesacKey.swift in Sources */,
 				B02A08872CE395A1007489EE /* CreateChannelView.swift in Sources */,
 				B017BC252CF357B100176F28 /* EmailViewReactor.swift in Sources */,
+				B04641B52D01E47100B9FD3F /* ChannelChattingViewReactor.swift in Sources */,
 				B02A089A2CE4B9F4007489EE /* UIView +.swift in Sources */,
 				B0F1E0D92CDE093F005E38E7 /* CreateWorkspaceView.swift in Sources */,
 				B0F1E0D12CDB68CC005E38E7 /* BaseCollectionViewCell.swift in Sources */,
@@ -640,6 +647,7 @@
 				B02A08732CDE3B5C007489EE /* CreateWorkspaceViewController.swift in Sources */,
 				B0878DE22CD39B760013B989 /* OnboardingView.swift in Sources */,
 				B05206932CF0A65800FBE1F7 /* NewMessageButton.swift in Sources */,
+				B04641B32D01E41100B9FD3F /* ChannelChattingViewController.swift in Sources */,
 				B05206942CF0A65800FBE1F7 /* CommonButton.swift in Sources */,
 				B05206952CF0A65800FBE1F7 /* CustomPopupView.swift in Sources */,
 				B05206962CF0A65800FBE1F7 /* CustomNavigationBar.swift in Sources */,

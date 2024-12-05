@@ -85,6 +85,7 @@ final class EmailLoginViewController: BaseViewController<EmailLoginView> {
         }
         let deviceToken = DeviceToken.deviceToken
         
+        // Reactor로 바꿔야 됨
         UserNetworkManager.shared.login(query: LoginQuery(email: email, password: password, deviceToken: deviceToken))
             .subscribe(with: self) { owner, response in
                 if let token = response.token?.accessToken {
@@ -99,7 +100,7 @@ final class EmailLoginViewController: BaseViewController<EmailLoginView> {
             .disposed(by: disposeBag)
     }
     
-    
+ 
     private func handleLoginSuccess() {
         navigationController?.changeRootViewController(HomeEmptyViewController())
     }
