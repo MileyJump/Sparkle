@@ -100,8 +100,8 @@ final class WorkspaceNetworkManager {
 //        }
 //    }
 //    
-    func workspacesListCheck() -> Single<WorkspaceListCheckResponse> {
-        return request(.workspacesListCheck, responseType: WorkspaceListCheckResponse.self)
+    func workspacesListCheck() -> Single<[WorkspaceListCheckResponse]> {
+        return request(.workspacesListCheck, responseType: [WorkspaceListCheckResponse].self)
     }
     
     func createWorkspace(query: CreateWorkspaceQuery) -> Single<WorkspaceListCheckResponse> {
