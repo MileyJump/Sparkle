@@ -13,7 +13,6 @@ import RxCocoa
 
 final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
     
-     
     var disposeBag = DisposeBag()
     private var workspaceId: String?
     
@@ -29,33 +28,14 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("HomeVC - ViewDidLoad")
-        bind(reactor: reactor)
-        if let workspaceId {
-            reactor.action.onNext(.fetchChannelData(workspaceID: workspaceId))
-            reactor.action.onNext(.fetchDMsData(workspaceID: workspaceId))
-        }
-    }
-    
-    override func setupUI() {
-
-        print("====setupUI")
-        rootView.channelTableView.rowHeight = UITableView.automaticDimension
-        rootView.channelTableView.estimatedRowHeight = 44
-        rootView.channelTableView.separatorStyle = .none // 선택사항
-        rootView.channelTableView.delegate = nil
-        rootView.channelTableView.dataSource = nil
-//
-//        rootView.directTableView.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.identifier)
-    }
-    
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("viewWill============")
-//        channelNetworkRequest()
         self.reactor = HomeDefaultViewReactor()
+        
+//        if let workspaceId {
+//            reactor.action.onNext(.fetchChannelData(workspaceID: workspaceId))
+//            reactor.action.onNext(.fetchDMsData(workspaceID: workspaceId))
+//        }
     }
+    
     
     override func setupUI() {
         rootView.channelTableView.rowHeight = UITableView.automaticDimension
