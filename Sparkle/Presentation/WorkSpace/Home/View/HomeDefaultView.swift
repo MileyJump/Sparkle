@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Then
 
 final class HomeDefaultView: BaseView {
     
@@ -39,7 +40,9 @@ final class HomeDefaultView: BaseView {
         font: UIFont.boldSystemFont(ofSize: 14)
     )
     
-    let directTableView = UITableView()
+    let directTableView = UITableView().then {
+        $0.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.identifier)
+    }
     
     let addDirectButton = ChannelsButton(
         title: "새 메시지 시작",
