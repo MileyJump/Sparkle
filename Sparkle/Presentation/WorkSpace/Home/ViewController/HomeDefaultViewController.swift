@@ -13,8 +13,8 @@ import RxCocoa
 
 final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
     
-    private let reactor = HomeDefaultViewReactor()
-    private let disposeBag = DisposeBag()
+     
+    var disposeBag = DisposeBag()
     private var workspaceId: String?
     
     init(workspaceId: String?) {
@@ -54,42 +54,40 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
         super.viewWillAppear(animated)
         print("viewWill============")
 //        channelNetworkRequest()
+        self.reactor = HomeDefaultViewReactor()
+    }
+    
+    override func setupUI() {
+        rootView.channelTableView.rowHeight = UITableView.automaticDimension
+        rootView.channelTableView.estimatedRowHeight = 44
+        rootView.channelTableView.separatorStyle = .none
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        // 테이블뷰 높이 업데이트
-//        rootView.updateChannelTableViewHeight()
+        
         rootView.updateDirectTableViewHeight()
     }
+}
+
+
+extension HomeDefaultViewController: View {
     
-//    private func channelNetworkRequest() {
-//        if let workspaceId {
-//            
-//            ChannelsNetworkManager.shared.myChannelCheck(parameters: WorkspaceIDParameter(workspaceID: workspaceId))
-//                .subscribe(with: self) { owner, response in
-//                    print(response)
-//                } onFailure: { owner, error in
-//                    print("에러 입니다!~~~!\(error)")
-//                }
-//                .disposed(by: disposeBag)
-//        }
-//    }
-    
-    private func dmsNetworkRequest() {
-        
-    }
-    
-    private func bind(reactor: HomeDefaultViewReactor) {
+     func bind(reactor: HomeDefaultViewReactor) {
+         
+         Observable.just(workspaceId)
+             .compactMap { $0 }
+             .map { HomeDefaultViewReactor.Action.fetchChannelData(workspaceID: $0) }
+             .bind(to: reactor.action)
+             .disposed(by: disposeBag)
+         
         rootView.addChannelButton.rx.tap
             .map { HomeDefaultViewReactor.Action.addChannelsButtonTapped }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         reactor.state.map { $0.channelData }
-        //            .distinctUntilChanged()
             .bind(with: self) { owner, _ in
-                
                 owner.rootView.updateChannelTableViewHeight()
             }
             .disposed(by: disposeBag)
