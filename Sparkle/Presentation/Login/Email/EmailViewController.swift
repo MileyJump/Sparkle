@@ -79,7 +79,7 @@ final class EmailLoginViewController: BaseViewController<EmailLoginView>, View {
 //        reactor.state.filter { $0.isLoginSuccessful }
 //            .combineLatest(with: reactor.state.map { $0.setWorkspaceCheck })
 ////            .map { $0.setWorkspaceCheck }
-//            
+//
 //            .subscribe(with: self) { owner, workspaceList in
 //                print("================================\(workspaceList)============")
 //                if workspaceList.isEmpty {
@@ -90,27 +90,6 @@ final class EmailLoginViewController: BaseViewController<EmailLoginView>, View {
 //            }
 //            .disposed(by: disposeBag)
         
-<<<<<<< HEAD
-        guard let email = rootView.emailTextField.text, !email.isEmpty else {
-            return
-        }
-        guard let password = rootView.passwordTextField.text, !password.isEmpty else {
-            return
-        }
-        let deviceToken = DeviceToken.deviceToken
-        
-        // Reactor로 바꿔야 됨
-        UserNetworkManager.shared.login(query: LoginQuery(email: email, password: password, deviceToken: deviceToken))
-            .subscribe(with: self) { owner, response in
-                if let token = response.token?.accessToken {
-                    
-                    UserDefaultsManager.shared.token = token
-                    owner.handleLoginSuccess()
-                }
-            } onFailure: { owner, error in
-                
-                owner.handleLoginError(error: error)
-=======
         // 1. performWorkspaceCheck가 완료되면 workspaceList를 업데이트하고, 그 후 화면 전환이 이루어지도록 처리
         Observable.combineLatest(
             reactor.state.filter { $0.isLoginSuccessful }.map { _ in true },
@@ -126,19 +105,12 @@ final class EmailLoginViewController: BaseViewController<EmailLoginView>, View {
                 self.navigationController?.changeRootViewController(HomeEmptyViewController())
             } else {
                 self.navigationController?.changeRootViewController(HomeDefaultViewController(workspaceId: workspaceList.first?.workspace_id))
->>>>>>> main
             }
         })
         .disposed(by: disposeBag)
         
     }
     
-<<<<<<< HEAD
- 
-    private func handleLoginSuccess() {
-        navigationController?.changeRootViewController(HomeEmptyViewController())
-    }
-=======
     
     private func showLoadingIndicator() {
           // 로딩 인디케이터 표시 🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀
@@ -149,7 +121,6 @@ final class EmailLoginViewController: BaseViewController<EmailLoginView>, View {
       }
     
  
->>>>>>> main
     
     private func handleLoginError(error: Error) {
         showAlert(message: "로그인에 실패했습니다. 다시 시도해주세요.")
