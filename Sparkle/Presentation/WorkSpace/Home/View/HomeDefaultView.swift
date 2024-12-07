@@ -113,7 +113,8 @@ final class HomeDefaultView: BaseView {
     
     // 테이블뷰 높이를 업데이트하는 메서드
     func updateChannelTableViewHeight() {
-        print("여기 되고 있어요?? 똑똑?")
+        print("updateChannelTableViewHeight !!!!!")
+//        let contentHeight = channelTableView.contentSize.height != 0
         let contentHeight = channelTableView.contentSize.height
         channelTableViewHeightConstraint?.update(offset: contentHeight)
     }

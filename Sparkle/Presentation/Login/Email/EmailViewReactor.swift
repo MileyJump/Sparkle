@@ -110,7 +110,6 @@ final class EmailLoginViewReactor: Reactor {
             state.backButtonTappedState = isValid
             
         case .setWorkspaceCheck(let workspace):
-            print("🍎🍎🍎🍎🍎\(workspace)🍎🍎")
             state.setWorkspaceCheck = workspace
             
         case .setError(let error):
@@ -128,10 +127,13 @@ final class EmailLoginViewReactor: Reactor {
                 guard let self = self else { return Observable.empty() }
                 if let token = response.token?.accessToken {
                     UserDefaultsManager.shared.token = token
-                    return Observable.concat([
-                        Observable.just(.setLoginSuccess(true)),
-                        self.performWorkspaceCheck()
-                    ])
+                    return self.performWorkspaceCheck()
+                    
+//                    return Observable.concat([
+//                        Observable.just(.setLoginSuccess(true)),
+//                        self.performWorkspaceCheck()
+//                    ])
+                    
                 } else {
                     return Observable.just(.setError(NSError(domain: "LoginError", code: -1, userInfo: [NSLocalizedDescriptionKey: "로그인에 실패했습니다."])))
                 }
@@ -145,8 +147,14 @@ final class EmailLoginViewReactor: Reactor {
     private func performWorkspaceCheck() -> Observable<Mutation> {
         return WorkspaceNetworkManager.shared.workspacesListCheck()
             .asObservable()
-            .map {
-                return Mutation.setWorkspaceCheck($0)
+//            .map {
+//                return Mutation.setWorkspaceCheck($0)
+//            }
+            .flatMap { workspaces -> Observable<Mutation> in
+                Observable.concat([
+                    Observable.just(.setWorkspaceCheck(workspaces)),
+                    Observable.just(.setLoginSuccess(true))
+                ])
             }
             .catch { error in
                 return Observable.just(.setError(error))

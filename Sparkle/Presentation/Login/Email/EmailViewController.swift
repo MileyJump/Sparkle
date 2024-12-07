@@ -77,8 +77,7 @@ final class EmailLoginViewController: BaseViewController<EmailLoginView>, View {
             .disposed(by: disposeBag)
            
 //        reactor.state.filter { $0.isLoginSuccessful }
-//            .combineLatest(with: reactor.state.map { $0.setWorkspaceCheck })
-////            .map { $0.setWorkspaceCheck }
+//            .map { $0.setWorkspaceCheck }
 //
 //            .subscribe(with: self) { owner, workspaceList in
 //                print("================================\(workspaceList)============")
@@ -89,13 +88,14 @@ final class EmailLoginViewController: BaseViewController<EmailLoginView>, View {
 //                }
 //            }
 //            .disposed(by: disposeBag)
+         
         
-        // 1. performWorkspaceCheck가 완료되면 workspaceList를 업데이트하고, 그 후 화면 전환이 이루어지도록 처리
+//         1. performWorkspaceCheck가 완료되면 workspaceList를 업데이트하고, 그 후 화면 전환이 이루어지도록 처리
         Observable.combineLatest(
-            reactor.state.filter { $0.isLoginSuccessful }.map { _ in true },
+            reactor.state.filter { $0.isLoginSuccessful },
             reactor.state.map { $0.setWorkspaceCheck }
         )
-        .filter { !$0.1.isEmpty } // workspaceList가 비어 있지 않다면
+//        .filter { !$0.1.isEmpty } // workspaceList가 비어 있지 않다면
         .subscribe(onNext: { [weak self] (isLoginSuccessful, workspaceList) in
             guard let self = self else { return }
             

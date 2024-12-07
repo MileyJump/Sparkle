@@ -11,33 +11,57 @@ import RxSwift
 import RxCocoa
 import ReactorKit
 
-// MARK: - ViewController
-class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
 
+class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
+    
     var disposeBag = DisposeBag()
+    
+    private var workspaceId: String?
+    private var channelId: String?
+    
+    init(channelId: String, workspaceId: String?) {
+        self.channelId = channelId
+        self.workspaceId = workspaceId
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.reactor = ChatReactor()
     }
+}
 
-    // MARK: - Binding
+extension ChannelChattingViewController: View {
+    
     func bind(reactor: ChatReactor) {
+        bindAction(reactor)
+        bindState(reactor)
+    }
+    
+    private func bindAction(_ reactor: ChatReactor) {
         
-        reactor.state
-            .map { $0.messages }
-            .bind(to: rootView.channelTableView.rx.items(cellIdentifier: ChannelChattingCell.identifier, cellType: ChannelChattingCell.self)) { (row, message, cell) in
-                print("channel TableView , Row\(row), Message\(message), cell\(cell) 성공!!")
-//                cell.configure(with: message)
-            }
-            .disposed(by: disposeBag)
-
         rootView.sendButton.rx.tap
             .withLatestFrom(rootView.messageTextView.rx.text.orEmpty)
             .map { ChatReactor.Action.sendMessage($0) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-
+    }
+    
+    private func bindState(_ reactor: ChatReactor) {
+        
+        reactor.state
+            .map { $0.messages }
+            .bind(to: rootView.channelTableView.rx.items(cellIdentifier: ChannelChattingCell.identifier, cellType: ChannelChattingCell.self)) { (row, message, cell) in
+//                print("channel TableView , Row\(row), Message\(message), cell\(cell) 성공!!")
+//                                cell.configure(with: message)
+            }
+            .disposed(by: disposeBag)
+        
         reactor.state
             .map { $0.clearInput }
             .distinctUntilChanged()
@@ -47,4 +71,5 @@ class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
             })
             .disposed(by: disposeBag)
     }
+
 }

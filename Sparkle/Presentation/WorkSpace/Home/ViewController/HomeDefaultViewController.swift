@@ -29,13 +29,7 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
         super.viewDidLoad()
         print("HomeVC - ViewDidLoad")
         self.reactor = HomeDefaultViewReactor()
-        
-//        if let workspaceId {
-//            reactor.action.onNext(.fetchChannelData(workspaceID: workspaceId))
-//            reactor.action.onNext(.fetchDMsData(workspaceID: workspaceId))
-//        }
     }
-    
     
     override func setupUI() {
         rootView.channelTableView.rowHeight = UITableView.automaticDimension
@@ -46,6 +40,7 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
+        //        rootView.updateChannelTableViewHeight()
         rootView.updateDirectTableViewHeight()
     }
 }
@@ -53,25 +48,41 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
 
 extension HomeDefaultViewController: View {
     
-     func bind(reactor: HomeDefaultViewReactor) {
-         
-         Observable.just(workspaceId)
-             .compactMap { $0 }
-             .map { HomeDefaultViewReactor.Action.fetchChannelData(workspaceID: $0) }
-             .bind(to: reactor.action)
-             .disposed(by: disposeBag)
-         
+    func bind(reactor: HomeDefaultViewReactor) {
+        bindAction(reactor)
+        bindState(reactor)
+    }
+    
+    private func bindAction(_ reactor: HomeDefaultViewReactor) {
+        
+        Observable.just(workspaceId)
+            .compactMap { $0 }
+            .map { HomeDefaultViewReactor.Action.fetchChannelData(workspaceID: $0) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
         rootView.addChannelButton.rx.tap
             .map { HomeDefaultViewReactor.Action.addChannelsButtonTapped }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        rootView.channelTableView.rx.modelSelected(ChannelResponse.self)
+            .map { HomeDefaultViewReactor.Action.channelSelected(id: ChannelParameter(channelID: $0.channel_id, worskspaceID: self.workspaceId ?? "")) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindState(_ reactor: HomeDefaultViewReactor) {
+        //
+        // 이 updateChannelTableViewHeight 가 왜 중복 호출해야지만 레이아웃이 제대로 잡히는지에 대해서 공부해보기!! 🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀
         reactor.state.map { $0.channelData }
+        //            .distinctUntilChanged()
             .bind(with: self) { owner, _ in
                 owner.rootView.updateChannelTableViewHeight()
+                //                owner.rootView.layoutIfNeeded()
             }
             .disposed(by: disposeBag)
-        
+        //
         reactor.state.map { $0.createWorkspace }
             .distinctUntilChanged()
             .filter { $0 }
@@ -83,27 +94,31 @@ extension HomeDefaultViewController: View {
         reactor.state
             .map{ $0.channelData }
             .asObservable()
-            .do(onNext: { response in
-                print("데이터 방출 11Dtat updated: \(response.count) Channels")
-            })
-            .bind(to: rootView.channelTableView.rx.items(cellIdentifier: ChannelsTableViewCell.identifier,
-                                                         cellType: ChannelsTableViewCell.self)) { (row, channel, cell) in
-                print("DEBUG: 셀 바인딩 시도 - 행: \(row), 채널: \(channel)")
+            .bind(to: rootView.channelTableView.rx.items(cellIdentifier: ChannelsTableViewCell.identifier, cellType: ChannelsTableViewCell.self)) { (row, channel, cell) in
                 cell.bind(channel: channel)
                 self.rootView.updateChannelTableViewHeight()
             }
-                                                         .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
         reactor.state
             .map { $0.dmsData }
             .asObservable()
             .bind(to: rootView.directTableView.rx.items(cellIdentifier: UserTableViewCell.identifier, cellType: UserTableViewCell.self)) { (row, dm, cell) in
-                
-                print("DEBUG: 셀 바인딩 시도 - 행: \(row), 채널: \(dm)")
                 cell.bind(dms: dm)
-                
             }
-                                                        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.seletedChannel }
+            .distinctUntilChanged { old, new in
+                old?.channelID == new?.channelID
+            }
+            .compactMap{ $0 }
+            .bind(with: self) { owner, channel in
+                let vc = ChannelChattingViewController(channelId: channel.channelID, workspaceId: owner.workspaceId)
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 }
 

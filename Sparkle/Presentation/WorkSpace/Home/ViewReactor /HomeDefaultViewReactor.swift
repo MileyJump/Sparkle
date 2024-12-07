@@ -14,6 +14,7 @@ class HomeDefaultViewReactor: Reactor {
         case addChannelsButtonTapped
         case fetchChannelData(workspaceID: String)
         case fetchDMsData(workspaceID: String)
+        case channelSelected(id: ChannelParameter)
     }
     
     enum Mutation {
@@ -21,6 +22,8 @@ class HomeDefaultViewReactor: Reactor {
         case setChannelsData([ChannelResponse])
         case setDMsData([DmsListCheckResponse])
         case setError(Error)
+        case setIsPushChannelEnabled(Bool)
+        case setSelectedChannel(ChannelParameter)
         
     }
     
@@ -31,6 +34,8 @@ class HomeDefaultViewReactor: Reactor {
         //
         var error: Error?
         var dmsData: [DmsListCheckResponse] = [DmsListCheckResponse(room_id: "", createdAt: "", user: UserMemberResponse(user_id: "", email: "", nickname: "", profileImage: ""))]
+        var isPushChannelEnabled: Bool = false
+        var seletedChannel: ChannelParameter?
     }
     
     let initialState: State
@@ -59,6 +64,19 @@ class HomeDefaultViewReactor: Reactor {
                 .catch { error in
                     return Observable.just(Mutation.setError(error))
                 }
+   
+//        case .channelSelected(ChannelParameter(channelID: let channeldID, worskspaceID: let workspaceID)) :
+//        case .channelSelected(let id):
+//            return Observable.concat([
+//                Observable.just(.setIsPushChannelEnabled(true)),
+//                Observable.just(.setIsPushChannelEnabled(false))
+//            ])
+        case .channelSelected(id: let id):
+            return Observable.concat([
+                Observable.just(Mutation.setSelectedChannel(id)),
+                Observable.just(Mutation.setIsPushChannelEnabled(true)),
+                Observable.just(.setIsPushChannelEnabled(false))
+                        ])
         }
     }
     
@@ -68,16 +86,16 @@ class HomeDefaultViewReactor: Reactor {
         case .createWorkspaceView:
             newState.createWorkspace = true
         case .setChannelsData(let channels):
-            print("DEBUG: 리듀서에서 채널 데이터 설정")
-            print("DEBUG: 받은 채널 개수: \(channels.count)")
-            print("DEBUG: 채널 데이터: \(channels)")
             newState.channelData = Array(channels)
-            print("DEBUG: 새로운 channelData: \(newState.channelData)")
         case .setDMsData(let dms):
             newState.dmsData = Array(dms)
         case .setError(let error):
-            print("DEBUG: 에러 발생: \(error)")
             newState.error = error
+        case .setIsPushChannelEnabled(let isPresent):
+            newState.isPushChannelEnabled = isPresent
+        
+        case .setSelectedChannel(let channel):
+            newState.seletedChannel = channel
         }
         return newState
     }
