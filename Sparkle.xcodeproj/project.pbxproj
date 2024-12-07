@@ -72,6 +72,7 @@
 		B07AC2D02D046F39005198CB /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B07AC2CF2D046F39005198CB /* Realm */; };
 		B07AC2D22D046F39005198CB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B07AC2D12D046F39005198CB /* RealmSwift */; };
 		B07AC2D52D046FDB005198CB /* ChattingTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2D42D046FDB005198CB /* ChattingTable.swift */; };
+		B07AC2D72D04783E005198CB /* ChattingTableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2D62D04783E005198CB /* ChattingTableRepository.swift */; };
 		B0878D872CCD11A70013B989 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0878D862CCD11A70013B989 /* Assets.xcassets */; };
 		B0878D8A2CCD11A70013B989 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B0878D892CCD11A70013B989 /* Base */; };
 		B0878DC82CD2550F0013B989 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0878DC72CD2550F0013B989 /* MainTabBarViewController.swift */; };
@@ -156,6 +157,7 @@
 		B0746CB92CD3AD4E00AC892C /* Color +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color +.swift"; sourceTree = "<group>"; };
 		B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToastView.swift; sourceTree = "<group>"; };
 		B07AC2D42D046FDB005198CB /* ChattingTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTable.swift; sourceTree = "<group>"; };
+		B07AC2D62D04783E005198CB /* ChattingTableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTableRepository.swift; sourceTree = "<group>"; };
 		B0878D7A2CCD11A50013B989 /* Sparkle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sparkle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0878D862CCD11A70013B989 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0878D892CCD11A70013B989 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 			children = (
 				B066FFB22CEB293E002D487E /* UserDefaultsManager.swift */,
 				B07AC2D42D046FDB005198CB /* ChattingTable.swift */,
+				B07AC2D62D04783E005198CB /* ChattingTableRepository.swift */,
 			);
 			path = DtaBase;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				B02A08872CE395A1007489EE /* CreateChannelView.swift in Sources */,
 				B017BC252CF357B100176F28 /* EmailViewReactor.swift in Sources */,
 				B04641B52D01E47100B9FD3F /* ChannelChattingViewReactor.swift in Sources */,
+				B07AC2D72D04783E005198CB /* ChattingTableRepository.swift in Sources */,
 				B02A089A2CE4B9F4007489EE /* UIView +.swift in Sources */,
 				B0F1E0D92CDE093F005E38E7 /* CreateWorkspaceView.swift in Sources */,
 				B0F1E0D12CDB68CC005E38E7 /* BaseCollectionViewCell.swift in Sources */,
