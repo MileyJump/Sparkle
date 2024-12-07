@@ -57,5 +57,6 @@ final class ChannelChattingCell: BaseTableViewCell {
         }
     }
     
+    private func 
     
 }
