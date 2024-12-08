@@ -65,12 +65,12 @@ final class ChannelsNetworkManager {
         return request(.channelsDelete(parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: VoidResponse.self).map { _ in }
     }
     
-    func channelChatHistoryList(parameters: ChannelChatHistoryListParameter, workspaceID: String, channleID: String)  -> Single<ChannelChatHistoryListResponse> {
-        return request(.channelChatHistoryList(parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: ChannelChatHistoryListResponse.self)
+    func channelChatHistoryList(parameters: ChannelChatHistoryListParameter)  -> Single<[ChannelChatHistoryListResponse]> {
+        return request(.channelChatHistoryList(parameters: parameters, workspaceID: parameters.workspaceId, channleID: parameters.channelID), responseType: [ChannelChatHistoryListResponse].self)
     }
     
-    func sendChannelChat(query: SendChannelChatQuery, parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<ChannelChatHistoryListResponse> {
-        return request(.sendChannelChat(query: query, parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: ChannelChatHistoryListResponse.self)
+    func sendChannelChat(query: SendChannelChatQuery, parameters: ChannelParameter) -> Single<ChannelChatHistoryListResponse> {
+        return request(.sendChannelChat(query: query, parameters: parameters), responseType: ChannelChatHistoryListResponse.self)
     }
     
     func numberOfUnreadChannelChats(parameters: NumberOfUnreadChannelChatsParameter, workspaceID: String, channleID: String) -> Single<NumberOfUnreadChannelChatsResponse> {

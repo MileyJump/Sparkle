@@ -19,6 +19,13 @@ class ChattingTableRepository {
         return Array(value)
     }
     
+    func fetchLastChatCreateAt() -> String? {
+        let lastChat = realm.objects(ChatTable.self)
+            .sorted(byKeyPath: "chatCreateAt", ascending: false)
+            .first
+        return lastChat?.chatCreateAt
+    }
+    
     func createChatItem(chatItem: ChatTable) {
         do {
             try realm.write {
@@ -29,6 +36,19 @@ class ChattingTableRepository {
             print("Realm append Error")
         }
     }
+    
+    func createChatItems(chatItem: [ChatTable]) {
+        do {
+            try realm.write {
+                realm.add(chatItem)
+                print("Realm Create Succeed")
+            }
+        } catch {
+            print("Realm append Error")
+        }
+    }
+    
+    
     
     func deleteAllData() {
         do {

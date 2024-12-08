@@ -57,6 +57,8 @@ final class ChannelChattingCell: BaseTableViewCell {
         }
     }
     
-    private func 
+    func bind(_ channel: ChannelResponse) {
+        
+    }
     
 }

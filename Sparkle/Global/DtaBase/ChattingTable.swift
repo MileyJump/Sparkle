@@ -17,6 +17,16 @@ class ChatTable: Object {
     @Persisted var chatCreateAt: String
     @Persisted var files = List<String>()
     @Persisted var user: UserTable
+    
+    convenience init(channelId: String, channelName: String, chatContent: String, chatCreateAt: String, files: [String], user: UserTable) {
+        self.init()
+        self.channelId = channelId
+        self.channelName = channelName
+        self.chatContent = chatContent
+        self.chatCreateAt = chatCreateAt
+        self.files.append(objectsIn: files)
+        self.user = user
+    }
 }
 
 class UserTable: Object {
@@ -26,6 +36,12 @@ class UserTable: Object {
     @Persisted var nickname: String
     @Persisted var profilImage: String
     
-    
+    convenience init(userId: String, email: String, nickname: String, profilImage: String) {
+        self.init()
+        self.userId = userId
+        self.email = email
+        self.nickname = nickname
+        self.profilImage = profilImage
+    }
 }
 

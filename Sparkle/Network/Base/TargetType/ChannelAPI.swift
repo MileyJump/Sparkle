@@ -22,7 +22,7 @@ enum ChannelAPI {
     
     case channelChatHistoryList(parameters: ChannelChatHistoryListParameter, workspaceID: String, channleID: String)
     
-    case sendChannelChat(query: SendChannelChatQuery, parameters: ChannelParameter, workspaceID: String, channleID: String)
+    case sendChannelChat(query: SendChannelChatQuery, parameters: ChannelParameter)
     
     case numberOfUnreadChannelChats(parameters: NumberOfUnreadChannelChatsParameter, workspaceID: String, channleID: String)
     

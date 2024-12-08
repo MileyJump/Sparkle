@@ -45,22 +45,21 @@ extension ChannelChattingViewController: View {
     
     private func bindAction(_ reactor: ChatReactor) {
         
-        rootView.sendButton.rx.tap
-            .withLatestFrom(rootView.messageTextView.rx.text.orEmpty)
-            .map { ChatReactor.Action.sendMessage($0) }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
+//        rootView.sendButton.rx.tap
+//            .withLatestFrom(rootView.messageTextView.rx.text.orEmpty)
+//            .map { [weak self ] message in
+//                let channelId = self?.channelId ?? ""
+//                let workspaceId = self?.workspaceId ?? ""
+//                return ChatReactor.Action.sendMessage(id: ChannelParameter(channelID: channelId, worskspaceID: workspaceId), message: message)
+//            }
+//            .bind(to: reactor.action)
+//            .disposed(by: disposeBag)
     }
     
     private func bindState(_ reactor: ChatReactor) {
         
-        reactor.state
-            .map { $0.messages }
-            .bind(to: rootView.channelTableView.rx.items(cellIdentifier: ChannelChattingCell.identifier, cellType: ChannelChattingCell.self)) { (row, message, cell) in
-//                print("channel TableView , Row\(row), Message\(message), cell\(cell) 성공!!")
-//                                cell.configure(with: message)
-            }
-            .disposed(by: disposeBag)
+        
+
         
         reactor.state
             .map { $0.clearInput }
