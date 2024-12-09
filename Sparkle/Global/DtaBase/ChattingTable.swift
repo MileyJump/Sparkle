@@ -34,9 +34,9 @@ class UserTable: Object {
     @Persisted var userId: String
     @Persisted var email: String
     @Persisted var nickname: String
-    @Persisted var profilImage: String
+    @Persisted var profilImage: String?
     
-    convenience init(userId: String, email: String, nickname: String, profilImage: String) {
+    convenience init(userId: String, email: String, nickname: String, profilImage: String?) {
         self.init()
         self.userId = userId
         self.email = email
