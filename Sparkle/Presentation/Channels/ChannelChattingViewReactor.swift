@@ -69,12 +69,15 @@ class ChatReactor: Reactor {
     private func fetchChattingLastDate(id: ChannelParameter) -> Observable<Mutation> {
         let repository = ChattingTableRepository()
         
-        let lastDate = repository.fetchLastChatCreateAt() ?? "" // Realm에 저장된 마지막 날짜 가져오기
+        // Realm에 저장된 마지막 날짜 가져오기
+        guard let lastDate = repository.fetchLastChatCreateAt(), !lastDate.isEmpty else {
+            return Observable.just(.setCahts([]))
+        }
         
         return fetchChattingListAPI(cursor: lastDate, id: id)
             .asObservable()
             .flatMap { chatResponse -> Observable<Mutation> in
-                
+                print("-----")
                 let chat = self.responseChatTable(chatResponse)
                 repository.createChatItems(chatItem: chat)
                 

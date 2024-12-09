@@ -45,6 +45,11 @@ extension ChannelChattingViewController: View {
     
     private func bindAction(_ reactor: ChatReactor) {
         
+        if let channelId , let workspaceId {
+            
+            reactor.action.onNext(.fetchInitialChats(id: ChannelParameter(channelID: channelId, worskspaceID: workspaceId)))
+        }
+        
 //        rootView.sendButton.rx.tap
 //            .withLatestFrom(rootView.messageTextView.rx.text.orEmpty)
 //            .map { [weak self ] message in
