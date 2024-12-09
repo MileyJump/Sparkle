@@ -14,19 +14,19 @@ class ChatReactor: Reactor {
     
     enum Action {
         case fetchInitialChats(id: ChannelParameter)
-        //        case sendMessage(id: ChannelParameter, message: String)
+        case sendMessage(id: ChannelParameter, message: String)
     }
     
     enum Mutation {
         case setCahts([ChatTable])
-        //        case addChatMessage(ChannelChatHistoryListResponse)
+        case addChatMessage([ChatTable])
         case clearInput
         case setError(Error)
     }
     
     struct State {
-        var chats: [ChatTable] = []
-        //        var channelChat: ChannelChatHistoryListResponse?
+        var chats: [ChatTable] = [ChatTable(channelId: "", channelName: "", chatContent: "", chatCreateAt: "", files: [], user: UserTable(userId: "", email: "", nickname: "", profilImage: ""))]
+//        var channelChat: ChatTable?
         var clearInput: Bool = false
         var error: Error?
     }
@@ -39,6 +39,10 @@ class ChatReactor: Reactor {
             return Observable.concat([
                 Observable.just(.setCahts(fetchChatFromRealm())),
                 fetchChattingLastDate(id: ChannelParameter(channelID: id.channelID, worskspaceID: id.worskspaceID))
+            ])
+        case .sendMessage(id: let id, message: let message):
+            return Observable.concat([
+                sendChatMessage(message: message, id: ChannelParameter(channelID: id.channelID, worskspaceID: id.worskspaceID))
             ])
         }
     }
@@ -54,13 +58,21 @@ class ChatReactor: Reactor {
             newState.error = error
         case .setCahts(let chat):
             newState.chats = chat
+        case .addChatMessage(let chat):
+            newState.chats = chat
         }
         return newState
     }
     
     private func fetchChatFromRealm() -> [ChatTable] {
         let repository = ChattingTableRepository()
-        return repository.fetchChattingList()
+        let chats = repository.fetchChattingList()
+        
+        guard !chats.isEmpty else {
+            print("fetchChatFromRealm : Realm 에 저장된 채팅 내역이 없습니다.")
+            return []
+        }
+        return chats
     }
     
     
@@ -94,14 +106,7 @@ class ChatReactor: Reactor {
         let api = ChannelsNetworkManager.shared.channelChatHistoryList(parameters: ChannelChatHistoryListParameter(cursor_date: cursor, channelID: id.channelID, workspaceId: id.worskspaceID))
         return api
     }
-    
-    
-    // 채팅 리스트 Realm에 저장
-//    private func saveChatToRealm(_ chats: [ChatTable]) {
-//        let repository = ChattingTableRepository()
-//        
-//        repository.createChatItems(chatItem: chats)
-//    }
+
     
     // 채팅 리스트를 Realm Table로 변환
     private func responseChatTable(_ response: [ChannelChatHistoryListResponse]) -> [ChatTable] {
@@ -109,28 +114,33 @@ class ChatReactor: Reactor {
         let chat = response.map { chat in
             ChatTable(channelId: chat.channel_id, channelName: chat.channelName, chatContent: chat.content, chatCreateAt: chat.createdAt, files: [], user: UserTable(userId: chat.user.user_id, email: chat.user.email, nickname: chat.user.nickname, profilImage: chat.user.profileImage))
         }
+        return chat
+    }
+    
+    private func responseChatTables(_ response: ChannelChatHistoryListResponse) -> ChatTable {
+        
+        let chat =
+        ChatTable(channelId: response.channel_id, channelName: response.channelName, chatContent: response.content, chatCreateAt: response.createdAt, files: [], user: UserTable(userId: response.user.user_id, email: response.user.email, nickname: response.user.nickname, profilImage: response.user.profileImage))
         
         return chat
     }
     
-    
-//    private f/]unc performChannelChat(chatId: ChannelParameter,  message: String) -> Observable<Mutation> {
- //        let repository = ChattingTableRepository()
- ////        let realm = try! Realm()
- //
- //        return ChannelsNetworkManager.shared.sendChannelChat(query: SendChannelChatQuery(content: message, files: []), parameters: ChannelParameter(channelID: chatId.channelID, worskspaceID: chatId.worskspaceID))
- //            .asObservable()
- //            .flatMap({ chatResponse -> Observable<Mutation> in
- //
- //                // 여기 조금 깔끔하게 하는 법 없는지 생각해보기 !! 🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀
- //                let chat = ChatTable(channelId: chatResponse.channel_id, channelName: chatResponse.channelName, chatContent: chatResponse.content, chatCreateAt: chatResponse.createdAt, files: chatResponse.files, user: UserTable(userId: chatResponse.user.user_id, email: chatResponse.user.email, nickname: chatResponse.user.nickname, profilImage: chatResponse.user.profileImage))
- //
- //                repository.createChatItem(chatItem: chat)
- //                print(realm.configuration.fileURL ?? "")
- //                return Observable.just(.addChatMessage(chatResponse))
- //            })
- //            .catch { error in
- //                return Observable.just(.setError(error))
- //            }
- //    }
+    private func sendChatMessage(message: String, id: ChannelParameter) -> Observable<Mutation> {
+        let repository = ChattingTableRepository()
+
+        return ChannelsNetworkManager.shared.sendChannelChat(query: SendChannelChatQuery(content: message, files: []), parameters: ChannelParameter(channelID: id.channelID, worskspaceID: id.worskspaceID))
+            .asObservable()
+            .flatMap { response in
+                print("😊😊😊😊 \(response)😊😊😊")
+                let chat = self.responseChatTables(response)
+                
+                repository.createChatItem(chatItem: chat)
+                
+                return Observable.just(Mutation.addChatMessage(self.fetchChatFromRealm()))
+            }
+            .catch { error in
+                print("😊😊😊😊 \(error)😊😊😊")
+                return Observable.just(Mutation.setError(error))
+            }
+    }
 }

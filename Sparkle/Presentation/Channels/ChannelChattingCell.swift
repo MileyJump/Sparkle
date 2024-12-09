@@ -53,12 +53,23 @@ final class ChannelChattingCell: BaseTableViewCell {
         nicknameLabel.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.top)
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
-            
         }
+        
+//        chatBackgroundView.snp.makeConstraints { make in
+//            make.top.equalTo(nicknameLabel.snp.bottom).offset(5)
+//            make.
+//        }
+//        
+//        chatLabel.snp.makeConstraints { make in
+//            make.top.equalTo(nicknameLabel.snp.bottom).offset(5)
+//            make.leading.equalTo(profileImageView.snp.trailing).offset(8)
+//        }
+        
+        
     }
     
-    func bind(_ channel: ChannelResponse) {
-        
+    func bind(_ channel: ChatTable) {
+        print("아아아아아아앍💖💖💖💖")
     }
     
 }
