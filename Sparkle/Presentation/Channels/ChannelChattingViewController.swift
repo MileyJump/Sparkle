@@ -11,11 +11,15 @@ import RxSwift
 import RxCocoa
 import ReactorKit
 
+import RealmSwift
+
 
 class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
     
     var disposeBag = DisposeBag()
     
+    
+    let realm = try! Realm()
     private var workspaceId: String?
     private var channelId: String?
     
@@ -33,6 +37,8 @@ class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.reactor = ChatReactor()
+        
+        print("============\(realm.configuration.fileURL)💖💖💖💖💖💖")
     }
 }
 
@@ -50,21 +56,18 @@ extension ChannelChattingViewController: View {
             reactor.action.onNext(.fetchInitialChats(id: ChannelParameter(channelID: channelId, worskspaceID: workspaceId)))
         }
         
-//        rootView.sendButton.rx.tap
-//            .withLatestFrom(rootView.messageTextView.rx.text.orEmpty)
-//            .map { [weak self ] message in
-//                let channelId = self?.channelId ?? ""
-//                let workspaceId = self?.workspaceId ?? ""
-//                return ChatReactor.Action.sendMessage(id: ChannelParameter(channelID: channelId, worskspaceID: workspaceId), message: message)
-//            }
-//            .bind(to: reactor.action)
-//            .disposed(by: disposeBag)
+        rootView.sendButton.rx.tap
+            .withLatestFrom(rootView.messageTextView.rx.text.orEmpty)
+            .map { [weak self ] message in
+                let channelId = self?.channelId ?? ""
+                let workspaceId = self?.workspaceId ?? ""
+                return ChatReactor.Action.sendMessage(id: ChannelParameter(channelID: channelId, worskspaceID: workspaceId), message: message)
+            }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
     }
     
     private func bindState(_ reactor: ChatReactor) {
-        
-        
-
         
         reactor.state
             .map { $0.clearInput }
@@ -73,6 +76,15 @@ extension ChannelChattingViewController: View {
             .bind(with: self, onNext: { owner, _ in
                 owner.rootView.messageTextView.text = ""
             })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.chats }
+            .asObservable()
+            .bind(to: rootView.channelTableView.rx.items(cellIdentifier: ChannelChattingCell.identifier, cellType: ChannelChattingCell.self)) { (row, chat, cell) in
+                cell.bind(chat)
+//                
+            }
             .disposed(by: disposeBag)
     }
 

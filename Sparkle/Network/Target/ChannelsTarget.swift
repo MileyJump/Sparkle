@@ -16,37 +16,37 @@ extension ChannelAPI: BaseTarget {
             return "workspaces/\(parameter.workspaceID)/my-channels"
             
         case .channelListCheck(_, let workspaceID):
-            return "/v1/workspaces/\(workspaceID)/channels"
+            return "workspaces/\(workspaceID)/channels"
             
         case .createChannel(_, _, let workspaceID):
-            return "/v1/workspaces/\(workspaceID)/channels"
+            return "workspaces/\(workspaceID)/channels"
             
         case .specificChannelCheck(_, let workspaceID, let channelID):
-            return "/v1/workspaces/\(workspaceID)/channels/\(channelID)"
+            return "workspaces/\(workspaceID)/channels/\(channelID)"
             
         case .channelsEdit(_, _, let workspaceID, let channelID):
-            return "/v1/workspaces/\(workspaceID)/channels/\(channelID)"
+            return "workspaces/\(workspaceID)/channels/\(channelID)"
             
         case .channelsDelete(_, let workspaceID, let channelID):
-            return "/v1/workspaces/\(workspaceID)/channels/\(channelID)"
+            return "workspaces/\(workspaceID)/channels/\(channelID)"
             
         case .channelChatHistoryList(_, let workspaceID, let channelID):
-            return "/v1/workspaces/\(workspaceID)/channels/\(channelID)/chats"
+            return "workspaces/\(workspaceID)/channels/\(channelID)/chats"
             
         case .sendChannelChat(_, let parameters):
-            return "v1/workspaces/\(parameters.worskspaceID)/channels/\(parameters.channelID)/chats"
+            return "workspaces/\(parameters.worskspaceID)/channels/\(parameters.channelID)/chats"
             
         case .numberOfUnreadChannelChats(_, let workspaceID, let channelID):
-            return "/v1/workspaces/\(workspaceID)/channels/\(channelID)/unreads"
+            return "workspaces/\(workspaceID)/channels/\(channelID)/unreads"
             
         case .channelMembersCheck(_, let workspaceID, let channelID):
-            return "/v1/workspaces/\(workspaceID)/channels/\(channelID)/members"
+            return "workspaces/\(workspaceID)/channels/\(channelID)/members"
             
         case .changeChannelManager(_, _, let workspaceID, let channelID):
-            return "/v1/workspaces/\(workspaceID)/channels/\(channelID)/transfer/ownership"
+            return "workspaces/\(workspaceID)/channels/\(channelID)/transfer/ownership"
             
         case .leaveChannel(_, let workspaceID, let channelID):
-            return "/v1/workspaces/\(workspaceID)/channels/\(channelID)/exit"
+            return "workspaces/\(workspaceID)/channels/\(channelID)/exit"
         }
     }
     
