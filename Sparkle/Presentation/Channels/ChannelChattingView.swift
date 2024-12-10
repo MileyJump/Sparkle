@@ -63,7 +63,8 @@ final class ChannelChattingView: BaseView {
     override func setupLayout() {
         
         channelTableView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(safeAreaLayoutGuide)
+            make.top.equalTo(safeAreaLayoutGuide)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(16)
             make.bottom.equalTo(messageBackgourndView.snp.top)
         }
         
