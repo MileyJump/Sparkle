@@ -83,7 +83,6 @@ extension ChannelChattingViewController: View {
             .asObservable()
             .bind(to: rootView.channelTableView.rx.items(cellIdentifier: ChannelChattingCell.identifier, cellType: ChannelChattingCell.self)) { (row, chat, cell) in
                 cell.bind(chat)
-//                
             }
             .disposed(by: disposeBag)
     }

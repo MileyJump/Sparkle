@@ -18,8 +18,11 @@ class ChatTable: Object {
     @Persisted var files = List<String>()
     @Persisted var user: UserTable?
     
-    convenience init(channelId: String, channelName: String, chatContent: String, chatCreateAt: String, files: [String], user: UserTable?) {
+    
+    
+    convenience init(chatId: String, channelId: String, channelName: String, chatContent: String, chatCreateAt: String, files: [String], user: UserTable?) {
         self.init()
+        self.chatId = chatId
         self.channelId = channelId
         self.channelName = channelName
         self.chatContent = chatContent

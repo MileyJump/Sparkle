@@ -19,6 +19,14 @@ class ChattingTableRepository {
         return Array(value)
     }
     
+    // Realm에서 정렬된 항목을 가져오기 -> 오름차순(오래된 채팅부터)
+    func fetchChannelChattingList(channelId: String, sortedBy keypath: String = "chatCreateAt", ascending: Bool = true) -> [ChatTable] {
+        let value = realm.objects(ChatTable.self)
+            .filter("channelId ==%@", channelId)
+            .sorted(byKeyPath: keypath, ascending: ascending)
+        return Array(value)
+    }
+    
     func fetchLastChatCreateAt() -> String? {
         let lastChat = realm.objects(ChatTable.self)
             .sorted(byKeyPath: "chatCreateAt", ascending: false)

@@ -19,7 +19,6 @@ final class ChannelChattingCell: BaseTableViewCell {
     }
     
     private let nicknameLabel = UILabel().then {
-        $0.text = "옹졸한 마일리"
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = .sparkleTextPrimaryColor
     }
@@ -31,7 +30,7 @@ final class ChannelChattingCell: BaseTableViewCell {
     }
     
     private let chatLabel = UILabel().then {
-        $0.text = "채팅이 들어갈 거에요"
+        $0.numberOfLines = 0
         $0.font = UIFont.systemFont(ofSize: 13)
         $0.textColor = .sparkleTextPrimaryColor
     }
@@ -69,7 +68,8 @@ final class ChannelChattingCell: BaseTableViewCell {
         chatBackgroundView.snp.makeConstraints { make in
             make.top.equalTo(nicknameLabel.snp.bottom).offset(5)
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
-            make.trailing.lessThanOrEqualTo(timeLabel.snp.leading).offset(-8)
+//            make.trailing.lessThanOrEqualTo(timeLabel.snp.leading).offset(-8)
+            make.trailing.equalTo(timeLabel.snp.leading).offset(-8)
             make.bottom.equalToSuperview().inset(6)
         }
         
