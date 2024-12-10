@@ -25,7 +25,7 @@ class ChatReactor: Reactor {
     }
     
     struct State {
-        var chats: [ChatTable] = [ChatTable(channelId: "", channelName: "", chatContent: "", chatCreateAt: "", files: [], user: UserTable(userId: "", email: "", nickname: "", profilImage: ""))]
+        var chats: [ChatTable] = [ChatTable(chatId: "", channelId: "", channelName: "", chatContent: "", chatCreateAt: "", files: [], user: UserTable(userId: "", email: "", nickname: "", profilImage: ""))]
 //        var channelChat: ChatTable?
         var clearInput: Bool = false
         var error: Error?
@@ -37,7 +37,7 @@ class ChatReactor: Reactor {
         switch action {
         case .fetchInitialChats(let id):
             return Observable.concat([
-                Observable.just(.setCahts(fetchChatFromRealm())),
+                Observable.just(.setCahts(fetchChatFromRealm(channelId: id.channelID))),
                 fetchChattingLastDate(id: ChannelParameter(channelID: id.channelID, worskspaceID: id.worskspaceID))
             ])
         case .sendMessage(id: let id, message: let message):
@@ -64,9 +64,10 @@ class ChatReactor: Reactor {
         return newState
     }
     
-    private func fetchChatFromRealm() -> [ChatTable] {
+    // realm에 저장된 내역을 불러오기
+    private func fetchChatFromRealm(channelId: String) -> [ChatTable] {
         let repository = ChattingTableRepository()
-        let chats = repository.fetchChattingList()
+        let chats = repository.fetchChannelChattingList(channelId: channelId)
         
         guard !chats.isEmpty else {
             print("fetchChatFromRealm : Realm 에 저장된 채팅 내역이 없습니다.")
@@ -93,7 +94,7 @@ class ChatReactor: Reactor {
                 let chat = self.responseChatTable(chatResponse)
                 repository.createChatItems(chatItem: chat)
                 
-                return Observable.just(.setCahts(self.fetchChatFromRealm()))
+                return Observable.just(.setCahts(self.fetchChatFromRealm(channelId: id.channelID)))
             }
             .catch { error in
                 return Observable.just(.setError(error))
@@ -112,7 +113,7 @@ class ChatReactor: Reactor {
     private func responseChatTable(_ response: [ChannelChatHistoryListResponse]) -> [ChatTable] {
         
         let chat = response.map { chat in
-            ChatTable(channelId: chat.channel_id, channelName: chat.channelName, chatContent: chat.content, chatCreateAt: chat.createdAt, files: [], user: UserTable(userId: chat.user.user_id, email: chat.user.email, nickname: chat.user.nickname, profilImage: chat.user.profileImage))
+            ChatTable(chatId: chat.chat_id, channelId: chat.channel_id, channelName: chat.channelName, chatContent: chat.content, chatCreateAt: chat.createdAt, files: [], user: UserTable(userId: chat.user.user_id, email: chat.user.email, nickname: chat.user.nickname, profilImage: chat.user.profileImage))
         }
         return chat
     }
@@ -120,7 +121,7 @@ class ChatReactor: Reactor {
     private func responseChatTables(_ response: ChannelChatHistoryListResponse) -> ChatTable {
         
         let chat =
-        ChatTable(channelId: response.channel_id, channelName: response.channelName, chatContent: response.content, chatCreateAt: response.createdAt, files: [], user: UserTable(userId: response.user.user_id, email: response.user.email, nickname: response.user.nickname, profilImage: response.user.profileImage))
+        ChatTable(chatId: response.chat_id, channelId: response.channel_id, channelName: response.channelName, chatContent: response.content, chatCreateAt: response.createdAt, files: [], user: UserTable(userId: response.user.user_id, email: response.user.email, nickname: response.user.nickname, profilImage: response.user.profileImage))
         
         return chat
     }
@@ -136,7 +137,7 @@ class ChatReactor: Reactor {
                 
                 repository.createChatItem(chatItem: chat)
                 
-                return Observable.just(Mutation.addChatMessage(self.fetchChatFromRealm()))
+                return Observable.just(Mutation.addChatMessage(self.fetchChatFromRealm(channelId: id.channelID)))
             }
             .catch { error in
                 print("😊😊😊😊 \(error)😊😊😊")
