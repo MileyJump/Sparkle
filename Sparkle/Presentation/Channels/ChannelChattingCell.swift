@@ -36,7 +36,6 @@ final class ChannelChattingCell: BaseTableViewCell {
     }
     
     private let timeLabel = UILabel().then {
-        $0.text = "10:10"
         $0.font = UIFont.systemFont(ofSize: 11)
         $0.textColor = .sparkleTextSecondaryColor
     }
@@ -68,8 +67,7 @@ final class ChannelChattingCell: BaseTableViewCell {
         chatBackgroundView.snp.makeConstraints { make in
             make.top.equalTo(nicknameLabel.snp.bottom).offset(5)
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
-//            make.trailing.lessThanOrEqualTo(timeLabel.snp.leading).offset(-8)
-            make.trailing.equalTo(timeLabel.snp.leading).offset(-8)
+            make.trailing.lessThanOrEqualTo(timeLabel.snp.leading).offset(-8)
             make.bottom.equalToSuperview().inset(6)
         }
         
