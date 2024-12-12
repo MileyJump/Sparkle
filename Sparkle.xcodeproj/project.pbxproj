@@ -72,6 +72,8 @@
 		B07AC2D52D046FDB005198CB /* ChattingTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2D42D046FDB005198CB /* ChattingTable.swift */; };
 		B07AC2D72D04783E005198CB /* ChattingTableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2D62D04783E005198CB /* ChattingTableRepository.swift */; };
 		B07AC2DD2D0598B4005198CB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B07AC2DC2D0598B4005198CB /* RealmSwift */; };
+		B07AC2E02D0AE0B8005198CB /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = B07AC2DF2D0AE0B8005198CB /* SocketIO */; };
+		B07AC2E32D0AE106005198CB /* SoketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2E22D0AE106005198CB /* SoketManager.swift */; };
 		B0878D872CCD11A70013B989 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0878D862CCD11A70013B989 /* Assets.xcassets */; };
 		B0878D8A2CCD11A70013B989 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B0878D892CCD11A70013B989 /* Base */; };
 		B0878DC82CD2550F0013B989 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0878DC72CD2550F0013B989 /* MainTabBarViewController.swift */; };
@@ -157,6 +159,7 @@
 		B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToastView.swift; sourceTree = "<group>"; };
 		B07AC2D42D046FDB005198CB /* ChattingTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTable.swift; sourceTree = "<group>"; };
 		B07AC2D62D04783E005198CB /* ChattingTableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTableRepository.swift; sourceTree = "<group>"; };
+		B07AC2E22D0AE106005198CB /* SoketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoketManager.swift; sourceTree = "<group>"; };
 		B0878D7A2CCD11A50013B989 /* Sparkle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sparkle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0878D862CCD11A70013B989 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0878D892CCD11A70013B989 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -194,6 +197,7 @@
 				B05206702CF07D4E00FBE1F7 /* Moya in Frameworks */,
 				B0A4F5E72CEB077E00788119 /* ReactorKit in Frameworks */,
 				B05206732CF07D5700FBE1F7 /* ReactorKit in Frameworks */,
+				B07AC2E02D0AE0B8005198CB /* SocketIO in Frameworks */,
 				B052066D2CF07D4600FBE1F7 /* SnapKit in Frameworks */,
 				B05206672CF07D2F00FBE1F7 /* RxSwift in Frameworks */,
 				B05206652CF07D2F00FBE1F7 /* RxCocoa in Frameworks */,
@@ -374,6 +378,14 @@
 			path = DtaBase;
 			sourceTree = "<group>";
 		};
+		B07AC2E12D0AE0F9005198CB /* SokeyManager */ = {
+			isa = PBXGroup;
+			children = (
+				B07AC2E22D0AE106005198CB /* SoketManager.swift */,
+			);
+			path = SokeyManager;
+			sourceTree = "<group>";
+		};
 		B0878D712CCD11A50013B989 = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +411,7 @@
 		B0878D7C2CCD11A50013B989 /* Sparkle */ = {
 			isa = PBXGroup;
 			children = (
+				B07AC2E12D0AE0F9005198CB /* SokeyManager */,
 				B0AAFFA52CE5E09A009A5E30 /* Network */,
 				B0878DD32CD35C710013B989 /* Presentation */,
 				B0878DD22CD35BFB0013B989 /* Global */,
@@ -575,6 +588,7 @@
 				B052066F2CF07D4E00FBE1F7 /* Moya */,
 				B05206722CF07D5700FBE1F7 /* ReactorKit */,
 				B07AC2DC2D0598B4005198CB /* RealmSwift */,
+				B07AC2DF2D0AE0B8005198CB /* SocketIO */,
 			);
 			productName = Sparkle;
 			productReference = B0878D7A2CCD11A50013B989 /* Sparkle.app */;
@@ -611,6 +625,7 @@
 				B052066E2CF07D4E00FBE1F7 /* XCRemoteSwiftPackageReference "Moya" */,
 				B05206712CF07D5700FBE1F7 /* XCRemoteSwiftPackageReference "ReactorKit" */,
 				B07AC2DB2D0598B4005198CB /* XCRemoteSwiftPackageReference "realm-swift" */,
+				B07AC2DE2D0AE0B8005198CB /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 			);
 			productRefGroup = B0878D7B2CCD11A50013B989 /* Products */;
 			projectDirPath = "";
@@ -648,6 +663,7 @@
 				B052069F2CF0AAD000FBE1F7 /* HomeDefaultView.swift in Sources */,
 				B0F1E0DB2CDE0F1B005E38E7 /* HomeViewReactor.swift in Sources */,
 				B0878DCE2CD25C6D0013B989 /* DirectViewController.swift in Sources */,
+				B07AC2E32D0AE106005198CB /* SoketManager.swift in Sources */,
 				B07AC2D52D046FDB005198CB /* ChattingTable.swift in Sources */,
 				B066FFC82CECE1B1002D487E /* ChannelsTarget.swift in Sources */,
 				B0F1E0D62CDCE0F8005E38E7 /* workspaceInitialView.swift in Sources */,
@@ -980,6 +996,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		B07AC2DE2D0AE0B8005198CB /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1017,6 +1041,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B07AC2DB2D0598B4005198CB /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		B07AC2DF2D0AE0B8005198CB /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B07AC2DE2D0AE0B8005198CB /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
 		};
 		B0A4F5E62CEB077E00788119 /* ReactorKit */ = {
 			isa = XCSwiftPackageProductDependency;

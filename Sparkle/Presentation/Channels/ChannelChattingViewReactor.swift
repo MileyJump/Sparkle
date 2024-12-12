@@ -42,7 +42,8 @@ class ChatReactor: Reactor {
             ])
         case .sendMessage(id: let id, message: let message):
             return Observable.concat([
-                sendChatMessage(message: message, id: ChannelParameter(channelID: id.channelID, worskspaceID: id.worskspaceID))
+                sendChatMessage(message: message, id: ChannelParameter(channelID: id.channelID, worskspaceID: id.worskspaceID)),
+                Observable.just(.clearInput)
             ])
         }
     }
