@@ -16,7 +16,8 @@ enum SparkleTabBar {
     var viewController: UIViewController {
         switch self {
         case .mainHome:
-            return workspaceInitialViewController()
+//            return HomeDefaultViewController(workspaceId: <#String?#>)
+            return HomeInitialViewController()
         case .direct:
             return DirectViewController()
         case .setting:
@@ -57,5 +58,4 @@ enum SparkleTabBar {
             return UIImage(systemName: "gearshape.fill")
         }
     }
-    
 }

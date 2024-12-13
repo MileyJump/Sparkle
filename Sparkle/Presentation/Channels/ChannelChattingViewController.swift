@@ -13,11 +13,9 @@ import ReactorKit
 
 import RealmSwift
 
-
 class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
     
     var disposeBag = DisposeBag()
-    
     
     let realm = try! Realm()
     private var workspaceId: String?
@@ -38,7 +36,46 @@ class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
         self.view.backgroundColor = .white
         self.reactor = ChatReactor()
         
-        print("============\(realm.configuration.fileURL)💖💖💖💖💖💖")
+        if let channelId {
+            SocketIOManager.shared.connect(channelId: channelId)
+                .andThen(SocketIOManager.shared.listenForMessages())
+                .observe(on: MainScheduler.instance)
+                .subscribe(
+                    onNext: { [weak self] message in
+                        print("🟢 New message: \(message.content)")
+                        self?.handleNewMessage(message)
+                    },
+                    onError: { error in
+                        print("❌ Socket error: \(error)")
+                    }
+                )
+                .disposed(by: disposeBag)
+        }
+     
+    }
+    
+    private func handleNewMessage(_ message: ChannelChatHistoryListResponse) {
+        let repository = ChattingTableRepository()
+        let chat = responseChatTables(message)
+        repository.createChatItem(chatItem: chat)
+        // 테이블 뷰 갱신 로직 추가
+    }
+    
+    private func responseChatTables(_ response: ChannelChatHistoryListResponse) -> ChatTable {
+        return ChatTable(
+            chatId: response.chat_id,
+            channelId: response.channel_id,
+            channelName: response.channelName,
+            chatContent: response.content,
+            chatCreateAt: response.createdAt,
+            files: response.files,
+            user: UserTable(
+                userId: response.user.user_id,
+                email: response.user.email,
+                nickname: response.user.nickname,
+                profilImage: response.user.profileImage
+            )
+        )
     }
 }
 
