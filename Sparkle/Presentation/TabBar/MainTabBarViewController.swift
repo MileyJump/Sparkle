@@ -28,7 +28,6 @@ final class SparkleTabBarController: UITabBarController {
         
         tabBar.tintColor = UIColor.sparkleBrandWhiteColor
         tabBar.unselectedItemTintColor = UIColor.sparkleBrandGrayColor
-
     }
 }
 
