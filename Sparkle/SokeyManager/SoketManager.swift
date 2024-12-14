@@ -10,15 +10,27 @@ import SocketIO
 import RxSwift
 
 final class SocketIOManager {
-    static let shared = SocketIOManager() // Singleton으로 관리
+//    static let shared = SocketIOManager() // Singleton으로 관리
+    static private var instances: [String: SocketIOManager] = [:]
     private let manager: SocketManager
     private let socket: SocketIOClient
     
-    private init() {
-        // 소켓 URL 설정
-        let socketURL = URL(string: "http://slp.sesac.kr:9093")!
+    private init(channelId: String) {
+        
+        let socketURL = URL(string: "\(BaseURL.baseURL)/ws-channel-\(channelId)")!
         manager = SocketManager(socketURL: socketURL, config: [.log(true), .compress])
         socket = manager.defaultSocket
+    }
+    
+    /// 채널별 SocketIOManager 인스턴스 생성 또는 반환
+    static func shared(for channelId: String) -> SocketIOManager {
+        if let existingInstance = instances[channelId] {
+            return existingInstance
+        } else {
+            let newInstance = SocketIOManager(channelId: channelId)
+            instances[channelId] = newInstance
+            return newInstance
+        }
     }
     
     func connect(channelId: String) -> Completable {
@@ -28,7 +40,7 @@ final class SocketIOManager {
             self.socket.on(clientEvent: .connect) { data, ack in
                 print("✅ SOCKET CONNECTED: \(data)")
                 // 채널 구독 이벤트
-                self.socket.emit("join", ["channelId": channelId])
+//                self.socket.emit("sendMessage", ["channelId": channelId, "content": message])
                 completable(.completed)
             }
             
@@ -82,14 +94,12 @@ final class SocketIOManager {
     func sendMessage(channelId: String, content: String) -> Completable {
         return Completable.create { [weak self] completable in
             guard let self = self else { return Disposables.create() }
-            
+
             let message = ["channelId": channelId, "content": content]
             self.socket.emit("sendMessage", message)
             print("📤 MESSAGE SENT: \(message)")
-            
+
             completable(.completed)
-            return Disposables.create()
-            
             return Disposables.create()
         }
     }

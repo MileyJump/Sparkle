@@ -36,21 +36,9 @@ class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
         self.view.backgroundColor = .white
         self.reactor = ChatReactor()
         
-        if let channelId {
-            SocketIOManager.shared.connect(channelId: channelId)
-                .andThen(SocketIOManager.shared.listenForMessages())
-                .observe(on: MainScheduler.instance)
-                .subscribe(
-                    onNext: { [weak self] message in
-                        print("🟢 New message: \(message.content)")
-                        self?.handleNewMessage(message)
-                    },
-                    onError: { error in
-                        print("❌ Socket error: \(error)")
-                    }
-                )
-                .disposed(by: disposeBag)
-        }
+        guard let channelId = self.channelId else { return }
+           reactor?.action.onNext(.connectSocket(channelId: channelId))
+    
      
     }
     
