@@ -15,20 +15,23 @@ class ChatReactor: Reactor {
     enum Action {
         case fetchInitialChats(id: ChannelParameter)
         case sendMessage(id: ChannelParameter, message: String)
+        case connectSocket(channelId: String)
     }
     
     enum Mutation {
         case setCahts([ChatTable])
         case addChatMessage([ChatTable])
+        case chatting(ChatTable)
         case clearInput
         case setError(Error)
     }
     
     struct State {
         var chats: [ChatTable] = [ChatTable(chatId: "", channelId: "", channelName: "", chatContent: "", chatCreateAt: "", files: [], user: UserTable(userId: "", email: "", nickname: "", profilImage: ""))]
-//        var channelChat: ChatTable?
+        //        var channelChat: ChatTable?
         var clearInput: Bool = false
         var error: Error?
+        var chatting: ChatTable?
     }
     
     let initialState = State()
@@ -45,6 +48,8 @@ class ChatReactor: Reactor {
                 sendChatMessage(message: message, id: ChannelParameter(channelID: id.channelID, worskspaceID: id.worskspaceID)),
                 Observable.just(.clearInput)
             ])
+        case .connectSocket(let channelId):
+            return connectToSocket(channelId: channelId)
         }
     }
     
@@ -53,16 +58,54 @@ class ChatReactor: Reactor {
         switch mutation {
         case .clearInput:
             newState.clearInput = true
-//        case .addChatMessage(let chatResponse):
-//            newState.channelChat = chatResponse
+            //        case .addChatMessage(let chatResponse):
+            //            newState.channelChat = chatResponse
         case .setError(let error):
             newState.error = error
         case .setCahts(let chat):
             newState.chats = chat
         case .addChatMessage(let chat):
             newState.chats = chat
+        case .chatting(let chat):
+            newState.chatting = chat
         }
         return newState
+    }
+    
+    //    private func connectToSocket(channelId: String) -> Observable<Mutation> {
+    //        let socketManager = SocketIOManager.shared(for: channelId)
+    //        return socketManager.connect(channelId: channelId)
+    //
+    //            .asObservable()
+    //            .flatMap { _ -> Observable<Mutation> in
+    //                // 새로운 메시지 수신 구독
+    //                socketManager.listenForMessages()
+    //                    .map { message -> Mutation in
+    //                        let chat = self.responseChatTables(message)
+    //                        ChattingTableRepository().createChatItem(chatItem: chat)
+    ////                        return .addChatMessage(<#T##[ChatTable]#>)
+    //                        return .addChatMessage([chat])
+    //                    }
+    //            }
+    //            .catch { error in
+    //                return Observable.just(.setError(error))
+    //            }
+    //    }
+    
+    private func connectToSocket(channelId: String) -> Observable<Mutation> {
+        let socketManager = SocketIOManager.shared(for: channelId)
+        return socketManager.connect(channelId: channelId)
+            .andThen(socketManager.listenForMessages()
+                .map { [weak self] message -> Mutation in
+                    guard let self = self else { return .setCahts([]) }
+                    let chat = self.responseChatTables(message)
+                    ChattingTableRepository().createChatItem(chatItem: chat)
+                    return .addChatMessage([chat])
+                }
+                .catch { error in
+                    return Observable.just(.setError(error))
+                }
+            )
     }
     
     // realm에 저장된 내역을 불러오기
@@ -108,7 +151,7 @@ class ChatReactor: Reactor {
         let api = ChannelsNetworkManager.shared.channelChatHistoryList(parameters: ChannelChatHistoryListParameter(cursor_date: cursor, channelID: id.channelID, workspaceId: id.worskspaceID))
         return api
     }
-
+    
     
     // 채팅 리스트를 Realm Table로 변환
     private func responseChatTable(_ response: [ChannelChatHistoryListResponse]) -> [ChatTable] {
@@ -129,7 +172,7 @@ class ChatReactor: Reactor {
     
     private func sendChatMessage(message: String, id: ChannelParameter) -> Observable<Mutation> {
         let repository = ChattingTableRepository()
-
+        
         return ChannelsNetworkManager.shared.sendChannelChat(query: SendChannelChatQuery(content: message, files: []), parameters: ChannelParameter(channelID: id.channelID, worskspaceID: id.worskspaceID))
             .asObservable()
             .flatMap { response in
