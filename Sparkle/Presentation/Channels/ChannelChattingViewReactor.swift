@@ -15,7 +15,6 @@ class ChatReactor: Reactor {
     enum Action {
         case fetchInitialChats(id: ChannelParameter)
         case sendMessage(id: ChannelParameter, message: String)
-        case connectSocket(channelId: String)
     }
     
     enum Mutation {
@@ -53,19 +52,6 @@ class ChatReactor: Reactor {
         case .sendMessage(id: let id, message: let message):
             sendChatMessage(message: message, id: id)
             return Observable.just(.clearInput)
-            
-        case .connectSocket(let channelId):
-            return connectToSocket(channelId: channelId)
-                .flatMap { mutation -> Observable<Mutation> in
-                    // 새로운 메시지가 수신되면 UI 갱신 및 Realm 저장
-                    switch mutation {
-                    case .addChatMessage(let chat):
-                        self.repository.createChatItems(chatItem: chat)
-                        return Observable.just(.addChatMessage(chat))
-                    default:
-                        return Observable.just(mutation)
-                    }
-                }
         }
     }
     
