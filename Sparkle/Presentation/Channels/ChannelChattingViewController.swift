@@ -37,7 +37,9 @@ class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
         self.reactor = ChatReactor()
         
         guard let channelId = self.channelId else { return }
-           reactor?.action.onNext(.connectSocket(channelId: channelId))
+        reactor?.action.onNext(.connectSocket(channelId: channelId))
+        
+        print(realm.configuration.fileURL)
     
      
     }
@@ -110,6 +112,14 @@ extension ChannelChattingViewController: View {
                 cell.bind(chat)
             }
             .disposed(by: disposeBag)
+        
+//        reactor.state
+//            .map { $0.chats }
+//            .asObservable()
+//            .bind(to: rootView.channelTableView.rx.items(cellIdentifier: ChannelChattingCell.identifier, cellType: ChannelChattingCell.self)) { (row, chat, cell) in
+//                cell.bind(chat)
+//            }
+//            .disposed(by: disposeBag)
     }
 
 }

@@ -10,67 +10,73 @@ import SocketIO
 import RxSwift
 
 final class SocketIOManager {
-//    static let shared = SocketIOManager() // Singleton으로 관리
-    static private var instances: [String: SocketIOManager] = [:]
+
     private let manager: SocketManager
     private let socket: SocketIOClient
     
-    private init(channelId: String) {
+    init(channelId: String) {
         
-        let socketURL = URL(string: "\(BaseURL.baseURL)/ws-channel-\(channelId)")!
+        let socketURL = URL(string: BaseURL.baseURL)!
+        
         manager = SocketManager(socketURL: socketURL, config: [.log(true), .compress])
-        socket = manager.defaultSocket
+        socket = manager.socket(forNamespace: "/ws-channel-\(channelId)")
     }
     
-    /// 채널별 SocketIOManager 인스턴스 생성 또는 반환
-    static func shared(for channelId: String) -> SocketIOManager {
-        if let existingInstance = instances[channelId] {
-            return existingInstance
-        } else {
-            let newInstance = SocketIOManager(channelId: channelId)
-            instances[channelId] = newInstance
-            return newInstance
-        }
-    }
+//    
+//    func connect(channelId: String) -> Completable {
+//        return Completable.create { [weak self] completable in
+//            guard let self = self else {
+//                return Disposables.create()
+//            }
+//            
+//            // 먼저 소켓 연결
+//            self.socket.connect()
+//
+//            // 소켓 연결 이벤트 리스너 등록
+//            self.socket.on(clientEvent: .connect) { data, ack in
+//                print("✅ SOCKET CONNECTED: \(data)")
+//                completable(.completed)
+//            }
+//            
+//            // 에러 이벤트 리스너 등록
+//            self.socket.on(clientEvent: .error) { data, ack in
+//                if let error = data.first as? String {
+//                    print("❌ SOCKET ERROR: \(error)")
+//                    completable(.error(SocketError.connectionError(error)))
+//                }
+//            }
+//            
+//            // 연결 후 해제할 리소스 설정
+//            return Disposables.create {
+//                self.disconnect()
+//            }
+//        }
+//    }
     
-    func connect(channelId: String) -> Completable {
-        return Completable.create { [weak self] completable in
-            guard let self = self else { return Disposables.create() }
-            
-            self.socket.on(clientEvent: .connect) { data, ack in
-                print("✅ SOCKET CONNECTED: \(data)")
-                // 채널 구독 이벤트
-//                self.socket.emit("sendMessage", ["channelId": channelId, "content": message])
-                completable(.completed)
-            }
-            
-            self.socket.on(clientEvent: .error) { data, ack in
-                if let error = data.first as? String {
-                    print("❌ SOCKET ERROR: \(error)")
-                    completable(.error(SocketError.connectionError(error)))
-                }
-            }
-            
-            self.socket.connect()
-            
-            return Disposables.create {
-                self.disconnect()
-            }
+    func connect(channelId: String)  {
+        
+        // 소켓 연결 이벤트 리스너 등록 (연결 전에 미리 등록)
+        self.socket.on(clientEvent: .connect) { data, ack in
+            print("✅ SOCKET CONNECTED: \(data)✅! \(ack)")
         }
-    }
+        // 소켓 연결
+        self.socket.connect()
+}
     
     func disconnect() {
         socket.on(clientEvent: .disconnect) { data, ack in
-            print("✅ SOCKET DISCONNECTED: \(data)")
+            print("✅ SOCKET DISCONNECTED: \(data) ✅! \(ack)")
         }
         socket.disconnect()
     }
     
     func listenForMessages() -> Observable<ChannelChatHistoryListResponse> {
         return Observable.create { [weak self] observer in
-            guard let self = self else { return Disposables.create() }
+            guard let self = self else {
+                return Disposables.create() }
             
-            self.socket.on("channel") { dataArray, ack in
+            self.socket.on("channel") {
+                dataArray, ack in
                 print("📩 RECEIVED MESSAGE: \(dataArray)")
                 guard let data = dataArray.first as? [String: Any] else {
                     observer.onError(SocketError.invalidData)
@@ -86,20 +92,6 @@ final class SocketIOManager {
                     observer.onError(error)
                 }
             }
-            
-            return Disposables.create()
-        }
-    }
-    
-    func sendMessage(channelId: String, content: String) -> Completable {
-        return Completable.create { [weak self] completable in
-            guard let self = self else { return Disposables.create() }
-
-            let message = ["channelId": channelId, "content": content]
-            self.socket.emit("sendMessage", message)
-            print("📤 MESSAGE SENT: \(message)")
-
-            completable(.completed)
             return Disposables.create()
         }
     }
