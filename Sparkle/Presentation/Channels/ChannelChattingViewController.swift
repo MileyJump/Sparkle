@@ -17,7 +17,6 @@ class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
     
     var disposeBag = DisposeBag()
     
-    let realm = try! Realm()
     private var workspaceId: String?
     private var channelId: String?
     
@@ -35,37 +34,6 @@ class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.reactor = ChatReactor()
-        
-        guard let channelId = self.channelId else { return }
-        reactor?.action.onNext(.connectSocket(channelId: channelId))
-        
-        print(realm.configuration.fileURL)
-    
-     
-    }
-    
-    private func handleNewMessage(_ message: ChannelChatHistoryListResponse) {
-        let repository = ChattingTableRepository()
-        let chat = responseChatTables(message)
-        repository.createChatItem(chatItem: chat)
-        // 테이블 뷰 갱신 로직 추가
-    }
-    
-    private func responseChatTables(_ response: ChannelChatHistoryListResponse) -> ChatTable {
-        return ChatTable(
-            chatId: response.chat_id,
-            channelId: response.channel_id,
-            channelName: response.channelName,
-            chatContent: response.content,
-            chatCreateAt: response.createdAt,
-            files: response.files,
-            user: UserTable(
-                userId: response.user.user_id,
-                email: response.user.email,
-                nickname: response.user.nickname,
-                profilImage: response.user.profileImage
-            )
-        )
     }
 }
 
@@ -113,13 +81,7 @@ extension ChannelChattingViewController: View {
             }
             .disposed(by: disposeBag)
         
-//        reactor.state
-//            .map { $0.chats }
-//            .asObservable()
-//            .bind(to: rootView.channelTableView.rx.items(cellIdentifier: ChannelChattingCell.identifier, cellType: ChannelChattingCell.self)) { (row, chat, cell) in
-//                cell.bind(chat)
-//            }
-//            .disposed(by: disposeBag)
+
     }
 
 }

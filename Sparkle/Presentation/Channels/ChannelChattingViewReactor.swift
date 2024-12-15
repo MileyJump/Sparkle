@@ -39,18 +39,28 @@ class ChatReactor: Reactor {
             return Observable.concat([
                 Observable.just(.setChats(fetchChatFromRealm(channelId: id.channelID))),
                 fetchChattingLastDate(id: id)
+                    .concat(Observable.create { [weak self] observer in
+                        guard let self = self else {
+                            observer.onCompleted()
+                            return Disposables.create()
+                        }
+                        // API 호출 및 갱신이 완료된 후 소켓 연결
+                        self.startSocketConnection(channelId: id.channelID, observer: observer)
+                        return Disposables.create()
+                    })
             ])
+            
         case .sendMessage(id: let id, message: let message):
-                sendChatMessage(message: message, id: id)
-                return Observable.just(.clearInput)
+            sendChatMessage(message: message, id: id)
+            return Observable.just(.clearInput)
+            
         case .connectSocket(let channelId):
             return connectToSocket(channelId: channelId)
                 .flatMap { mutation -> Observable<Mutation> in
                     // 새로운 메시지가 수신되면 UI 갱신 및 Realm 저장
                     switch mutation {
                     case .addChatMessage(let chat):
-                        let repository = ChattingTableRepository()
-                        repository.createChatItems(chatItem: chat)
+                        self.repository.createChatItems(chatItem: chat)
                         return Observable.just(.addChatMessage(chat))
                     default:
                         return Observable.just(mutation)
@@ -60,21 +70,35 @@ class ChatReactor: Reactor {
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
-         var newState = state
-         switch mutation {
-         case .setChats(let chats):
-             newState.chats = chats
-         case .addChatMessage(let chats):
-             newState.chats.append(contentsOf: chats)
-         case .clearInput:
-             newState.clearInput = true
-         case .setError(let error):
-             newState.error = error
-         }
-         return newState
-     }
-
-    var disposeBag = DisposeBag()
+        var newState = state
+        switch mutation {
+        case .setChats(let chats):
+            newState.chats = chats
+        case .addChatMessage(let chats):
+            newState.chats.append(contentsOf: chats)
+        case .clearInput:
+            newState.clearInput = true
+        case .setError(let error):
+            newState.error = error
+        }
+        return newState
+    }
+    
+    private var disposeBag = DisposeBag()
+    
+    private let repository = ChattingTableRepository()
+    
+    private func startSocketConnection(channelId: String, observer: AnyObserver<Mutation>) {
+        connectToSocket(channelId: channelId)
+            .subscribe(onNext: { mutation in
+                observer.onNext(mutation)
+            }, onError: { error in
+                observer.onError(error)
+            }, onCompleted: {
+                observer.onCompleted()
+            })
+            .disposed(by: disposeBag)
+    }
     
     private func connectToSocket(channelId: String) -> Observable<Mutation> {
         let socketManager = SocketIOManager(channelId: channelId)
@@ -88,7 +112,7 @@ class ChatReactor: Reactor {
                 .map { [weak self] message -> Mutation in
                     guard let self = self else { return .setError(SocketError.connectionError("Reactor is nil")) }
                     let chat = self.responseChatTables(message)
-                    ChattingTableRepository().createChatItem(chatItem: chat)
+                    repository.createChatItem(chatItem: chat)
                     return .addChatMessage([chat])
                 }
                 .subscribe(onNext: { mutation in
@@ -97,7 +121,7 @@ class ChatReactor: Reactor {
                     observer.onError(error)
                 })
                 .disposed(by: self.disposeBag)
-
+            
             return Disposables.create {
                 socketManager.disconnect()
             }
@@ -106,11 +130,11 @@ class ChatReactor: Reactor {
             return Observable.just(.setError(error))
         }
     }
-
+    
     
     // realm에 저장된 내역을 불러오기
     private func fetchChatFromRealm(channelId: String) -> [ChatTable] {
-        let repository = ChattingTableRepository()
+        
         let chats = repository.fetchChannelChattingList(channelId: channelId)
         
         guard !chats.isEmpty else {
@@ -124,8 +148,7 @@ class ChatReactor: Reactor {
     // Realm 마지막 날짜를 기준으로 채널 채팅 리스트 조회 후 Realm에 저장 후 Realm 저장 내역 불러오기
     // weak self 🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀🍎🍀
     private func fetchChattingLastDate(id: ChannelParameter) -> Observable<Mutation> {
-        let repository = ChattingTableRepository()
-        
+
         // Realm에 저장된 마지막 날짜 가져오기
         guard let lastDate = repository.fetchLastChatCreateAt(), !lastDate.isEmpty else {
             return Observable.just(.setChats([]))
@@ -135,7 +158,7 @@ class ChatReactor: Reactor {
             .asObservable()
             .flatMap { chatResponse -> Observable<Mutation> in
                 let chat = self.responseChatTable(chatResponse)
-                repository.createChatItems(chatItem: chat)
+                self.repository.createChatItems(chatItem: chat)
                 
                 return Observable.just(.setChats(self.fetchChatFromRealm(channelId: id.channelID)))
             }
@@ -179,21 +202,4 @@ class ChatReactor: Reactor {
             })
             .disposed(by: disposeBag)
     }
-    
-//    private func sendChatMessage(message: String, id: ChannelParameter) -> Observable<Mutation> {
-////        let repository = ChattingTableRepository()
-//        
-//        return ChannelsNetworkManager.shared.sendChannelChat(query: SendChannelChatQuery(content: message, files: []), parameters: ChannelParameter(channelID: id.channelID, worskspaceID: id.worskspaceID))
-//            .asObservable()
-//            .flatMap { response in
-//                print("😊😊😊😊 \(response)😊😊😊")
-//
-//                
-//                return Observable.just(Mutation.addChatMessage(self.fetchChatFromRealm(channelId: id.channelID)))
-//            }
-//            .catch { error in
-//                print("😊 에러 : \(error)😊")
-//                return Observable.just(Mutation.setError(error))
-//            }
-//    }
 }
