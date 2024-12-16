@@ -74,6 +74,10 @@
 		B07AC2DD2D0598B4005198CB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B07AC2DC2D0598B4005198CB /* RealmSwift */; };
 		B07AC2E02D0AE0B8005198CB /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = B07AC2DF2D0AE0B8005198CB /* SocketIO */; };
 		B07AC2E32D0AE106005198CB /* SoketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2E22D0AE106005198CB /* SoketManager.swift */; };
+		B07AC2E62D0F0D0A005198CB /* ChannelSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2E52D0F0D0A005198CB /* ChannelSearchView.swift */; };
+		B07AC2E82D0F0D11005198CB /* ChannelSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2E72D0F0D11005198CB /* ChannelSearchViewController.swift */; };
+		B07AC2EB2D0FF9C9005198CB /* WorkspaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2EA2D0FF9C9005198CB /* WorkspaceListView.swift */; };
+		B07AC2ED2D0FF9D2005198CB /* WorkspaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2EC2D0FF9D2005198CB /* WorkspaceListViewController.swift */; };
 		B0878D872CCD11A70013B989 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0878D862CCD11A70013B989 /* Assets.xcassets */; };
 		B0878D8A2CCD11A70013B989 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B0878D892CCD11A70013B989 /* Base */; };
 		B0878DC82CD2550F0013B989 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0878DC72CD2550F0013B989 /* MainTabBarViewController.swift */; };
@@ -160,6 +164,10 @@
 		B07AC2D42D046FDB005198CB /* ChattingTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTable.swift; sourceTree = "<group>"; };
 		B07AC2D62D04783E005198CB /* ChattingTableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTableRepository.swift; sourceTree = "<group>"; };
 		B07AC2E22D0AE106005198CB /* SoketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoketManager.swift; sourceTree = "<group>"; };
+		B07AC2E52D0F0D0A005198CB /* ChannelSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSearchView.swift; sourceTree = "<group>"; };
+		B07AC2E72D0F0D11005198CB /* ChannelSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSearchViewController.swift; sourceTree = "<group>"; };
+		B07AC2EA2D0FF9C9005198CB /* WorkspaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListView.swift; sourceTree = "<group>"; };
+		B07AC2EC2D0FF9D2005198CB /* WorkspaceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListViewController.swift; sourceTree = "<group>"; };
 		B0878D7A2CCD11A50013B989 /* Sparkle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sparkle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0878D862CCD11A70013B989 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0878D892CCD11A70013B989 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -386,6 +394,24 @@
 			path = SokeyManager;
 			sourceTree = "<group>";
 		};
+		B07AC2E42D0F0C79005198CB /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				B07AC2E52D0F0D0A005198CB /* ChannelSearchView.swift */,
+				B07AC2E72D0F0D11005198CB /* ChannelSearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		B07AC2E92D0FF9B9005198CB /* WorkspaceList  */ = {
+			isa = PBXGroup;
+			children = (
+				B07AC2EA2D0FF9C9005198CB /* WorkspaceListView.swift */,
+				B07AC2EC2D0FF9D2005198CB /* WorkspaceListViewController.swift */,
+			);
+			path = "WorkspaceList ";
+			sourceTree = "<group>";
+		};
 		B0878D712CCD11A50013B989 = {
 			isa = PBXGroup;
 			children = (
@@ -442,6 +468,7 @@
 		B0878DD32CD35C710013B989 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				B07AC2E42D0F0C79005198CB /* Search */,
 				B017BC262CF358FF00176F28 /* Signup */,
 				B017BC1E2CF3562F00176F28 /* Login */,
 				B02A08852CE39597007489EE /* Channels */,
@@ -545,6 +572,7 @@
 		B0F1E0D42CDCE0F1005E38E7 /* WorkSpace */ = {
 			isa = PBXGroup;
 			children = (
+				B07AC2E92D0FF9B9005198CB /* WorkspaceList  */,
 				B02A089E2CE4BCE5007489EE /* ChangeAdmin */,
 				B0F1E0D72CDE092E005E38E7 /* Create */,
 				B0878DDE2CD36EE20013B989 /* Home */,
@@ -662,6 +690,7 @@
 				B017BC2A2CF4843000176F28 /* DeviceToken.swift in Sources */,
 				B052069F2CF0AAD000FBE1F7 /* HomeDefaultView.swift in Sources */,
 				B0F1E0DB2CDE0F1B005E38E7 /* HomeViewReactor.swift in Sources */,
+				B07AC2EB2D0FF9C9005198CB /* WorkspaceListView.swift in Sources */,
 				B0878DCE2CD25C6D0013B989 /* DirectViewController.swift in Sources */,
 				B07AC2E32D0AE106005198CB /* SoketManager.swift in Sources */,
 				B07AC2D52D046FDB005198CB /* ChattingTable.swift in Sources */,
@@ -670,9 +699,11 @@
 				B052069B2CF0A69D00FBE1F7 /* SesacKey.swift in Sources */,
 				B02A08872CE395A1007489EE /* CreateChannelView.swift in Sources */,
 				B017BC252CF357B100176F28 /* EmailViewReactor.swift in Sources */,
+				B07AC2ED2D0FF9D2005198CB /* WorkspaceListViewController.swift in Sources */,
 				B04641B52D01E47100B9FD3F /* ChannelChattingViewReactor.swift in Sources */,
 				B07AC2D72D04783E005198CB /* ChattingTableRepository.swift in Sources */,
 				B02A089A2CE4B9F4007489EE /* UIView +.swift in Sources */,
+				B07AC2E82D0F0D11005198CB /* ChannelSearchViewController.swift in Sources */,
 				B0F1E0D92CDE093F005E38E7 /* CreateWorkspaceView.swift in Sources */,
 				B0F1E0D12CDB68CC005E38E7 /* BaseCollectionViewCell.swift in Sources */,
 				B0AAFFA92CE78E8E009A5E30 /* WorkspaceAPI.swift in Sources */,
@@ -698,6 +729,7 @@
 				B066FFD42CEDCAFF002D487E /* WorkspaceResponse.swift in Sources */,
 				B0D79C7B2CE8DF48002D8449 /* ChannelAPI.swift in Sources */,
 				B066FFDE2CEDFF55002D487E /* WorkspaceNetworkManager.swift in Sources */,
+				B07AC2E62D0F0D0A005198CB /* ChannelSearchView.swift in Sources */,
 				B02A08762CDF200D007489EE /* HomeEmptyView.swift in Sources */,
 				B02A087E2CE1F486007489EE /* CreateWorkspaceViewReactor.swift in Sources */,
 				B05206A32CF3056200FBE1F7 /* ChannelsTableViewCell.swift in Sources */,

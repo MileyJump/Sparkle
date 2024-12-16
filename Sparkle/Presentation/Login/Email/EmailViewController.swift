@@ -104,7 +104,12 @@ final class EmailLoginViewController: BaseViewController<EmailLoginView>, View {
             if workspaceList.isEmpty {
                 self.navigationController?.changeRootViewController(HomeEmptyViewController())
             } else {
-                self.navigationController?.changeRootViewController(HomeDefaultViewController(workspaceId: workspaceList.first?.workspace_id))
+                if let workspace = workspaceList.first {
+                    let tabBarController = SparkleTabBarController(workspace: workspace)
+                    //                let tabBarController = SparkleTabBarController(workspaceId: workspaceId)
+                    self.navigationController?
+                        .changeRootViewController(tabBarController)
+                }
             }
         })
         .disposed(by: disposeBag)

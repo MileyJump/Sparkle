@@ -13,6 +13,7 @@ final class SocketIOManager {
 
     private let manager: SocketManager
     private let socket: SocketIOClient
+    private var isConnected: Bool = false
     
     init(channelId: String) {
         
@@ -54,18 +55,23 @@ final class SocketIOManager {
 //    }
     
     func connect(channelId: String)  {
+        if isConnected { return }
         
         // 소켓 연결 이벤트 리스너 등록 (연결 전에 미리 등록)
         self.socket.on(clientEvent: .connect) { data, ack in
             print("✅ SOCKET CONNECTED: \(data)✅! \(ack)")
+            self.isConnected = true
         }
         // 소켓 연결
         self.socket.connect()
 }
     
     func disconnect() {
+        if !isConnected { return }
+        
+        guard socket.status == .connected else { return }
         socket.on(clientEvent: .disconnect) { data, ack in
-            print("✅ SOCKET DISCONNECTED: \(data) ✅! \(ack)")
+            print("✅ SOCKET DISCONNECTED: \(data)")
         }
         socket.disconnect()
     }
