@@ -14,10 +14,12 @@ import RxCocoa
 final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
     
     var disposeBag = DisposeBag()
-    private var workspaceId: String?
+//    private var workspaceId: String?
+    private var workspace: WorkspaceListCheckResponse?
     
-    init(workspaceId: String?) {
-        self.workspaceId = workspaceId
+    
+    init(workspace: WorkspaceListCheckResponse?) {
+        self.workspace = workspace
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -43,6 +45,12 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
         //        rootView.updateChannelTableViewHeight()
         rootView.updateDirectTableViewHeight()
     }
+    
+    override func setupNavigationBar() {
+        let navigationBar = WorkspaceCustomNavigationBar(workspaceImageName: "테스트 사진", title: "No Workspace", profileImageName: "테스트 사진")
+        
+        navigationItem.titleView = navigationBar
+    }
 }
 
 
@@ -55,7 +63,7 @@ extension HomeDefaultViewController: View {
     
     private func bindAction(_ reactor: HomeDefaultViewReactor) {
         
-        Observable.just(workspaceId)
+        Observable.just(workspace?.workspace_id)
             .compactMap { $0 }
             .map { HomeDefaultViewReactor.Action.fetchChannelData(workspaceID: $0) }
             .bind(to: reactor.action)
@@ -67,7 +75,7 @@ extension HomeDefaultViewController: View {
             .disposed(by: disposeBag)
         
         rootView.channelTableView.rx.modelSelected(ChannelResponse.self)
-            .map { HomeDefaultViewReactor.Action.channelSelected(id: ChannelParameter(channelID: $0.channel_id, worskspaceID: self.workspaceId ?? "")) }
+            .map { HomeDefaultViewReactor.Action.channelSelected(id: ChannelParameter(channelID: $0.channel_id, worskspaceID: self.workspace?.workspace_id ?? "")) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }

@@ -15,6 +15,7 @@ class ChatReactor: Reactor {
     enum Action {
         case fetchInitialChats(id: ChannelParameter)
         case sendMessage(id: ChannelParameter, message: String)
+        case disconnectSocket(channelId: String)
     }
     
     enum Mutation {
@@ -22,12 +23,14 @@ class ChatReactor: Reactor {
         case addChatMessage([ChatTable])
         case clearInput
         case setError(Error)
+//        case disconnectSocket
     }
     
     struct State {
         var chats: [ChatTable] = [ChatTable(chatId: "", channelId: "", channelName: "", chatContent: "", chatCreateAt: "", files: [], user: UserTable(userId: "", email: "", nickname: "", profilImage: ""))]
         var clearInput: Bool = false
         var error: Error?
+        var isDisconnected: Bool = false
     }
     
     let initialState = State()
@@ -52,6 +55,14 @@ class ChatReactor: Reactor {
         case .sendMessage(id: let id, message: let message):
             sendChatMessage(message: message, id: id)
             return Observable.just(.clearInput)
+            
+        case .disconnectSocket(let channelId):
+//            let socketManager = SocketIOManager(channelId: channelId)
+            self.socketManager?.disconnect()
+            disconnectSocket(channelId: channelId)
+//            socketManager.disconnect()
+//            return Observable.just(.disconnectSocket)
+            return Observable.empty()
         }
     }
     
@@ -66,6 +77,8 @@ class ChatReactor: Reactor {
             newState.clearInput = true
         case .setError(let error):
             newState.error = error
+//        case .disconnectSocket:
+//            newState.isDisconnected = true
         }
         return newState
     }
@@ -73,6 +86,7 @@ class ChatReactor: Reactor {
     private var disposeBag = DisposeBag()
     
     private let repository = ChattingTableRepository()
+    private var socketManager: SocketIOManager?
     
     private func startSocketConnection(channelId: String, observer: AnyObserver<Mutation>) {
         connectToSocket(channelId: channelId)
@@ -88,6 +102,7 @@ class ChatReactor: Reactor {
     
     private func connectToSocket(channelId: String) -> Observable<Mutation> {
         let socketManager = SocketIOManager(channelId: channelId)
+        self.socketManager = socketManager
         
         return Observable.create { [weak self] observer in
             guard let self = self else { return Disposables.create() }
@@ -117,6 +132,10 @@ class ChatReactor: Reactor {
         }
     }
     
+    private func disconnectSocket(channelId: String) {
+        let socketManager = SocketIOManager(channelId: channelId)
+        socketManager.disconnect() // 소켓 연결 해제
+    }
     
     // realm에 저장된 내역을 불러오기
     private func fetchChatFromRealm(channelId: String) -> [ChatTable] {

@@ -35,6 +35,13 @@ class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
         self.view.backgroundColor = .white
         self.reactor = ChatReactor()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("=====deinit")
+        if let channelId {
+            self.reactor?.action.onNext(.disconnectSocket(channelId: channelId))
+        }
+    }
 }
 
 extension ChannelChattingViewController: View {
@@ -60,6 +67,8 @@ extension ChannelChattingViewController: View {
             }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
+        
     }
     
     private func bindState(_ reactor: ChatReactor) {
