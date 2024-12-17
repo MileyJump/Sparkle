@@ -83,6 +83,10 @@
 		B07AC2F32D1006EE005198CB /* WorkspaceListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2F22D1006EE005198CB /* WorkspaceListViewReactor.swift */; };
 		B07AC2F52D107074005198CB /* WorkspaceTableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2F42D107074005198CB /* WorkspaceTableRepository.swift */; };
 		B07AC2F82D1171FF005198CB /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = B07AC2F72D1171FF005198CB /* RxGesture */; };
+		B07AC3002D11AB86005198CB /* ChannelSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2FF2D11AB86005198CB /* ChannelSettingView.swift */; };
+		B07AC3022D11AB90005198CB /* ChannelSettingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC3012D11AB90005198CB /* ChannelSettingCollectionViewCell.swift */; };
+		B07AC3042D11AB99005198CB /* ChannelSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC3032D11AB99005198CB /* ChannelSettingViewController.swift */; };
+		B07AC3062D11C941005198CB /* ChannelSettingViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC3052D11C941005198CB /* ChannelSettingViewReactor.swift */; };
 		B0878D872CCD11A70013B989 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0878D862CCD11A70013B989 /* Assets.xcassets */; };
 		B0878D8A2CCD11A70013B989 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B0878D892CCD11A70013B989 /* Base */; };
 		B0878DC82CD2550F0013B989 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0878DC72CD2550F0013B989 /* MainTabBarViewController.swift */; };
@@ -177,6 +181,10 @@
 		B07AC2F02D0FFE7B005198CB /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		B07AC2F22D1006EE005198CB /* WorkspaceListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListViewReactor.swift; sourceTree = "<group>"; };
 		B07AC2F42D107074005198CB /* WorkspaceTableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceTableRepository.swift; sourceTree = "<group>"; };
+		B07AC2FF2D11AB86005198CB /* ChannelSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingView.swift; sourceTree = "<group>"; };
+		B07AC3012D11AB90005198CB /* ChannelSettingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingCollectionViewCell.swift; sourceTree = "<group>"; };
+		B07AC3032D11AB99005198CB /* ChannelSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingViewController.swift; sourceTree = "<group>"; };
+		B07AC3052D11C941005198CB /* ChannelSettingViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingViewReactor.swift; sourceTree = "<group>"; };
 		B0878D7A2CCD11A50013B989 /* Sparkle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sparkle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0878D862CCD11A70013B989 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0878D892CCD11A70013B989 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -276,6 +284,7 @@
 		B02A08852CE39597007489EE /* Channels */ = {
 			isa = PBXGroup;
 			children = (
+				B07AC2FE2D11AB74005198CB /* ChannelSetting */,
 				B02A08862CE395A1007489EE /* CreateChannelView.swift */,
 				B02A08882CE47898007489EE /* ChannelChattingView.swift */,
 				B04641B22D01E41100B9FD3F /* ChannelChattingViewController.swift */,
@@ -424,6 +433,17 @@
 				B07AC2F22D1006EE005198CB /* WorkspaceListViewReactor.swift */,
 			);
 			path = "WorkspaceList ";
+			sourceTree = "<group>";
+		};
+		B07AC2FE2D11AB74005198CB /* ChannelSetting */ = {
+			isa = PBXGroup;
+			children = (
+				B07AC2FF2D11AB86005198CB /* ChannelSettingView.swift */,
+				B07AC3012D11AB90005198CB /* ChannelSettingCollectionViewCell.swift */,
+				B07AC3032D11AB99005198CB /* ChannelSettingViewController.swift */,
+				B07AC3052D11C941005198CB /* ChannelSettingViewReactor.swift */,
+			);
+			path = ChannelSetting;
 			sourceTree = "<group>";
 		};
 		B0878D712CCD11A50013B989 = {
@@ -733,6 +753,7 @@
 				B04641B32D01E41100B9FD3F /* ChannelChattingViewController.swift in Sources */,
 				B05206942CF0A65800FBE1F7 /* CommonButton.swift in Sources */,
 				B05206952CF0A65800FBE1F7 /* CustomPopupView.swift in Sources */,
+				B07AC3062D11C941005198CB /* ChannelSettingViewReactor.swift in Sources */,
 				B05206962CF0A65800FBE1F7 /* CustomNavigationBar.swift in Sources */,
 				B0878DD02CD25C880013B989 /* SettingViewController.swift in Sources */,
 				B017BC232CF3565100176F28 /* EmailViewController.swift in Sources */,
@@ -743,10 +764,12 @@
 				B02A087E2CE1F486007489EE /* CreateWorkspaceViewReactor.swift in Sources */,
 				B066FFC22CECB6C6002D487E /* WorkspaceTarget.swift in Sources */,
 				B02A087C2CE1D8A1007489EE /* UINavigationController +.swift in Sources */,
+				B07AC3002D11AB86005198CB /* ChannelSettingView.swift in Sources */,
 				B066FFD42CEDCAFF002D487E /* WorkspaceResponse.swift in Sources */,
 				B0D79C7B2CE8DF48002D8449 /* ChannelAPI.swift in Sources */,
 				B066FFDE2CEDFF55002D487E /* WorkspaceNetworkManager.swift in Sources */,
 				B07AC2E62D0F0D0A005198CB /* ChannelSearchView.swift in Sources */,
+				B07AC3022D11AB90005198CB /* ChannelSettingCollectionViewCell.swift in Sources */,
 				B07AC2F52D107074005198CB /* WorkspaceTableRepository.swift in Sources */,
 				B07AC2F32D1006EE005198CB /* WorkspaceListViewReactor.swift in Sources */,
 				B02A08762CDF200D007489EE /* HomeEmptyView.swift in Sources */,
@@ -781,6 +804,7 @@
 				B066FFB32CEB293E002D487E /* UserDefaultsManager.swift in Sources */,
 				B066FFCA2CECE2B0002D487E /* ChannelQuery.swift in Sources */,
 				B0F1E0C62CDB4EC6005E38E7 /* AppDelegate.swift in Sources */,
+				B07AC3042D11AB99005198CB /* ChannelSettingViewController.swift in Sources */,
 				B02A08962CE4B7F2007489EE /* HomeInitialViewCell.swift in Sources */,
 				B0878DD82CD35D780013B989 /* BaseView.swift in Sources */,
 				B066FFCE2CEDC12C002D487E /* DMSTarget.swift in Sources */,

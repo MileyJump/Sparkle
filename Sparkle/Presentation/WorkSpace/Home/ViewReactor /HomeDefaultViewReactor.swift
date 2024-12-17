@@ -81,7 +81,7 @@ class HomeDefaultViewReactor: Reactor {
   
         case .channelSelected(id: let id):
             if let workspaceID = repository.fetchWorksaceID() {
-                let updatedChannel = ChannelParameter(channelID: id.channelID, worskspaceID: workspaceID)
+                let updatedChannel = ChannelParameter(channelID: id.channelID, workspaceID: workspaceID)
                 return Observable.concat([
                     Observable.just(Mutation.setSelectedChannel(updatedChannel)),
                     Observable.just(Mutation.setIsPushChannelEnabled(true)),

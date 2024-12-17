@@ -14,7 +14,7 @@ enum ChannelAPI {
     
     case createChannel(query: ChannelsQuery, parameters: WorkspaceIDParameter, workspaceID: String)
     
-    case specificChannelCheck(parameters: ChannelParameter, workspaceID: String, channleID: String)
+    case specificChannelCheck(parameters: ChannelParameter)
     
     case channelsEdit(query: ChannelsQuery ,parameters: ChannelParameter, workspaceID: String, channleID: String)
     
@@ -26,7 +26,7 @@ enum ChannelAPI {
     
     case numberOfUnreadChannelChats(parameters: NumberOfUnreadChannelChatsParameter, workspaceID: String, channleID: String)
     
-    case channelMembersCheck(parameters: ChannelParameter, workspaceID: String, channleID: String)
+    case channelMembersCheck(parameters: ChannelParameter)
     
     case changeChannelManager(query: ChangeChannelManagerQuery, parameters: ChannelParameter, workspaceID: String, channleID: String)
     

@@ -53,8 +53,8 @@ final class ChannelsNetworkManager {
         return request(.createChannel(query: query, parameters: parameters, workspaceID: workspaceID), responseType: ChannelResponse.self)
     }
     
-    func specificChannelCheck(parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<SpecificChannelCheckResponse> {
-        return request(.specificChannelCheck(parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: SpecificChannelCheckResponse.self)
+    func specificChannelCheck(parameters: ChannelParameter) -> Single<SpecificChannelCheckResponse> {
+        return request(.specificChannelCheck(parameters: parameters), responseType: SpecificChannelCheckResponse.self)
     }
     
     func channelsEdit(query: ChannelsQuery ,parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<ChannelResponse> {
@@ -77,8 +77,8 @@ final class ChannelsNetworkManager {
         return request(.numberOfUnreadChannelChats(parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: NumberOfUnreadChannelChatsResponse.self)
     }
     
-    func channelMembersCheck(parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<UserMemberResponse> {
-        return request(.channelMembersCheck(parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: UserMemberResponse.self)
+    func channelMembersCheck(parameters: ChannelParameter) -> Single<[UserMemberResponse]> {
+        return request(.channelMembersCheck(parameters: parameters), responseType: [UserMemberResponse].self)
     }
     
     func changeChannelManager(query: ChangeChannelManagerQuery, parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<ChannelResponse> {

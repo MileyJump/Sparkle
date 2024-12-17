@@ -16,6 +16,7 @@ class ChatReactor: Reactor {
         case fetchInitialChats(id: ChannelParameter)
         case sendMessage(id: ChannelParameter, message: String)
         case disconnectSocket(channelId: String)
+        case settingButtonTapped
     }
     
     enum Mutation {
@@ -23,7 +24,8 @@ class ChatReactor: Reactor {
         case addChatMessage([ChatTable])
         case clearInput
         case setError(Error)
-//        case disconnectSocket
+        case setChannelName(String)
+        case setSettingNavigationBarEnabled(Bool)
     }
     
     struct State {
@@ -31,6 +33,8 @@ class ChatReactor: Reactor {
         var clearInput: Bool = false
         var error: Error?
         var isDisconnected: Bool = false
+        var channelName: String = ""
+        var setIsSettingNavigationBarEnabled: Bool = false
     }
     
     let initialState = State()
@@ -38,8 +42,13 @@ class ChatReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .fetchInitialChats(let id):
+            let initialChats = fetchChatFromRealm(channelId: id.channelID)
+            
+            let channelName = initialChats.first?.channelName ?? "No Channel Name"
+            
             return Observable.concat([
-                Observable.just(.setChats(fetchChatFromRealm(channelId: id.channelID))),
+                Observable.just(.setChannelName(channelName)),
+                Observable.just(.setChats(initialChats)),
                 fetchChattingLastDate(id: id)
                     .concat(Observable.create { [weak self] observer in
                         guard let self = self else {
@@ -63,6 +72,13 @@ class ChatReactor: Reactor {
 //            socketManager.disconnect()
 //            return Observable.just(.disconnectSocket)
             return Observable.empty()
+            
+        case .settingButtonTapped:
+            return Observable.concat([
+                
+                Observable.just(Mutation.setSettingNavigationBarEnabled(true)),
+                Observable.just(Mutation.setSettingNavigationBarEnabled(false))
+            ])
         }
     }
     
@@ -77,8 +93,10 @@ class ChatReactor: Reactor {
             newState.clearInput = true
         case .setError(let error):
             newState.error = error
-//        case .disconnectSocket:
-//            newState.isDisconnected = true
+        case .setChannelName(let name):
+            newState.channelName = name
+        case .setSettingNavigationBarEnabled(let enabled):
+            newState.setIsSettingNavigationBarEnabled = enabled
         }
         return newState
     }
@@ -176,7 +194,7 @@ class ChatReactor: Reactor {
     // 채널 채팅 리스트 조회
     private func fetchChattingListAPI(cursor: String, id: ChannelParameter) -> Single<[ChannelChatHistoryListResponse]>  {
         
-        let api = ChannelsNetworkManager.shared.channelChatHistoryList(parameters: ChannelChatHistoryListParameter(cursor_date: cursor, channelID: id.channelID, workspaceId: id.worskspaceID))
+        let api = ChannelsNetworkManager.shared.channelChatHistoryList(parameters: ChannelChatHistoryListParameter(cursor_date: cursor, channelID: id.channelID, workspaceId: id.workspaceID))
         return api
     }
     
@@ -200,7 +218,7 @@ class ChatReactor: Reactor {
     
     private func sendChatMessage(message: String, id: ChannelParameter) {
         
-        ChannelsNetworkManager.shared.sendChannelChat(query: SendChannelChatQuery(content: message, files: []), parameters: ChannelParameter(channelID: id.channelID, worskspaceID: id.worskspaceID))
+        ChannelsNetworkManager.shared.sendChannelChat(query: SendChannelChatQuery(content: message, files: []), parameters: ChannelParameter(channelID: id.channelID, workspaceID: id.workspaceID))
             .subscribe(with: self, onSuccess: { _, response in
                 print("😊😊😊😊 sendChatMessage response : \(response)😊😊😊")
             }, onFailure: { _, error in
