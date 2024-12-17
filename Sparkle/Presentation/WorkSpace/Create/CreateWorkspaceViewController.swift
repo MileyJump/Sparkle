@@ -11,14 +11,16 @@ import RxSwift
 
 final class CreateWorkspaceViewController: BaseViewController<CreateWorkspaceView> {
     
-    private let dispoaseBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     private let reactor = CreateWorkspaceViewReactor()
+    private let imagePicker = UIImagePickerController()
+    let tapGesture = UITapGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setNavigationBarTitleAndImage(title: "워크스페이스 생성", imageName: "xmark")
-        
+        setupProfileImagePicker()
         bind(reactor: reactor)
     }
     
@@ -26,49 +28,98 @@ final class CreateWorkspaceViewController: BaseViewController<CreateWorkspaceVie
         view.backgroundColor = UIColor.sparkleBackgroundPrimaryColor
     }
     
+    private func setupProfileImagePicker() {
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+    }
+    
     private func bind(reactor: CreateWorkspaceViewReactor) {
+        
+        rootView.profileImageView.addGestureRecognizer(tapGesture)
+        rootView.profileImageView.isUserInteractionEnabled = true
+        
+        tapGesture.rx.event
+            .bind(with: self, onNext: { owner, _ in
+                owner.present(owner.imagePicker, animated: true, completion: nil )
+            })
+            .disposed(by: disposeBag)
         
         rootView.confirmButton.rx.tap
             .map { CreateWorkspaceViewReactor.Action.comfirmButton }
             .bind(to: reactor.action)
-            .disposed(by: dispoaseBag)
+            .disposed(by: disposeBag)
+        
+        navigationItem.leftBarButtonItem?.rx.tap
+            .map { CreateWorkspaceViewReactor.Action.backButton }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
         reactor.state.map { $0.comfirmButtonTapped }
             .distinctUntilChanged()
             .filter { $0 }
             .bind(with: self) { owner, _ in
                 owner.createWorkspace()
-//                WorkspaceNetworkManager.shared.createWorkspace(query: CreateWorkspaceQuery(name: owner.rootView.workspaceNameTextField.text ?? "실패", description: owner.rootView.workspaceExplanationTextField.text ?? "실패2", image: ""))
-//                owner.navigationController?.changeRootViewController(HomeDefaultViewController())
             }
-            .disposed(by: dispoaseBag)
-        
-        navigationItem.leftBarButtonItem?.rx.tap
-            .map { CreateWorkspaceViewReactor.Action.backButton }
-            .bind(to: reactor.action)
-            .disposed(by: dispoaseBag)
+            .disposed(by: disposeBag)
         
         reactor.state.map { $0.backButtonTappedState }
             .distinctUntilChanged()
             .filter { $0 }
+//            .take(1)
             .bind(with: self) { owner, _ in
                 owner.dismiss(animated: true)
             }
-            .disposed(by: dispoaseBag)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.selectedImage }
+            .distinctUntilChanged()
+            .compactMap { $0 }
+            .bind(with: self) { owner, image in
+                print("=====image \(image)===")
+                
+                owner.rootView.profileImageView.image = image
+            }
+            .disposed(by: disposeBag)
     }
+    
     
     private func createWorkspace() {
-        WorkspaceNetworkManager.shared.createWorkspace(query: CreateWorkspaceQuery(name: rootView.workspaceNameTextField.text ?? "실패", description: rootView.workspaceExplanationTextField.text ?? "실패2", image: ""))
-            .subscribe(onSuccess: { response in
-                // 성공 시 처리
-                print("워크스페이스 생성 성공: \(response)")
-                self.navigationController?.changeRootViewController(HomeDefaultViewController())
-            }, onError: { error in
-                // 실패 시 처리
-                print("워크스페이스 생성 실패: \(error)")
-            })
-            .disposed(by: dispoaseBag)
+        
+        guard let name = rootView.workspaceNameTextField.text, !name.isEmpty else {
+            return
+        }
+         let description = rootView.workspaceExplanationTextField.text ?? ""
+        
+        guard let selectedImage = reactor.currentState.selectedImage else {
+            return
+        }
+        
+        guard let imageData = selectedImage.jpegData(compressionQuality: 0.8) else {
+            return
+        }
+        print("=====네임 : \(name) // description \(description) // image !! \(imageData)===")
+            WorkspaceNetworkManager.shared.createWorkspace(query: CreateWorkspaceQuery(name: name, description: description, image: imageData))
+                .subscribe(with: self) { owner, response in
+                    print("성공!! ===== \(response)")
+                    owner.HomeDefaultView()
+                } onFailure: { owner, error in
+                    print("에러입니다!!!! \(error)")
+                }
+                .disposed(by: disposeBag)
     }
     
-    
+    private func HomeDefaultView() {
+        let vc = HomeDefaultViewController()
+        navigationController?.changeRootViewController(vc)
+    }
+}
+
+extension CreateWorkspaceViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let selectedImage = info[.originalImage] as? UIImage {
+            print("Selected image: \(selectedImage)")
+            reactor.action.onNext(.selectImage(selectedImage))
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
 }

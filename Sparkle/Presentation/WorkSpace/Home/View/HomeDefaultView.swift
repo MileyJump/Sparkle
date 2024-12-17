@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Then
 
 final class HomeDefaultView: BaseView {
     
@@ -19,7 +20,9 @@ final class HomeDefaultView: BaseView {
         font: UIFont.boldSystemFont(ofSize: 14)
     )
     
-    let channelTableView = UITableView()
+    let channelTableView = UITableView().then {
+        $0.register(ChannelsTableViewCell.self, forCellReuseIdentifier: ChannelsTableViewCell.identifier)
+    }
     
     let addChannelButton = ChannelsButton(
         title: "채널 추가",
@@ -37,7 +40,9 @@ final class HomeDefaultView: BaseView {
         font: UIFont.boldSystemFont(ofSize: 14)
     )
     
-    let directTableView = UITableView()
+    let directTableView = UITableView().then {
+        $0.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.identifier)
+    }
     
     let addDirectButton = ChannelsButton(
         title: "새 메시지 시작",
@@ -108,6 +113,8 @@ final class HomeDefaultView: BaseView {
     
     // 테이블뷰 높이를 업데이트하는 메서드
     func updateChannelTableViewHeight() {
+        print("updateChannelTableViewHeight !!!!!")
+//        let contentHeight = channelTableView.contentSize.height != 0
         let contentHeight = channelTableView.contentSize.height
         channelTableViewHeightConstraint?.update(offset: contentHeight)
     }

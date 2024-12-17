@@ -39,7 +39,7 @@ final class ChannelsTableViewCell: BaseTableViewCell {
         }
         
         channelNameLabel.snp.makeConstraints { make in
-            make.verticalEdges.equalTo(hashIconLabel.snp.top).inset(4)
+            make.verticalEdges.equalTo(hashIconLabel).inset(4)
             make.leading.equalTo(hashIconLabel.snp.trailing).offset(8)
         }
     }
@@ -47,6 +47,12 @@ final class ChannelsTableViewCell: BaseTableViewCell {
     override func setupUI() {
         hashIconLabel.text = "#"
         channelNameLabel.text = "오픈라운지"
+        channelNameLabel.backgroundColor = .red
+    }
+    
+    func bind(channel: ChannelResponse) {
+        channelNameLabel.text = channel.name
+        print("네임 변경!! \(channel.name)")
     }
     
 }

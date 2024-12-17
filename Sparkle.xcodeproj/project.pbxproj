@@ -29,6 +29,8 @@
 		B02A089A2CE4B9F4007489EE /* UIView +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A08992CE4B9F4007489EE /* UIView +.swift */; };
 		B02A089D2CE4BA3F007489EE /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A089C2CE4BA3F007489EE /* ReusableProtocol.swift */; };
 		B02A08A02CE4BCF9007489EE /* WorkspaceChangeAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A089F2CE4BCF9007489EE /* WorkspaceChangeAdminView.swift */; };
+		B04641B32D01E41100B9FD3F /* ChannelChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04641B22D01E41100B9FD3F /* ChannelChattingViewController.swift */; };
+		B04641B52D01E47100B9FD3F /* ChannelChattingViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04641B42D01E47100B9FD3F /* ChannelChattingViewReactor.swift */; };
 		B05206652CF07D2F00FBE1F7 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = B05206642CF07D2F00FBE1F7 /* RxCocoa */; };
 		B05206672CF07D2F00FBE1F7 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B05206662CF07D2F00FBE1F7 /* RxSwift */; };
 		B052066A2CF07D3B00FBE1F7 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = B05206692CF07D3B00FBE1F7 /* Then */; };
@@ -67,7 +69,24 @@
 		B0746CB52CD3A17400AC892C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CB42CD3A17400AC892C /* OnboardingViewController.swift */; };
 		B0746CBA2CD3AD4E00AC892C /* Color +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CB92CD3AD4E00AC892C /* Color +.swift */; };
 		B0746CBE2CD4FC8000AC892C /* CustomToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */; };
-		B0878D852CCD11A50013B989 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B0878D842CCD11A50013B989 /* Base */; };
+		B07AC2D52D046FDB005198CB /* ChattingTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2D42D046FDB005198CB /* ChattingTable.swift */; };
+		B07AC2D72D04783E005198CB /* ChattingTableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2D62D04783E005198CB /* ChattingTableRepository.swift */; };
+		B07AC2DD2D0598B4005198CB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B07AC2DC2D0598B4005198CB /* RealmSwift */; };
+		B07AC2E02D0AE0B8005198CB /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = B07AC2DF2D0AE0B8005198CB /* SocketIO */; };
+		B07AC2E32D0AE106005198CB /* SoketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2E22D0AE106005198CB /* SoketManager.swift */; };
+		B07AC2E62D0F0D0A005198CB /* ChannelSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2E52D0F0D0A005198CB /* ChannelSearchView.swift */; };
+		B07AC2E82D0F0D11005198CB /* ChannelSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2E72D0F0D11005198CB /* ChannelSearchViewController.swift */; };
+		B07AC2EB2D0FF9C9005198CB /* WorkspaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2EA2D0FF9C9005198CB /* WorkspaceListView.swift */; };
+		B07AC2ED2D0FF9D2005198CB /* WorkspaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2EC2D0FF9D2005198CB /* WorkspaceListViewController.swift */; };
+		B07AC2EF2D0FFB30005198CB /* WorkspaceListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2EE2D0FFB30005198CB /* WorkspaceListTableViewCell.swift */; };
+		B07AC2F12D0FFE7B005198CB /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2F02D0FFE7B005198CB /* AddButton.swift */; };
+		B07AC2F32D1006EE005198CB /* WorkspaceListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2F22D1006EE005198CB /* WorkspaceListViewReactor.swift */; };
+		B07AC2F52D107074005198CB /* WorkspaceTableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2F42D107074005198CB /* WorkspaceTableRepository.swift */; };
+		B07AC2F82D1171FF005198CB /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = B07AC2F72D1171FF005198CB /* RxGesture */; };
+		B07AC3002D11AB86005198CB /* ChannelSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2FF2D11AB86005198CB /* ChannelSettingView.swift */; };
+		B07AC3022D11AB90005198CB /* ChannelSettingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC3012D11AB90005198CB /* ChannelSettingCollectionViewCell.swift */; };
+		B07AC3042D11AB99005198CB /* ChannelSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC3032D11AB99005198CB /* ChannelSettingViewController.swift */; };
+		B07AC3062D11C941005198CB /* ChannelSettingViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC3052D11C941005198CB /* ChannelSettingViewReactor.swift */; };
 		B0878D872CCD11A70013B989 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0878D862CCD11A70013B989 /* Assets.xcassets */; };
 		B0878D8A2CCD11A70013B989 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B0878D892CCD11A70013B989 /* Base */; };
 		B0878DC82CD2550F0013B989 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0878DC72CD2550F0013B989 /* MainTabBarViewController.swift */; };
@@ -117,6 +136,8 @@
 		B02A08992CE4B9F4007489EE /* UIView +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView +.swift"; sourceTree = "<group>"; };
 		B02A089C2CE4BA3F007489EE /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
 		B02A089F2CE4BCF9007489EE /* WorkspaceChangeAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceChangeAdminView.swift; sourceTree = "<group>"; };
+		B04641B22D01E41100B9FD3F /* ChannelChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChattingViewController.swift; sourceTree = "<group>"; };
+		B04641B42D01E47100B9FD3F /* ChannelChattingViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChattingViewReactor.swift; sourceTree = "<group>"; };
 		B052068F2CF0A65800FBE1F7 /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
 		B05206902CF0A65800FBE1F7 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		B05206912CF0A65800FBE1F7 /* CustomPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupView.swift; sourceTree = "<group>"; };
@@ -149,8 +170,22 @@
 		B0746CB42CD3A17400AC892C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B0746CB92CD3AD4E00AC892C /* Color +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color +.swift"; sourceTree = "<group>"; };
 		B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToastView.swift; sourceTree = "<group>"; };
+		B07AC2D42D046FDB005198CB /* ChattingTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTable.swift; sourceTree = "<group>"; };
+		B07AC2D62D04783E005198CB /* ChattingTableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTableRepository.swift; sourceTree = "<group>"; };
+		B07AC2E22D0AE106005198CB /* SoketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoketManager.swift; sourceTree = "<group>"; };
+		B07AC2E52D0F0D0A005198CB /* ChannelSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSearchView.swift; sourceTree = "<group>"; };
+		B07AC2E72D0F0D11005198CB /* ChannelSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSearchViewController.swift; sourceTree = "<group>"; };
+		B07AC2EA2D0FF9C9005198CB /* WorkspaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListView.swift; sourceTree = "<group>"; };
+		B07AC2EC2D0FF9D2005198CB /* WorkspaceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListViewController.swift; sourceTree = "<group>"; };
+		B07AC2EE2D0FFB30005198CB /* WorkspaceListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListTableViewCell.swift; sourceTree = "<group>"; };
+		B07AC2F02D0FFE7B005198CB /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		B07AC2F22D1006EE005198CB /* WorkspaceListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListViewReactor.swift; sourceTree = "<group>"; };
+		B07AC2F42D107074005198CB /* WorkspaceTableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceTableRepository.swift; sourceTree = "<group>"; };
+		B07AC2FF2D11AB86005198CB /* ChannelSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingView.swift; sourceTree = "<group>"; };
+		B07AC3012D11AB90005198CB /* ChannelSettingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingCollectionViewCell.swift; sourceTree = "<group>"; };
+		B07AC3032D11AB99005198CB /* ChannelSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingViewController.swift; sourceTree = "<group>"; };
+		B07AC3052D11C941005198CB /* ChannelSettingViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingViewReactor.swift; sourceTree = "<group>"; };
 		B0878D7A2CCD11A50013B989 /* Sparkle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sparkle.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0878D842CCD11A50013B989 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B0878D862CCD11A70013B989 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0878D892CCD11A70013B989 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0878D8B2CCD11A70013B989 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -187,9 +222,12 @@
 				B05206702CF07D4E00FBE1F7 /* Moya in Frameworks */,
 				B0A4F5E72CEB077E00788119 /* ReactorKit in Frameworks */,
 				B05206732CF07D5700FBE1F7 /* ReactorKit in Frameworks */,
+				B07AC2E02D0AE0B8005198CB /* SocketIO in Frameworks */,
 				B052066D2CF07D4600FBE1F7 /* SnapKit in Frameworks */,
 				B05206672CF07D2F00FBE1F7 /* RxSwift in Frameworks */,
 				B05206652CF07D2F00FBE1F7 /* RxCocoa in Frameworks */,
+				B07AC2DD2D0598B4005198CB /* RealmSwift in Frameworks */,
+				B07AC2F82D1171FF005198CB /* RxGesture in Frameworks */,
 				B0A4F5EA2CEB079100788119 /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,6 +267,7 @@
 				B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */,
 				B0F1E0D22CDB6910005E38E7 /* UserTableViewCell.swift */,
 				B05206A22CF3056200FBE1F7 /* ChannelsTableViewCell.swift */,
+				B07AC2F02D0FFE7B005198CB /* AddButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -245,8 +284,11 @@
 		B02A08852CE39597007489EE /* Channels */ = {
 			isa = PBXGroup;
 			children = (
+				B07AC2FE2D11AB74005198CB /* ChannelSetting */,
 				B02A08862CE395A1007489EE /* CreateChannelView.swift */,
 				B02A08882CE47898007489EE /* ChannelChattingView.swift */,
+				B04641B22D01E41100B9FD3F /* ChannelChattingViewController.swift */,
+				B04641B42D01E47100B9FD3F /* ChannelChattingViewReactor.swift */,
 				B02A088A2CE47900007489EE /* ChannelChattingCell.swift */,
 			);
 			path = Channels;
@@ -354,6 +396,56 @@
 			path = Color;
 			sourceTree = "<group>";
 		};
+		B07AC2D32D046FB1005198CB /* DtaBase */ = {
+			isa = PBXGroup;
+			children = (
+				B066FFB22CEB293E002D487E /* UserDefaultsManager.swift */,
+				B07AC2D42D046FDB005198CB /* ChattingTable.swift */,
+				B07AC2D62D04783E005198CB /* ChattingTableRepository.swift */,
+				B07AC2F42D107074005198CB /* WorkspaceTableRepository.swift */,
+			);
+			path = DtaBase;
+			sourceTree = "<group>";
+		};
+		B07AC2E12D0AE0F9005198CB /* SokeyManager */ = {
+			isa = PBXGroup;
+			children = (
+				B07AC2E22D0AE106005198CB /* SoketManager.swift */,
+			);
+			path = SokeyManager;
+			sourceTree = "<group>";
+		};
+		B07AC2E42D0F0C79005198CB /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				B07AC2E52D0F0D0A005198CB /* ChannelSearchView.swift */,
+				B07AC2E72D0F0D11005198CB /* ChannelSearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		B07AC2E92D0FF9B9005198CB /* WorkspaceList  */ = {
+			isa = PBXGroup;
+			children = (
+				B07AC2EA2D0FF9C9005198CB /* WorkspaceListView.swift */,
+				B07AC2EE2D0FFB30005198CB /* WorkspaceListTableViewCell.swift */,
+				B07AC2EC2D0FF9D2005198CB /* WorkspaceListViewController.swift */,
+				B07AC2F22D1006EE005198CB /* WorkspaceListViewReactor.swift */,
+			);
+			path = "WorkspaceList ";
+			sourceTree = "<group>";
+		};
+		B07AC2FE2D11AB74005198CB /* ChannelSetting */ = {
+			isa = PBXGroup;
+			children = (
+				B07AC2FF2D11AB86005198CB /* ChannelSettingView.swift */,
+				B07AC3012D11AB90005198CB /* ChannelSettingCollectionViewCell.swift */,
+				B07AC3032D11AB99005198CB /* ChannelSettingViewController.swift */,
+				B07AC3052D11C941005198CB /* ChannelSettingViewReactor.swift */,
+			);
+			path = ChannelSetting;
+			sourceTree = "<group>";
+		};
 		B0878D712CCD11A50013B989 = {
 			isa = PBXGroup;
 			children = (
@@ -379,10 +471,10 @@
 		B0878D7C2CCD11A50013B989 /* Sparkle */ = {
 			isa = PBXGroup;
 			children = (
+				B07AC2E12D0AE0F9005198CB /* SokeyManager */,
 				B0AAFFA52CE5E09A009A5E30 /* Network */,
 				B0878DD32CD35C710013B989 /* Presentation */,
 				B0878DD22CD35BFB0013B989 /* Global */,
-				B0878D832CCD11A50013B989 /* Main.storyboard */,
 				B0878D862CCD11A70013B989 /* Assets.xcassets */,
 				B0878D882CCD11A70013B989 /* LaunchScreen.storyboard */,
 				B0878D8B2CCD11A70013B989 /* Info.plist */,
@@ -398,7 +490,7 @@
 		B0878DD22CD35BFB0013B989 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				B066FFB22CEB293E002D487E /* UserDefaultsManager.swift */,
+				B07AC2D32D046FB1005198CB /* DtaBase */,
 				B02A089B2CE4BA2E007489EE /* Protocols */,
 				B02A087A2CE1D860007489EE /* Extentsion */,
 				B02A08792CE1D84D007489EE /* Components */,
@@ -410,6 +502,7 @@
 		B0878DD32CD35C710013B989 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				B07AC2E42D0F0C79005198CB /* Search */,
 				B017BC262CF358FF00176F28 /* Signup */,
 				B017BC1E2CF3562F00176F28 /* Login */,
 				B02A08852CE39597007489EE /* Channels */,
@@ -513,6 +606,7 @@
 		B0F1E0D42CDCE0F1005E38E7 /* WorkSpace */ = {
 			isa = PBXGroup;
 			children = (
+				B07AC2E92D0FF9B9005198CB /* WorkspaceList  */,
 				B02A089E2CE4BCE5007489EE /* ChangeAdmin */,
 				B0F1E0D72CDE092E005E38E7 /* Create */,
 				B0878DDE2CD36EE20013B989 /* Home */,
@@ -555,6 +649,9 @@
 				B052066C2CF07D4600FBE1F7 /* SnapKit */,
 				B052066F2CF07D4E00FBE1F7 /* Moya */,
 				B05206722CF07D5700FBE1F7 /* ReactorKit */,
+				B07AC2DC2D0598B4005198CB /* RealmSwift */,
+				B07AC2DF2D0AE0B8005198CB /* SocketIO */,
+				B07AC2F72D1171FF005198CB /* RxGesture */,
 			);
 			productName = Sparkle;
 			productReference = B0878D7A2CCD11A50013B989 /* Sparkle.app */;
@@ -590,6 +687,9 @@
 				B052066B2CF07D4600FBE1F7 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				B052066E2CF07D4E00FBE1F7 /* XCRemoteSwiftPackageReference "Moya" */,
 				B05206712CF07D5700FBE1F7 /* XCRemoteSwiftPackageReference "ReactorKit" */,
+				B07AC2DB2D0598B4005198CB /* XCRemoteSwiftPackageReference "realm-swift" */,
+				B07AC2DE2D0AE0B8005198CB /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				B07AC2F62D1171FF005198CB /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = B0878D7B2CCD11A50013B989 /* Products */;
 			projectDirPath = "";
@@ -608,7 +708,6 @@
 				B0A4F5F22CEB119B00788119 /* .gitignore in Resources */,
 				B0878D872CCD11A70013B989 /* Assets.xcassets in Resources */,
 				B0878D8A2CCD11A70013B989 /* Base in Resources */,
-				B0878D852CCD11A50013B989 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,13 +726,20 @@
 				B017BC2A2CF4843000176F28 /* DeviceToken.swift in Sources */,
 				B052069F2CF0AAD000FBE1F7 /* HomeDefaultView.swift in Sources */,
 				B0F1E0DB2CDE0F1B005E38E7 /* HomeViewReactor.swift in Sources */,
+				B07AC2EB2D0FF9C9005198CB /* WorkspaceListView.swift in Sources */,
 				B0878DCE2CD25C6D0013B989 /* DirectViewController.swift in Sources */,
+				B07AC2E32D0AE106005198CB /* SoketManager.swift in Sources */,
+				B07AC2D52D046FDB005198CB /* ChattingTable.swift in Sources */,
 				B066FFC82CECE1B1002D487E /* ChannelsTarget.swift in Sources */,
 				B0F1E0D62CDCE0F8005E38E7 /* workspaceInitialView.swift in Sources */,
 				B052069B2CF0A69D00FBE1F7 /* SesacKey.swift in Sources */,
 				B02A08872CE395A1007489EE /* CreateChannelView.swift in Sources */,
 				B017BC252CF357B100176F28 /* EmailViewReactor.swift in Sources */,
+				B07AC2ED2D0FF9D2005198CB /* WorkspaceListViewController.swift in Sources */,
+				B04641B52D01E47100B9FD3F /* ChannelChattingViewReactor.swift in Sources */,
+				B07AC2D72D04783E005198CB /* ChattingTableRepository.swift in Sources */,
 				B02A089A2CE4B9F4007489EE /* UIView +.swift in Sources */,
+				B07AC2E82D0F0D11005198CB /* ChannelSearchViewController.swift in Sources */,
 				B0F1E0D92CDE093F005E38E7 /* CreateWorkspaceView.swift in Sources */,
 				B0F1E0D12CDB68CC005E38E7 /* BaseCollectionViewCell.swift in Sources */,
 				B0AAFFA92CE78E8E009A5E30 /* WorkspaceAPI.swift in Sources */,
@@ -644,20 +750,28 @@
 				B02A08732CDE3B5C007489EE /* CreateWorkspaceViewController.swift in Sources */,
 				B0878DE22CD39B760013B989 /* OnboardingView.swift in Sources */,
 				B05206932CF0A65800FBE1F7 /* NewMessageButton.swift in Sources */,
+				B04641B32D01E41100B9FD3F /* ChannelChattingViewController.swift in Sources */,
 				B05206942CF0A65800FBE1F7 /* CommonButton.swift in Sources */,
 				B05206952CF0A65800FBE1F7 /* CustomPopupView.swift in Sources */,
+				B07AC3062D11C941005198CB /* ChannelSettingViewReactor.swift in Sources */,
 				B05206962CF0A65800FBE1F7 /* CustomNavigationBar.swift in Sources */,
 				B0878DD02CD25C880013B989 /* SettingViewController.swift in Sources */,
 				B017BC232CF3565100176F28 /* EmailViewController.swift in Sources */,
+				B07AC2EF2D0FFB30005198CB /* WorkspaceListTableViewCell.swift in Sources */,
 				B0A4F5EE2CEB0DFC00788119 /* UserTarget.swift in Sources */,
 				B066FFCC2CEDC0A4002D487E /* DMSAPI.swift in Sources */,
 				B0746CBA2CD3AD4E00AC892C /* Color +.swift in Sources */,
 				B02A087E2CE1F486007489EE /* CreateWorkspaceViewReactor.swift in Sources */,
 				B066FFC22CECB6C6002D487E /* WorkspaceTarget.swift in Sources */,
 				B02A087C2CE1D8A1007489EE /* UINavigationController +.swift in Sources */,
+				B07AC3002D11AB86005198CB /* ChannelSettingView.swift in Sources */,
 				B066FFD42CEDCAFF002D487E /* WorkspaceResponse.swift in Sources */,
 				B0D79C7B2CE8DF48002D8449 /* ChannelAPI.swift in Sources */,
 				B066FFDE2CEDFF55002D487E /* WorkspaceNetworkManager.swift in Sources */,
+				B07AC2E62D0F0D0A005198CB /* ChannelSearchView.swift in Sources */,
+				B07AC3022D11AB90005198CB /* ChannelSettingCollectionViewCell.swift in Sources */,
+				B07AC2F52D107074005198CB /* WorkspaceTableRepository.swift in Sources */,
+				B07AC2F32D1006EE005198CB /* WorkspaceListViewReactor.swift in Sources */,
 				B02A08762CDF200D007489EE /* HomeEmptyView.swift in Sources */,
 				B02A087E2CE1F486007489EE /* CreateWorkspaceViewReactor.swift in Sources */,
 				B05206A32CF3056200FBE1F7 /* ChannelsTableViewCell.swift in Sources */,
@@ -672,6 +786,7 @@
 				B02A08842CE21D9F007489EE /* HomeInitialViewReactor.swift in Sources */,
 				B05206992CF0A68300FBE1F7 /* ChannelsButton.swift in Sources */,
 				B066FFE02CEE0B7C002D487E /* ChannelsNetworkManager.swift in Sources */,
+				B07AC2F12D0FFE7B005198CB /* AddButton.swift in Sources */,
 				B066FFD62CEDCD8B002D487E /* UserResponse.swift in Sources */,
 				B066FFE22CEF5CB1002D487E /* DMSNetworkManager.swift in Sources */,
 				B0878DDA2CD36E3B0013B989 /* BaseViewController.swift in Sources */,
@@ -689,6 +804,7 @@
 				B066FFB32CEB293E002D487E /* UserDefaultsManager.swift in Sources */,
 				B066FFCA2CECE2B0002D487E /* ChannelQuery.swift in Sources */,
 				B0F1E0C62CDB4EC6005E38E7 /* AppDelegate.swift in Sources */,
+				B07AC3042D11AB99005198CB /* ChannelSettingViewController.swift in Sources */,
 				B02A08962CE4B7F2007489EE /* HomeInitialViewCell.swift in Sources */,
 				B0878DD82CD35D780013B989 /* BaseView.swift in Sources */,
 				B066FFCE2CEDC12C002D487E /* DMSTarget.swift in Sources */,
@@ -699,14 +815,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B0878D832CCD11A50013B989 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B0878D842CCD11A50013B989 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B0878D882CCD11A70013B989 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -849,7 +957,6 @@
 				INFOPLIST_FILE = Sparkle/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -877,7 +984,6 @@
 				INFOPLIST_FILE = Sparkle/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -957,6 +1063,31 @@
 				minimumVersion = 3.2.0;
 			};
 		};
+		B07AC2DB2D0598B4005198CB /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = versionRange;
+				maximumVersion = 10.54.1;
+				minimumVersion = 1.0.0;
+			};
+		};
+		B07AC2DE2D0AE0B8005198CB /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		B07AC2F62D1171FF005198CB /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -989,6 +1120,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B05206712CF07D5700FBE1F7 /* XCRemoteSwiftPackageReference "ReactorKit" */;
 			productName = ReactorKit;
+		};
+		B07AC2DC2D0598B4005198CB /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B07AC2DB2D0598B4005198CB /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		B07AC2DF2D0AE0B8005198CB /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B07AC2DE2D0AE0B8005198CB /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
+		};
+		B07AC2F72D1171FF005198CB /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B07AC2F62D1171FF005198CB /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
 		};
 		B0A4F5E62CEB077E00788119 /* ReactorKit */ = {
 			isa = XCSwiftPackageProductDependency;

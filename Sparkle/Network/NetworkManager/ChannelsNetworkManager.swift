@@ -41,20 +41,20 @@ final class ChannelsNetworkManager {
         }
     }
     
-    func myChannelCheck(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<ChannelResponse> {
-        return request(.myChannelCheck(parameters: parameters, workspaceID: workspaceID), responseType: ChannelResponse.self)
+    func myChannelCheck(parameters: WorkspaceIDParameter) -> Single<[ChannelResponse]> {
+        return request(.myChannelCheck(parameters: parameters), responseType: [ChannelResponse].self)
     }
     
-    func channelListCheck(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<ChannelResponse> {
-        return request(.channelListCheck(parameters: parameters, workspaceID: workspaceID), responseType: ChannelResponse.self)
+    func channelListCheck(parameters: WorkspaceIDParameter, workspaceID: String) -> Single<[ChannelResponse]> {
+        return request(.channelListCheck(parameters: parameters, workspaceID: workspaceID), responseType: [ChannelResponse].self)
     }
     
     func createChannel(query: ChannelsQuery, parameters: WorkspaceIDParameter, workspaceID: String) -> Single<ChannelResponse> {
         return request(.createChannel(query: query, parameters: parameters, workspaceID: workspaceID), responseType: ChannelResponse.self)
     }
     
-    func specificChannelCheck(parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<SpecificChannelCheckResponse> {
-        return request(.specificChannelCheck(parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: SpecificChannelCheckResponse.self)
+    func specificChannelCheck(parameters: ChannelParameter) -> Single<SpecificChannelCheckResponse> {
+        return request(.specificChannelCheck(parameters: parameters), responseType: SpecificChannelCheckResponse.self)
     }
     
     func channelsEdit(query: ChannelsQuery ,parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<ChannelResponse> {
@@ -65,20 +65,20 @@ final class ChannelsNetworkManager {
         return request(.channelsDelete(parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: VoidResponse.self).map { _ in }
     }
     
-    func channelChatHistoryList(parameters: ChannelChatHistoryListParameter, workspaceID: String, channleID: String)  -> Single<ChannelChatHistoryListResponse> {
-        return request(.channelChatHistoryList(parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: ChannelChatHistoryListResponse.self)
+    func channelChatHistoryList(parameters: ChannelChatHistoryListParameter)  -> Single<[ChannelChatHistoryListResponse]> {
+        return request(.channelChatHistoryList(parameters: parameters, workspaceID: parameters.workspaceId, channleID: parameters.channelID), responseType: [ChannelChatHistoryListResponse].self)
     }
     
-    func sendChannelChat(query: SendChannelChatQuery, parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<ChannelChatHistoryListResponse> {
-        return request(.sendChannelChat(query: query, parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: ChannelChatHistoryListResponse.self)
+    func sendChannelChat(query: SendChannelChatQuery, parameters: ChannelParameter) -> Single<ChannelChatHistoryListResponse> {
+        return request(.sendChannelChat(query: query, parameters: parameters), responseType: ChannelChatHistoryListResponse.self)
     }
     
     func numberOfUnreadChannelChats(parameters: NumberOfUnreadChannelChatsParameter, workspaceID: String, channleID: String) -> Single<NumberOfUnreadChannelChatsResponse> {
         return request(.numberOfUnreadChannelChats(parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: NumberOfUnreadChannelChatsResponse.self)
     }
     
-    func channelMembersCheck(parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<UserMemberResponse> {
-        return request(.channelMembersCheck(parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: UserMemberResponse.self)
+    func channelMembersCheck(parameters: ChannelParameter) -> Single<[UserMemberResponse]> {
+        return request(.channelMembersCheck(parameters: parameters), responseType: [UserMemberResponse].self)
     }
     
     func changeChannelManager(query: ChangeChannelManagerQuery, parameters: ChannelParameter, workspaceID: String, channleID: String) -> Single<ChannelResponse> {

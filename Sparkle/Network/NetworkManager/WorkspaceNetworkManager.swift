@@ -24,27 +24,84 @@ final class WorkspaceNetworkManager {
                 switch result {
                 case .success(let response):
                     do {
+                        // 상태 코드 로그
+                        print("Status Code: \(response.statusCode)")
+                        
                         if T.self == VoidResponse.self {
                             single(.success(VoidResponse() as! T))
+                            print("Void Response")
                         } else {
                             let decodedData = try JSONDecoder().decode(T.self, from: response.data)
                             single(.success(decodedData))
-//                            print(response)
                         }
                     } catch {
+                        // 디코딩 에러 시 상태 코드 및 응답 로그
+                        print("Decoding error: \(error.localizedDescription)")
+                        print("Status Code: \(response.statusCode)")
+                        if let responseString = String(data: response.data, encoding: .utf8) {
+                            print("Error Response Body: \(responseString)")
+                            // 서버 응답 JSON에서 에러 코드 추출
+                            if let errorInfo = try? JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any],
+                               let errorCode = errorInfo["code"] as? Int {
+                                print("Server Error Code: \(errorCode)")
+                            }
+                        }
                         single(.failure(error))
                     }
                 case .failure(let error):
+                    if let moyaError = error as? MoyaError {
+                        switch moyaError {
+                        case .statusCode(let response):
+                            print("========Error Status Code: \(response.statusCode)")
+                            if let responseString = String(data: response.data, encoding: .utf8) {
+                                print("==========Error Response Body: \(responseString)")
+                                // 서버 응답 JSON에서 에러 코드 추출
+                                if let errorInfo = try? JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any],
+                                   let errorCode = errorInfo["code"] as? Int {
+                                    print("=======Server Error Code: \(errorCode)")
+                                }
+                            }
+                        default:
+                            break
+                        }
+                    }
+                    print("========Network error: \(error.localizedDescription)")
                     single(.failure(error))
-//                    print(error)
                 }
             }
             return Disposables.create()
         }
     }
     
-    func workspacesListCheck() -> Single<WorkspaceListCheckResponse> {
-        return request(.workspacesListCheck, responseType: WorkspaceListCheckResponse.self)
+//    func request<T: Decodable>(_ target: WorkspaceAPI, responseType: T.Type) -> Single<T> {
+//        return Single.create { [weak self] single in
+//            self?.workspaceProvider.request(target) { result in
+//                switch result {
+//                case .success(let response):
+//                    do {
+//                        if T.self == VoidResponse.self {
+//                            single(.success(VoidResponse() as! T))
+//                            print("Void")
+//                        } else {
+//                            let decodedData = try JSONDecoder().decode(T.self, from: response.data)
+//                            single(.success(decodedData))
+//                            print(response)
+//                        }
+//                    } catch {
+//                        single(.failure(error))
+//                        print(error)
+//                    }
+//                case .failure(let error):
+//                    single(.failure(error))
+//                    print(error)
+//                }
+//            }
+//            return Disposables.create()
+//        }
+//    }
+//    
+    func workspacesListCheck() -> Single<[WorkspaceListCheckResponse]> {
+        return request(.workspacesListCheck, responseType: [WorkspaceListCheckResponse].self)
     }
     
     func createWorkspace(query: CreateWorkspaceQuery) -> Single<WorkspaceListCheckResponse> {

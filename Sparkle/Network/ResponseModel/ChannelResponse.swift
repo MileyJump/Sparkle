@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct ChannelMembers: Decodable {
-    let user_id: String
-    let email: String
-    let nickname: String
-    let profileImage: String
-}
+//struct ChannelMembers: Decodable {
+//    let user_id: String
+//    let email: String
+//    let nickname: String
+//    let profileImage: String
+//}
 
 struct ChannelResponse: Decodable {
     let channel_id: String
     let name: String
-    let description: String
-    let coverImage: String
+    let description: String?
+    let coverImage: String?
     let owner_id: String
     let createdAt: String
 }
@@ -27,8 +27,8 @@ struct ChannelResponse: Decodable {
 struct SpecificChannelCheckResponse: Decodable {
     let channel_id: String
     let name: String
-    let description: String
-    let coverImage: String
+    let description: String?
+    let coverImage: String?
     let owner_id: String
     let createdAt: String
     let channelMembers: [ UserMemberResponse ]
