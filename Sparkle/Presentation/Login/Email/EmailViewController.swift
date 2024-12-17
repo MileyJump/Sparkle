@@ -105,7 +105,7 @@ final class EmailLoginViewController: BaseViewController<EmailLoginView>, View {
                 self.navigationController?.changeRootViewController(HomeEmptyViewController())
             } else {
                 if let workspace = workspaceList.first {
-                    let tabBarController = SparkleTabBarController(workspace: workspace)
+                    let tabBarController = SparkleTabBarController()
                     //                let tabBarController = SparkleTabBarController(workspaceId: workspaceId)
                     self.navigationController?
                         .changeRootViewController(tabBarController)

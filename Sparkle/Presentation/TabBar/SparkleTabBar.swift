@@ -9,15 +9,15 @@ import UIKit
 
 enum SparkleTabBar {
     
-    case mainHome(workspace: WorkspaceListCheckResponse)
+    case mainHome
     case direct
     case search
     case setting
     
     var viewController: UIViewController {
         switch self {
-        case .mainHome(let workspace):
-            return HomeDefaultViewController(workspace: workspace)
+        case .mainHome:
+            return HomeDefaultViewController()
         case .search:
             return ChannelSearchViewController()
         case .direct:
