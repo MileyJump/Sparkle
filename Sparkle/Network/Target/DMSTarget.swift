@@ -12,11 +12,11 @@ extension DMSAPI: BaseTarget {
     
     var path: String {
         switch self {
-        case .createDMs(_, _, let worskpaceID):
-            return "/v1/workspaces/\(worskpaceID)/dms"
+        case .createDMs(_, let parameters):
+            return "/v1/workspaces/\(parameters.workspaceID)/dms"
         
-        case .dmsListCheck(_, let worskpaceID):
-            return "/v1/workspaces/\(worskpaceID)/dms"
+        case .dmsListCheck(let parameters):
+            return "/v1/workspaces/\(parameters.workspaceID)/dms"
             
         case .sendDMs(_, _, let worskpaceID, let roomID):
             return "/v1/workspaces/\(worskpaceID)/dms/\(roomID)/chats"
@@ -40,14 +40,14 @@ extension DMSAPI: BaseTarget {
     
     var task: Task {
         switch self {
-        case .createDMs(let query, let parameters, _):
+        case .createDMs(let query, let parameters):
             return .requestCompositeParameters(
                 bodyParameters: try! query.toDictionary(),
                 bodyEncoding: JSONEncoding.default,
                 urlParameters: try! parameters.toDictionary()
             )
             
-        case .dmsListCheck(let parameters, _):
+        case .dmsListCheck(let parameters):
             return .requestParameters(parameters: try! parameters.toDictionary(), encoding: URLEncoding.default)
             
         case .sendDMs(let query, let parameters, _, _):

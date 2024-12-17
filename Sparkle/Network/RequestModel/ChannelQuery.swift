@@ -25,7 +25,7 @@ struct ChangeChannelManagerQuery: Encodable {
 
 struct ChannelParameter: Encodable {
     let channelID: String
-    let worskspaceID: String
+    let workspaceID: String
 }
 
 struct ChannelChatHistoryListParameter: Encodable {

@@ -8,13 +8,13 @@
 import Foundation
 
 enum ChannelAPI {
-    case myChannelCheck(parameters: WorkspaceIDParameter, workspaceID: String)
+    case myChannelCheck(parameters: WorkspaceIDParameter)
     
     case channelListCheck(parameters: WorkspaceIDParameter, workspaceID: String)
     
     case createChannel(query: ChannelsQuery, parameters: WorkspaceIDParameter, workspaceID: String)
     
-    case specificChannelCheck(parameters: ChannelParameter, workspaceID: String, channleID: String)
+    case specificChannelCheck(parameters: ChannelParameter)
     
     case channelsEdit(query: ChannelsQuery ,parameters: ChannelParameter, workspaceID: String, channleID: String)
     
@@ -22,11 +22,11 @@ enum ChannelAPI {
     
     case channelChatHistoryList(parameters: ChannelChatHistoryListParameter, workspaceID: String, channleID: String)
     
-    case sendChannelChat(query: SendChannelChatQuery, parameters: ChannelParameter, workspaceID: String, channleID: String)
+    case sendChannelChat(query: SendChannelChatQuery, parameters: ChannelParameter)
     
     case numberOfUnreadChannelChats(parameters: NumberOfUnreadChannelChatsParameter, workspaceID: String, channleID: String)
     
-    case channelMembersCheck(parameters: ChannelParameter, workspaceID: String, channleID: String)
+    case channelMembersCheck(parameters: ChannelParameter)
     
     case changeChannelManager(query: ChangeChannelManagerQuery, parameters: ChannelParameter, workspaceID: String, channleID: String)
     

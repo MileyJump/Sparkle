@@ -38,67 +38,24 @@ final class UserNetworkManager {
                 switch result {
                 case .success(let response):
                     do {
-                        let statusCode = response.statusCode
-                        
-                       
-                        
-                        switch statusCode {
-                        case 200...299:
-                            if T.self == VoidResponse.self {
-                                single(.success(VoidResponse() as! T)) // Void 반환 처리
-                            } else {
-                                let decodedData = try JSONDecoder().decode(T.self, from: response.data)
-                                single(.success(decodedData))
-                            }
-                        case 400...499:
-                            // 클라이언트 에러 처리
-                            let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: response.data)
-                            if let errorCode = errorResponse?.errorCode {
-                                single(.failure(CustomError.clientError(errorCode: errorCode, message: errorResponse?.errorMessage)))
-                            } else {
-                                single(.failure(CustomError.unknown))
-                            }
-                        case 500...599:
-                            // 서버 에러 처리
-                            single(.failure(CustomError.serverError))
-                        default:
-                            single(.failure(CustomError.unknown))
+                        print("statusCode : \(response.statusCode)")
+                        if T.self == VoidResponse.self {
+                            single(.success(VoidResponse() as! T)) // Void를 반환
+                        } else {
+                            let decodedData = try JSONDecoder().decode(T.self, from: response.data)
+                            single(.success(decodedData))
+                            
                         }
                     } catch {
-                        single(.failure(error)) // 디코딩 에러
+                        single(.failure(error))
                     }
                 case .failure(let error):
-                    single(.failure(error)) // 네트워크 실패
+                    single(.failure(error))
                 }
             }
             return Disposables.create()
         }
     }
-    
-//    func request<T: Decodable>(_ target: UserAPI, responseType: T.Type) -> Single<T> {
-//        return Single.create { [weak self] single in
-//            self?.userProvider.request(target) { result in
-//                switch result {
-//                case .success(let response):
-//                    do {
-//                        print("===============================\(response.statusCode)")
-//                        if T.self == VoidResponse.self {
-//                            single(.success(VoidResponse() as! T)) // Void를 반환
-//                        } else {
-//                            let decodedData = try JSONDecoder().decode(T.self, from: response.data)
-//                            single(.success(decodedData))
-//                            
-//                        }
-//                    } catch {
-//                        single(.failure(error))
-//                    }
-//                case .failure(let error):
-//                    single(.failure(error))
-//                }
-//            }
-//            return Disposables.create()
-//        }
-//    }
  
     func join(query: JoinQuery) -> Single<UserResponse> {
         return request(.join(query), responseType: UserResponse.self)

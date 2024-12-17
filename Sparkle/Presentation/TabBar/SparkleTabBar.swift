@@ -11,12 +11,15 @@ enum SparkleTabBar {
     
     case mainHome
     case direct
+    case search
     case setting
     
     var viewController: UIViewController {
         switch self {
         case .mainHome:
-            return workspaceInitialViewController()
+            return HomeDefaultViewController()
+        case .search:
+            return ChannelSearchViewController()
         case .direct:
             return DirectViewController()
         case .setting:
@@ -29,8 +32,10 @@ enum SparkleTabBar {
         case .mainHome:
             return "홈"
         case .direct:
-//            return StringLiterals.Phrase.searchTabBar
+            //            return StringLiterals.Phrase.searchTabBar
             return "DM"
+        case .search:
+            return "탐색"
         case .setting:
             return "설정"
         }
@@ -39,23 +44,30 @@ enum SparkleTabBar {
     var image: UIImage? {
         switch self {
         case .mainHome:
-            return UIImage(systemName: "house")
+            return UIImage(systemName: "list.bullet")
         case .direct:
-            return UIImage(systemName: "message")
+            //            return UIImage(systemName: "message")
+            return UIImage(named: "디엠")
+        case .search:
+            return UIImage(systemName: "rectangle.and.text.magnifyingglass")
         case .setting:
-            return UIImage(systemName: "gearshape")
+//            return UIImage(systemName: "gearshape")
+            return UIImage(named: "설정")
         }
     }
     
     var seletedImage: UIImage? {
         switch self {
         case .mainHome:
-            return UIImage(systemName: "house.fill")
+            return UIImage(systemName: "list.bullet")
         case .direct:
-            return UIImage(systemName: "message.fill")
+//            return UIImage(systemName: "message.fill")
+            return UIImage(named: "디엠")
+        case .search:
+            return UIImage(systemName: "rectangle.and.text.magnifyingglass")
         case .setting:
-            return UIImage(systemName: "gearshape.fill")
+//            return UIImage(systemName: "gearshape.fill")
+            return UIImage(named: "설정")
         }
     }
-    
 }

@@ -21,7 +21,6 @@ final class UserTableViewCell: BaseTableViewCell {
     }
     
     override func setupSubviews() {
-        
         addSubview(profileImageView)
         addSubview(nameLabel)
     }
@@ -39,6 +38,10 @@ final class UserTableViewCell: BaseTableViewCell {
             make.verticalEdges.equalTo(profileImageView.snp.top).inset(4)
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
         }
+    }
+    
+    func bind(dms: DmsListCheckResponse) {
+        nameLabel.text = dms.user.nickname
     }
 }
 

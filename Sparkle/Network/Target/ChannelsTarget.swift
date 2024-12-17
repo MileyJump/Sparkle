@@ -12,41 +12,41 @@ extension ChannelAPI: BaseTarget {
     
     var path: String {
         switch self {
-        case .myChannelCheck(_, let workspaceID):
-            return "/v1/workspaces/\(workspaceID)/my-channels"
+        case .myChannelCheck(let parameter):
+            return "workspaces/\(parameter.workspaceID)/my-channels"
             
         case .channelListCheck(_, let workspaceID):
-            return "/v1/workspaces/\(workspaceID)/channels"
+            return "workspaces/\(workspaceID)/channels"
             
         case .createChannel(_, _, let workspaceID):
-            return "/v1/workspaces/\(workspaceID)/channels"
+            return "workspaces/\(workspaceID)/channels"
             
-        case .specificChannelCheck(_, let workspaceID, let channelID):
-            return "/v1/workspaces/\(workspaceID)/channels/\(channelID)"
+        case .specificChannelCheck(let parameter):
+            return "workspaces/\(parameter.workspaceID)/channels/\(parameter.channelID)"
             
         case .channelsEdit(_, _, let workspaceID, let channelID):
-            return "/v1/workspaces/\(workspaceID)/channels/\(channelID)"
+            return "workspaces/\(workspaceID)/channels/\(channelID)"
             
         case .channelsDelete(_, let workspaceID, let channelID):
-            return "/v1/workspaces/\(workspaceID)/channels/\(channelID)"
+            return "workspaces/\(workspaceID)/channels/\(channelID)"
             
         case .channelChatHistoryList(_, let workspaceID, let channelID):
-            return "/v1/workspaces/\(workspaceID)/channels/\(channelID)/chats"
+            return "workspaces/\(workspaceID)/channels/\(channelID)/chats"
             
-        case .sendChannelChat(_, _, let workspaceID, let channelID):
-            return "/v1/workspaces/\(workspaceID)/channels/\(channelID)/chats"
+        case .sendChannelChat(_, let parameters):
+            return "workspaces/\(parameters.workspaceID)/channels/\(parameters.channelID)/chats"
             
         case .numberOfUnreadChannelChats(_, let workspaceID, let channelID):
-            return "/v1/workspaces/\(workspaceID)/channels/\(channelID)/unreads"
+            return "workspaces/\(workspaceID)/channels/\(channelID)/unreads"
             
-        case .channelMembersCheck(_, let workspaceID, let channelID):
-            return "/v1/workspaces/\(workspaceID)/channels/\(channelID)/members"
+        case .channelMembersCheck(let parameters):
+            return "workspaces/\(parameters.workspaceID)/channels/\(parameters.channelID)/members"
             
         case .changeChannelManager(_, _, let workspaceID, let channelID):
-            return "/v1/workspaces/\(workspaceID)/channels/\(channelID)/transfer/ownership"
+            return "workspaces/\(workspaceID)/channels/\(channelID)/transfer/ownership"
             
         case .leaveChannel(_, let workspaceID, let channelID):
-            return "/v1/workspaces/\(workspaceID)/channels/\(channelID)/exit"
+            return "workspaces/\(workspaceID)/channels/\(channelID)/exit"
         }
     }
     
@@ -69,8 +69,9 @@ extension ChannelAPI: BaseTarget {
     
     var task: Task {
         switch self {
-        case .myChannelCheck(let parameters, _):
-            return .requestParameters(parameters: try! parameters.toDictionary(), encoding: URLEncoding.default)
+        case .myChannelCheck(_):
+            return .requestPlain
+//            return .requestParameters(parameters: try! parameters.toDictionary(), encoding: URLEncoding.default)
             
         case .channelListCheck(let parameters, _):
             return .requestParameters(parameters: try! parameters.toDictionary(), encoding: URLEncoding.default)
@@ -82,7 +83,7 @@ extension ChannelAPI: BaseTarget {
                 urlParameters: try! parameters.toDictionary()
             )
             
-        case .specificChannelCheck(let parameters, _, _):
+        case .specificChannelCheck(let parameters):
             return .requestParameters(parameters: try! parameters.toDictionary(), encoding: URLEncoding.default)
             
         case .channelsEdit(let query, let parameters, _, _):
@@ -98,7 +99,7 @@ extension ChannelAPI: BaseTarget {
         case .channelChatHistoryList(let parameters, _, _):
             return .requestParameters(parameters: try! parameters.toDictionary(), encoding: URLEncoding.default)
             
-        case .sendChannelChat(let query, let parameters, _, _):
+        case .sendChannelChat(let query, let parameters):
             return .requestCompositeParameters(
                 bodyParameters: try! query.toDictionary(),
                 bodyEncoding: JSONEncoding.default,
@@ -108,7 +109,7 @@ extension ChannelAPI: BaseTarget {
         case .numberOfUnreadChannelChats(let parameters, _, _):
             return .requestParameters(parameters: try! parameters.toDictionary(), encoding: URLEncoding.default)
             
-        case .channelMembersCheck(let parameters, _, _):
+        case .channelMembersCheck(let parameters):
             return .requestParameters(parameters: try! parameters.toDictionary(), encoding: URLEncoding.default)
             
         case .changeChannelManager(let query, let parameters, _, _):
