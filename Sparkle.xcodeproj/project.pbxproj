@@ -78,6 +78,11 @@
 		B07AC2E82D0F0D11005198CB /* ChannelSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2E72D0F0D11005198CB /* ChannelSearchViewController.swift */; };
 		B07AC2EB2D0FF9C9005198CB /* WorkspaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2EA2D0FF9C9005198CB /* WorkspaceListView.swift */; };
 		B07AC2ED2D0FF9D2005198CB /* WorkspaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2EC2D0FF9D2005198CB /* WorkspaceListViewController.swift */; };
+		B07AC2EF2D0FFB30005198CB /* WorkspaceListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2EE2D0FFB30005198CB /* WorkspaceListTableViewCell.swift */; };
+		B07AC2F12D0FFE7B005198CB /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2F02D0FFE7B005198CB /* AddButton.swift */; };
+		B07AC2F32D1006EE005198CB /* WorkspaceListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2F22D1006EE005198CB /* WorkspaceListViewReactor.swift */; };
+		B07AC2F52D107074005198CB /* WorkspaceTableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC2F42D107074005198CB /* WorkspaceTableRepository.swift */; };
+		B07AC2F82D1171FF005198CB /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = B07AC2F72D1171FF005198CB /* RxGesture */; };
 		B0878D872CCD11A70013B989 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0878D862CCD11A70013B989 /* Assets.xcassets */; };
 		B0878D8A2CCD11A70013B989 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B0878D892CCD11A70013B989 /* Base */; };
 		B0878DC82CD2550F0013B989 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0878DC72CD2550F0013B989 /* MainTabBarViewController.swift */; };
@@ -168,6 +173,10 @@
 		B07AC2E72D0F0D11005198CB /* ChannelSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSearchViewController.swift; sourceTree = "<group>"; };
 		B07AC2EA2D0FF9C9005198CB /* WorkspaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListView.swift; sourceTree = "<group>"; };
 		B07AC2EC2D0FF9D2005198CB /* WorkspaceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListViewController.swift; sourceTree = "<group>"; };
+		B07AC2EE2D0FFB30005198CB /* WorkspaceListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListTableViewCell.swift; sourceTree = "<group>"; };
+		B07AC2F02D0FFE7B005198CB /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		B07AC2F22D1006EE005198CB /* WorkspaceListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListViewReactor.swift; sourceTree = "<group>"; };
+		B07AC2F42D107074005198CB /* WorkspaceTableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceTableRepository.swift; sourceTree = "<group>"; };
 		B0878D7A2CCD11A50013B989 /* Sparkle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sparkle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0878D862CCD11A70013B989 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0878D892CCD11A70013B989 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -210,6 +219,7 @@
 				B05206672CF07D2F00FBE1F7 /* RxSwift in Frameworks */,
 				B05206652CF07D2F00FBE1F7 /* RxCocoa in Frameworks */,
 				B07AC2DD2D0598B4005198CB /* RealmSwift in Frameworks */,
+				B07AC2F82D1171FF005198CB /* RxGesture in Frameworks */,
 				B0A4F5EA2CEB079100788119 /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +259,7 @@
 				B0746CBD2CD4FC8000AC892C /* CustomToastView.swift */,
 				B0F1E0D22CDB6910005E38E7 /* UserTableViewCell.swift */,
 				B05206A22CF3056200FBE1F7 /* ChannelsTableViewCell.swift */,
+				B07AC2F02D0FFE7B005198CB /* AddButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -382,6 +393,7 @@
 				B066FFB22CEB293E002D487E /* UserDefaultsManager.swift */,
 				B07AC2D42D046FDB005198CB /* ChattingTable.swift */,
 				B07AC2D62D04783E005198CB /* ChattingTableRepository.swift */,
+				B07AC2F42D107074005198CB /* WorkspaceTableRepository.swift */,
 			);
 			path = DtaBase;
 			sourceTree = "<group>";
@@ -407,7 +419,9 @@
 			isa = PBXGroup;
 			children = (
 				B07AC2EA2D0FF9C9005198CB /* WorkspaceListView.swift */,
+				B07AC2EE2D0FFB30005198CB /* WorkspaceListTableViewCell.swift */,
 				B07AC2EC2D0FF9D2005198CB /* WorkspaceListViewController.swift */,
+				B07AC2F22D1006EE005198CB /* WorkspaceListViewReactor.swift */,
 			);
 			path = "WorkspaceList ";
 			sourceTree = "<group>";
@@ -617,6 +631,7 @@
 				B05206722CF07D5700FBE1F7 /* ReactorKit */,
 				B07AC2DC2D0598B4005198CB /* RealmSwift */,
 				B07AC2DF2D0AE0B8005198CB /* SocketIO */,
+				B07AC2F72D1171FF005198CB /* RxGesture */,
 			);
 			productName = Sparkle;
 			productReference = B0878D7A2CCD11A50013B989 /* Sparkle.app */;
@@ -654,6 +669,7 @@
 				B05206712CF07D5700FBE1F7 /* XCRemoteSwiftPackageReference "ReactorKit" */,
 				B07AC2DB2D0598B4005198CB /* XCRemoteSwiftPackageReference "realm-swift" */,
 				B07AC2DE2D0AE0B8005198CB /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				B07AC2F62D1171FF005198CB /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = B0878D7B2CCD11A50013B989 /* Products */;
 			projectDirPath = "";
@@ -720,6 +736,7 @@
 				B05206962CF0A65800FBE1F7 /* CustomNavigationBar.swift in Sources */,
 				B0878DD02CD25C880013B989 /* SettingViewController.swift in Sources */,
 				B017BC232CF3565100176F28 /* EmailViewController.swift in Sources */,
+				B07AC2EF2D0FFB30005198CB /* WorkspaceListTableViewCell.swift in Sources */,
 				B0A4F5EE2CEB0DFC00788119 /* UserTarget.swift in Sources */,
 				B066FFCC2CEDC0A4002D487E /* DMSAPI.swift in Sources */,
 				B0746CBA2CD3AD4E00AC892C /* Color +.swift in Sources */,
@@ -730,6 +747,8 @@
 				B0D79C7B2CE8DF48002D8449 /* ChannelAPI.swift in Sources */,
 				B066FFDE2CEDFF55002D487E /* WorkspaceNetworkManager.swift in Sources */,
 				B07AC2E62D0F0D0A005198CB /* ChannelSearchView.swift in Sources */,
+				B07AC2F52D107074005198CB /* WorkspaceTableRepository.swift in Sources */,
+				B07AC2F32D1006EE005198CB /* WorkspaceListViewReactor.swift in Sources */,
 				B02A08762CDF200D007489EE /* HomeEmptyView.swift in Sources */,
 				B02A087E2CE1F486007489EE /* CreateWorkspaceViewReactor.swift in Sources */,
 				B05206A32CF3056200FBE1F7 /* ChannelsTableViewCell.swift in Sources */,
@@ -744,6 +763,7 @@
 				B02A08842CE21D9F007489EE /* HomeInitialViewReactor.swift in Sources */,
 				B05206992CF0A68300FBE1F7 /* ChannelsButton.swift in Sources */,
 				B066FFE02CEE0B7C002D487E /* ChannelsNetworkManager.swift in Sources */,
+				B07AC2F12D0FFE7B005198CB /* AddButton.swift in Sources */,
 				B066FFD62CEDCD8B002D487E /* UserResponse.swift in Sources */,
 				B066FFE22CEF5CB1002D487E /* DMSNetworkManager.swift in Sources */,
 				B0878DDA2CD36E3B0013B989 /* BaseViewController.swift in Sources */,
@@ -1036,6 +1056,14 @@
 				kind = branch;
 			};
 		};
+		B07AC2F62D1171FF005198CB /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1078,6 +1106,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B07AC2DE2D0AE0B8005198CB /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
 			productName = SocketIO;
+		};
+		B07AC2F72D1171FF005198CB /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B07AC2F62D1171FF005198CB /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
 		};
 		B0A4F5E62CEB077E00788119 /* ReactorKit */ = {
 			isa = XCSwiftPackageProductDependency;

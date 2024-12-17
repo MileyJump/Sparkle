@@ -53,9 +53,10 @@ extension ChannelChattingViewController: View {
     
     private func bindAction(_ reactor: ChatReactor) {
         
-        if let channelId , let workspaceId {
-            
-            reactor.action.onNext(.fetchInitialChats(id: ChannelParameter(channelID: channelId, worskspaceID: workspaceId)))
+        if let channelId {
+            if let workspaceId = reactor.workspaceIDrepository.fetchWorksaceID() {
+                reactor.action.onNext(.fetchInitialChats(id: ChannelParameter(channelID: channelId, worskspaceID: workspaceId)))
+            }
         }
         
         rootView.sendButton.rx.tap

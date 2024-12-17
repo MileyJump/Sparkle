@@ -86,6 +86,7 @@ class ChatReactor: Reactor {
     private var disposeBag = DisposeBag()
     
     private let repository = ChattingTableRepository()
+    let workspaceIDrepository = WorkspaceTableRepository()
     private var socketManager: SocketIOManager?
     
     private func startSocketConnection(channelId: String, observer: AnyObserver<Mutation>) {

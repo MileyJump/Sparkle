@@ -39,16 +39,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "67CA7053-A11B-4C18-B24F-CB3D365CCDE2"
+            uuid = "B92BFD29-E6C0-475C-841E-E5BCAF46C410"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Sparkle/SokeyManager/SoketManager.swift"
+            filePath = "Sparkle/Presentation/WorkSpace/Home/ViewController/HomeDefaultViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "disconnect()"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "bindState(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

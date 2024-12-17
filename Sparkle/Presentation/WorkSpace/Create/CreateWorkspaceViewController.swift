@@ -101,16 +101,16 @@ final class CreateWorkspaceViewController: BaseViewController<CreateWorkspaceVie
             WorkspaceNetworkManager.shared.createWorkspace(query: CreateWorkspaceQuery(name: name, description: description, image: imageData))
                 .subscribe(with: self) { owner, response in
                     print("성공!! ===== \(response)")
-                    owner.HomeDefaultView(workspaceID: response.workspace_id)
+                    owner.HomeDefaultView()
                 } onFailure: { owner, error in
-//                    print("에러입니다!!!! \(error)")
-                    owner.HomeDefaultView(workspaceID: "f05a5591-faab-4452-91e3-1fd8a0159a40")
+                    print("에러입니다!!!! \(error)")
                 }
                 .disposed(by: disposeBag)
     }
     
-    private func HomeDefaultView(workspaceID: String) {
-        navigationController?.changeRootViewController(HomeDefaultViewController(workspaceId: workspaceID))
+    private func HomeDefaultView() {
+        let vc = HomeDefaultViewController()
+        navigationController?.changeRootViewController(vc)
     }
 }
 

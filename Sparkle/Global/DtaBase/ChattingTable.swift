@@ -48,3 +48,13 @@ class UserTable: Object {
     }
 }
 
+
+class WorkspaceIDTable: Object {
+    
+    @Persisted var workspaceID: String
+    
+    convenience init(workspaceID: String) {
+        self.init()
+        self.workspaceID = workspaceID
+    }
+}
