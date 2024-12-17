@@ -34,6 +34,7 @@ class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.reactor = ChatReactor()
+        setupNavigationBarButton()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -41,6 +42,24 @@ class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
         if let channelId {
             self.reactor?.action.onNext(.disconnectSocket(channelId: channelId))
         }
+    }
+    
+     func setupNavigationBarButton() {
+        super.setupNavigationBar()
+        
+        let setting = UIBarButtonItem(image: UIImage(systemName: "list.bullet"), style: .plain, target: nil, action: nil)
+        
+        
+        navigationItem.rightBarButtonItem = setting
+        
+        setting.rx.tap
+            .compactMap { [weak self] in self?.reactor }
+            .map { _ in ChatReactor.Action.settingButtonTapped }
+            .bind(with: self) { owner, action in
+                owner.reactor?.action.onNext(action)
+            }
+            .disposed(by: disposeBag)
+        
     }
 }
 
@@ -55,7 +74,7 @@ extension ChannelChattingViewController: View {
         
         if let channelId {
             if let workspaceId = reactor.workspaceIDrepository.fetchWorksaceID() {
-                reactor.action.onNext(.fetchInitialChats(id: ChannelParameter(channelID: channelId, worskspaceID: workspaceId)))
+                reactor.action.onNext(.fetchInitialChats(id: ChannelParameter(channelID: channelId, workspaceID: workspaceId)))
             }
         }
         
@@ -64,15 +83,21 @@ extension ChannelChattingViewController: View {
             .map { [weak self ] message in
                 let channelId = self?.channelId ?? ""
                 let workspaceId = self?.workspaceId ?? ""
-                return ChatReactor.Action.sendMessage(id: ChannelParameter(channelID: channelId, worskspaceID: workspaceId), message: message)
+                return ChatReactor.Action.sendMessage(id: ChannelParameter(channelID: channelId, workspaceID: workspaceId), message: message)
             }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-        
-        
     }
     
     private func bindState(_ reactor: ChatReactor) {
+        
+        reactor.state
+            .map { $0.channelName }
+            .distinctUntilChanged()
+            .bind(with: self) { owner, channelName in
+                owner.navigationItem.title = channelName
+            }
+            .disposed(by: disposeBag)
         
         reactor.state
             .map { $0.clearInput }
@@ -91,7 +116,17 @@ extension ChannelChattingViewController: View {
             }
             .disposed(by: disposeBag)
         
-
+        reactor.state
+            .map { $0.setIsSettingNavigationBarEnabled }
+            .distinctUntilChanged()
+            .filter { $0 }
+            .bind(with: self) { owner, _ in
+                if let channelId = owner.channelId, let workspaceId = owner.workspaceId {
+                    let settingsVC = ChannelSettingViewController(channelId: channelId, workspaceId: workspaceId)
+                    owner.navigationController?.pushViewController(settingsVC, animated: true)
+                }
+            }
+            .disposed(by: disposeBag)
     }
 
 }

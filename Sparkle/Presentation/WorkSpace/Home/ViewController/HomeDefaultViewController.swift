@@ -84,7 +84,7 @@ extension HomeDefaultViewController: View {
                 }
                 print("⚠️ \(workspaceID)⚠️ ")
                 return HomeDefaultViewReactor.Action.channelSelected(
-                    id: ChannelParameter(channelID: channel.channel_id, worskspaceID: workspaceID)
+                    id: ChannelParameter(channelID: channel.channel_id, workspaceID: workspaceID)
                 )
             }
             .bind(to: reactor.action)
@@ -150,18 +150,18 @@ extension HomeDefaultViewController: View {
             }
             .disposed(by: disposeBag)
         
-//        reactor.state
-//            .map { $0.seletedChannel }
-//            .distinctUntilChanged { old, new in
-//                old?.channelID == new?.channelID
-//            }
-//            .compactMap{ $0 }
-//            .bind(with: self) { owner, channel in
-//                print("⭐️⭐️⭐️⭐️⭐️⭐️⭐️\(channel)")
-//                let vc = ChannelChattingViewController(channelId: channel.channelID, workspaceId: owner.workspaceId)
-//                owner.navigationController?.pushViewController(vc, animated: true)
-//            }
-//            .disposed(by: disposeBag)
+        reactor.state
+            .map { $0.seletedChannel }
+            .distinctUntilChanged { old, new in
+                old?.channelID == new?.channelID
+            }
+            .compactMap{ $0 }
+            .bind(with: self) { owner, channel in
+                print("⭐️⭐️⭐️⭐️⭐️⭐️⭐️\(channel)")
+                let vc = ChannelChattingViewController(channelId: channel.channelID, workspaceId: channel.workspaceID)
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 }
 

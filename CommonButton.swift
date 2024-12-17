@@ -9,7 +9,7 @@ import UIKit
 
 final class CommonButton: UIButton {
     
-    init(image: UIImage?, title: String, backgroundColor: UIColor, tintColor: UIColor, font: UIFont) {
+    init(image: UIImage? = nil, title: String, backgroundColor: UIColor, tintColor: UIColor, font: UIFont, borderColor: CGColor? = nil) {
         super.init(frame: .zero)
         
         var config = UIButton.Configuration.filled()
@@ -33,6 +33,8 @@ final class CommonButton: UIButton {
         self.configuration = config
         
         self.layer.cornerRadius = 8
+        self.layer.borderColor = borderColor
+        self.layer.borderWidth = 1
         self.clipsToBounds = true
     }
     
