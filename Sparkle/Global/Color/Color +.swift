@@ -28,6 +28,8 @@ extension UIColor {
     // View
     static let sparkleViewSeperatorColor = UIColor(hexCode: "ECECEC")
     static let sparkleViewAlphaColor = UIColor(hexCode: "000000").withAlphaComponent(0.5)
+    
+    static let sparkleKakaOColor = UIColor(hexCode: "FEE500")
 }
 
 
