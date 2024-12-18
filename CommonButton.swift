@@ -9,7 +9,7 @@ import UIKit
 
 final class CommonButton: UIButton {
     
-    init(image: UIImage? = nil, title: String, backgroundColor: UIColor, tintColor: UIColor, font: UIFont, borderColor: CGColor? = nil) {
+    init(image: UIImage? = nil, title: String, backgroundColor: UIColor, tintColor: UIColor, font: UIFont, borderColor: CGColor? = UIColor.clear.cgColor) {
         super.init(frame: .zero)
         
         var config = UIButton.Configuration.filled()
