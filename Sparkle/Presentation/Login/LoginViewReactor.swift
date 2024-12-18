@@ -13,12 +13,16 @@ import RealmSwift
 import KakaoSDKAuth
 import KakaoSDKUser
 
+import AuthenticationServices
+
 class LoginViewReactor: Reactor {
     
     enum Action {
         case kakaoLoginButtonTapped
         case appleLoginButtonTapped
         case emailLoginButtonTapped
+        case appleLoginSuccess(String) // Apple 로그인 성공 처리
+        case appleLoginFailure(String)
     }
     
     enum Mutation {
@@ -38,16 +42,25 @@ class LoginViewReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
+        
+        case .appleLoginButtonTapped:
+            return Observable.just(.setLoading(true))
+
+        case .appleLoginSuccess:
+            return Observable.just(.setLoginSuccess(true))
+            
+        case .appleLoginFailure(let errorMessage):
+            return Observable.just(.setErrorMessage(errorMessage))
+            
+        case .emailLoginButtonTapped:
+            return Observable.just(.setLoading(true))
+            
         case .kakaoLoginButtonTapped:
             return Observable.concat([
                 Observable.just(.setLoading(true)),
                 kakaoLogin(),
                 Observable.just(.setLoading(false))
             ])
-        case .appleLoginButtonTapped:
-            return Observable.just(.setLoading(true))
-        case .emailLoginButtonTapped:
-            return Observable.just(.setLoading(true))
         }
     }
     
@@ -101,97 +114,42 @@ class LoginViewReactor: Reactor {
     
     
     
-    private func kakaoLoginWithApp() {
-        
-        UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
-            if let error = error {
-                print("KakaoTalk login error: \(error)")
-            }
-            else {
-                print("loginWithKakaoTalk() success.")
-                
-                //do something
-                _ = oauthToken
-            }
-        }
-    }
     
-    func kakaoLoginWithAccount() {
-        
-        UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
-            if let error = error {
-                print(error)
-            }
-            else {
-                print("loginWithKakaoAccount() success.")
-                
-                //do something
-                _ = oauthToken
-            }
-        }
-    }
-    
-    //    func KakaoLogin() {
-    //        // 카카오톡 실행 가능 여부 확인
-    //        if (UserApi.isKakaoTalkLoginAvailable()) {
-    //            // 카카오톡 앱으로 로그인 인증
-    //            kakaoLoginWithApp()
-    //        } else { // 카톡이 설치가 안 되어 있을 때
-    //            // 카카오 계정으로 로그인
-    //            kakaoLoginWithAccount()
-    //        }
-    //    }
-    
-    //    private func kakaoLogin() -> Observable<Bool> {
-    //        return Observable<Bool>.create { observer in
-    //            if UserApi.isKakaoTalkLoginAvailable() {
-    //                UserApi.shared.loginWithKakaoTalk { (oauthToken, error) in
-    //                    if let error = error {
-    //                        print(error)
-    //                        observer.onNext(false)
-    //                    } else {
-    //                        observer.onNext(true)
-    //                    }
-    ////                        else {
-    ////                        self?.setUserInfo()
-    ////                    }
-    //                    observer.onCompleted()
-    //                }
-    //            } else {
-    //                UserApi.shared.loginWithKakaoAccount { (oauthToken, error) in
-    //                    if let error = error {
-    //                        print(error)
-    //                        observer.onNext(false)
-    //                    } else {
-    //                        observer.onNext(true)
-    ////                        self?.setUserInfo()
-    //                    }
-    //                    observer.onCompleted()
-    //                }
-    //            }
-    //            return Disposables.create()
-    //        }
-    //    }
-    
-    //    private func setUserInfo() {
-    //        UserApi.shared.me { [weak self] (user, error) in
-    //            if let error = error {
-    //                print(error)
-    //            } else {
-    //                guard let self = self else { return }
-    //                guard let userId = user?.id else {return}
-    //                guard let email = user?.kakaoAccount?.email else { return }
-    //                guard let profileImage = user?.kakaoAccount?.profile?.profileImageUrl else { return }
-    //                guard let nickname = user?.kakaoAccount?.profile?.nickname else { return }
-    //
-    //                print(email)
-    //                print(profileImage)
-    //                print(nickname)
-    //            }
-    //
-    //        }
-    //
-    //
-    //    }
-    //}
+//    private func appleLogin() {
+//        let provider = ASAuthorizationAppleIDProvider()
+//        let request = provider.createRequest()
+//        
+//        request.requestedScopes = [.fullName, .email]
+//        
+//        let controller = ASAuthorizationController(authorizationRequests: [request])
+//        
+//        controller.delegate = self
+//        
+//        controller.presentationContextProvider = self
+//        
+//        controller.performRequests()
+//    }
 }
+
+//extension LoginViewReactor: ASAuthorizationControllerDelegate {
+//    func authorizationController(
+//            controller: ASAuthorizationController,
+//            didCompleteWithAuthorization authorization: ASAuthorization
+//        ) {
+//            guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else {
+//                return
+//            }
+//            
+//            print(credential.user)
+//            
+//            // 로그인 성공 처리
+//            // Reactor에 상태 업데이트를 위한 Action 호출
+//            self.action.onNext(.appleLoginSuccess(credential.user))
+//        }
+//
+//    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+//        // 로그인 실패 처리
+//        // Reactor에 상태 업데이트를 위한 Action 호출
+//        self.action.onNext(.appleLoginFailure(error.localizedDescription))
+//    }
+//}
