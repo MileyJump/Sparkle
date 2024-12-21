@@ -42,10 +42,10 @@ class LoginViewReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        
+            
         case .appleLoginButtonTapped:
             return Observable.just(.setLoading(true))
-
+            
         case .appleLoginSuccess:
             return Observable.just(.setLoginSuccess(true))
             
@@ -111,45 +111,4 @@ class LoginViewReactor: Reactor {
         }
     }
     
-    
-    
-    
-    
-//    private func appleLogin() {
-//        let provider = ASAuthorizationAppleIDProvider()
-//        let request = provider.createRequest()
-//        
-//        request.requestedScopes = [.fullName, .email]
-//        
-//        let controller = ASAuthorizationController(authorizationRequests: [request])
-//        
-//        controller.delegate = self
-//        
-//        controller.presentationContextProvider = self
-//        
-//        controller.performRequests()
-//    }
 }
-
-//extension LoginViewReactor: ASAuthorizationControllerDelegate {
-//    func authorizationController(
-//            controller: ASAuthorizationController,
-//            didCompleteWithAuthorization authorization: ASAuthorization
-//        ) {
-//            guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else {
-//                return
-//            }
-//            
-//            print(credential.user)
-//            
-//            // 로그인 성공 처리
-//            // Reactor에 상태 업데이트를 위한 Action 호출
-//            self.action.onNext(.appleLoginSuccess(credential.user))
-//        }
-//
-//    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-//        // 로그인 실패 처리
-//        // Reactor에 상태 업데이트를 위한 Action 호출
-//        self.action.onNext(.appleLoginFailure(error.localizedDescription))
-//    }
-//}

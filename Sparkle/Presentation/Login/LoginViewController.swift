@@ -16,7 +16,6 @@ final class LoginViewController: BaseViewController<LoginView> {
         super.viewDidLoad()
         self.reactor = LoginViewReactor()
     }
-    
 }
 
 

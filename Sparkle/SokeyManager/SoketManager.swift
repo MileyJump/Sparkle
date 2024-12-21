@@ -22,8 +22,7 @@ final class SocketIOManager {
         manager = SocketManager(socketURL: socketURL, config: [.log(true), .compress])
         socket = manager.socket(forNamespace: "/ws-channel-\(channelId)")
     }
-    
-//    
+      
 //    func connect(channelId: String) -> Completable {
 //        return Completable.create { [weak self] completable in
 //            guard let self = self else {
