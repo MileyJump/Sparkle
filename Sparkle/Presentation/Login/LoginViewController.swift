@@ -16,6 +16,11 @@ final class LoginViewController: BaseViewController<LoginView> {
         super.viewDidLoad()
         self.reactor = LoginViewReactor()
     }
+    
+    private func emailLoginVC() {
+        print(#function)
+        navigationController?.pushViewController(EmailLoginViewController(), animated: true)
+    }
 }
 
 
@@ -39,6 +44,11 @@ extension LoginViewController: View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        rootView.emailLoginButton.rx.tap
+            .map { LoginViewReactor.Action.emailLoginButtonTapped }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
     }
     
     private func bindState(_ reactor: LoginViewReactor) {
@@ -50,6 +60,14 @@ extension LoginViewController: View {
             }
             .disposed(by: disposeBag)
        
+        reactor.state
+            .map { $0.isEamilLogin }
+            .distinctUntilChanged()
+            .bind(with: self) { owner, login in
+                owner.emailLoginVC()
+            }
+            .disposed(by: disposeBag)
+        
     }
     
 }

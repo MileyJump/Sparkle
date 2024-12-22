@@ -29,6 +29,7 @@ class LoginViewReactor: Reactor {
         case setLoading(Bool)
         case setLoginSuccess(Bool)
         case setErrorMessage(String?)
+        case setEmailLogin(Bool)
         
     }
     
@@ -36,6 +37,7 @@ class LoginViewReactor: Reactor {
         var isLoading: Bool = false
         var isLoginSuccess: Bool = false
         var errorMessage: String? = nil
+        var isEamilLogin: Bool = false
     }
     
     let initialState = State()
@@ -53,7 +55,13 @@ class LoginViewReactor: Reactor {
             return Observable.just(.setErrorMessage(errorMessage))
             
         case .emailLoginButtonTapped:
-            return Observable.just(.setLoading(true))
+            return Observable.concat([
+                Observable.just(.setEmailLogin(true)),
+                Observable.just(.setEmailLogin(false))
+            ])
+            
+            
+            
             
         case .kakaoLoginButtonTapped:
             return Observable.concat([
@@ -73,6 +81,8 @@ class LoginViewReactor: Reactor {
             newState.isLoginSuccess = isSuccess
         case .setErrorMessage(let message):
             newState.errorMessage = message
+        case .setEmailLogin(let login):
+            newState.isEamilLogin = login
         }
         return newState
     }
