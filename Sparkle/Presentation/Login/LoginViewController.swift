@@ -63,8 +63,11 @@ extension LoginViewController: View {
         reactor.state
             .map { $0.isEamilLogin }
             .distinctUntilChanged()
-            .bind(with: self) { owner, login in
-                owner.emailLoginVC()
+            .bind(with: self) { owner, isPresented in
+                if isPresented {
+                    let loginViewController = EmailLoginViewController()
+                    owner.present(loginViewController, animated: true, completion: nil)
+                }
             }
             .disposed(by: disposeBag)
         
