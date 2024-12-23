@@ -19,6 +19,7 @@ final class EmailLoginViewController: BaseViewController<EmailLoginView>, View {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.reactor = EmailLoginViewReactor()
+        print(#function)
 //        bind(reactor: reactor)
     }
     
