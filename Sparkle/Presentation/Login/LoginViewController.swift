@@ -23,13 +23,11 @@ final class LoginViewController: BaseViewController<LoginView> {
     }
 }
 
-
 extension LoginViewController: View {
     
     func bind(reactor: LoginViewReactor) {
         bindAction(reactor)
         bindState(reactor)
-       
     }
     
     private func bindAction(_ reactor: LoginViewReactor) {
@@ -70,9 +68,7 @@ extension LoginViewController: View {
                 }
             }
             .disposed(by: disposeBag)
-        
     }
-    
 }
 
 extension LoginViewController: ASAuthorizationControllerDelegate {
