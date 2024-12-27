@@ -39,17 +39,27 @@ extension OnboardingViewController: View {
     }
     
     private func bindState(_ reactor: OnboardingViewReactor) {
-        
         reactor.state
             .map { $0.isLoginViewControllerPresented }
             .distinctUntilChanged()
             .bind(with: self) { owner, isPresented in
                 if isPresented {
                     let loginViewController = LoginViewController()
+                    
+                    if let sheet = loginViewController.sheetPresentationController {
+                        sheet.detents = [
+                            .custom(resolver: { context in
+                                return 250
+                            }),
+                            .large()
+                        ]
+                        sheet.prefersGrabberVisible = true
+                        sheet.preferredCornerRadius = 20
+                    }
+                    
                     owner.present(loginViewController, animated: true, completion: nil)
                 }
             }
             .disposed(by: disposeBag)
     }
-    
 }
