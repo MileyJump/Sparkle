@@ -47,7 +47,7 @@ final class ChannelsTableViewCell: BaseTableViewCell {
     override func setupUI() {
         hashIconLabel.text = "#"
         channelNameLabel.text = "오픈라운지"
-        channelNameLabel.backgroundColor = .red
+//        channelNameLabel.backgroundColor = .red
     }
     
     func bind(channel: ChannelResponse) {

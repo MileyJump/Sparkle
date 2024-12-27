@@ -16,7 +16,7 @@ final class ChannelChattingView: BaseView {
         $0.register(ChannelChattingCell.self, forCellReuseIdentifier: ChannelChattingCell.identifier)
         $0.separatorStyle = .none
         $0.allowsSelection = false
-        $0.backgroundColor = .blue
+     
     }
     
     let messageBackgourndView = UIView().then {

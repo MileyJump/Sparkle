@@ -37,11 +37,18 @@ class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
         setupNavigationBarButton()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+           super.viewWillAppear(animated)
+           // 탭 바 숨기기
+           self.tabBarController?.tabBar.isHidden = true
+       }
+    
     override func viewWillDisappear(_ animated: Bool) {
         print("=====deinit")
         if let channelId {
             self.reactor?.action.onNext(.disconnectSocket(channelId: channelId))
         }
+        self.tabBarController?.tabBar.isHidden = false
     }
     
      func setupNavigationBarButton() {
