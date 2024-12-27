@@ -53,7 +53,8 @@ class ChannelSettingCollectionViewCell: BaseCollectionViewCell {
     }
     
     func bind(_ member: UserMemberResponse) {
-        
+        print("!!!쟂\(member)")
+        profileImageView.image = UIImage(named: "Profile1")
         nameLabel.text = member.nickname
     }
 }

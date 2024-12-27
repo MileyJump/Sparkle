@@ -42,9 +42,10 @@ class ChatReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .fetchInitialChats(let id):
+            print("idggg: \(id)")
             let initialChats = fetchChatFromRealm(channelId: id.channelID)
-            
-            let channelName = initialChats.first?.channelName ?? "No Channel Name"
+            print("initialChats: \(initialChats)")
+            let channelName = initialChats.first?.channelName ?? "개발자 동기 수다방"
             
             return Observable.concat([
                 Observable.just(.setChannelName(channelName)),

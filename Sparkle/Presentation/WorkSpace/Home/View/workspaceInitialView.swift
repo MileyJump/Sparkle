@@ -17,7 +17,7 @@ class workspaceInitialView: BaseView {
     }
     
     private let workspaceReadyMessageLabel = UILabel().then {
-        $0.text = "옹골찬 고래밥님의 조직을 위해 새로운 새싹톡 워크스페이스를 시작할 준비가 완료되었어요!"
+        $0.text = "새싹님의 조직을 위해 새로운 워크스페이스를 시작할 준비가 완료되었어요!"
         $0.textColor = UIColor.sparkleTextPrimaryColor
         $0.font = UIFont.systemFont(ofSize: 13)
         $0.textAlignment = .center

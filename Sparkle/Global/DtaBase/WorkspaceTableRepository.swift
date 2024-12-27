@@ -33,6 +33,18 @@ class WorkspaceTableRepository {
         }
     }
     
+    func deleteAllWorkspaceIDs() {
+        do {
+            let allWorkspaces = realm.objects(WorkspaceIDTable.self)
+            try realm.write {
+                realm.delete(allWorkspaces)  // 모든 WorkspaceIDTable 객체 삭제
+            }
+            print("All Workspace IDs deleted successfully.")
+        } catch {
+            print("Error deleting all Workspace IDs: \(error)")
+        }
+    }
+    
     func createWorkspaceID(id: WorkspaceIDTable) {
         do {
             try realm.write {

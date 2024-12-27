@@ -17,6 +17,7 @@ final class CreateWorkspaceViewReactor: Reactor {
         case comfirmButton
         case backButton
         case selectImage(UIImage)
+        case updateWorkspaceName(String)
     }
     
     enum Mutation {
@@ -24,6 +25,8 @@ final class CreateWorkspaceViewReactor: Reactor {
         case setBackButtonTapped(Bool)
         case setImage(String)
         case setSelectedImage(UIImage)
+        case setProfileImageSelected(Bool)
+        case setWorkspaceNameFilled(Bool)
     }
     
     struct State {
@@ -31,6 +34,8 @@ final class CreateWorkspaceViewReactor: Reactor {
         var backButtonTappedState: Bool = false
         var selectedImageBase64: String = ""
         var selectedImage: UIImage? = nil
+        var isProfileImageSelected: Bool = false
+        var isWorkspaceNameFilled: Bool = false
     }
     
     let initialState: State
@@ -54,8 +59,11 @@ final class CreateWorkspaceViewReactor: Reactor {
             let base64String = imageData.base64EncodedString()
             return Observable.concat([
                 Observable.just(.setImage(base64String)),
-                Observable.just(.setSelectedImage(image))
+                Observable.just(.setSelectedImage(image)),
+                Observable.just(.setProfileImageSelected(true))
             ])
+        case .updateWorkspaceName(let name):
+            return Observable.just(.setWorkspaceNameFilled(!name.isEmpty))
         }
     }
    
@@ -70,6 +78,10 @@ final class CreateWorkspaceViewReactor: Reactor {
             state.selectedImageBase64 = base64String
         case .setSelectedImage(let image):
             state.selectedImage = image
+        case .setProfileImageSelected(let isSelected):  // 프로필 이미지 선택 상태 업데이트
+            state.isProfileImageSelected = isSelected
+        case .setWorkspaceNameFilled(let isFilled):    // 워크스페이스 이름 입력 상태 업데이트
+            state.isWorkspaceNameFilled = isFilled
         }
         return state
     }

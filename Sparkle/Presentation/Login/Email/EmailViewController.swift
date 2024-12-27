@@ -107,6 +107,7 @@ final class EmailLoginViewController: BaseViewController<EmailLoginView>, View {
             } else {
                 if let workspace = workspaceList.first {
                     let rootViewController = SparkleTabBarController()
+//                    let rootViewController = workspaceInitialViewController()
                     guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
                     guard let window = (windowScene.delegate as? SceneDelegate)?.window else { return }
                     if let _ = rootViewController as? UITabBarController {
@@ -118,16 +119,8 @@ final class EmailLoginViewController: BaseViewController<EmailLoginView>, View {
                     }
                     window.makeKeyAndVisible()
                     
-//                    let tabBarController = SparkleTabBarController()
-                    // OnboardingViewController에서 LoginViewController를 present
-                    
-//                    let navigationController = UINavigationController(rootViewController: tabBarController)
-//                    self.present(navigationController, animated: true, completion: nil)
-                    //                let tabBarController = SparkleTabBarController(workspaceId: workspaceId)
-//                    self.navigationController?
-//                        
-//                        .changeRootViewController(tabBarController)
-//                        .dismissAndChangeRootViewController(tabBarController)
+//                    let vc = CreateWorkspaceViewController()
+//                    navigationController?.present(vc, animated: true)
                 }
             }
         })

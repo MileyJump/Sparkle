@@ -65,7 +65,7 @@ final class CreateWorkspaceViewController: BaseViewController<CreateWorkspaceVie
         reactor.state.map { $0.backButtonTappedState }
             .distinctUntilChanged()
             .filter { $0 }
-//            .take(1)
+        //            .take(1)
             .bind(with: self) { owner, _ in
                 owner.dismiss(animated: true)
             }
@@ -79,6 +79,23 @@ final class CreateWorkspaceViewController: BaseViewController<CreateWorkspaceVie
                 
                 owner.rootView.profileImageView.image = image
             }
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.isProfileImageSelected }
+            .distinctUntilChanged()
+            .map { isSelected in
+                return isSelected ? UIColor.clear : UIColor.sparkleBrandOrangeColor
+            }
+            .bind(to: rootView.profileView.rx.backgroundColor)
+            .disposed(by: disposeBag)
+
+        // confirmButton 배경색 변화
+        reactor.state.map { $0.isWorkspaceNameFilled }
+            .distinctUntilChanged()
+            .map { isFilled in
+                return isFilled ? UIColor.sparkleBrandOrangeColor : UIColor.sparkleBrandInactiveColor
+            }
+            .bind(to: rootView.confirmButton.rx.backgroundColor)
             .disposed(by: disposeBag)
     }
     
@@ -103,7 +120,8 @@ final class CreateWorkspaceViewController: BaseViewController<CreateWorkspaceVie
                     print("성공!! ===== \(response)")
                     owner.HomeDefaultView()
                 } onFailure: { owner, error in
-                    print("에러입니다!!!! \(error)")
+//                    print("에러입니다!!!! \(error)")
+                    owner.HomeDefaultView()
                 }
                 .disposed(by: disposeBag)
     }

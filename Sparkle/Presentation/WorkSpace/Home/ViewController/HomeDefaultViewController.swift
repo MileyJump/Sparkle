@@ -64,10 +64,10 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
         
         let leftButton = UIButton(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
         leftButton.setImage(UIImage(named: "거북이"), for: .normal)
-        leftButton.backgroundColor = .clear
+        leftButton.backgroundColor = .blue
         leftButton.layer.cornerRadius = 8
         leftButton.clipsToBounds = true
-        leftButton.contentMode = .scaleToFill
+        leftButton.contentMode = .scaleAspectFit
         
         leftContainerView.addSubview(leftButton)
         let leftBarButtonItem = UIBarButtonItem(customView: leftContainerView)
@@ -99,7 +99,7 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
         rightButton.contentMode = .scaleAspectFit
         
         // 버튼 이미지 inset 설정
-        leftButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0 , bottom: 0, right: 0)
+        leftButton.imageEdgeInsets = UIEdgeInsets(top: 1, left: 1 , bottom: 1, right: 1)
         rightButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         
      
@@ -133,6 +133,7 @@ extension HomeDefaultViewController: View {
                     return nil
                 }
                 print("⚠️ \(workspaceID)⚠️ ")
+                print("⚠️ \(channel.channel_id)⚠️ ")
                 return HomeDefaultViewReactor.Action.channelSelected(
                     id: ChannelParameter(channelID: channel.channel_id, workspaceID: workspaceID)
                 )

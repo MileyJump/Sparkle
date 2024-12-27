@@ -16,6 +16,7 @@ class HomeDefaultViewReactor: Reactor {
         case fetchDMsData(workspaceID: String)
         case channelSelected(id: ChannelParameter)
         case clickWorkspaceList
+        case clickChannelSetting
     }
     
     enum Mutation {
@@ -27,6 +28,7 @@ class HomeDefaultViewReactor: Reactor {
         case setIsPushChannelEnabled(Bool)
         case setSelectedChannel(ChannelParameter)
         case setIsWorkspaceListEnabled(Bool)
+        case setChannelSEtting(Bool)
         
     }
     
@@ -39,6 +41,7 @@ class HomeDefaultViewReactor: Reactor {
         var isPushChannelEnabled: Bool = false
         var seletedChannel: ChannelParameter?
         var isWorkspaceListEnabled: Bool = false
+        var isChannelSettingEnabled: Bool = false
     }
     
     let initialState: State
@@ -58,7 +61,9 @@ class HomeDefaultViewReactor: Reactor {
                     if case let .setWorkspaceList(workspaceList) = mutation {
                         if let latestWorkspace = workspaceList.sorted(by: { $0.createdAt > $1.createdAt }).first {
                             let workspaceID = latestWorkspace.workspace_id
+                            print("아아아아아아 워크스페이스 아이디 \(workspaceID)")
                             let id = WorkspaceIDTable(workspaceID: workspaceID)
+                            repository.deleteAllWorkspaceIDs()
                             repository.createWorkspaceID(id: id)
                             print("😈😈😈😈😈😈😈😈😈😈😈😈😈Realm WorkspaceID : \(repository.fetchWorksaceID())")
                             return self.fetchChannelData(workspaceId: workspaceID)
@@ -81,6 +86,7 @@ class HomeDefaultViewReactor: Reactor {
   
         case .channelSelected(id: let id):
             if let workspaceID = repository.fetchWorksaceID() {
+                print("channelSele\(workspaceID)")
                 let updatedChannel = ChannelParameter(channelID: id.channelID, workspaceID: workspaceID)
                 return Observable.concat([
                     Observable.just(Mutation.setSelectedChannel(updatedChannel)),
@@ -95,6 +101,11 @@ class HomeDefaultViewReactor: Reactor {
             return Observable.concat([
                 Observable.just(.setIsWorkspaceListEnabled(true)),
                 Observable.just(.setIsWorkspaceListEnabled(false))
+            ])
+        case .clickChannelSetting:
+            return Observable.concat([
+                Observable.just(.setChannelSEtting(true)),
+                Observable.just(.setChannelSEtting(false))
             ])
         }
     }
@@ -118,6 +129,8 @@ class HomeDefaultViewReactor: Reactor {
             newState.seletedChannel = channel
         case .setIsWorkspaceListEnabled(let isPresent):
             newState.isWorkspaceListEnabled = isPresent
+        case .setChannelSEtting(let isPresent):
+            newState.isChannelSettingEnabled = isPresent
         }
         return newState
     }
@@ -128,6 +141,7 @@ class HomeDefaultViewReactor: Reactor {
         WorkspaceNetworkManager.shared.workspacesListCheck()
             .asObservable()
             .flatMap { list in
+                print("fltmxmsoshk \(list)::")
                 return Observable.just(Mutation.setWorkspaceList(list))
                 
             }
@@ -137,6 +151,7 @@ class HomeDefaultViewReactor: Reactor {
     }
     
     private func fetchChannelData(workspaceId: String) -> Observable<Mutation> {
+        print("fetchChannelData:\(workspaceId)")
         return ChannelsNetworkManager.shared.myChannelCheck(parameters: WorkspaceIDParameter(workspaceID: workspaceId))
             .asObservable()
             .map { Mutation.setChannelsData($0) }

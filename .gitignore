@@ -6,6 +6,7 @@ DeviceToken.swift
 # Edit at https://www.toptal.com/developers/gitignore?templates=swift
 
 .DS_Store
+*.xcconfig
 
 ### Swift ###
 # Xcode

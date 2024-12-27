@@ -34,8 +34,10 @@ final class ChannelChattingView: BaseView {
         $0.textColor = .sparkleTextSecondaryColor
         $0.backgroundColor = .sparkleBackgroundPrimaryColor
         $0.isScrollEnabled = false
-        $0.text = "메세지를 입력하세요"
+//        $0.text = "메세지를 입력하세요"
+//        $0.textColor = .lightGray
     }
+    
     
     let sendButton = UIButton(type: .system).then {
         $0.setImage(UIImage(systemName: "paperplane"), for: .normal)

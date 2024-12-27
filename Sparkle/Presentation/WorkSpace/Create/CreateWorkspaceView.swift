@@ -12,7 +12,7 @@ import SnapKit
 
 final class CreateWorkspaceView: BaseView {
     
-    private let profileView = UIView().then {
+     let profileView = UIView().then {
         $0.backgroundColor = UIColor.sparkleBrandOrangeColor
         $0.layer.cornerRadius = 8
     }
@@ -67,7 +67,7 @@ final class CreateWorkspaceView: BaseView {
         $0.backgroundColor = UIColor.sparkleBrandWhiteColor
     }
     
-    let confirmButton = CommonButton(image: nil, title: "완료", backgroundColor: UIColor.sparkleBrandInactiveColor, tintColor: UIColor.sparkleBrandWhiteColor, font: UIFont.boldSystemFont(ofSize: 14))
+    let confirmButton = CommonButton(image: nil, title: "완료", backgroundColor: UIColor.sparkleBrandOrangeColor, tintColor: UIColor.sparkleBrandWhiteColor, font: UIFont.boldSystemFont(ofSize: 14))
     
     override init(frame: CGRect) {
         super.init(frame: frame)

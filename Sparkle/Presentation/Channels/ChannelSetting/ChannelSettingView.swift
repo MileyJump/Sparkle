@@ -166,6 +166,7 @@ class ChannelSettingView: BaseView {
     func bind(_ channel: SpecificChannelCheckResponse) {
         channelNameLabel.text = "#\(channel.name)"
         descriptionLabel.text = channel.description
+        
         memberCountLabel.text = "멤버 (\(channel.channelMembers.count))"
     }
     

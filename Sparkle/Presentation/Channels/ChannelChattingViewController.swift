@@ -17,6 +17,8 @@ class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
     
     var disposeBag = DisposeBag()
     
+    let realm = try! Realm()
+    
     private var workspaceId: String?
     private var channelId: String?
     
@@ -35,6 +37,7 @@ class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
         self.view.backgroundColor = .white
         self.reactor = ChatReactor()
         setupNavigationBarButton()
+        print(realm.configuration.fileURL)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,6 +84,8 @@ extension ChannelChattingViewController: View {
         
         if let channelId {
             if let workspaceId = reactor.workspaceIDrepository.fetchWorksaceID() {
+                print("⭐️⭐️⭐️⭐️⭐️channel\(channelId)⭐️⭐️⭐️⭐️⭐️")
+                print("⭐️⭐️⭐️⭐️⭐️workspace\(workspaceId)⭐️⭐️⭐️⭐️⭐️")
                 reactor.action.onNext(.fetchInitialChats(id: ChannelParameter(channelID: channelId, workspaceID: workspaceId)))
             }
         }
@@ -90,6 +95,8 @@ extension ChannelChattingViewController: View {
             .map { [weak self ] message in
                 let channelId = self?.channelId ?? ""
                 let workspaceId = self?.workspaceId ?? ""
+//                print("⭐️⭐️⭐️⭐️⭐️channel\(channelId)⭐️⭐️⭐️⭐️⭐️")
+//                print("⭐️⭐️⭐️⭐️⭐️workspace\(workspaceId)⭐️⭐️⭐️⭐️⭐️")
                 return ChatReactor.Action.sendMessage(id: ChannelParameter(channelID: channelId, workspaceID: workspaceId), message: message)
             }
             .bind(to: reactor.action)
