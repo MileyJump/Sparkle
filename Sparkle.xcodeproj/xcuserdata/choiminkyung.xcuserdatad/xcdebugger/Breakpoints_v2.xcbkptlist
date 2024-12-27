@@ -50,6 +50,36 @@
             endingLineNumber = "149"
             landmarkName = "bindState(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B92BFD29-E6C0-475C-841E-E5BCAF46C410 - a0653345b3934592"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Sparkle.HomeDefaultViewController.bindNavigationBar(Sparkle.WorkspaceCustomNavigationBar) -&gt; ()"
+                  moduleName = "Sparkle.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/choiminkyung/(%E1%84%8B%E1%85%A7%E1%86%BC%E1%84%83%E1%85%B3%E1%86%BC%E1%84%91%E1%85%A96%E1%84%80%E1%85%B5)%E1%84%89%E1%85%A2%E1%84%8A%E1%85%A1%E1%86%A8/SLP/Sparkle/Sparkle/Presentation/WorkSpace/Home/ViewController/HomeDefaultViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149">
+               </Location>
+               <Location
+                  uuid = "B92BFD29-E6C0-475C-841E-E5BCAF46C410 - 194a3ba8bd580018"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; Sparkle.HomeDefaultViewReactor.Action in Sparkle.HomeDefaultViewController.bindNavigationBar(Sparkle.WorkspaceCustomNavigationBar) -&gt; ()"
+                  moduleName = "Sparkle.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/choiminkyung/(%E1%84%8B%E1%85%A7%E1%86%BC%E1%84%83%E1%85%B3%E1%86%BC%E1%84%91%E1%85%A96%E1%84%80%E1%85%B5)%E1%84%89%E1%85%A2%E1%84%8A%E1%85%A1%E1%86%A8/SLP/Sparkle/Sparkle/Presentation/WorkSpace/Home/ViewController/HomeDefaultViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
