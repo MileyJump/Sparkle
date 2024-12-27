@@ -8,5 +8,6 @@
 import Foundation
 
 enum BaseURL {
-    static let baseURL = "http://slp1.sesac.co.kr:39093/"
+//    static let baseURL = "http://slp1.sesac.co.kr:39093/"
+    static let baseURL = "http://slp1.sesac.co.kr:41093/"
 }

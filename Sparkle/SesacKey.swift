@@ -8,5 +8,6 @@
 import Foundation
 
 enum SesacKey {
-    static let key = "BJ3ACDas3rr"
+//    static let key = "BJ3ACDas3rr"
+    static let key = "dgerpCirjGKbGKfU"
 }

@@ -32,7 +32,8 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
         print("HomeVC - ViewDidLoad")
         self.reactor = HomeDefaultViewReactor()
         
-        setupWorkspaceNavigationBar()
+//        setupWorkspaceNavigationBar()
+        setupNavigationBar2()
     }
     
     override func setupUI() {
@@ -48,13 +49,62 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
         rootView.updateDirectTableViewHeight()
     }
     
-     func setupWorkspaceNavigationBar() {
-        let navigationBar = WorkspaceCustomNavigationBar(workspaceImageName: "테스트 사진", title: "No Workspace", profileImageName: "테스트 사진")
+//     func setupWorkspaceNavigationBar() {
+//        let navigationBar = WorkspaceCustomNavigationBar(workspaceImageName: "테스트 사진", title: "No Workspace", profileImageName: "테스트 사진")
+//        
+//        navigationItem.titleView = navigationBar
+//        
+//        bindNavigationBar(navigationBar)
+//    }
+    
+    
+    private func setupNavigationBar2() {
+        // 왼쪽 버튼 컨테이너 뷰
+        let leftContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
         
-        navigationItem.titleView = navigationBar
+        let leftButton = UIButton(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
+        leftButton.setImage(UIImage(named: "거북이"), for: .normal)
+        leftButton.backgroundColor = .clear
+        leftButton.layer.cornerRadius = 8
+        leftButton.clipsToBounds = true
+        leftButton.contentMode = .scaleToFill
         
-        bindNavigationBar(navigationBar)
+        leftContainerView.addSubview(leftButton)
+        let leftBarButtonItem = UIBarButtonItem(customView: leftContainerView)
+        navigationItem.leftBarButtonItem = leftBarButtonItem
+        
+        // 가운데 타이틀
+        let titleLabel = UILabel()
+        titleLabel.text = "개발자 동기 수다방"
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        navigationItem.titleView = titleLabel
+        
+        // 오른쪽 버튼 컨테이너 뷰
+        let rightContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        
+        let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        rightButton.setImage(UIImage(named: "Profile1"), for: .normal)
+        rightButton.backgroundColor = .clear
+        rightButton.layer.cornerRadius = 20  // 높이의 절반으로 설정
+        rightButton.clipsToBounds = true
+        rightButton.contentMode = .scaleToFill
+        
+        rightContainerView.addSubview(rightButton)
+        let rightBarButtonItem = UIBarButtonItem(customView: rightContainerView)
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        // 버튼 이미지 contentMode 설정
+        leftButton.contentMode = .scaleAspectFit
+        rightButton.contentMode = .scaleAspectFit
+        
+        // 버튼 이미지 inset 설정
+        leftButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0 , bottom: 0, right: 0)
+        rightButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        
+     
     }
+
 }
 
 
@@ -162,6 +212,7 @@ extension HomeDefaultViewController: View {
                 owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
+        
     }
 }
 

@@ -111,6 +111,7 @@
 		B0E23C302D12E5ED007B7695 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B0E23C2F2D12E5ED007B7695 /* KakaoSDKAuth */; };
 		B0E23C322D12E5ED007B7695 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = B0E23C312D12E5ED007B7695 /* KakaoSDKCommon */; };
 		B0E23C342D12E5ED007B7695 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = B0E23C332D12E5ED007B7695 /* KakaoSDKUser */; };
+		B0E23C372D1E71D2007B7695 /* CreateChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E23C362D1E71D2007B7695 /* CreateChannelViewController.swift */; };
 		B0F1E0C62CDB4EC6005E38E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1E0C52CDB4EC6005E38E7 /* AppDelegate.swift */; };
 		B0F1E0C82CDB4EDB005E38E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1E0C72CDB4EDB005E38E7 /* SceneDelegate.swift */; };
 		B0F1E0CF2CDB68B0005E38E7 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1E0CE2CDB68B0005E38E7 /* BaseTableViewCell.swift */; };
@@ -214,6 +215,7 @@
 		B0AAFFA82CE78E8E009A5E30 /* WorkspaceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceAPI.swift; sourceTree = "<group>"; };
 		B0D79C7A2CE8DF48002D8449 /* ChannelAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelAPI.swift; sourceTree = "<group>"; };
 		B0E23C352D12EC90007B7695 /* Sparkle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sparkle.entitlements; sourceTree = "<group>"; };
+		B0E23C362D1E71D2007B7695 /* CreateChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelViewController.swift; sourceTree = "<group>"; };
 		B0F1E0C52CDB4EC6005E38E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0F1E0C72CDB4EDB005E38E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B0F1E0CE2CDB68B0005E38E7 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 			children = (
 				B07AC2FE2D11AB74005198CB /* ChannelSetting */,
 				B02A08862CE395A1007489EE /* CreateChannelView.swift */,
+				B0E23C362D1E71D2007B7695 /* CreateChannelViewController.swift */,
 				B02A08882CE47898007489EE /* ChannelChattingView.swift */,
 				B04641B22D01E41100B9FD3F /* ChannelChattingViewController.swift */,
 				B04641B42D01E47100B9FD3F /* ChannelChattingViewReactor.swift */,
@@ -838,6 +841,7 @@
 				B02A08782CDF20C9007489EE /* HomeEmptyViewController.swift in Sources */,
 				B07AC30A2D11EF03005198CB /* LoginView.swift in Sources */,
 				B066FFB32CEB293E002D487E /* UserDefaultsManager.swift in Sources */,
+				B0E23C372D1E71D2007B7695 /* CreateChannelViewController.swift in Sources */,
 				B066FFCA2CECE2B0002D487E /* ChannelQuery.swift in Sources */,
 				B0F1E0C62CDB4EC6005E38E7 /* AppDelegate.swift in Sources */,
 				B07AC3042D11AB99005198CB /* ChannelSettingViewController.swift in Sources */,
