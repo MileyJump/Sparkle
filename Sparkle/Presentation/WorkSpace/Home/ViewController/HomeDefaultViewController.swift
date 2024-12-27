@@ -102,7 +102,7 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
         leftButton.imageEdgeInsets = UIEdgeInsets(top: 1, left: 1 , bottom: 1, right: 1)
         rightButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         
-     
+        navigationItem.backButtonTitle = ""
     }
 
 }

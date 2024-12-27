@@ -61,6 +61,7 @@ class ChannelChattingViewController: BaseViewController<ChannelChattingView> {
         
         
         navigationItem.rightBarButtonItem = setting
+         navigationItem.backButtonTitle = ""
         
         setting.rx.tap
             .compactMap { [weak self] in self?.reactor }

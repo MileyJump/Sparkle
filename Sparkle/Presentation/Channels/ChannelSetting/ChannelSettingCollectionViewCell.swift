@@ -54,7 +54,11 @@ class ChannelSettingCollectionViewCell: BaseCollectionViewCell {
     
     func bind(_ member: UserMemberResponse) {
         print("!!!쟂\(member)")
-        profileImageView.image = UIImage(named: "Profile1")
+        if member.user_id == "b5c48349-4d79-40ce-b6ce-6b6d56380ad7" {
+            profileImageView.image = UIImage(named: "Profile1")
+        } else {
+            profileImageView.image = UIImage(named: "애플이")
+        }
         nameLabel.text = member.nickname
     }
 }

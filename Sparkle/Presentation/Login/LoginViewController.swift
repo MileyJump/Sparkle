@@ -61,9 +61,22 @@ extension LoginViewController: View {
         reactor.state
             .map { $0.isEamilLogin }
             .distinctUntilChanged()
-            .bind(with: self) { owner, isPresented in
+        
+            .bind(with: self) {  owner, isPresented in
                 if isPresented {
                     let loginViewController = EmailLoginViewController()
+                    
+                    if let sheet = loginViewController.sheetPresentationController {
+                        sheet.detents = [
+                            .custom(resolver: { context in
+                                return 250
+                            }),
+                            .large()
+                        ]
+                        sheet.prefersGrabberVisible = true
+                        sheet.preferredCornerRadius = 20
+                    }
+                    
                     owner.present(loginViewController, animated: true, completion: nil)
                 }
             }

@@ -77,14 +77,22 @@ final class ChannelChattingCell: BaseTableViewCell {
         
         timeLabel.snp.makeConstraints { make in
             make.bottom.equalTo(chatBackgroundView)
-            make.trailing.equalToSuperview().inset(10)
+//            make.trailing.equalToSuperview().inset(10)
+            make.leading.equalTo(chatBackgroundView.snp.trailing).offset(2)
         }
         
         
     }
     
     func bind(_ channel: ChatTable) {
-        profileImageView.image = UIImage(named: "Profile1")
+//        profileImageView.image = UIImage(named: "Profile1")
+        print("")
+//        print("\(channel.user?.profilImage)야야야야양얍")
+        if channel.user?.userId == "b0365afe-a99d-4d3b-ab7d-4897c3aed288" {
+            profileImageView.image = UIImage(named: "애플이")
+        } else {
+            profileImageView.image = UIImage(named: "Profile1")
+        }
         nicknameLabel.text = channel.user?.nickname
         chatLabel.text = channel.chatContent
         timeLabel.text = formatTime(channel.chatCreateAt)
