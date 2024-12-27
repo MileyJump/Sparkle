@@ -12,9 +12,10 @@ import Then
 
 final class HomeDefaultView: BaseView {
     
+    
     let channelButton = ChannelsButton(
         title: "채널",
-        image: UIImage(systemName: "chevron.right"),
+        image: UIImage(systemName: "chevron.down"),
         backgroundColor: .sparkleBrandWhiteColor,
         tintColor: .sparkleTextPrimaryColor,
         font: UIFont.boldSystemFont(ofSize: 14)
@@ -92,7 +93,8 @@ final class HomeDefaultView: BaseView {
         
         directTableView.snp.makeConstraints { make in
             make.top.equalTo(directMessageButton.snp.bottom)
-            self.directTableViewHeightConstraint = make.height.equalTo(0).constraint
+            make.height.equalTo(1)
+//            self.directTableViewHeightConstraint = make.height.equalTo(0).constraint
         }
         
         addDirectButton.snp.makeConstraints { make in
@@ -105,10 +107,10 @@ final class HomeDefaultView: BaseView {
     override func setupUI() {
         backgroundColor = .sparkleBackgroundSecondaryColor
         
-        channelTableView.backgroundColor = .blue
-        directTableView.backgroundColor = .red
+//        channelTableView.backgroundColor = .blue
+//        directTableView.backgroundColor = .red
         
-        addChannelButton.backgroundColor = .brown
+//        addChannelButton.backgroundColor = .brown
     }
     
     // 테이블뷰 높이를 업데이트하는 메서드

@@ -21,12 +21,7 @@ final class HomeEmptyViewController: BaseViewController<HomeEmptyView> {
         bind(reactor: reactor)
     }
     
-    override func setupNavigationBar() {
-        
-        let navigationBar = WorkspaceCustomNavigationBar(workspaceImageName: "테스트 사진", title: "No Workspace", profileImageName: "테스트 사진")
-        
-        navigationItem.titleView = navigationBar
-    }
+ 
     
     private func bind(reactor: HomeViewReactor) {
         

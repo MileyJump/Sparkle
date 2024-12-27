@@ -24,6 +24,16 @@ extension UINavigationController {
         
     }
     
+    func dismissAndChangeRootViewController(_ rootViewController: UIViewController) {
+        if let presentedVC = UIApplication.shared.keyWindow?.rootViewController?.presentedViewController {
+            presentedVC.dismiss(animated: false) {
+                self.changeRootViewController(rootViewController)
+            }
+        } else {
+            self.changeRootViewController(rootViewController)
+        }
+    }
+    
     func changeViewController(_ vc: UIViewController) {
         navigationController?.pushViewController(vc, animated: true)
     }
