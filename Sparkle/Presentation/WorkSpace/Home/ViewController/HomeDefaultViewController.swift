@@ -44,27 +44,17 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
-        //        rootView.updateChannelTableViewHeight()
+
         rootView.updateDirectTableViewHeight()
     }
-    
-//     func setupWorkspaceNavigationBar() {
-//        let navigationBar = WorkspaceCustomNavigationBar(workspaceImageName: "테스트 사진", title: "No Workspace", profileImageName: "테스트 사진")
-//        
-//        navigationItem.titleView = navigationBar
-//        
-//        bindNavigationBar(navigationBar)
-//    }
-    
-    
+
     private func setupNavigationBar2() {
         // 왼쪽 버튼 컨테이너 뷰
         let leftContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
         
         let leftButton = UIButton(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
         leftButton.setImage(UIImage(named: "거북이"), for: .normal)
-        leftButton.backgroundColor = .blue
+        leftButton.backgroundColor = .clear
         leftButton.layer.cornerRadius = 8
         leftButton.clipsToBounds = true
         leftButton.contentMode = .scaleAspectFit
@@ -103,6 +93,14 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
         rightButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         
         navigationItem.backButtonTitle = ""
+        
+        leftButton.rx.tap
+            .compactMap { [weak self] in self?.reactor }
+            .map { _ in HomeDefaultViewReactor.Action.clickWorkspaceList }
+            .bind(with: self) { owner, action in
+                owner.reactor?.action.onNext(action)
+            }
+            .disposed(by: disposeBag)
     }
 
 }
@@ -162,7 +160,6 @@ extension HomeDefaultViewController: View {
         //            .distinctUntilChanged()
             .bind(with: self) { owner, _ in
                 owner.rootView.updateChannelTableViewHeight()
-                //                owner.rootView.layoutIfNeeded()
             }
             .disposed(by: disposeBag)
         
@@ -197,7 +194,23 @@ extension HomeDefaultViewController: View {
             .filter { $0 }
             .bind(with: self) { owner, _ in
 //                owner.navigationController?.changePresentViewController(CreateWorkspaceViewController())
-                owner.navigationController?.pushViewController(WorkspaceListViewController(), animated: true)
+                
+//                let customTransitioningDelegate = CustomTransitioningDelegate()
+//
+//                let workspaceListVC = WorkspaceListViewController()
+//                    workspaceListVC.modalPresentationStyle = .custom
+//                    workspaceListVC.transitioningDelegate = customTransitioningDelegate
+//                owner.present(workspaceListVC, animated: true, completion: nil)
+                
+                let workspaceListVC = WorkspaceListViewController()
+                        let navController = UINavigationController(rootViewController: workspaceListVC)
+                        navController.modalPresentationStyle = .custom
+                        let transitionDelegate = SlideInTransitioningDelegate()
+                        navController.transitioningDelegate = transitionDelegate
+                owner.present(navController, animated: true)
+//                owner.present(workspaceListVC, animated: true)
+                
+//                owner.navigationController?.pushViewController(WorkspaceListViewController(), animated: true)
             }
             .disposed(by: disposeBag)
         

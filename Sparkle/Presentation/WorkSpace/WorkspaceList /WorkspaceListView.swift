@@ -16,7 +16,6 @@ final class WorkspaceListView: BaseView {
         $0.register(WorkspaceListTableViewCell.self, forCellReuseIdentifier: WorkspaceListTableViewCell.identifier)
         $0.separatorStyle = .none
         $0.allowsSelection = false
-        $0.backgroundColor = .blue
     }
     
     private let workspaceAddButton = AddButton(title: "워크스페이스 추가", image:  UIImage(systemName: "plus"))
@@ -37,7 +36,11 @@ final class WorkspaceListView: BaseView {
         }
         
         workspaceAddButton.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview()
+            make.leading.equalTo(safeAreaLayoutGuide.snp.leading)
+//            make.width.equalTo(60)
+//            make.trailing.equalTo(safeAreaLayoutGuide).inset(120)
+            make.bottom.equalTo(safeAreaLayoutGuide)
+            make.height.equalTo(44)
         }
     }
 }

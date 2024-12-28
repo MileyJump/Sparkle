@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import Kingfisher
 
 class ChannelSettingCollectionViewCell: BaseCollectionViewCell {
     
@@ -53,12 +54,24 @@ class ChannelSettingCollectionViewCell: BaseCollectionViewCell {
     }
     
     func bind(_ member: UserMemberResponse) {
-        print("!!!쟂\(member)")
-        if member.user_id == "b5c48349-4d79-40ce-b6ce-6b6d56380ad7" {
-            profileImageView.image = UIImage(named: "Profile1")
-        } else {
-            profileImageView.image = UIImage(named: "애플이")
+        
+        if let profileImage = member.profileImage {
+            guard let url = URL(string: "\(BaseURL.baseURL)v1\(profileImage)") else { return }
+            
+            let modifier = AuthenticatedRequestModifier()
+            
+            profileImageView.kf.setImage(
+                with: url,
+                options: [.requestModifier(modifier)],
+                completionHandler: { result in
+                    switch result {
+                    case .success(let value):
+                        print("✅ 성공: \(value.source.url?.absoluteString ?? "")")
+                    case .failure(let error):
+                        print("❌ 실패: \(error.localizedDescription)❌")
+                    }
+                }
+            )
         }
-        nameLabel.text = member.nickname
     }
 }

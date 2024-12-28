@@ -35,6 +35,7 @@ class HomeDefaultViewReactor: Reactor {
     struct State {
         var workspaceList: [WorkspaceListCheckResponse] = []
         var createWorkspace: Bool = false
+//        var channelData: [ChannelResponse] = []
         var channelData: [ChannelResponse] = [ChannelResponse(channel_id: "d083709a-0885-4179-9878-706e65f50e1b", name: "><", description: "", coverImage: "ㅇ", owner_id: "b0365afe-a99d-4d3b-ab7d-4897c3aed288", createdAt: "create")]
         var error: Error?
         var dmsData: [DmsListCheckResponse] = [DmsListCheckResponse(room_id: "", createdAt: "", user: UserMemberResponse(user_id: "", email: "", nickname: "", profileImage: ""))]
@@ -61,7 +62,6 @@ class HomeDefaultViewReactor: Reactor {
                     if case let .setWorkspaceList(workspaceList) = mutation {
                         if let latestWorkspace = workspaceList.sorted(by: { $0.createdAt > $1.createdAt }).first {
                             let workspaceID = latestWorkspace.workspace_id
-                            print("아아아아아아 워크스페이스 아이디 \(workspaceID)")
                             let id = WorkspaceIDTable(workspaceID: workspaceID)
                             repository.deleteAllWorkspaceIDs()
                             repository.createWorkspaceID(id: id)

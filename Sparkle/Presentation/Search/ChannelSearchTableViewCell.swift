@@ -1,5 +1,5 @@
 //
-//  SearchTableViewCell.swift
+//  ChannelSearchTableViewCell.swift
 //  Sparkle
 //
 //  Created by 최민경 on 12/27/24.
@@ -9,7 +9,7 @@ import UIKit
 
 import Then
 import SnapKit
-final class SearchTableViewCell: BaseTableViewCell {
+final class ChannelSearchTableViewCell: BaseTableViewCell {
     
     let hashLabel = UILabel().then {
         $0.text = "#"
@@ -45,8 +45,8 @@ final class SearchTableViewCell: BaseTableViewCell {
         }
     }
     
-    func bind(channel: String) {
-        
+    func bind(channel: ChannelResponse) {
+        channelNameLabel.text = channel.name
     }
 }
 

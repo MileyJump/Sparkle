@@ -6,13 +6,14 @@
 //
 
 import Kingfisher
+import Foundation
 
 struct AuthenticatedRequestModifier: ImageDownloadRequestModifier {
-    let apiKey: String
-
+    
     func modified(for request: URLRequest) -> URLRequest? {
         var modifiedRequest = request
-        modifiedRequest.addValue(apiKey, forHTTPHeaderField: "Authorization") // 헤더에 API 키 추가
+        modifiedRequest.addValue(SesacKey.key, forHTTPHeaderField: Header.sesacKey.rawValue ) // 헤더에 API 키 추가
+        
         return modifiedRequest
     }
 }

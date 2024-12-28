@@ -18,6 +18,35 @@ final class WorkspaceListViewController: BaseViewController<WorkspaceListView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.reactor = WorkspaceListViewReactor()
+        
+        rootView.workspaceTableView.rowHeight = 70
+        
+        navigationItem.title = "워크스페이스"
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithDefaultBackground()
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+           super.viewWillAppear(animated)
+           // 탭 바 숨기기
+           self.tabBarController?.tabBar.isHidden = true
+       }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+      
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func setupNavigationBar() {
+        navigationItem.title = "워크스페이스"
+            
+            // Enable large title display
+            navigationItem.largeTitleDisplayMode = .always
+            navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
 
@@ -37,7 +66,7 @@ extension WorkspaceListViewController: View {
             .map { $0.workspaceList }
             .asObservable()
             .bind(to: rootView.workspaceTableView.rx.items(cellIdentifier: WorkspaceListTableViewCell.identifier, cellType: WorkspaceListTableViewCell.self)) { (row, list, cell) in
-                
+                cell.bind(list)
             }
             .disposed(by: disposeBag)
     }

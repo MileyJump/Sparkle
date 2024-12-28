@@ -19,6 +19,18 @@ final class ChannelsTableViewCell: BaseTableViewCell {
         $0.font = UIFont.systemFont(ofSize: 13)
     }
     
+    private let countLabelBackgorundView = UIView().then {
+        $0.backgroundColor = .sparkleBrandOrangeColor
+        $0.layer.cornerRadius = 8
+        $0.clipsToBounds = true
+        $0.isHidden = true
+    }
+    
+    private let countLabel = UILabel().then {
+        $0.textColor = .sparkleBrandWhiteColor
+        $0.font = UIFont.systemFont(ofSize: 12)
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
@@ -27,6 +39,8 @@ final class ChannelsTableViewCell: BaseTableViewCell {
         
         addSubview(hashIconLabel)
         addSubview(channelNameLabel)
+        addSubview(countLabelBackgorundView)
+        addSubview(countLabel)
     }
     
     override func setupLayout() {
@@ -42,6 +56,17 @@ final class ChannelsTableViewCell: BaseTableViewCell {
             make.verticalEdges.equalTo(hashIconLabel).inset(4)
             make.leading.equalTo(hashIconLabel.snp.trailing).offset(8)
         }
+        
+        countLabelBackgorundView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(17)
+            make.centerY.equalToSuperview()
+//            make.height.equalTo(14)
+        }
+        
+        countLabel.snp.makeConstraints { make in
+            make.verticalEdges.equalTo(countLabelBackgorundView).inset(4)
+            make.horizontalEdges.equalTo(countLabelBackgorundView).inset(8)
+        }
     }
     
     override func setupUI() {
@@ -52,7 +77,6 @@ final class ChannelsTableViewCell: BaseTableViewCell {
     
     func bind(channel: ChannelResponse) {
         channelNameLabel.text = channel.name
-        print("네임 변경!! \(channel.name)")
     }
     
 }

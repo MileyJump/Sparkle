@@ -83,6 +83,13 @@
 		B07AC30C2D11EF0C005198CB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC30B2D11EF0C005198CB /* LoginViewController.swift */; };
 		B07AC30E2D12AA54005198CB /* LoginViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AC30D2D12AA54005198CB /* LoginViewReactor.swift */; };
 		B08183D82D1E9F4F001A0039 /* secret.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B08183D72D1E9F4F001A0039 /* secret.xcconfig */; };
+		B08183DF2D1EF46F001A0039 /* CustomTranstioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08183DE2D1EF46F001A0039 /* CustomTranstioningDelegate.swift */; };
+		B08183E12D1EF597001A0039 /* ChannelSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08183E02D1EF597001A0039 /* ChannelSearchTableViewCell.swift */; };
+		B08183E32D1EF74C001A0039 /* ChannelSearchViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08183E22D1EF74C001A0039 /* ChannelSearchViewReactor.swift */; };
+		B08183E52D1EFF39001A0039 /* PopUPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08183E42D1EFF39001A0039 /* PopUPView.swift */; };
+		B08183E72D1F02DD001A0039 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08183E62D1F02DD001A0039 /* FloatingButton.swift */; };
+		B08183EA2D2022BC001A0039 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B08183E92D2022BC001A0039 /* Kingfisher */; };
+		B08183EC2D202394001A0039 /* AuthenticatedRequestModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08183EB2D202394001A0039 /* AuthenticatedRequestModifier.swift */; };
 		B0878D872CCD11A70013B989 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0878D862CCD11A70013B989 /* Assets.xcassets */; };
 		B0878D8A2CCD11A70013B989 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B0878D892CCD11A70013B989 /* Base */; };
 		B0878DC82CD2550F0013B989 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0878DC72CD2550F0013B989 /* MainTabBarViewController.swift */; };
@@ -112,7 +119,6 @@
 		B0E23C302D12E5ED007B7695 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B0E23C2F2D12E5ED007B7695 /* KakaoSDKAuth */; };
 		B0E23C322D12E5ED007B7695 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = B0E23C312D12E5ED007B7695 /* KakaoSDKCommon */; };
 		B0E23C342D12E5ED007B7695 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = B0E23C332D12E5ED007B7695 /* KakaoSDKUser */; };
-		B0E23C372D1E71D2007B7695 /* CreateChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E23C362D1E71D2007B7695 /* CreateChannelViewController.swift */; };
 		B0F1E0C62CDB4EC6005E38E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1E0C52CDB4EC6005E38E7 /* AppDelegate.swift */; };
 		B0F1E0C82CDB4EDB005E38E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1E0C72CDB4EDB005E38E7 /* SceneDelegate.swift */; };
 		B0F1E0CF2CDB68B0005E38E7 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1E0CE2CDB68B0005E38E7 /* BaseTableViewCell.swift */; };
@@ -199,6 +205,12 @@
 		B07AC30B2D11EF0C005198CB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B07AC30D2D12AA54005198CB /* LoginViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewReactor.swift; sourceTree = "<group>"; };
 		B08183D72D1E9F4F001A0039 /* secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = secret.xcconfig; sourceTree = "<group>"; };
+		B08183DE2D1EF46F001A0039 /* CustomTranstioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTranstioningDelegate.swift; sourceTree = "<group>"; };
+		B08183E02D1EF597001A0039 /* ChannelSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSearchTableViewCell.swift; sourceTree = "<group>"; };
+		B08183E22D1EF74C001A0039 /* ChannelSearchViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSearchViewReactor.swift; sourceTree = "<group>"; };
+		B08183E42D1EFF39001A0039 /* PopUPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUPView.swift; sourceTree = "<group>"; };
+		B08183E62D1F02DD001A0039 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
+		B08183EB2D202394001A0039 /* AuthenticatedRequestModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedRequestModifier.swift; sourceTree = "<group>"; };
 		B0878D7A2CCD11A50013B989 /* Sparkle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sparkle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0878D862CCD11A70013B989 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0878D892CCD11A70013B989 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -217,7 +229,6 @@
 		B0AAFFA82CE78E8E009A5E30 /* WorkspaceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceAPI.swift; sourceTree = "<group>"; };
 		B0D79C7A2CE8DF48002D8449 /* ChannelAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelAPI.swift; sourceTree = "<group>"; };
 		B0E23C352D12EC90007B7695 /* Sparkle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sparkle.entitlements; sourceTree = "<group>"; };
-		B0E23C362D1E71D2007B7695 /* CreateChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelViewController.swift; sourceTree = "<group>"; };
 		B0F1E0C52CDB4EC6005E38E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0F1E0C72CDB4EDB005E38E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B0F1E0CE2CDB68B0005E38E7 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
@@ -237,6 +248,7 @@
 				B02A088E2CE49B3D007489EE /* (null) in Frameworks */,
 				B0E23C2D2D12CC5E007B7695 /* RxGesture in Frameworks */,
 				B0E23C192D12CADF007B7695 /* Then in Frameworks */,
+				B08183EA2D2022BC001A0039 /* Kingfisher in Frameworks */,
 				B0E23C282D12CC2A007B7695 /* RxCocoa in Frameworks */,
 				B0E23C222D12CBA3007B7695 /* Moya in Frameworks */,
 				B0E23C1F2D12CB24007B7695 /* ReactorKit in Frameworks */,
@@ -315,7 +327,6 @@
 			children = (
 				B07AC2FE2D11AB74005198CB /* ChannelSetting */,
 				B02A08862CE395A1007489EE /* CreateChannelView.swift */,
-				B0E23C362D1E71D2007B7695 /* CreateChannelViewController.swift */,
 				B02A08882CE47898007489EE /* ChannelChattingView.swift */,
 				B04641B22D01E41100B9FD3F /* ChannelChattingViewController.swift */,
 				B04641B42D01E47100B9FD3F /* ChannelChattingViewReactor.swift */,
@@ -449,7 +460,9 @@
 			isa = PBXGroup;
 			children = (
 				B07AC2E52D0F0D0A005198CB /* ChannelSearchView.swift */,
+				B08183E22D1EF74C001A0039 /* ChannelSearchViewReactor.swift */,
 				B07AC2E72D0F0D11005198CB /* ChannelSearchViewController.swift */,
+				B08183E02D1EF597001A0039 /* ChannelSearchTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -474,6 +487,17 @@
 				B07AC3052D11C941005198CB /* ChannelSettingViewReactor.swift */,
 			);
 			path = ChannelSetting;
+			sourceTree = "<group>";
+		};
+		B08183D92D1EF430001A0039 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				B08183E62D1F02DD001A0039 /* FloatingButton.swift */,
+				B08183DE2D1EF46F001A0039 /* CustomTranstioningDelegate.swift */,
+				B08183E42D1EFF39001A0039 /* PopUPView.swift */,
+				B08183EB2D202394001A0039 /* AuthenticatedRequestModifier.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		B0878D712CCD11A50013B989 = {
@@ -503,6 +527,7 @@
 		B0878D7C2CCD11A50013B989 /* Sparkle */ = {
 			isa = PBXGroup;
 			children = (
+				B08183D92D1EF430001A0039 /* Custom */,
 				B0E23C352D12EC90007B7695 /* Sparkle.entitlements */,
 				B07AC2E12D0AE0F9005198CB /* SokeyManager */,
 				B0AAFFA52CE5E09A009A5E30 /* Network */,
@@ -689,6 +714,7 @@
 				B0E23C2F2D12E5ED007B7695 /* KakaoSDKAuth */,
 				B0E23C312D12E5ED007B7695 /* KakaoSDKCommon */,
 				B0E23C332D12E5ED007B7695 /* KakaoSDKUser */,
+				B08183E92D2022BC001A0039 /* Kingfisher */,
 			);
 			productName = Sparkle;
 			productReference = B0878D7A2CCD11A50013B989 /* Sparkle.app */;
@@ -728,6 +754,7 @@
 				B0E23C262D12CC2A007B7695 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				B0E23C2B2D12CC5D007B7695 /* XCRemoteSwiftPackageReference "RxGesture" */,
 				B0E23C2E2D12E5ED007B7695 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				B08183E82D2022BC001A0039 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = B0878D7B2CCD11A50013B989 /* Products */;
 			projectDirPath = "";
@@ -792,6 +819,7 @@
 				B04641B32D01E41100B9FD3F /* ChannelChattingViewController.swift in Sources */,
 				B05206942CF0A65800FBE1F7 /* CommonButton.swift in Sources */,
 				B05206952CF0A65800FBE1F7 /* CustomPopupView.swift in Sources */,
+				B08183E72D1F02DD001A0039 /* FloatingButton.swift in Sources */,
 				B07AC3062D11C941005198CB /* ChannelSettingViewReactor.swift in Sources */,
 				B07AC3082D11EC86005198CB /* OnboardingViewReactor.swift in Sources */,
 				B05206962CF0A65800FBE1F7 /* CustomNavigationBar.swift in Sources */,
@@ -805,6 +833,7 @@
 				B02A087E2CE1F486007489EE /* CreateWorkspaceViewReactor.swift in Sources */,
 				B066FFC22CECB6C6002D487E /* WorkspaceTarget.swift in Sources */,
 				B02A087C2CE1D8A1007489EE /* UINavigationController +.swift in Sources */,
+				B08183DF2D1EF46F001A0039 /* CustomTranstioningDelegate.swift in Sources */,
 				B07AC3002D11AB86005198CB /* ChannelSettingView.swift in Sources */,
 				B066FFD42CEDCAFF002D487E /* WorkspaceResponse.swift in Sources */,
 				B0D79C7B2CE8DF48002D8449 /* ChannelAPI.swift in Sources */,
@@ -815,6 +844,8 @@
 				B07AC2F32D1006EE005198CB /* WorkspaceListViewReactor.swift in Sources */,
 				B02A08762CDF200D007489EE /* HomeEmptyView.swift in Sources */,
 				B02A087E2CE1F486007489EE /* CreateWorkspaceViewReactor.swift in Sources */,
+				B08183E52D1EFF39001A0039 /* PopUPView.swift in Sources */,
+				B08183E32D1EF74C001A0039 /* ChannelSearchViewReactor.swift in Sources */,
 				B05206A32CF3056200FBE1F7 /* ChannelsTableViewCell.swift in Sources */,
 				B0878DCA2CD255460013B989 /* SparkleTabBar.swift in Sources */,
 				B066FFD82CEDCE6D002D487E /* ChannelResponse.swift in Sources */,
@@ -832,10 +863,12 @@
 				B066FFD62CEDCD8B002D487E /* UserResponse.swift in Sources */,
 				B066FFE22CEF5CB1002D487E /* DMSNetworkManager.swift in Sources */,
 				B0878DDA2CD36E3B0013B989 /* BaseViewController.swift in Sources */,
+				B08183EC2D202394001A0039 /* AuthenticatedRequestModifier.swift in Sources */,
 				B0F1E0C82CDB4EDB005E38E7 /* SceneDelegate.swift in Sources */,
 				B02A089D2CE4BA3F007489EE /* ReusableProtocol.swift in Sources */,
 				B0878DCC2CD25C4C0013B989 /* workspaceInitialViewController.swift in Sources */,
 				B0F1E0D32CDB6910005E38E7 /* UserTableViewCell.swift in Sources */,
+				B08183E12D1EF597001A0039 /* ChannelSearchTableViewCell.swift in Sources */,
 				B0AAFFA72CE5E0CD009A5E30 /* UserAPI.swift in Sources */,
 				B066FFC62CECE0A9002D487E /* BaseTarget.swift in Sources */,
 				B0746CB52CD3A17400AC892C /* OnboardingViewController.swift in Sources */,
@@ -845,7 +878,6 @@
 				B02A08782CDF20C9007489EE /* HomeEmptyViewController.swift in Sources */,
 				B07AC30A2D11EF03005198CB /* LoginView.swift in Sources */,
 				B066FFB32CEB293E002D487E /* UserDefaultsManager.swift in Sources */,
-				B0E23C372D1E71D2007B7695 /* CreateChannelViewController.swift in Sources */,
 				B066FFCA2CECE2B0002D487E /* ChannelQuery.swift in Sources */,
 				B0F1E0C62CDB4EC6005E38E7 /* AppDelegate.swift in Sources */,
 				B07AC3042D11AB99005198CB /* ChannelSettingViewController.swift in Sources */,
@@ -1071,6 +1103,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B08183E82D2022BC001A0039 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.3;
+			};
+		};
 		B0E23C142D12CAD0007B7695 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
@@ -1146,6 +1186,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B08183E92D2022BC001A0039 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B08183E82D2022BC001A0039 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		B0A4F5E62CEB077E00788119 /* ReactorKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ReactorKit;

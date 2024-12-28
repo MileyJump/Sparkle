@@ -12,6 +12,7 @@ import Then
 
 final class HomeDefaultView: BaseView {
     
+    let floatingButton = FloatingButton()
     
     let channelButton = ChannelsButton(
         title: "채널",
@@ -64,6 +65,7 @@ final class HomeDefaultView: BaseView {
         addSubview(directMessageButton)
         addSubview(directTableView)
         addSubview(addDirectButton)
+        addSubview(floatingButton)
     }
     
     override func setupLayout() {
@@ -102,6 +104,11 @@ final class HomeDefaultView: BaseView {
             make.horizontalEdges.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(41)
         }
+        
+        floatingButton.snp.makeConstraints { make in
+            make.trailing.bottom.equalTo(safeAreaLayoutGuide).inset(20)
+            make.size.equalTo(60)
+        }
     }
     
     override func setupUI() {
@@ -116,9 +123,9 @@ final class HomeDefaultView: BaseView {
     // 테이블뷰 높이를 업데이트하는 메서드
     func updateChannelTableViewHeight() {
         print("updateChannelTableViewHeight !!!!!")
-//        let contentHeight = channelTableView.contentSize.height != 0
         let contentHeight = channelTableView.contentSize.height
         channelTableViewHeightConstraint?.update(offset: contentHeight)
+        layoutIfNeeded()
     }
     
     func updateDirectTableViewHeight() {

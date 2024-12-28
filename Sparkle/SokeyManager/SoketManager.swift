@@ -17,7 +17,7 @@ final class SocketIOManager {
     
     init(channelId: String) {
         
-        let socketURL = URL(string: BaseURL.baseURL)!
+        let socketURL = URL(string: "\(BaseURL.baseURL)")!
         
         manager = SocketManager(socketURL: socketURL, config: [.log(true), .compress])
         socket = manager.socket(forNamespace: "/ws-channel-\(channelId)")
