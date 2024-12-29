@@ -24,7 +24,7 @@ enum ChannelAPI {
     
     case sendChannelChat(query: SendChannelChatQuery, parameters: ChannelParameter)
     
-    case numberOfUnreadChannelChats(parameters: NumberOfUnreadChannelChatsParameter, workspaceID: String, channleID: String)
+    case numberOfUnreadChannelChats(parameters: NumberOfUnreadChannelChatsParameter)
     
     case channelMembersCheck(parameters: ChannelParameter)
     

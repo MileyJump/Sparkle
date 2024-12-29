@@ -36,8 +36,8 @@ extension ChannelAPI: BaseTarget {
         case .sendChannelChat(_, let parameters):
             return "workspaces/\(parameters.workspaceID)/channels/\(parameters.channelID)/chats"
             
-        case .numberOfUnreadChannelChats(_, let workspaceID, let channelID):
-            return "workspaces/\(workspaceID)/channels/\(channelID)/unreads"
+        case .numberOfUnreadChannelChats(let parameter):
+            return "workspaces/\(parameter.workspaceID)/channels/\(parameter.channelID)/unreads"
             
         case .channelMembersCheck(let parameters):
             return "workspaces/\(parameters.workspaceID)/channels/\(parameters.channelID)/members"
@@ -106,7 +106,7 @@ extension ChannelAPI: BaseTarget {
                 urlParameters: try! parameters.toDictionary()
             )
             
-        case .numberOfUnreadChannelChats(let parameters, _, _):
+        case .numberOfUnreadChannelChats(let parameters):
             return .requestParameters(parameters: try! parameters.toDictionary(), encoding: URLEncoding.default)
             
         case .channelMembersCheck(let parameters):

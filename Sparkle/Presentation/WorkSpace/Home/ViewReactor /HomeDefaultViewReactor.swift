@@ -136,6 +136,14 @@ class HomeDefaultViewReactor: Reactor {
     }
     
      let repository = WorkspaceTableRepository()
+    let chattingRepository = ChattingTableRepository()
+    
+    private func fetchChattingLastDate() -> String {
+        guard let lasteDate = chattingRepository.fetchLastChatCreateAt(), !lasteDate.isEmpty else { return "" }
+        return lasteDate
+    }
+    
+    
     
     private func workspaceListCheck() -> Observable<Mutation> {
         WorkspaceNetworkManager.shared.workspacesListCheck()

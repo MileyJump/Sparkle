@@ -15,24 +15,11 @@ final class HomeDefaultViewController: BaseViewController<HomeDefaultView> {
     
     var disposeBag = DisposeBag()
 
-//    private var workspace: WorkspaceListCheckResponse?
-    
-    
-//    init(workspace: WorkspaceListCheckResponse?) {
-//        self.workspace = workspace
-//        super.init(nibName: nil, bundle: nil)
-//    }
-    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("HomeVC - ViewDidLoad")
         self.reactor = HomeDefaultViewReactor()
         
-//        setupWorkspaceNavigationBar()
         setupNavigationBar2()
     }
     
@@ -171,14 +158,16 @@ extension HomeDefaultViewController: View {
             }
             .disposed(by: disposeBag)
         
-        reactor.state
-            .map{ $0.channelData }
-            .asObservable()
-            .bind(to: rootView.channelTableView.rx.items(cellIdentifier: ChannelsTableViewCell.identifier, cellType: ChannelsTableViewCell.self)) { (row, channel, cell) in
-                cell.bind(channel: channel)
-                self.rootView.updateChannelTableViewHeight()
-            }
-            .disposed(by: disposeBag)
+//        reactor.state
+//            .map{ $0.channelData }
+//            .asObservable()
+//            .bind(to: rootView.channelTableView.rx.items(cellIdentifier: ChannelsTableViewCell.identifier, cellType: ChannelsTableViewCell.self)) { (row, channel, cell) in
+//                cell.bind(channel: channel)
+//                self.rootView.updateChannelTableViewHeight()
+//            }
+//            .disposed(by: disposeBag)
+        
+        
         
         reactor.state
             .map { $0.dmsData }
@@ -208,9 +197,6 @@ extension HomeDefaultViewController: View {
                         let transitionDelegate = SlideInTransitioningDelegate()
                         navController.transitioningDelegate = transitionDelegate
                 owner.present(navController, animated: true)
-//                owner.present(workspaceListVC, animated: true)
-                
-//                owner.navigationController?.pushViewController(WorkspaceListViewController(), animated: true)
             }
             .disposed(by: disposeBag)
         

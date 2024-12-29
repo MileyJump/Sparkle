@@ -73,8 +73,8 @@ final class ChannelsNetworkManager {
         return request(.sendChannelChat(query: query, parameters: parameters), responseType: ChannelChatHistoryListResponse.self)
     }
     
-    func numberOfUnreadChannelChats(parameters: NumberOfUnreadChannelChatsParameter, workspaceID: String, channleID: String) -> Single<NumberOfUnreadChannelChatsResponse> {
-        return request(.numberOfUnreadChannelChats(parameters: parameters, workspaceID: workspaceID, channleID: channleID), responseType: NumberOfUnreadChannelChatsResponse.self)
+    func numberOfUnreadChannelChats(parameters: NumberOfUnreadChannelChatsParameter) -> Single<NumberOfUnreadChannelChatsResponse> {
+        return request(.numberOfUnreadChannelChats(parameters: parameters), responseType: NumberOfUnreadChannelChatsResponse.self)
     }
     
     func channelMembersCheck(parameters: ChannelParameter) -> Single<[UserMemberResponse]> {
