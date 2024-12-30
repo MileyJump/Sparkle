@@ -77,20 +77,6 @@ final class EmailLoginViewController: BaseViewController<EmailLoginView>, View {
             }
             .disposed(by: disposeBag)
            
-//        reactor.state.filter { $0.isLoginSuccessful }
-//            .map { $0.setWorkspaceCheck }
-//
-//            .subscribe(with: self) { owner, workspaceList in
-//                print("================================\(workspaceList)============")
-//                if workspaceList.isEmpty {
-//                    owner.navigationController?.changeRootViewController(HomeEmptyViewController())
-//                } else {
-//                    owner.navigationController?.changeRootViewController(HomeDefaultViewController(workspaceId: workspaceList.first?.workspace_id))
-//                }
-//            }
-//            .disposed(by: disposeBag)
-         
-        
 //         1. performWorkspaceCheck가 완료되면 workspaceList를 업데이트하고, 그 후 화면 전환이 이루어지도록 처리
         Observable.combineLatest(
             reactor.state.filter { $0.isLoginSuccessful },
