@@ -72,34 +72,7 @@ final class WorkspaceNetworkManager {
             return Disposables.create()
         }
     }
-    
-//    func request<T: Decodable>(_ target: WorkspaceAPI, responseType: T.Type) -> Single<T> {
-//        return Single.create { [weak self] single in
-//            self?.workspaceProvider.request(target) { result in
-//                switch result {
-//                case .success(let response):
-//                    do {
-//                        if T.self == VoidResponse.self {
-//                            single(.success(VoidResponse() as! T))
-//                            print("Void")
-//                        } else {
-//                            let decodedData = try JSONDecoder().decode(T.self, from: response.data)
-//                            single(.success(decodedData))
-//                            print(response)
-//                        }
-//                    } catch {
-//                        single(.failure(error))
-//                        print(error)
-//                    }
-//                case .failure(let error):
-//                    single(.failure(error))
-//                    print(error)
-//                }
-//            }
-//            return Disposables.create()
-//        }
-//    }
-//    
+
     func workspacesListCheck() -> Single<[WorkspaceListCheckResponse]> {
         return request(.workspacesListCheck, responseType: [WorkspaceListCheckResponse].self)
     }
