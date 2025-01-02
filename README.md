@@ -7,6 +7,24 @@
 
 *"**Sparkle**은 메세지를 주고 받으며 소통하고, 그 과정에서 새로운 아이디어가 반짝이는 순간을 만들어가길 바라는 마음을 담았습니다."*
 
+<p align="center">
+<img src="https://github.com/user-attachments/assets/87c9f929-4cd0-4062-9a0b-3729a6c5773c" width="200"/>
+  <img src="https://github.com/user-attachments/assets/3a11c04d-92f4-43ad-ac7c-3dbb5a685ca2" width="200"/>
+  <img src="https://github.com/user-attachments/assets/6a0e410f-2c8e-48ea-b4d7-133c695d0ff9" width="200"/>
+    
+</p>
+
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/8a42feda-d817-4f51-a7ee-5bcec32bda76" width="200"/>
+    <img src="https://github.com/user-attachments/assets/83c26ae6-7b94-4189-abfa-c997626aed64" width="200"/>
+  <img src="https://github.com/user-attachments/assets/e2c019f1-6cc8-4322-bed0-8f73af23921d" width="200"/>
+
+
+
+
+  
+</p> 
+
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/67364a2a-3604-4417-a0a2-fda5a86d01f9" width="200"/>
