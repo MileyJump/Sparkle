@@ -19,3 +19,8 @@
  <img src="https://github.com/user-attachments/assets/cdcb691d-57f4-4eac-acf9-57b92575d0a7" width="200"/>
 </p> 
 
+## 아키텍쳐 (Architecture)
+<p align="center">
+ <img src="https://github.com/user-attachments/assets/75721f18-66fe-4305-a9cc-68e9bb7c65e9"/>
+
+</p> 
