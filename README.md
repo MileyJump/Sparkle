@@ -38,6 +38,13 @@
 	- prefix/#이슈번호-작업설명
 	- feat/#5-channel-ui
 
+## 사용 기술
+iOS: UIKit, ReactorKit, RxSwift, RxCocoa
+Architectur: Reactor
+NetWork: Moya
+Local DataBase: Realm
+Design Pattern: Singlngton
+Management: Git, Github, Figma
 
 
 ## 아키텍쳐 (Architecture)
