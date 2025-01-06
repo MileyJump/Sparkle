@@ -1,11 +1,16 @@
 # 🎇 Sparkle (스파클)
 
-> 다양한 사람들과 커뮤니케이션 혹은 협업을 위한 소통 플랫폼
-
+ 다양한 사람들과 커뮤니케이션 혹은 협업을 위한 소통 플랫폼 <br/> <br/> <br/> 
+*"**Sparkle**은 메세지를 주고 받으며 소통하고, 그 과정에서 새로운 아이디어가 반짝이는 순간을 만들어가길 바라는 마음을 담았습니다."*
 
 ## 프로젝트 소개
 
-*"**Sparkle**은 메세지를 주고 받으며 소통하고, 그 과정에서 새로운 아이디어가 반짝이는 순간을 만들어가길 바라는 마음을 담았습니다."*
+
+
+
+> 개발 기간 : 2024. 11. 14 ~ 24. 12. 15 (약 1달) <br/> 
+> 개발 인원 : 1명 <br/> 
+> 최소 버전 : iOS 16.6 +
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/f6114730-acc7-4a19-a6d3-aba651096fac" width="200"/>
@@ -20,35 +25,36 @@
 </p> 
 
 
-> 개발 기간 : 2024. 11. 14 ~ 24. 12. 15 (약 1달)
-> 개발 인원 : 1명
-> 최소 버전 : iOS 16.6 +
 
-### Git Flow
-- main  
-	- 배포 가능 상태 유지 브랜치
-	- 모든 개발 작업이 완료된 후 병합 
-- develop
-	 - QA 작업용 브랜치
-	 - 개발 중인 최신 코드 포함
-	 - 각 기능 작업이 완료된 후 병합
-- feat 
-	- 새로운 기능 개발을 위한 브랜치
-- 각 브랜치별로 통일성과 작업 내용 확인을 위해 컨벤션 도입
-	- prefix/#이슈번호-작업설명
-	- feat/#5-channel-ui
+<br/> <br/> 
 
 ## 사용 기술
-iOS: UIKit, ReactorKit, RxSwift, RxCocoa
-Architectur: Reactor
-NetWork: Moya
-Local DataBase: Realm
-Design Pattern: Singlngton
+iOS: UIKit, ReactorKit, RxSwift, RxCocoa <br/> 
+Architectur: Reactor <br/> 
+NetWork: Moya <br/> 
+Local DataBase: Realm <br/>
+Design Pattern: Singlngton <br/> 
 Management: Git, Github, Figma
-
+<br/> <br/> 
 
 ## 아키텍쳐 (Architecture)
 <p align="center">
  <img src="https://github.com/user-attachments/assets/75721f18-66fe-4305-a9cc-68e9bb7c65e9"/>
-
 </p> 
+* View와 Business Logic을 분리하여 ViewController 간결화 <br/> 
+* ReactorKit을 활용하여 View와 Reactor가 각각 Action 과 State를 전달하는 단방향 데이터 스트림 <br/> 
+* View는 Reactor에 Action을 전달하고, Reactor는 View에 State를 전달하는 단방향 데이터 스트림 <br/> 
+* Action, Mutation, State를 enum으로 규격화 하여 일관된 코드 작성 <br/> 
+* Router Pattern을 활용한 Moya를 통해 API 요청을 구조화하고 , 반복되는 네트워크 작업을 추상화 <br/> 
+* RxSwift Single Traits를 통한 에러 핸들링
+
+### 주요 화면
+1. 워크스페이스 목록 : 워크스페이스 생성 및 참여, 워크스페이스 목록 표시
+2. 홈 : 내가 속한 채널 목록 표시
+3. 채팅 : 실시간 채팅 전송
+4. 워크스페이스 생성
+
+### 프로젝트 주요 기술
+
+
+
