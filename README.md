@@ -112,11 +112,63 @@ Management: Git, Github, Figma
 	- Moya의 stubbedResponses 기능을 활용해 네트워크 의존성을 제거하고 요청을 시뮬레이션하여 단위 테스트 가능
 
 #### SocketIO을 활용하여 양방향 통신을 통해 실시간 메시지 전달
-- SocketIO 라이브러리를 사용하여 서버와 클라이언트 연결
-- NotificationCenter를 통해 Background, Foreground 시점의 소켓 해제 및 연결 처리 구현
-
+- SocketIO 라이브러리를 활용한 소켓 연결
+	- SocketIOManager는 SocketManager와 SocketIOClient를 활용하여 채널별 소켓 연결을 관리
+ 	- connect 메서드는 특정 채널에 대한 소켓 연결을 초기화하고, 연결 이벤트 리스너를 등록
+  	- 앱의 Foreground / Background 상태 전환에 따라 소켓 연결을 자동으로 관리
+  	  - Foreground 진입 시 소켓 재연결
+  	  - Background 진입 또는 채팅방 종료 시 소켓 연결 해제.
+- ReactorKit 상태 관리와 결합
+	- 소켓 이벤트를 ChatReactor의 Mutation으로 변환하여 UI 상태를 업데이트
+ 		- 메시지 수신시, addChatmessage Mutation을 통해 UI에 새로운 메시지 반영 
+- 리소스 최적화
+	- Background / Foreground 전환 시 NotificationCenter를 활용하여 소켓 연결 관리.
+ 	- disposeBag을 통한 리소스 정리 및 메모리 관리 (메모리 누수 방지)
+  	- 필요하지 않은 경우 불필요한 소켓 연결을 해제하여 리소스 낭비 방지
 
 ## 트러블 슈팅
+### 1. 앱 상태에 따른 소켓 연결 관리
+
+- 문제 상황
+	- 사용자가 채널 채팅방을 나갔을 때 (ViewWillDisappear) 소켓 연결을 해제하도록 구현했으나, 앱이 백그라운드로 전환 될 때는 소켓 연결이 유지되는 문제 발생
+	- 이로 인해 불필요한 리소스 사용과 배터리 소모가 발생할 수 있는 상황
+
+- 원인 분석
+	-  앱의 상태변화 (Background / Foreground) 에 따른 소켓 연결 관리 로직이 누락
+	-  소켓 연결 해제가 화면 전환 시에만 동작하고, 앱의 생명주기에 따른 처리가 되지 않음
+
+- 해결 방안 및 구현
+	- NotificationCenter를 활용하여 ChatReactor의 초기화 시점에 앱의 상태 변화를 감지하여 소켓 연결을 관리하도록 수정
+
+``` Swift
+init() {
+    Observable.merge(
+        NotificationCenter.default.rx.notification(UIApplication.didEnterBackgroundNotification).map { _ in false },
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification).map { _ in true }
+    )
+    .distinctUntilChanged()
+    .subscribe(onNext: { [weak self] isActive in
+        guard let self = self, let channelId = self.currentState.channelId else { return }
+        if isActive {
+            self.reconnectSocket(channelId: channelId)
+        } else {
+            self.disconnectSocket(channelId: channelId)
+        }
+    })
+    .disposed(by: disposeBag)
+}
+```
+
+- 결과 
+	- 앱이 백그라운드로 전환 될때 자동으로 소켓 연결 해제
+	- 앱이 다시 활성화 될 때 소켓 재연결
+	- 화면 전환 시 (ViewWillDisappear)와 앱 상태 변화 시 모두 적절한 소켓 연결 관리 가능
+
+- 교훈
+	-  앱의 리소스 관리는 단순히 화면 전환뿐만 아니라 앱의 생명주기를 고려하여 설계해야 함을 느낌
+	-  실시간 통신이 필요한 기능에서는 앱의 상태에 따른 연결 관리가 중요함을 깨달음
+
+
 ### 1. 로그인 성공 후 워크스페이스 화면 전환 문제
 
 ### 문제 개요
