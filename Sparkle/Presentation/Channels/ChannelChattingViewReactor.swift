@@ -26,6 +26,7 @@ class ChatReactor: Reactor {
         case setError(Error)
         case setChannelName(String)
         case setSettingNavigationBarEnabled(Bool)
+        case setChannelId(String)
     }
     
     struct State {
@@ -35,6 +36,7 @@ class ChatReactor: Reactor {
         var isDisconnected: Bool = false
         var channelName: String = ""
         var setIsSettingNavigationBarEnabled: Bool = false
+        var channelId: String?
     }
     
     let initialState = State()
@@ -42,25 +44,29 @@ class ChatReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .fetchInitialChats(let id):
-            print("idggg: \(id)")
-            let initialChats = fetchChatFromRealm(channelId: id.channelID)
-            print("initialChats: \(initialChats)")
-            let channelName = initialChats.first?.channelName ?? "개발자 동기 수다방"
-            
+//            print("idggg: \(id)")
+//            let initialChats = fetchChatFromRealm(channelId: id.channelID)
+//            print("initialChats: \(initialChats)")
+//            let channelName = initialChats.first?.channelName ?? "개발자 동기 수다방"
+//            
+//            return Observable.concat([
+//                Observable.just(.setChannelName(channelName)),
+//                Observable.just(.setChats(initialChats)),
+//                fetchChattingLastDate(id: id)
+//                    .concat(Observable.create { [weak self] observer in
+//                        guard let self = self else {
+//                            observer.onCompleted()
+//                            return Disposables.create()
+//                        }
+//                        // API 호출 및 갱신이 완료된 후 소켓 연결
+//                        self.startSocketConnection(channelId: id.channelID, observer: observer)
+//                        return Disposables.create()
+//                    })
+//            ])
             return Observable.concat([
-                Observable.just(.setChannelName(channelName)),
-                Observable.just(.setChats(initialChats)),
-                fetchChattingLastDate(id: id)
-                    .concat(Observable.create { [weak self] observer in
-                        guard let self = self else {
-                            observer.onCompleted()
-                            return Disposables.create()
-                        }
-                        // API 호출 및 갱신이 완료된 후 소켓 연결
-                        self.startSocketConnection(channelId: id.channelID, observer: observer)
-                        return Disposables.create()
-                    })
-            ])
+                       Observable.just(.setChannelId(id.channelID)), // 채널 ID 설정
+                       handleFetchInitialChats(id: id)
+                   ])
             
         case .sendMessage(id: let id, message: let message):
             sendChatMessage(message: message, id: id)
@@ -98,6 +104,8 @@ class ChatReactor: Reactor {
             newState.channelName = name
         case .setSettingNavigationBarEnabled(let enabled):
             newState.setIsSettingNavigationBarEnabled = enabled
+        case .setChannelId(let channelId):
+            newState.channelId = channelId
         }
         return newState
     }
@@ -107,6 +115,54 @@ class ChatReactor: Reactor {
     private let repository = ChattingTableRepository()
     let workspaceIDrepository = WorkspaceTableRepository()
     private var socketManager: SocketIOManager?
+    
+    init() {
+           // Rx 방식으로 앱 상태 감지 및 소켓 연결 관리
+           Observable.merge(
+               NotificationCenter.default.rx.notification(UIApplication.didEnterBackgroundNotification).map { _ in false },
+               NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification).map { _ in true }
+           )
+           .distinctUntilChanged()
+           .subscribe(onNext: { [weak self] isActive in
+               guard let self = self, let channelId = self.currentState.channelId else { return }
+               if isActive {
+                   self.reconnectSocket(channelId: channelId)
+               } else {
+                   self.disconnectSocket(channelId: channelId)
+               }
+           })
+           .disposed(by: disposeBag)
+       }
+    
+    private func handleFetchInitialChats(id: ChannelParameter) -> Observable<Mutation> {
+            let initialChats = fetchChatFromRealm(channelId: id.channelID)
+            let channelName = initialChats.first?.channelName ?? "Default Channel"
+            
+            return Observable.concat([
+                Observable.just(.setChannelName(channelName)),
+                Observable.just(.setChats(initialChats)),
+                fetchChattingLastDate(id: id)
+                    .concat(Observable.create { [weak self] observer in
+                        guard let self = self else {
+                            observer.onCompleted()
+                            return Disposables.create()
+                        }
+                        self.startSocketConnection(channelId: id.channelID, observer: observer)
+                        return Disposables.create()
+                    })
+            ])
+        }
+        
+        private func reconnectSocket(channelId: String) {
+            connectToSocket(channelId: channelId)
+                .subscribe(onNext: { mutation in
+                    print("✅ 소켓 재연결 성공: \(mutation)")
+                }, onError: { error in
+                    print("❌ 소켓 재연결 실패: \(error)")
+                })
+                .disposed(by: disposeBag)
+        }
+    
     
     private func startSocketConnection(channelId: String, observer: AnyObserver<Mutation>) {
         connectToSocket(channelId: channelId)
@@ -127,7 +183,7 @@ class ChatReactor: Reactor {
         return Observable.create { [weak self] observer in
             guard let self = self else { return Disposables.create() }
             
-            socketManager.connect(channelId: channelId)
+            socketManager.connect()
             
             socketManager.listenForMessages()
                 .map { [weak self] message -> Mutation in

@@ -53,7 +53,19 @@ final class SocketIOManager {
 //        }
 //    }
     
-    func connect(channelId: String)  {
+//    func connect(channelId: String)  {
+//        if isConnected { return }
+//        
+//        // 소켓 연결 이벤트 리스너 등록 (연결 전에 미리 등록)
+//        self.socket.on(clientEvent: .connect) { data, ack in
+//            print("✅ SOCKET CONNECTED: \(data)✅! \(ack)")
+//            self.isConnected = true
+//        }
+//        // 소켓 연결
+//        self.socket.connect()
+//}
+    
+    func connect()  {
         if isConnected { return }
         
         // 소켓 연결 이벤트 리스너 등록 (연결 전에 미리 등록)
