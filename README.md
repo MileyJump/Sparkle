@@ -119,6 +119,77 @@ Management: Git, Github, Figma
 ## 트러블 슈팅
 ### 1. 로그인 성공 후 워크스페이스 화면 전환 문제
 
+### 문제 개요
+- 워크스페이스 리스트를 조회하고 해당 결과에 따라 화면을 전환하려고 했으나, 비동기 처리 중 workspaceList가 초기값인 빈 배열로 전달되어, 항상 HomeEmptyViewController로 화면이 전환되는 문제가 발생.
+- 로그인 성공과 워크스페이스 조회 완료 상태가 비동기적으로 처리하는 과정에서 문제가 발생
+
+### 문제 분석
+1. 분제 발생 원인 :
+   - isLoginSuccessful이 true로 변경되었을 때, combineLatest로 로그인 성공 후 워크스페이스 리스트를 가져오도록 했으나, 워크스페이스 데이터가 아직 로딩 중일 때 빈 배열이 반환되어 화면이 잘못 전환
+   - setWorkspaceCheck의 초기값이 빈 배열로 설정되어 있어, 로그인 성공 시 워크스페이스 조회 완료 전에 빈 배열이 상태에 설정되고, 그로 인해 잘못된 화면 전환이 이루어짐 (무조건 HomeEmtyViewController로 전환)
+
+2. 기존 코드 흐름:
+   - 로그인 성공 후 performLogin에서 setLoginSuccess(true)를 방출하고, performWorkspaceCheck에서 워크스페이스 정보를 가져옴
+   - combineLatest로 isLoginSuccessful과 workspaceList를 결합하여, 두 상태가 모두 변할 때만 화면 전환을 처리하도록 했으나, 초기값 문제로 비동기적인 데이터 흐름에 오류 발생
+
+### 해결 방법
+- 워크스페이스 데이터 조회 완료 후 로그인 성공 상태를 설정하는 방식으로 변경
+- 즉, performLogin에서는 로그인 성공만 처리하고, performWorkspaceCheck에서 워크스페이스 조회가 완료되었을 때 로그인 성공 상태를 방출하도록 수정
+
+### 수정된 코드
+1. EmailLoginViewReactor 수정:
+   - perfomLogin에서는 로그인 성공 후 performWorkspaceCheck만 호출하고, 그 이후에 워크스페이스 데이터를 받은 후 setLoginSuccess(true)를 방출하도록 변경
+
+``` Swift
+private func performLogin(email: String, password: String) -> Observable<Mutation> {
+    let deviceToken = DeviceToken.deviceToken
+    return UserNetworkManager.shared.login(query: LoginQuery(email: email, password: password, deviceToken: deviceToken))
+        .asObservable()
+        .flatMap { [weak self] response -> Observable<Mutation> in
+            guard let self = self else { return Observable.empty() }
+            if let token = response.token?.accessToken {
+                UserDefaultsManager.shared.token = token
+                return self.performWorkspaceCheck()  // 로그인 후 워크스페이스 조회만 진행
+            } else {
+                return Observable.just(.setError(NSError(domain: "LoginError", code: -1, userInfo: [NSLocalizedDescriptionKey: "로그인에 실패했습니다."])))
+            }
+        }
+        .catch { error in
+            return Observable.just(.setError(error))
+        }
+        .concat(Observable.just(.setLoading(false)))  // 로딩 상태 마무리
+}
+```
+2. performWorkspaceCheck 수정:
+   - performWorkspaceCheck에서 워크스페이스 리스트 조회가 완료되면 setLoginSuccess(true)를 방출하도록 하여, 두 상태가 동시에 완료된 후 화면 전환이 이루어지록 수정
+``` Swift
+private func performWorkspaceCheck() -> Observable<Mutation> {
+    return WorkspaceNetworkManager.shared.workspacesListCheck()
+        .asObservable()
+        .flatMap { workspaces -> Observable<Mutation> in
+            // 워크스페이스 조회가 완료되면 로그인 성공 상태를 true로 설정
+            Observable.concat([
+                Observable.just(.setWorkspaceCheck(workspaces)),
+                Observable.just(.setLoginSuccess(true))  // 워크스페이스 조회 후 로그인 성공 상태 변경
+            ])
+        }
+        .catch { error in
+            return Observable.just(.setError(error))
+        }
+}
+```
+
+### 결과
+- 로그인 후 워크스페이스 데이터 조회가 완료된 후에만 로그인 성공 상태가 변경되고, 그로 인해 화면전환이 정확히 이루어지며 빈 배열 문제를 해결할 수 있었음.
+
+### 교훈 및 최정 결론
+- 비동기 작업에서 상태 변경 순서를 명확히 제어해야 하며, 데이터가 완전히 로딩될 때까지 의존 상태가 변경되지 않도록 처리
+- 워크스페이스 데이터 조회와 로그인 성공 상태를 별도로 처리하여, 두 작업이 완료된 후에야 화면 전환. 이 방식은 비동기 처리의 순서와 관련된 오류를 예방하고, 의도한 대로 동작하게끔 보장
+
+### 추가 참고사항
+- combineLatest를 사용해 여러 상태를 결합할 때, 초기값과 상태 변경 순서가 중요한 역할을 하므로, 초기값 설정과 상태의 변경 시점에 대해 주의 깊게 고려해야 함.
+  
+
 - 문제 상황
 	- EmailLoginViewReactor에서 로그인 버튼 탭 시, performLogin이 호출되고 로그인 성공 후 performWorkspaceCheck를 통해 워크스페이스 데이터를 요청하도록 구현함.
 	1. isLoginSuccessful 상태가 ture로 변경된 순간에 ViewController에서 workspaceList를 확인해 화면 전환.
