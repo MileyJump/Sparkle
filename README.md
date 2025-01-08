@@ -104,9 +104,8 @@
 
 - View와 Business Logic을 분리하여 ViewController 간결화 <br/> 
 - ReactorKit을 활용하여 View와 Reactor가 각각 Action 과 State를 전달하는 단방향 데이터 스트림 <br/> 
-- View는 Reactor에 Action을 전달하고, Reactor는 View에 State를 전달하는 단방향 데이터 스트림 <br/> 
 - Action, Mutation, State를 enum으로 규격화 하여 일관된 코드 작성 <br/> 
-- Router Pattern을 활용한 Moya를 통해 API 요청을 구조화하고 , 반복되는 네트워크 작업을 추상화 <br/> 
+- Router Pattern을 활용한 Moya를 통해 API 요청을 구조화하고, 반복되는 네트워크 작업을 추상화 <br/> 
 - RxSwift Single Traits를 통한 에러 핸들링
 
 <br/> 
