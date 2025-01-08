@@ -62,8 +62,6 @@
 #### 채팅
    - 실시간 채널 채팅
    - 채팅 전송
-     
-#### 워크스페이스 생성
    
 <br/> 
 
@@ -159,18 +157,18 @@
 
 <br/> <br/> <br/> 
 ## 트러블 슈팅 (Trouble Shooting)
-> ### 1. 앱 상태에 따른 소켓 연결 관리
+> ### 앱 상태에 따른 소켓 연결 관리
 
-- 문제 상황
-	- 사용자가 채널 채팅방을 나갔을 때 (ViewWillDisappear) 소켓 연결을 해제하도록 구현했으나, 앱이 백그라운드로 전환 될 때는 소켓 연결이 유지되는 문제 발생
-	- 이로 인해 불필요한 리소스 사용과 배터리 소모가 발생할 수 있는 상황
+### 문제 상황
+- 사용자가 채널 채팅방을 나갔을 때 (ViewWillDisappear) 소켓 연결을 해제하도록 구현했으나, 앱이 백그라운드로 전환 될 때는 소켓 연결이 유지되는 문제 발생
+- 이로 인해 불필요한 리소스 사용과 배터리 소모가 발생할 수 있는 상황
 
-- 원인 분석
-	-  앱의 상태변화 (Background / Foreground) 에 따른 소켓 연결 관리 로직이 누락
-	-  소켓 연결 해제가 화면 전환 시에만 동작하고, 앱의 생명주기에 따른 처리가 되지 않음
+### 원인 분석
+-  앱의 상태변화 (Background / Foreground) 에 따른 소켓 연결 관리 로직이 누락
+-  소켓 연결 해제가 화면 전환 시에만 동작하고, 앱의 생명주기에 따른 처리가 되지 않음
 
-- 해결 방안 및 구현
-	- NotificationCenter를 활용하여 ChatReactor의 초기화 시점에 앱의 상태 변화를 감지하여 소켓 연결을 관리하도록 수정
+### 해결 방안 및 구현
+- NotificationCenter를 활용하여 ChatReactor의 초기화 시점에 앱의 상태 변화를 감지하여 소켓 연결을 관리하도록 수정
 
 ``` Swift
 init() {
@@ -191,48 +189,45 @@ init() {
 }
 ```
 
-- 결과 
-	- 앱이 백그라운드로 전환 될때 자동으로 소켓 연결 해제
-	- 앱이 다시 활성화 될 때 소켓 재연결
-	- 화면 전환 시 (ViewWillDisappear)와 앱 상태 변화 시 모두 적절한 소켓 연결 관리 가능
+### 결과 
+- 앱이 백그라운드로 전환 될때 자동으로 소켓 연결 해제
+- 앱이 다시 활성화 될 때 소켓 재연결
+- 화면 전환 시 (ViewWillDisappear)와 앱 상태 변화 시 모두 적절한 소켓 연결 관리 가능
 
-- 교훈
-	-  앱의 리소스 관리는 단순히 화면 전환뿐만 아니라 앱의 생명주기를 고려하여 설계해야 함을 느낌
-	-  실시간 통신이 필요한 기능에서는 앱의 상태에 따른 연결 관리가 중요함을 깨달음
+### 회고
+-  앱의 리소스 관리는 단순히 화면 전환뿐만 아니라 앱의 생명주기를 고려하여 설계해야 함을 느낌
+-  실시간 통신이 필요한 기능에서는 앱의 상태에 따른 연결 관리가 중요함을 깨달음
 
 <br/> 
 
-> ### 2. 로그인 성공 후 워크스페이스 화면 전환 문제
+> ###  로그인 성공 후 워크스페이스 화면 전환 문제
 
-### 문제 개요
+### 문제 상황
 - 워크스페이스 리스트를 조회하고 해당 결과에 따라 화면을 전환하려고 했으나, 비동기 처리 중 workspaceList가 초기값인 빈 배열로 전달되어, 항상 HomeEmptyViewController로 화면이 전환되는 문제가 발생.
 - 로그인 성공과 워크스페이스 조회 완료 상태가 비동기적으로 처리하는 과정에서 문제가 발생
 
 ### 문제 분석
-1. 분제 발생 원인 :
-	- 로그인 네트워크 통신 성공 후 isLoginSuccessful을 true로 변경하고, combineLatest로 워크스페이스 리스트를 가져오도록 했으나, 워크스페이스 데이터가 아직 로딩 중일 때 초기값으로 설정한 빈 배열이 반환되어 화면이 잘못 전환
-		-  reactor.state.map { $0.setWorkspaceCheck } 의 초기값이 빈 배열로 설정되어 있었기 때문에, combineLatest로 상태를 결합하더라도 초기값이 반영되어 잘못된 화면 전환이 이루어짐.
-	- 로그인 성공 여부와 워크스페이스 리스트 조회 완료 상태를 올바르게 연결하지 못한 것이 문제의 핵심
+#### 1. 분제 발생 원인 :
+- 로그인 네트워크 통신 성공 후 isLoginSuccessful을 true로 변경하고, combineLatest로 워크스페이스 리스트를 가져오도록 했으나, 워크스페이스 데이터가 아직 로딩 중일 때 초기값으로 설정한 빈 배열이 반환되어 화면이 잘못 전환
+	-  reactor.state.map { $0.setWorkspaceCheck } 의 초기값이 빈 배열로 설정되어 있었기 때문에, combineLatest로 상태를 결합하더라도 초기값이 반영되어 잘못된 화면 전환이 이루어짐.
+- 로그인 성공 여부와 워크스페이스 리스트 조회 완료 상태를 올바르게 연결하지 못한 것이 문제의 핵심
 
 
-2. 기존 코드 흐름:
+#### 2. 기존 코드 흐름:
    - 로그인 성공 후 performLogin에서 setLoginSuccess(true)를 방출하고, performWorkspaceCheck에서 워크스페이스 정보를 가져옴
    - combineLatest로 isLoginSuccessful과 workspaceList를 결합하여, 두 상태 변화를 감지하려 했으나, 초기값으로 인한 비동기 데이터 흐름에서 오류 발생
 
 ### 해결 방법
-- 워크스페이스 데이터 조회 완료 후 로그인 성공 상태를 설정하는 방식으로 변경 -> Reactor와 네트워크 요청의 동작 순서를 수정
-- 즉, performLogin에서는 로그인 성공만 처리하고, performWorkspaceCheck에서 워크스페이스 조회가 완료되었을 때 로그인 성공 상태를 방출하도록 수정
-
-- Reactor와 네트워크 요청의 동작 순서를 수정
-	1. isLoginSuccessful을 로그인과 워크스페이스 조회가 모두 완료된 시점에 방출하도록 수정.
-		- PerformLogin에서 .setLoginSuccess(true)를 방출하지 않고, 워크스페이스 조회 완료 후 방출되도록 변경
-		- performWorkspaceCheck 내에서 .setWorkspaceCheck(workspaces)와 .setLoginSuccess(true)를 순차적으로 방출.
-	2.	ViewController에서 isLoginSuccessful만 구독하여 로그인 성공 및 워크스페이스 조회 완료 상태에서만 화면 전환.
-- 
+#### Reactor와 네트워크 요청의 동작 순서를 수정
+1. isLoginSuccessful을 로그인과 워크스페이스 조회가 모두 완료된 시점에 방출하도록 수정.
+   - PerformLogin에서 .setLoginSuccess(true)를 방출하지 않고, 워크스페이스 조회 완료 후 방출되도록 변경
+   - performWorkspaceCheck 내에서 .setWorkspaceCheck(workspaces)와 .setLoginSuccess(true)를 순차적으로 방출.
+       
+3. ViewController에서 isLoginSuccessful만 구독하여 로그인 성공 및 워크스페이스 조회 완료 상태에서만 화면 전환.
 
 ### 수정된 코드
-1. EmailLoginViewReactor 수정:
-   - perfomLogin에서는 로그인 성공 후 performWorkspaceCheck만 호출하고, 그 이후에 워크스페이스 데이터를 받은 후 setLoginSuccess(true)를 방출하도록 변경
+#### 1. EmailLoginViewReactor 수정
+- perfomLogin에서는 로그인 성공 후 performWorkspaceCheck만 호출하고, 그 이후에 워크스페이스 데이터를 받은 후 setLoginSuccess(true)를 방출하도록 변경
 
 ``` Swift
 private func performLogin(email: String, password: String) -> Observable<Mutation> {
@@ -254,8 +249,8 @@ private func performLogin(email: String, password: String) -> Observable<Mutatio
         .concat(Observable.just(.setLoading(false)))  // 로딩 상태 마무리
 }
 ```
-2. performWorkspaceCheck 수정:
-   - performWorkspaceCheck에서 워크스페이스 리스트 조회가 완료되면 setLoginSuccess(true)를 방출하도록 하여, 두 상태가 동시에 완료된 후 화면 전환이 이루어지록 수정
+#### 2. performWorkspaceCheck 수정
+- performWorkspaceCheck에서 워크스페이스 리스트 조회가 완료되면 setLoginSuccess(true)를 방출하도록 하여, 두 상태가 동시에 완료된 후 화면 전환이 이루어지록 수정
 ``` Swift
 private func performWorkspaceCheck() -> Observable<Mutation> {
     return WorkspaceNetworkManager.shared.workspacesListCheck()
@@ -283,8 +278,8 @@ private func performWorkspaceCheck() -> Observable<Mutation> {
 - 초기값 상태 변화를 다룰 때, 상태 전환 시점을 명확히 지정해야 예상치 못한 동작을 방지할 수 있음.
 
 
-### 추가 참고사항
-- combineLatest를 사용해 여러 상태를 결합할 때, 초기값과 상태 변경 순서가 중요한 역할을 하므로, 초기값 설정과 상태의 변경 시점에 대해 주의 깊게 고려해야 함.
+### 회고
+- combineLatest를 사용해 여러 상태를 결합할 때, 초기값과 상태 변경 순서가 중요한 역할을 하므로, 초기값 설정과 상태의 변경 시점에 대해 주의 깊게 고려해야 함을 깨달음
 
 
 
