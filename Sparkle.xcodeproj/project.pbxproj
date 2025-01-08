@@ -303,6 +303,11 @@
 				B0F1E0D22CDB6910005E38E7 /* UserTableViewCell.swift */,
 				B05206A22CF3056200FBE1F7 /* ChannelsTableViewCell.swift */,
 				B07AC2F02D0FFE7B005198CB /* AddButton.swift */,
+				B05206922CF0A65800FBE1F7 /* NewMessageButton.swift */,
+				B052068F2CF0A65800FBE1F7 /* CommonButton.swift */,
+				B05206902CF0A65800FBE1F7 /* CustomNavigationBar.swift */,
+				B05206982CF0A68300FBE1F7 /* ChannelsButton.swift */,
+				B05206912CF0A65800FBE1F7 /* CustomPopupView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -511,11 +516,6 @@
 				B0878D862CCD11A70013B989 /* Assets.xcassets */,
 				B0878D882CCD11A70013B989 /* LaunchScreen.storyboard */,
 				B0878D8B2CCD11A70013B989 /* Info.plist */,
-				B052068F2CF0A65800FBE1F7 /* CommonButton.swift */,
-				B05206902CF0A65800FBE1F7 /* CustomNavigationBar.swift */,
-				B05206982CF0A68300FBE1F7 /* ChannelsButton.swift */,
-				B05206912CF0A65800FBE1F7 /* CustomPopupView.swift */,
-				B05206922CF0A65800FBE1F7 /* NewMessageButton.swift */,
 				B0F1E0C52CDB4EC6005E38E7 /* AppDelegate.swift */,
 				B0F1E0C72CDB4EDB005E38E7 /* SceneDelegate.swift */,
 				B07E79132D2EE40D00280DD0 /* BaseURL.swift */,

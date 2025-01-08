@@ -5,14 +5,18 @@
 //  Created by 최민경 on 11/1/24.
 //
 
+
 import UIKit
 
 import Then
 import SnapKit
+import RxSwift
+import RxCocoa
+import RxGesture
 
 class WorkspaceCustomNavigationBar: UIView {
     
-    private let workspaceImageView: UIImageView
+    let workspaceImageView: UIImageView
     
     private let titleLabel = UILabel().then {
         $0.textColor = UIColor.sparkleTextPrimaryColor
@@ -22,8 +26,19 @@ class WorkspaceCustomNavigationBar: UIView {
     
     private let profileImageView: UIImageView
     
+    let tapGesture = UITapGestureRecognizer()
+    
     private let lineView = UIView().then {
         $0.backgroundColor = UIColor.sparkleViewSeperatorColor
+    }
+    
+    var workspaceImageTapped: ControlEvent<Void> {
+        return ControlEvent(events: workspaceImageView.rx.tapGesture(configuration: { gesture, delegate in
+            gesture.cancelsTouchesInView = false
+        })
+        .when(.recognized)
+        .do(onNext: { print("\($0)gkgkgkgk") })
+        .map { _ in })
     }
     
     init(workspaceImageName: String, title: String, profileImageName: String) {
@@ -38,6 +53,8 @@ class WorkspaceCustomNavigationBar: UIView {
         setupLayout()
         
         titleLabel.text = title
+        
+//        workspaceImageView.isUserInteractionEnabled = true
     }
     
     required init?(coder: NSCoder) {
@@ -49,10 +66,12 @@ class WorkspaceCustomNavigationBar: UIView {
         
         workspaceImageView.layer.cornerRadius = 8
         workspaceImageView.layer.masksToBounds = true
+        workspaceImageView.isUserInteractionEnabled = true
         
         profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
         profileImageView.layer.masksToBounds = true
     }
+
     
     private func setupAppearance() {
         
