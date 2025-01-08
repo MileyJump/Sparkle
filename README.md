@@ -7,7 +7,7 @@
   <img src="https://github.com/user-attachments/assets/51c8d18f-514c-45ee-b87d-224c504c2380" alt="Group 726" width="200"/>
 </p>
  
-## 프로젝트 소개
+## 프로젝트 소개 (Description)
 
 *"**Sparkle**은 메세지를 주고 받으며 소통하고, 그 과정에서 새로운 아이디어가 반짝이는 순간을 만들어가길 바라는 마음을 담았습니다."*  
 
@@ -29,7 +29,7 @@
 
 <br/> <br/> 
 
-## 사용 기술
+## 사용 기술 (Tech Stack)
 > ### Architectur & Design Pattern
 - Reactor
 - Routor, Singleton
@@ -50,18 +50,24 @@
 - Git, Github, Figma
 <br/> <br/> 
 
-## 주요 화면
-> 워크스페이스 목록
-   - 워크스페이스 생성 및 참여, 워크스페이스 목록 표시
-> 홈
+## 주요 기능 (Main Feature)
+#### 워크스페이스 목록
+   - 워크스페이스 생성
+   - 워크스페이스 목록 표시 및 참여
+     
+#### 홈
    - 내가 속한 채널 목록 표시
-> 채팅
-   - 실시간 채팅 전송
-> 워크스페이스 생성
+   - 채널 채팅 참여
+     
+#### 채팅
+   - 실시간 채널 채팅
+   - 채팅 전송
+     
+#### 워크스페이스 생성
    
 <br/> 
 
-## 주요 기술
+## 주요 기술 (Main technology)
 
 > ### 아키텍쳐 (Architecture)
 <p align="center">
@@ -152,7 +158,7 @@
   	- 필요하지 않은 경우 불필요한 소켓 연결을 해제하여 리소스 낭비 방지
 
 <br/> <br/> <br/> 
-## 트러블 슈팅
+## 트러블 슈팅 (Trouble Shooting)
 > ### 1. 앱 상태에 따른 소켓 연결 관리
 
 - 문제 상황
