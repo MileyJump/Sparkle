@@ -3,9 +3,19 @@
  **다양한 사람들과 커뮤니케이션 혹은 협업을 위한 소통 플랫폼**
  <br/>
 
- <p align="center">
+  <p align="center">
   <img src="https://github.com/user-attachments/assets/51c8d18f-514c-45ee-b87d-224c504c2380" alt="Group 726" width="200"/>
 </p>
+
+<p align="center">
+	 <img src="https://img.shields.io/badge/Swift-F05138?style=flat-square&logo=Swift&logoColor=white"/>
+  <img src="https://img.shields.io/badge/iOS-16.0-lightgrey?style=flat&color=181717" alt="iOS 16.0" />
+  <img src="https://img.shields.io/badge/Swift-5.10-F05138.svg?style=flat&color=F05138" alt="Swift 5.10" />
+  <img src="https://img.shields.io/badge/Xcode-15.3-147EFB.svg?style=flat&color=147EFB" alt="Xcode 15.3" />
+</p>
+
+
+
  
 ## 프로젝트 소개 (Description)
 
