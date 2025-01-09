@@ -474,6 +474,32 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		B07E79192D2F97F000280DD0 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				B0F1E0C72CDB4EDB005E38E7 /* SceneDelegate.swift */,
+				B0F1E0C52CDB4EC6005E38E7 /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		B07E791A2D2F982100280DD0 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B0878D882CCD11A70013B989 /* LaunchScreen.storyboard */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		B07E791B2D2F985300280DD0 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				B066FFD12CEDC660002D487E /* NetworkManager */,
+				B07AC2E12D0AE0F9005198CB /* SokeyManager */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		B08183D92D1EF430001A0039 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,17 +533,15 @@
 		B0878D7C2CCD11A50013B989 /* Sparkle */ = {
 			isa = PBXGroup;
 			children = (
+				B07E791A2D2F982100280DD0 /* Base */,
+				B07E79192D2F97F000280DD0 /* Application */,
 				B08183D92D1EF430001A0039 /* Custom */,
 				B0E23C352D12EC90007B7695 /* Sparkle.entitlements */,
-				B07AC2E12D0AE0F9005198CB /* SokeyManager */,
 				B0AAFFA52CE5E09A009A5E30 /* Network */,
 				B0878DD32CD35C710013B989 /* Presentation */,
 				B0878DD22CD35BFB0013B989 /* Global */,
 				B0878D862CCD11A70013B989 /* Assets.xcassets */,
-				B0878D882CCD11A70013B989 /* LaunchScreen.storyboard */,
 				B0878D8B2CCD11A70013B989 /* Info.plist */,
-				B0F1E0C52CDB4EC6005E38E7 /* AppDelegate.swift */,
-				B0F1E0C72CDB4EDB005E38E7 /* SceneDelegate.swift */,
 				B07E79132D2EE40D00280DD0 /* BaseURL.swift */,
 				B07E79152D2EE43300280DD0 /* SesacKey.swift */,
 				B07E79172D2EE44200280DD0 /* DeviceToken.swift */,
@@ -617,7 +641,7 @@
 		B0AAFFA52CE5E09A009A5E30 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				B066FFD12CEDC660002D487E /* NetworkManager */,
+				B07E791B2D2F985300280DD0 /* Manager */,
 				B0A4F5EC2CEB0C7200788119 /* Target */,
 				B0A4F5EB2CEB0C6300788119 /* Base */,
 				B066FFD22CEDC67D002D487E /* ResponseModel */,
