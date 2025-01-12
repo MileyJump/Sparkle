@@ -7,6 +7,7 @@
   <img src="https://github.com/user-attachments/assets/51c8d18f-514c-45ee-b87d-224c504c2380" alt="Group 726" width="200"/>
 </p>
 
+
 <p align="center">
 	 <img src="https://img.shields.io/badge/Swift-F05138?style=flat-square&logo=Swift&logoColor=white"/>
   <img src="https://img.shields.io/badge/iOS-16.0-lightgrey?style=flat&color=181717" alt="iOS 16.0" />
@@ -24,6 +25,20 @@
 > 개발 기간 : 2024. 11. 14 ~ 24. 12. 15 (약 1달) <br/> 
 > 개발 인원 : 1명 <br/> 
 > 최소 버전 : iOS 16.6 +
+
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/eb42c617-ffae-4713-9ede-179cdf8f0e2a" width="200"/>
+<img src="https://github.com/user-attachments/assets/56b81f1e-0733-46d3-81e0-7fb2545dddd2" width="200"/>
+<img src="https://github.com/user-attachments/assets/6330578c-d9e5-4852-825a-ca2e3c01c938" width="200"/>
+<img src="https://github.com/user-attachments/assets/6dd490f7-16e7-4717-901d-b2b8a7077593" width="200"/>
+</p>	
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/6f94f1bd-5a14-426a-b2e2-132848d586ce" width="200"/>
+<img src="https://github.com/user-attachments/assets/687d8ced-c996-49f5-98d5-5a8efa03e406" width="200"/>
+<img src="https://github.com/user-attachments/assets/6c4e902c-46e3-4cdf-8512-8bb39e104cbf" width="200"/>
+</p>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/f6114730-acc7-4a19-a6d3-aba651096fac" width="200"/>
