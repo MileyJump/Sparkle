@@ -28,12 +28,11 @@
 
 | 워크스페이스 목록       | 홈        | 채널 채팅        | 채널채팅        |
 |---------------|---------------|---------------|---------------|
-| <img src="https://github.com/user-attachments/assets/eb42c617-ffae-4713-9ede-179cdf8f0e2a" width="200"/> | <img src="https://github.com/user-attachments/assets/56b81f1e-0733-46d3-81e0-7fb2545dddd2" width="200"/> | <img src="https://github.com/user-attachments/assets/56b81f1e-0733-46d3-81e0-7fb2545dddd2" width="200"/> | <img src="https://github.com/user-attachments/assets/6dd490f7-16e7-4717-901d-b2b8a7077593" width="200"/> |
+| <img src="https://github.com/user-attachments/assets/eb42c617-ffae-4713-9ede-179cdf8f0e2a" width="200"/> | <img src="https://github.com/user-attachments/assets/b3b7a076-85b9-4f8e-8da0-a6d460a58acb" width="200"/> | <img src="https://github.com/user-attachments/assets/42ed9cfa-0034-4468-bd9a-98b946a786a4" width="200"/> | <img src="https://github.com/user-attachments/assets/6dd490f7-16e7-4717-901d-b2b8a7077593" width="200"/> |
 
 |    DM 목록     | 채널 탐색       | 워크스페이스 생성        | 채널 설정      |
 |---------------|---------------|---------------|---------------|
-| <img src="https://github.com/user-attachments/assets/48194a52-53ba-45c1-a3fe-168aaf7e9c20" width="200"/> | <img src="https://github.com/user-attachments/assets/6f94f1bd-5a14-426a-b2e2-132848d586ce" width="200"/> | <img src="https://github.com/user-attachments/assets/687d8ced-c996-49f5-98d5-5a8efa03e406" width="200"/> | <img src="https://github.com/user-attachments/assets/6c4e902c-46e3-4cdf-8512-8bb39e104cbf" width="200"/> |
-
+| <img src="https://github.com/user-attachments/assets/48194a52-53ba-45c1-a3fe-168aaf7e9c20" width="200"/> | <img src="https://github.com/user-attachments/assets/6f94f1bd-5a14-426a-b2e2-132848d586ce" width="200"/> | <img src="https://github.com/user-attachments/assets/687d8ced-c996-49f5-98d5-5a8efa03e406" width="200"/> | <img src="https://github.com/user-attachments/assets/5985866f-5da8-4139-ac24-ee5c65a63eb6" width="200"/> |
 
 <br/> <br/> 
 
