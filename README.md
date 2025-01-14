@@ -26,32 +26,14 @@
 > 개발 인원 : 1명 <br/> 
 > 최소 버전 : iOS 16.6 +
 
+| 워크스페이스 목록       | 홈        | 채널 채팅        | 채널채팅        |
+|---------------|---------------|---------------|---------------|
+| <img src="https://github.com/user-attachments/assets/eb42c617-ffae-4713-9ede-179cdf8f0e2a" width="200"/> | <img src="https://github.com/user-attachments/assets/56b81f1e-0733-46d3-81e0-7fb2545dddd2" width="200"/> | <img src="https://github.com/user-attachments/assets/56b81f1e-0733-46d3-81e0-7fb2545dddd2" width="200"/> | <img src="https://github.com/user-attachments/assets/6dd490f7-16e7-4717-901d-b2b8a7077593" width="200"/> |
 
-<p align="center">
-<img src="https://github.com/user-attachments/assets/eb42c617-ffae-4713-9ede-179cdf8f0e2a" width="200"/>
-<img src="https://github.com/user-attachments/assets/56b81f1e-0733-46d3-81e0-7fb2545dddd2" width="200"/>
-<img src="https://github.com/user-attachments/assets/6330578c-d9e5-4852-825a-ca2e3c01c938" width="200"/>
-<img src="https://github.com/user-attachments/assets/6dd490f7-16e7-4717-901d-b2b8a7077593" width="200"/>
-</p>	
+|    DM 목록     | 채널 탐색       | 워크스페이스 생성        | 채널 설정      |
+|---------------|---------------|---------------|---------------|
+| <img src="https://github.com/user-attachments/assets/48194a52-53ba-45c1-a3fe-168aaf7e9c20" width="200"/> | <img src="https://github.com/user-attachments/assets/6f94f1bd-5a14-426a-b2e2-132848d586ce" width="200"/> | <img src="https://github.com/user-attachments/assets/687d8ced-c996-49f5-98d5-5a8efa03e406" width="200"/> | <img src="https://github.com/user-attachments/assets/6c4e902c-46e3-4cdf-8512-8bb39e104cbf" width="200"/> |
 
-<p align="center">
-<img src="https://github.com/user-attachments/assets/48194a52-53ba-45c1-a3fe-168aaf7e9c20" width="200"/>
-<img src="https://github.com/user-attachments/assets/6f94f1bd-5a14-426a-b2e2-132848d586ce" width="200"/>
-<img src="https://github.com/user-attachments/assets/687d8ced-c996-49f5-98d5-5a8efa03e406" width="200"/>
-<img src="https://github.com/user-attachments/assets/6c4e902c-46e3-4cdf-8512-8bb39e104cbf" width="200"/>
-</p>
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/f6114730-acc7-4a19-a6d3-aba651096fac" width="200"/>
-  <img src="https://github.com/user-attachments/assets/3d344c64-fda1-49ae-9bc3-d9f9933558f4" width="200"/>
-  <img src="https://github.com/user-attachments/assets/5268bedb-9154-4db6-b7a0-75f158e58778" width="200"/>
-</p>
-
-<p align="center">
- <img src="https://github.com/user-attachments/assets/3158e791-a5dd-4e15-813b-077ce7adfdea" width="200"/>
- <img src="https://github.com/user-attachments/assets/cd75c1ed-432c-4878-98fb-cb982c5f206c" width="200"/>
- <img src="https://github.com/user-attachments/assets/cdcb691d-57f4-4eac-acf9-57b92575d0a7" width="200"/>
-</p> 
 
 <br/> <br/> 
 
@@ -67,13 +49,12 @@
 - ReactorKit, RxSwift, Rxcocoa, RxGesture
 - SocetIO
 - Moya
-- Kingfisher
 - Realm
 - SnapKit, Then
 - KakaoOpenSDK
 
 > ### Management
-- Git, Github, Figma
+- Git, Github, Figma, Confluence, Swagger
 <br/> <br/> 
 
 ## 주요 기능 (Main Feature)
@@ -88,7 +69,11 @@
 #### 채팅
    - 실시간 채널 채팅
    - 채팅 전송
-   
+     
+#### DM
+- 워크스페이스 멤버 목록 탐색
+- DM 목록 확인
+
 <br/> 
 
 ## 브랜치 전략 (Branch Strategy)
@@ -245,6 +230,94 @@ init() {
 ### 회고
 -  앱의 리소스 관리는 단순히 화면 전환뿐만 아니라 앱의 생명주기를 고려하여 설계해야 함을 느낌
 -  실시간 통신이 필요한 기능에서는 앱의 상태에 따른 연결 관리가 중요함을 깨달음
+
+
+<br/> 
+
+> ###  비동기 이미지 다운로드를 위한 try await 구현
+
+### 문제 상황
+- 이미지를 비동기적으로 로드하고 캐싱하려고 할 때, 이미지 다운로드가 완료되기 전에 콜백이 실행되어 nil 값이 반환되는 문제가 발생
+
+### 문제 분석
+- 기존 구현에서 클로저를 사용하여 이미지 다운로드를 처리했으나, 비동기적인 특성으로 인해 다운로드가 완료되기 전에 클로저 호출이 됨
+- 이로 인해 nil이 반환되어 이미지 로딩에 실패하는 문제 발생
+- 비동기 처리가 순차적으로 이루어지지 않음
+
+### 해결 방법
+#### try await을 사용
+- Swift의 async/await 기능을 사용하여 비동기 작업의 흐름을 제어함.
+- try await을 사용해 이미지 다운로드가 완료될 때까지 기다린 후 결과를 반환할 수 있어, 순서대로 작업을 처리
+
+
+### 수정된 코드
+``` Swift
+final class ImageManager {
+    static let shared = ImageManager()
+    
+    private init() { }
+    
+    func cacheImageCheck(_ urlString: String) async throws -> UIImage? {
+        return try await getorSaveImage(forkey: urlString) {
+            print("💖 Url String: \(urlString) 💖")
+            return try await self.downloadImageFromURL(urlString: urlString)
+        }
+    }
+    
+    private func getorSaveImage(forkey key: String, imageProvider: @escaping () async throws -> UIImage?) async throws -> UIImage? {
+        // 1. 캐시 확인
+        if let cachedImage = ImageCacheManager.shared.getImageCache(forKey: key) {
+            print("💖 캐시에서 확인 성공 💖")
+            return cachedImage
+        }
+        
+        // 2. 파일 매니저 확인
+        if let image = ImageFileManager.shared.loadImageFromDocument(fileName: key) {
+            print("💖 파일매니저에서 확인 성공 💖")
+            ImageCacheManager.shared.saveImageCache(image, key: key)
+            return image
+        }
+        
+        // 3. 캐시와 파일에 없으면 이미지 다운로드 후 저장
+        do {
+            if let image = try await imageProvider() {
+                print("💖 이미지 다운로드 후 캐시 및 파일 저장 💖")
+                ImageCacheManager.shared.saveImageCache(image, key: key)
+                ImageFileManager.shared.saveImageToDocument(image, fileName: key)
+                return image
+            }
+        } catch {
+            print("💖 이미지 다운로드 실패: \(error.localizedDescription) 💖")
+        }
+        
+        return nil
+    }
+    
+    private func downloadImageFromURL(urlString: String) async throws -> UIImage? {
+        guard let url = URL(string: "\(BaseURL.baseURL)v1\(urlString)") else {
+            return nil
+        }
+        
+        let (data, _) = try await URLSession.shared.data(from: url)
+        
+        guard let image = UIImage(data: data) else {
+            throw URLError(.cannotDecodeRawData)
+        }
+        
+        return image
+    }
+}
+```
+
+
+### 결과
+- try await을 사용한 비동기 처리를 통해 이미지 다운로드가 완료될 때까지 기다린 후 결과를 반환할 수 있게 되었고, nil 값이 반환되는 문제를 해결함. 
+- 코드 흐름이 명확해져 비동기 작업의 순차적인 실행을 보장
+
+
+### 회고
+- try await을 사용함으로써 비동기 작업의 흐름을 직관적으로 제어할 수 있다는 것을 깨달음
+- 이전의 클로저 방식은 비동기 작업이 완료되기 전에 콜백이 실행되는 문제가 있었는데, async  await로 해결함으로써 코드의 가독성과 안정성을 크게 향상 시킬 수 있었음.
 
 <br/> 
 
