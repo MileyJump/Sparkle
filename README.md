@@ -263,7 +263,7 @@ final class ImageManager {
         }
     }
     
-    private func getorSaveImage(forkey key: String, imageProvider: @escaping () async throws -> UIImage?) async throws -> UIImage? {
+    private func getorSaveImage(forkey key: String, imageProvider: () async throws -> UIImage?) async throws -> UIImage? {
         // 1. 캐시 확인
         if let cachedImage = ImageCacheManager.shared.getImageCache(forKey: key) {
             print("💖 캐시에서 확인 성공 💖")
