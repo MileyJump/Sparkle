@@ -234,6 +234,9 @@ init() {
 <br/> 
 
 > ###  비동기 이미지 다운로드 완료 전 반환 문제
+ <p align="center">
+ <img src="https://github.com/user-attachments/assets/dd9c3e39-df4b-4ef8-98db-8b0f24177106"/>
+</p> 
 
 ### 문제 상황
 - 이미지를 비동기적으로 로드하고 캐싱하려고 할 때, 이미지 다운로드가 완료되기 전에 콜백이 실행되어 nil 값이 반환되는 문제가 발생
