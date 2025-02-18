@@ -10,7 +10,7 @@
 
 <p align="center">
 	 <img src="https://img.shields.io/badge/Swift-F05138?style=flat-square&logo=Swift&logoColor=white"/>
-  <img src="https://img.shields.io/badge/iOS-16.6-lightgrey?style=flat&color=181717" alt="iOS 16.0" />
+  <img src="https://img.shields.io/badge/iOS-16.0-lightgrey?style=flat&color=181717" alt="iOS 16.0" />
   <img src="https://img.shields.io/badge/Swift-5.10-F05138.svg?style=flat&color=F05138" alt="Swift 5.10" />
   <img src="https://img.shields.io/badge/Xcode-16.1-147EFB.svg?style=flat&color=147EFB" alt="Xcode 15.3" />
 </p>
